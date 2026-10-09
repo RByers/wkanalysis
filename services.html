@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code-to-sandbox capability and entitlement analysis of WebKit's auxiliary sandboxed services and daemons beyond WebContent, GPU, and Networking (WebAuthn, adattributiond, webpushd, Model, and Databases/Storage).">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>WebKit Auxiliary Sandboxed Services &amp; Daemons — Code &amp; Capability Analyzer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon-services.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/services.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <a href="index.html" class="brand-icon services-brand-icon" title="Back to WebKit source analysis" aria-label="Back to WebKit source analysis">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+        </a>
+        <div>
+          <div class="brand-title-row">
+            <h1 class="brand-title">WebKit Sandboxed Auxiliary Services &amp; Daemons</h1>
+            <span class="brand-badge services-brand-badge">Seatbelt &rarr; Source Code Analysis</span>
+            <span class="ai-warning-pill" role="note" title="Analysis is AI-generated and may contain errors">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Analysis is AI-generated and may contain errors
+            </span>
+          </div>
+          <p class="brand-subtitle">Deep-dive into the purpose, unique Seatbelt capabilities, entitlements, and C++/ObjC implementation of WebKit&rsquo;s 5 auxiliary services beyond <code>WebContent</code>, <code>GPU</code>, and <code>Networking</code></p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="btn-secondary" title="Back to WebKit source analysis index">&larr; All Analyses</a>
+        <div id="datasetMetaBadge" class="meta-badge" aria-live="polite">Loading dataset&hellip;</div>
+        <button id="toggleMethodologyBtn" type="button" class="btn-secondary" aria-expanded="false" aria-controls="methodologyPanel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          Analysis Framework
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- Collapsible 4-Stage Analysis Framework Drawer -->
+    <section id="methodologyPanel" class="methodology-panel hidden" aria-label="4-Stage Code-to-Sandbox Analysis Framework">
+      <div class="methodology-grid">
+        <div class="methodology-col">
+          <h3>Stage 1 &amp; 2: Seatbelt Diffing &amp; Entitlements</h3>
+          <p>Starting from each non-(WebContent, GPU, Networking) iOS Seatbelt profile in <code>Source/WebKit/Resources/SandboxProfiles/ios/</code> (at <code>HEAD</code> for active services and final pre-removal commits for retired services):</p>
+          <ul class="compact-list">
+            <li><strong>Differential Capability Matrix:</strong> Extracts every <code>mach-lookup</code>, <code>iokit-open</code>, filesystem path, sandbox extension, network rule, syscall, and <code>lsopen</code> grant, classifying whether it is <strong>Unique to Service</strong> (absent from WebContent, GPU, and Networking) or <strong>Elevated vs. WebContent</strong>.</li>
+            <li><strong>Entitlements &amp; Caller Gates:</strong> Audits <code>Source/WebKit/Scripts/process-entitlements.sh</code> for both the service&rsquo;s own restricted entitlements and caller entitlements (e.g., <code>com.apple.private.webkit.adattributiond</code>, <code>com.apple.private.webkit.webpush</code>).</li>
+          </ul>
+        </div>
+        <div class="methodology-col">
+          <h3>Stage 3: Source Code &amp; IPC Call-Site Mapping</h3>
+          <p>Maps every unique Seatbelt rule and entitlement back to its concrete C++/ObjC/Swift implementation in the WebKit repository:</p>
+          <ul class="compact-list">
+            <li><strong>Entry Points &amp; Daemons:</strong> Traces <code>XPCServiceEntryPoint</code>, <code>DaemonMain</code>, and <code>AuxiliaryProcessMain</code> across <code>WebAuthnProcess/</code>, <code>PrivateClickMeasurement/</code>, <code>webpushd/</code>, <code>ModelProcess/</code>, and <code>StorageProcess/</code>.</li>
+            <li><strong>IPC Surface (<code>*.messages.in</code>):</strong> Connects sandbox rules to the exact IPC message receivers and OS framework SPIs (e.g., <code>ctkd</code>, <code>nfcd</code>, <code>apsd</code>, <code>CARenderServer</code>, <code>AppleKeyStoreUserClient</code>).</li>
+          </ul>
+        </div>
+        <div class="methodology-col">
+          <h3>Stage 4: Lifecycle &amp; 3P BrowserEngineKit Impact</h3>
+          <p>Evaluates why each service was created, how its sandbox evolved across all historical commits, and how it affects 3P browser competition on iOS:</p>
+          <ul class="compact-list">
+            <li><strong>3 Active Services at <code>HEAD</code>:</strong> <code>adattributiond</code> (PCM daemon), <code>webpushd</code> (Web Push daemon), and <code>Model</code> (spatial 3D <code>&lt;model&gt;</code> process).</li>
+            <li><strong>2 Retired / Consolidated Services:</strong> <code>WebAuthn</code> (consolidated into OS <code>AuthenticationServices.framework</code> in May 2022) and <code>Databases/Storage</code> (merged into <code>NetworkProcess</code> in 2019&ndash;2020).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top-Level View Tabs: Insights & Service Deep-Dives (Default) vs. Capability Explorer -->
+    <nav class="view-tabs-bar" role="tablist" aria-label="Sandbox Services Analysis Views">
+      <button type="button" id="viewTabInsights" class="view-tab-btn active" role="tab" aria-selected="true" aria-controls="insightsViewPanel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18h6"></path>
+          <path d="M10 22h4"></path>
+          <path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2z"></path>
+        </svg>
+        <span>Insights, Architecture &amp; Service Deep-Dives</span>
+        <span class="view-tab-badge">5 Services</span>
+      </button>
+      <button type="button" id="viewTabExplorer" class="view-tab-btn" role="tab" aria-selected="false" aria-controls="explorerViewPanel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="3" y1="9" x2="21" y2="9"></line>
+          <line x1="9" y1="21" x2="9" y2="9"></line>
+        </svg>
+        <span>Data View: Capability, Entitlement &amp; IPC Explorer</span>
+        <span id="explorerTabCountBadge" class="view-tab-badge">0</span>
+      </button>
+    </nav>
+
+    <!-- View 1 (Default): Insights, Cross-Service Comparison & Per-Service Deep-Dive Inspector -->
+    <div id="insightsViewPanel" class="view-panel" role="tabpanel" aria-labelledby="viewTabInsights">
+      <div id="insightsContent" class="insights-layout"></div>
+    </div>
+
+    <!-- View 2: Data View (Capability, Entitlement & IPC Explorer) -->
+    <div id="explorerViewPanel" class="view-panel hidden" role="tabpanel" aria-labelledby="viewTabExplorer">
+      <!-- KPI Summary Cards -->
+      <section id="kpiGrid" class="kpi-grid" aria-label="Capability Summary Metrics"></section>
+
+      <!-- Interactive Filter Bar -->
+      <section class="filter-panel" aria-label="Filter Service Capabilities">
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label for="filterService">Sandboxed Service</label>
+            <select id="filterService">
+              <option value="all">All 5 Auxiliary Services</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterStatus">Lifecycle Status at HEAD</label>
+            <select id="filterStatus">
+              <option value="all">All Statuses (Active &amp; Retired)</option>
+              <option value="active">Active at HEAD (adattributiond, webpushd, Model)</option>
+              <option value="retired">Retired / Consolidated (WebAuthn, Storage)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterCapType">Capability / Rule Type</label>
+            <select id="filterCapType">
+              <option value="all">All Capability Types</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterUniqueness">Uniqueness vs. Core Triad</label>
+            <select id="filterUniqueness">
+              <option value="all">All Uniqueness Tiers</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterAvailability">3P Browser Availability</label>
+            <select id="filterAvailability">
+              <option value="all">All 3P Availability Tiers</option>
+            </select>
+          </div>
+
+          <div class="filter-group filter-group-search">
+            <label for="filterSearch">Search Identifier / Source File / Symbol / Purpose</label>
+            <input type="search" id="filterSearch" placeholder="e.g. com.apple.apsd, ctkd, IOHIDLibUserClient, CARenderServer, lsopen...">
+          </div>
+
+          <div class="filter-actions">
+            <button id="resetFiltersBtn" type="button" class="btn-reset" title="Reset all active filters">Reset</button>
+            <button id="exportCsvBtn" type="button" class="btn-secondary" title="Export matching capabilities as CSV">Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Quick Service Filter Pills -->
+        <div class="quick-pills-row">
+          <span class="quick-pills-label">Quick Filter by Service:</span>
+          <div id="servicePillBar" class="pill-bar" role="group" aria-label="Filter by Sandboxed Service"></div>
+        </div>
+      </section>
+
+      <!-- Primary Capability Distribution Chart -->
+      <section class="card chart-card" aria-label="Capabilities Across Sandboxed Services">
+        <div class="card-header">
+          <div>
+            <h2 id="mainChartTitle" class="card-title">Capabilities &amp; Entitlements by Sandboxed Service</h2>
+            <p id="mainChartSubtitle" class="card-subtitle">Click any bar segment or legend item to filter the capability table below</p>
+          </div>
+          <div class="chart-controls">
+            <div class="control-inline">
+              <label for="chartGroupSelect">Group X-Axis</label>
+              <select id="chartGroupSelect">
+                <option value="service" selected>By Sandboxed Service (5)</option>
+                <option value="capType">By Capability Type</option>
+                <option value="uniqueness">By Uniqueness vs. Core Triad</option>
+                <option value="availability">By 3P Browser Availability</option>
+              </select>
+            </div>
+
+            <div class="control-inline">
+              <label for="chartStackSelect">Color / Stack By</label>
+              <select id="chartStackSelect">
+                <option value="capType" selected>Capability Type (Mach, Entitlement, IOKit...)</option>
+                <option value="uniqueness">Uniqueness vs. Core Triad</option>
+                <option value="availability">3P Browser Availability</option>
+                <option value="service">Sandboxed Service</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="chartLegend" class="chart-legend" role="group" aria-label="Chart Legend"></div>
+
+        <div id="mainChartContainer" class="chart-svg-wrapper">
+          <svg id="mainChartSvg" class="chart-svg" role="img" aria-label="Stacked bar chart of WebKit auxiliary service capabilities"></svg>
+        </div>
+      </section>
+
+      <!-- Three-Column Breakdown Cards -->
+      <section class="breakdown-grid" aria-label="Dimensional Breakdowns">
+        <article class="card breakdown-card">
+          <div class="card-header-compact">
+            <h3 class="card-title-sm">By Sandboxed Service</h3>
+            <span class="card-hint">Click row to filter</span>
+          </div>
+          <div id="serviceBreakdownList" class="breakdown-list"></div>
+        </article>
+
+        <article class="card breakdown-card">
+          <div class="card-header-compact">
+            <h3 class="card-title-sm">By Capability / Rule Type</h3>
+            <span class="card-hint">Click row to filter</span>
+          </div>
+          <div id="capTypeBreakdownList" class="breakdown-list"></div>
+        </article>
+
+        <article class="card breakdown-card">
+          <div class="card-header-compact">
+            <div class="card-tab-group" role="tablist" aria-label="Uniqueness or 3P Availability Breakdown">
+              <button type="button" id="tabUniquenessBtn" class="tab-btn active" role="tab" aria-selected="true">Uniqueness</button>
+              <button type="button" id="tabAvailabilityBtn" class="tab-btn" role="tab" aria-selected="false">3P Availability</button>
+            </div>
+            <span class="card-hint">Click row to filter</span>
+          </div>
+          <div id="uniquenessAvailabilityBreakdownList" class="breakdown-list"></div>
+        </article>
+      </section>
+
+      <!-- Capabilities Table -->
+      <section class="card table-card" aria-label="Table of Service Capabilities and Entitlements">
+        <div class="card-header table-header-bar">
+          <div>
+            <h2 class="card-title">Seatbelt Capabilities, Entitlements &amp; Source Code Mapping</h2>
+            <p id="tableSummaryText" class="card-subtitle">Showing matching capabilities &mdash; click any row to inspect full source code call sites and Seatbelt context</p>
+          </div>
+          <div class="table-controls">
+            <div class="control-inline">
+              <label for="tableSortSelect">Sort By</label>
+              <select id="tableSortSelect">
+                <option value="service-asc" selected>Service &rarr; Capability Type</option>
+                <option value="uniqueness-asc">Uniqueness (Unique to Service First)</option>
+                <option value="type-asc">Capability Type</option>
+                <option value="availability-asc">3P Browser Availability</option>
+                <option value="id-asc">Identifier (A&ndash;Z)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-scroll-container">
+          <table class="changes-table">
+            <thead>
+              <tr>
+                <th class="col-expand" aria-label="Expand details"></th>
+                <th>Service</th>
+                <th>Type</th>
+                <th>Identifier (Rule / Entitlement / IPC)</th>
+                <th>Uniqueness vs. Core Triad</th>
+                <th>Purpose &amp; Code Role</th>
+                <th>WebKit Source Files &amp; Symbols</th>
+                <th>3P Browser Availability</th>
+              </tr>
+            </thead>
+            <tbody id="capabilitiesTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="data/sandbox_services.js"></script>
+  <script src="js/services.js"></script>
+</body>
+</html>
