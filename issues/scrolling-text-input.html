@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why other browser engines with their own graphics stacks don't need all of Safari's private UIKit primitives, why important platform-integration gaps remain likely given WebKit's ~280 UIKit and ~50 Accessibility SPIs, and why IME and accessibility are key areas for research.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Scrolling, text input &amp; native UI parity — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Scrolling, text input &amp; native UI parity
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Scrolling, text input &amp; native UI parity</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P3</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Engines use their own graphics stacks; needs further research)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Yes (engines ship their own input stacks)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> Since other browser engines use their own graphics and compositing stacks rather than mapping web pages onto native UIKit views, they don't need all of the same OS integration primitives as Safari — yet given how much work has gone into WebKit here (282 private UIKit SPIs and 53 private Accessibility SPIs, plus a 2026 momentum-scrolling revert) and how different the architecture is for other browser engines, it seems likely that there are important gaps in platform integration, with <strong>accessibility</strong> and <strong>IME / complex text input</strong> as key areas for further research.</p>
+        <p><strong>What this page adds:</strong> Source analysis of WebKit shows why raw SPI counts in UIKit (282 SPIs in <code>AllowedSPI-legacy.toml</code>) and Accessibility (53 SPIs) must be interpreted through engine architecture. WebKit maps DOM scrolling containers, selection handles, and accessible nodes onto a tree of native UIKit views and CoreAnimation layers (<a href="graphics-hdr.html">RemoteLayerTree</a>), dynamically toggling between public BrowserEngineKit protocols (<code>BEScrollView</code>, <code>BETextInput</code>, <code>BEContextMenuConfiguration</code>) and legacy private protocols (<code>UITextInputPrivate</code>, <code>AXRemoteElement</code>). Engines such as Chromium and Gecko render and scroll inside their own graphics pipeline (drawing into a single Metal surface), so they bypass many of WebKit's private <code>UIScrollView</code> and view-hierarchy hooks. However, wherever an in-engine graphics stack still has to bridge rich document state to iOS system services across process boundaries — especially <strong>IME composition, autocorrection, and hardware keyboards</strong> and <strong>cross-process VoiceOver accessibility trees</strong> — architectural mismatches are likely and merit targeted research.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">Scrolling physics, rubber-banding &amp; custom graphics stacks (<code>BEScrollView</code> vs. private <code>UIScrollView</code> SPI)</a></li>
+        <li><a href="#aspect-2">Text input, IME composition &amp; async editing (<code>BETextInput</code> vs. <code>UITextInputPrivate</code>)</a></li>
+        <li><a href="#aspect-3">Selection handles, callout bars &amp; context menus (<code>BEContextMenuConfiguration</code>)</a></li>
+        <li><a href="#aspect-4">Drag &amp; drop, native pickers, and Apple Pencil Scribble</a></li>
+        <li><a href="#aspect-5">Viewport obscuring, keyboard avoidance &amp; SpringBoard status bar styling</a></li>
+        <li><a href="#aspect-6">Churn risk &amp; allowlist fragility: the 2026 momentum bounce regression</a></li>
+        <li><a href="#aspect-7">Accessibility &amp; cross-process VoiceOver integration (<code>AXRemoteElement</code> vs. public APIs)</a></li>
+        <li><a href="#open-questions">Open questions &amp; areas for further research</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>Scrolling physics, rubber-banding &amp; custom graphics stacks (<code>BEScrollView</code> vs. private <code>UIScrollView</code> SPI)</h2>
+      <p>iOS users expect scrolling to feel distinctly "native": momentum deceleration must follow specific non-linear decay curves, rubber-band bouncing must smoothly absorb overscroll at boundaries, and interrupting a bounce with a new touch gesture must never cause a visual jump or stutter. In WebKit, every scrollable DOM region (the main document as well as nested overflow <code>&lt;div&gt;</code> containers) is backed by a real UIKit <code>WKScrollView</code> / <code>WKChildScrollView</code> inside WebKit's <a href="graphics-hdr.html">RemoteLayerTree</a> hierarchy.</p>
+      <p>Because WebKit relies on UIKit's native scroll views for each scrollable layer, it subclasses <code>BEScrollView</code> via <code>WKBaseScrollView</code> and <code>WKScrollView</code> and uses private UIKit selectors to eliminate visual artifacts and coordinate nested panning (<code>_setAvoidsJumpOnInterruptedBounce:</code>, <code>setTracksImmediatelyWhileDecelerating:</code>, <code>_setAllowsParentToBeginHorizontally:</code>, <code>_setAllowsParentToBeginVertically:</code>). By contrast, alternative browser engines (Chromium, Gecko) use their own graphics and compositing stacks: they handle hit-testing, nested scroll chaining, and compositor-thread scrolling internally and paint into a single Metal surface, meaning they do not need all of the same per-view UIKit scroll primitives as Safari — though they must either approximate iOS momentum/rubber-band curves in their own physics code or coordinate an outer <code>BEScrollView</code> with their internal compositor.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WKWebViewIOS.mm</code> configures <code>_scrollView</code> during initialization: if available, it calls <code>_setAvoidsJumpOnInterruptedBounce:YES</code> and <code>setTracksImmediatelyWhileDecelerating:NO</code>.</li>
+            <li><code>ScrollingTreeScrollingNodeDelegateIOS.mm</code> mirrors these settings for asynchronous out-of-process scrolling trees and handles overscroll behavior (CSS <code>overscroll-behavior</code>) via private transfer methods <code>_wk_setTransfersHorizontalScrollingToParent:</code> and <code>_wk_setTransfersVerticalScrollingToParent:</code> (which invoke <code>_setAllowsParentToBeginHorizontally:</code> / <code>_setAllowsParentToBeginVertically:</code>).</li>
+            <li><code>WKScrollView.mm</code> implements custom rubber-band restoration (<code>_setContentSizePreservingContentOffsetDuringRubberband:</code>) to prevent content jumping when layout size changes during an active overscroll bounce.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Because other browser engines use their own graphics and input stacks rather than creating a tree of nested <code>UIScrollView</code> instances, they handle nested scroll chaining and overscroll inside their own compositor and do not need WebKit's private parent-scroll transfer selectors.</li>
+            <li>Engines can adopt <code>BEScrollView</code> and <code>BEScrollViewDelegate</code> (<code>scrollView:handleScrollUpdate:completion:</code>) for top-level scroll integration, or drive scrolling directly from touch gestures on their composited surface.</li>
+            <li>If an engine uses <code>BEScrollView</code> directly, it lacks private selectors like <code>_setAvoidsJumpOnInterruptedBounce:</code>; if it drives scrolling in its own compositor, it must tune its own deceleration and rubber-band curves and coordinate scroll state with host UI bars and system gestures.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L236">WKWebViewIOS.mm:236–242</a> — <code>_setupScrollAndContentViews</code> calls <code>_setAvoidsJumpOnInterruptedBounce:YES</code> and <code>setTracksImmediatelyWhileDecelerating:NO</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/RemoteLayerTree/ios/ScrollingTreeScrollingNodeDelegateIOS.mm#L396">ScrollingTreeScrollingNodeDelegateIOS.mm:396–403</a> — applies interrupted-bounce and deceleration-tracking properties to scrolling state nodes.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/UIKitUtilities.mm#L175">UIKitUtilities.mm:175–201</a> — invokes private selectors <code>_setAllowsParentToBeginHorizontally:</code> and <code>_setAllowsParentToBeginVertically:</code> for parent scroll transfer.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/spi/ios/UIKitSPI.h#L484">UIKitSPI.h:484–487</a> — declarations for <code>_allowsParentToBeginHorizontally</code>, <code>_allowsParentToBeginVertically</code>, and <code>_avoidsJumpOnInterruptedBounce</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKScrollView.mm#L437">WKScrollView.mm:437–453</a> — <code>_setContentSizePreservingContentOffsetDuringRubberband:</code> offsets content size shifts during rubber-banding.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/bescrollview">BEScrollView</a> &amp; <a href="https://developer.apple.com/documentation/browserenginekit/bescrollviewdelegate">BEScrollViewDelegate</a> — public BrowserEngineKit scroll primitives.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Text input, IME composition &amp; async editing (<code>BETextInput</code> vs. <code>UITextInputPrivate</code>)</h2>
+      <p>Unlike scrolling — which an engine with its own graphics stack can handle largely inside its own compositor — text entry and Input Method Editors (IMEs) always require tight coordination with the operating system's keyboard subsystem. Entering text on iOS involves software keyboards, multi-stage IME composition and marked-text underlining for Chinese, Japanese, and Korean (CJK), predictive candidate bars, inline autocorrection bubbles, dictation streaming, and hardware keyboard shortcuts. Because browser rendering engines run in dedicated helper processes and render DOM text inside their own graphics surfaces rather than standard <code>UITextField</code> views, every keystroke, composition range change, candidate selection, and caret/selection bounding box must be synchronized across process boundaries.</p>
+      <p>In iOS 17.4, Apple introduced <code>BETextInput</code> and <code>BETextInteraction</code> in BrowserEngineKit to expose an asynchronous text-input contract. WebKit's source code illustrates both the progress and the remaining surface area: WebKit implements a runtime fork in <code>-[WKContentView _updateRuntimeProtocolConformanceIfNeeded]</code>. When modern asynchronous interaction is active, it dynamically adds the <code>BETextInput</code> protocol; otherwise, it dynamically registers five legacy private protocols: <code>UIWKInteractionViewProtocol</code>, <code>UITextInputPrivate</code>, <code>UITextAutoscrolling</code>, <code>UITextInputMultiDocument</code>, and <code>_UITextInputTranslationSupport</code>.</p>
+      <div class="issue-callout note">
+        <strong>Why IME is a key research area:</strong> Even with <code>BETextInput</code> adopted in modern builds, WebKit's allowlists still retain dozens of private keyboard and IME symbols — including marked-text range selectors (<code>setRangeInMarkedText:</code>, <code>setSelectedRangeInMarkedText:</code>, <code>setAnnotatedText:</code>), input-method command hooks (<code>handleKeyInputMethodCommandForCurrentEvent</code>, <code>addInputString:withFlags:withInputManagerHint:</code>), direct queries to <code>UIKeyboardImpl</code> and <code>UIKeyboardInputModeController</code> (e.g. <code>UIKeyboardEnabledInputModesAllowChineseTransliterationForText</code>), <code>UIWKAutocorrectionContext</code>, and low-level GraphicsServices hardware-keyboard modifier functions. How completely <code>BETextInput</code> covers complex CJK IME composition, dead-key state, and live autocorrection geometry in a non-WebKit engine has not yet been verified empirically.
+      </div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>In <code>WKContentViewInteraction.mm</code>, WebKit dynamically registers protocol conformances at runtime. For legacy or fallback modes, it uses private UIKit interfaces like <code>UITextInputPrivate</code>.</li>
+            <li>WebKit coordinates autocorrection context via private classes <code>UIWKAutocorrectionContext</code> and <code>UIWKAutocorrectionRects</code>, querying <code>UIKeyboardImpl.activeInstance</code> and <code>autocorrectSpellingEnabled</code>.</li>
+            <li>For hardware keyboards, WebKit checks physical modifier keys and country layouts using private GraphicsServices symbols (<code>GSEventIsHardwareKeyboardAttached</code>, <code>GSKeyboardGetModifierState</code>, <code>GSEventGetHardwareKeyboardCountry</code>).</li>
+            <li>WebKit integrates with system Writing Tools via <code>WTWritingToolsDelegate</code>, supporting proofreading sessions and suggestions (<code>WTTextSuggestion</code>).</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines must conform to <code>BETextInput</code> and attach <code>BETextInteraction</code> to their content view. This gives them public asynchronous methods to handle replacement text (<code>replaceText:withText:shouldUnderline:completion:</code>), candidate suggestions (<code>setCandidateSuggestions:</code>), and document context queries (<code>requestDocumentContext:completion:</code>).</li>
+            <li>Third-party engines cannot access <code>UIKeyboardImpl</code> or GraphicsServices modifier functions. They rely solely on public key events delivered via <code>BEKeyEntry</code>, which makes it harder to detect whether a physical keyboard is attached prior to a keypress or inspect system transliteration mode flags (e.g. <code>UIKeyboardEnabledInputModesAllowChineseTransliterationForText</code>).</li>
+            <li>Architectural cost: Adopting <code>BETextInput</code> requires a non-trivial architectural re-engineering to make the engine's internal input stack asynchronous, handling pending completions across process boundaries.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L1281">WKContentViewInteraction.mm:1281–1304</a> — <code>_updateRuntimeProtocolConformanceIfNeeded</code> dynamically adds <code>BETextInput</code> or the 5 legacy private protocols (<code>UITextInputPrivate</code>, etc.).</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKBrowserEngineDefinitions.h#L43">WKBrowserEngineDefinitions.h:43–52</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKBrowserEngineDefinitions.h#L87">:87–96</a> — maps <code>BETextSuggestion</code> and <code>BETextDocumentContext</code> to private <code>UITextSuggestion</code> and <code>UIWKDocumentContext</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKTextInteractionWrapper.mm#L128">WKTextInteractionWrapper.mm:128–147</a> — instantiates <code>BETextInteraction</code> when async interactions are enabled; otherwise instantiates private <code>UIWKTextInteractionAssistant</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/6defc289ffaf04d88c88c6aee6f29b0652ddd5fa">6defc289ffaf (2024-01-26)</a> "Upstream adoption of UIKit and keyboard-related BrowserEngineKit APIs" — introduced the <code>BETextInput</code> / <code>BETextInteraction</code> adoption in WebKit.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/betextinput">BETextInput</a> &amp; <a href="https://developer.apple.com/documentation/browserenginekit/betextinteraction">BETextInteraction</a> — public BrowserEngineKit text input APIs.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Selection handles, callout bars &amp; context menus (<code>BEContextMenuConfiguration</code>)</h2>
+      <p>Selecting text or long-pressing links on iOS surfaces floating interface elements: text selection handles with loupe magnification, the contextual edit menu bar (Cut, Copy, Paste, Share, Translate), and rich preview context menus for hyperlinks and images. Because web content layout and hit-testing occur in a helper process, determining what element was tapped and generating the preview configuration is inherently asynchronous.</p>
+      <p>Standard UIKit context menus (<code>UIContextMenuInteraction</code>) expect a synchronous return of a <code>UIContextMenuConfiguration</code>. BrowserEngineKit solves this by introducing <code>BEContextMenuConfiguration</code>, which can be returned immediately and fulfilled later via <code>fulfillUsingConfiguration:</code>. WebKit uses this public BrowserEngineKit class when configured for async interactions, but falls back to swizzling the private selector <code>_contextMenuInteraction:configurationForMenuAtLocation:completion:</code> when BrowserEngineKit is unavailable.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>In <code>WKContentViewInteraction.mm</code> (lines 15311–15324), WebKit implements <code>contextMenuInteraction:configurationForMenuAtLocation:</code>. When BrowserEngineKit is enabled, it allocates a <code>BEContextMenuConfiguration</code> and fulfills it once the WebContent process finishes hit-testing.</li>
+            <li>For selection handles and magnifying loupes, <code>WKTextInteractionWrapper.mm</code> coordinates with <code>UITextSelectionDisplayInteraction</code> (accessible via <code>[_asyncTextInteraction textSelectionDisplayInteraction]</code>), suppressing handles during overflow scrolling with <code>HideEditMenuScope</code>.</li>
+            <li>WebKit still references legacy selection metadata classes such as <code>WebSelectionRect</code> and <code>UITextSelectionRectCustomHandleInfo</code> in its allowlist.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third parties can use <code>BEContextMenuConfiguration</code> to display asynchronous preview context menus for web links and images, mirroring WebKit's modern path.</li>
+            <li>For text selection menus, third parties can use public <code>UIEditMenuInteraction</code> and <code>BETextInteraction</code> to show system edit items.</li>
+            <li>However, synchronizing custom handle views and suppressing selection highlights across out-of-process scroll boundaries without access to private UIKit selection container views (<code>_managedTextSelectionViews</code>) remains intricate and prone to visual desynchronization during fast gesture flings.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L1306">WKContentViewInteraction.mm:1306–1314</a> — dynamically registers private selector <code>_contextMenuInteraction:configurationForMenuAtLocation:completion:</code> for non-BEK configurations.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L15311">WKContentViewInteraction.mm:15311–15324</a> — allocates <code>BEContextMenuConfiguration</code> and fulfills it asynchronously.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKTextInteractionWrapper.mm#L60">WKTextInteractionWrapper.mm:60–80</a> — <code>HideEditMenuScope</code> dismisses edit menus and deactivates <code>UITextSelectionDisplayInteraction</code> during overflow scrolling.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/becontextmenuconfiguration">BEContextMenuConfiguration</a> — public BrowserEngineKit asynchronous context menu configuration.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Drag &amp; drop, native pickers, and Apple Pencil Scribble</h2>
+      <p>Mobile web forms require native input peripherals: date and time wheels for <code>&lt;input type="date"&gt;</code>, dropdown wheel lists for <code>&lt;select&gt;</code> elements, drag-and-drop sessions for images and selected text, and handwriting recognition via Apple Pencil ("Scribble") directly into form fields.</p>
+      <p>BrowserEngineKit provides <code>BEDragInteraction</code>, which WebKit adopts to handle drag sessions asynchronously across process boundaries. For Apple Pencil input, WebKit implements the public <code>UIIndirectScribbleInteractionDelegate</code> protocol, creating synthetic <code>UIScribbleElementIdentifier</code> tokens for web input fields and monitoring stylus availability via <code>UIScribbleInteraction.isPencilInputExpected</code>. For form pickers, however, WebKit still uses internal UIKit components like <code>UIPickerContentView</code> and private data-owner isolation (<code>_performAsDataOwner:block:</code>).</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WKContentViewInteraction.mm</code> adopts <code>BEDragInteractionDelegate</code> (lines 11535–11544), preparing drag sessions and adding items asynchronously as the WebContent process serializes drag data.</li>
+            <li>In lines 12685–12752, WebKit registers <code>UIIndirectScribbleInteraction</code>, allowing users to handwrite directly into HTML input controls with Apple Pencil; <code>WKStylusDeviceObserver.mm</code> observes <code>UIScribbleInteraction.isPencilInputExpected</code>.</li>
+            <li>Form pickers (<code>WKFormSelectPicker.mm</code>, <code>WKDatePickerViewController.mm</code>) host native UIKit pickers directly in peripheral accessory views and popovers, using private selectors like <code>_setShowsFileSizePicker:</code> and <code>_performAsDataOwner:block:</code> to control security boundaries during drag and file selection.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines have access to public <code>BEDragInteraction</code> and public <code>UIIndirectScribbleInteraction</code>, allowing them to support drag sessions and Apple Pencil handwriting if they build the necessary element-tracking adapters.</li>
+            <li>For form controls, third parties must either render inputs entirely in HTML/DOM (which lacks native iOS haptic wheel feedback and visual styling) or construct custom UIKit picker view controllers from scratch using public <code>UIPickerView</code> and <code>UIDatePicker</code> within their own popovers.</li>
+            <li>Third parties lack access to <code>_performAsDataOwner:block:</code>, which enforces enterprise managed data separation (managed open-in) during clipboard and drag operations.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L11535">WKContentViewInteraction.mm:11535–11545</a> — <code>BEDragInteractionDelegate</code> session preparation and item population.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L12685">WKContentViewInteraction.mm:12685–12752</a> — <code>UIIndirectScribbleInteractionDelegate</code> implementation for Apple Pencil input.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKStylusDeviceObserver.mm#L56">WKStylusDeviceObserver.mm:56–106</a> — observes <code>UIScribbleInteraction.isPencilInputExpected</code> to optimize stylus gesture pipelines.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/forms/WKFormSelectPicker.mm#L31">WKFormSelectPicker.mm:31</a> &amp; <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/forms/WKDatePickerViewController.mm#L1">WKDatePickerViewController.mm</a> — native form pickers integrated with UIKit.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/bedraginteraction">BEDragInteraction</a> &amp; <a href="https://developer.apple.com/documentation/uikit/uiscribbleinteraction">UIIndirectScribbleInteraction</a> — public APIs for drag-and-drop and stylus input.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Viewport obscuring, keyboard avoidance &amp; SpringBoard status bar styling</h2>
+      <p>When browsing on iOS, top address bars and bottom navigation toolbars dynamically shrink and expand as the user scrolls. When an input field is tapped, the virtual keyboard animates upward. In all these cases, the web viewport, safe area insets (e.g. CSS <code>env(safe-area-inset-top)</code>), and dynamic viewport units (<code>dvh</code>, <code>svh</code>, <code>lvh</code>) must update synchronously without causing the page content to jump jarringly under the user's thumb.</p>
+      <p>WebKit solves this with private view-coordination hooks. In <code>WKWebViewIOS.mm</code>, Safari sets <code>_setObscuredInsets:</code>, allowing the browser chrome to overlay the web view while WebKit automatically calculates the visible content area and offsets scroll targets. For keyboard presentation, <code>WKScrollView.mm</code> overrides <code>_adjustForAutomaticKeyboardInfo:animated:lastAdjustment:</code> and queries <code>UIPeripheralHost</code>'s private method <code>getVerticalOverlapForView:usingKeyboardInfo:</code> to compute exact pixel overlap before animating. Additionally, Apple signs WebKit's GPU process with private SpringBoard entitlements to manage system capture status bar pills.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WKWebViewIOS.mm</code> provides <code>-[WKWebView _setObscuredInsets:]</code> (lines 264–297, 4555), directly updating viewport layout insets, dynamic viewport units, and scroll limits without triggering unneeded re-layouts.</li>
+            <li>In <code>WKScrollView.mm</code> (lines 455–479), WebKit intercepts automatic keyboard adjustments via <code>_adjustForAutomaticKeyboardInfo:animated:lastAdjustment:</code>, computing <code>_keyboardBottomInsetAdjustment</code> via private class <code>UIPeripheralHost</code> and adjusting <code>_systemContentInset</code>.</li>
+            <li><code>WKContentViewInteraction.mm</code> checks <code>self._scroller.firstResponderKeyboardAvoidanceEnabled</code> (line 8721) to defer scrolling to focused elements until keyboard appearance animations begin.</li>
+            <li>WebKit's GPU process holds private entitlement <code>com.apple.springboard.statusbarstyleoverrides</code>, allowing <code>MediaCaptureStatusBarManager.mm</code> to display system status bar pills for active WebRTC media capture.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines cannot invoke <code>_setObscuredInsets:</code> or <code>UIPeripheralHost</code>. They must rely on public keyboard notifications (<code>UIKeyboardWillShowNotification</code>) and adjust their root view frames or scroll insets manually. Because UIKit keyboard notifications often lag behind interactive gesture transitions, this frequently causes visual jitter or sluggish content repositioning.</li>
+            <li>Third-party browsers cannot obtain <code>com.apple.springboard.statusbarstyleoverrides</code> (an Apple-private, WebKit-exclusive entitlement), meaning they cannot register custom status bar style overrides for media capture; iOS manages standard capture indicators on their behalf.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L264">WKWebViewIOS.mm:264–297</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L4555">:4555–4558</a> — <code>_setObscuredInsets:</code> manages chrome overlay insets and scroll boundaries.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKScrollView.mm#L455">WKScrollView.mm:455–479</a> — <code>_adjustForAutomaticKeyboardInfo:</code> queries private <code>UIPeripheralHost</code> vertical overlap and adjusts <code>_systemContentInset</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L8721">WKContentViewInteraction.mm:8721</a> — queries private selector <code>firstResponderKeyboardAvoidanceEnabled</code> on the scroller.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L539">process-entitlements.sh:539–542</a> — signs the GPU process with <code>com.apple.springboard.statusbarstyleoverrides</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=statusbarstyleoverrides">Entitlements explorer › com.apple.springboard.statusbarstyleoverrides</a> — dossier confirming Apple-private, iOS WebKit-exclusive status.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>Churn risk &amp; allowlist fragility: the 2026 momentum bounce regression</h2>
+      <p>The extent to which WebKit still relies on private UIKit SPIs is vividly illustrated by WebKit's own SPI allowlist architecture and recent git history. While Apple has created modern allowlists (<code>AllowedSPI.toml</code>) for approved or transitioning symbols, the vast majority of UIKit SPIs remain isolated in <code>AllowedSPI-legacy.toml</code>. Out of 282 SPIs in the "UIKit Views, Scrolling, Gestures &amp; Text Input" category, 282 (97.2%) remain in the legacy allowlist, with only 8 in the active allowlist.</p>
+      <p>When WebKit engineers attempt to eliminate these legacy private selectors, subtle behavioral regressions frequently occur. In January 2026, WebKit commit <a href="https://github.com/WebKit/WebKit/commit/f0db2bb7cc9674bb195cca7d9fd625539b82f32e">f0db2bb7cc96 (2026-01-14)</a> attempted to remove private momentum selectors <code>_setAvoidsJumpOnInterruptedBounce:</code> and <code>setTracksImmediatelyWhileDecelerating:</code> in favor of a newer API property (<code>_setDecelerationTrackingBehavior:</code>). Just three weeks later, commit <a href="https://github.com/WebKit/WebKit/commit/2a02830783a0e4087056e78410c02536d4e61950">2a02830783a0 (2026-02-04)</a> had to completely revert the change with the note: <em>"Our adoption of setDecelerationTrackingBehavior broke scrolling during an existing momentum phase on certain HTML content in Mail.app."</em> Both private selectors were immediately restored to <code>AllowedSPI-legacy.toml</code>. You can explore the full history of such restorations in the <a href="../spi.html#legacySpotlightSection">Legacy Policy Analysis</a> section of the SPI dataset.</p>
+      <div class="issue-callout note">
+        <strong>Implication for alternative engines:</strong> An engine that drives its own scrolling physics inside its own graphics pipeline does not directly depend on <code>_setAvoidsJumpOnInterruptedBounce:</code> the way WebKit's <code>UIScrollView</code>-based tree does. However, the sheer volume of ongoing churn in WebKit's UIKit integration shows how many subtle OS assumptions exist at the boundary between web content and UIKit gestures, keyboards, and system overlays.
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&feat=UIKit%20Views%2C%20Scrolling%2C%20Gestures%20%26%20Text%20Input">SPI explorer › UIKit Views, Scrolling, Gestures &amp; Text Input (282 SPIs)</a> — overview of the 282 UIKit SPIs and the momentum bounce regression.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#legacySpotlightSection">SPI explorer › Legacy Allowlist Spotlight</a> — explains why 282 UIKit SPIs remain quarantined in <code>AllowedSPI-legacy.toml</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#insight-technical-debt">SPI explorer › Allowlist Churn &amp; Technical Debt</a> — tracks the frequency of additions, removals, and reverts across allowlists.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/f0db2bb7cc9674bb195cca7d9fd625539b82f32e">f0db2bb7cc96 (2026-01-14)</a> "Allow scrolling interaction on frames and overflow scrollers even when the main frame is rubber-banding" — attempted removal of private bounce selectors.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/2a02830783a0e4087056e78410c02536d4e61950">2a02830783a0 (2026-02-04)</a> "REGRESSION(305618@main): [iOS] Swipe gesture fails to reliably trigger scroll over certain HTML content in Mail" — restored <code>_setAvoidsJumpOnInterruptedBounce:</code> to <code>AllowedSPI-legacy.toml</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/cd58872eb49ae46b97e513559980be57c4af6d52">cd58872eb49a (2026-03-14)</a> "Reintroduce adaptive deceleration tracking for scroll views behind an off-by-default feature flag" — re-added adaptive tracking safely behind an internal preference.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-7">
+      <h2><span class="aspect-num">7</span>Accessibility &amp; cross-process VoiceOver integration (<code>AXRemoteElement</code> vs. public APIs)</h2>
+      <p>Accessibility is one of the most architecturally sensitive integration points for a browser engine that renders into its own graphics surface in a separate process. Because the DOM and layout tree live inside the sandboxed <code>WebContent</code> process while the host view hierarchy lives in the UI process, iOS assistive technologies (VoiceOver, Switch Control, Voice Control, Full Keyboard Access, Speak Selection) need a way to traverse thousands of virtual DOM nodes, map their coordinates through scrolled layers, read rich text attributes, and dispatch actions across process boundaries.</p>
+      <p>WebKit accomplishes this on iOS using <strong>53 private SPIs</strong> in the <em>Accessibility &amp; Speech Synthesis</em> category (plus additional accessibility selectors in UIKit), a 3,500-line wrapper in <code>WebAccessibilityObjectWrapperIOS.mm</code>, and private cross-process Mach/UUID handshakes with Apple's system accessibility runtime (<code>AXRuntime.framework</code> and <code>com.apple.iphone.axserver</code>). While newer iOS releases have begun introducing <code>BEAccessibility*</code> helpers (such as <code>browserAccessibilityValueInRange:</code>, <code>browserAccessibilitySelectedTextRange</code>, and <code>BEAccessibilityContainerTypeFieldset</code>), WebKit itself still relies heavily on private cross-process bridging and private accessibility tokens — making accessibility a major open area for research on non-WebKit engines.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>In <code>WKContentView.mm</code> (lines 798–834), <code>storeAccessibilityRemoteConnectionInformation</code> attaches private associated-object keys (<code>@"ax-uuid"</code> and <code>@"ax-pid"</code>) to the UI-process view and sends <code>registerUIProcessAccessibilityTokens</code> to the <code>WebContent</code> process.</li>
+            <li>In <code>WebPageIOS.mm</code> (lines 780–816), the <code>WebContent</code> process creates a <code>WKAccessibilityWebPageObject</code> and invokes the private selector <code>setRemoteTokenDictionary:</code> (injected by the system accessibility bundle) with <code>@{ @"ax-pid": ..., @"ax-uuid": ..., @"ax-register": @YES }</code>, and for remote subframes instantiates private <code>AXRemoteElement</code> (<code>initWithUUID:andRemotePid:andContextId:</code> in <code>AccessibilityObjectIOS.mm:190</code>).</li>
+            <li><code>WebAccessibilityObjectWrapperIOS.mm</code> annotates rich text and DOM semantics using private <code>AXRuntime</code> tokens (<code>UIAccessibilityTokenBlockquoteLevel</code>, <code>UIAccessibilityTokenLanguage</code>, <code>UIAccessibilityInlineTextCompletion</code>, <code>_accessibilityUnregister</code>) and observes <code>_AXS*</code> system accessibility notifications forwarded via the private entitlement <code>com.apple.private.darwin-notification.introspect</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>BrowserEngineKit has added public accessibility support methods on text and container elements (which WebKit partially adopts in <code>WebAccessibilityObjectWrapperIOS.mm</code> via <code>browserAccessibilityValueInRange:</code>, <code>browserAccessibilityInsertTextAtCursor:</code>, etc.).</li>
+            <li>However, an alternative engine using its own graphics stack has no native UIKit subviews for DOM elements and must expose its entire virtual accessibility tree either by mirroring/proxying nodes into the UI process or using whatever cross-process remote-element hooks BrowserEngineKit publicly supports.</li>
+            <li>Whether public <code>UIAccessibility</code> and <code>BEAccessibility*</code> APIs are sufficient for full VoiceOver parity (out-of-process iframes, rotor navigation, braille tables, rich text attributes, and low-latency tree updates) without <code>AXRemoteElement</code> and <code>AXRuntime</code> SPIs requires dedicated investigation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Accessibility%20%26%20Speech%20Synthesis">SPI explorer › Accessibility &amp; Speech Synthesis (53 SPIs)</a> — inventory of <code>AXRemoteElement</code>, <code>UIAccessibilityToken*</code>, <code>_AXS*</code>, and <code>MediaAccessibility</code> SPIs used by WebKit.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentView.mm#L798">WKContentView.mm:798–834</a> — <code>_accessibilityRegisterUIProcessTokens</code> stores private <code>ax-uuid</code> and <code>ax-pid</code> associated objects for the iOS accessibility bundle.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm#L780">WebPageIOS.mm:780–816</a> — constructs the <code>ax-pid</code> / <code>ax-uuid</code> / <code>ax-register</code> dictionary and passes it to <code>setRemoteTokenDictionary:</code> on <code>WKAccessibilityWebPageObject</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/ios/AXRuntimeSPI.h#L34">AXRuntimeSPI.h:34–46</a> &amp; <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/AccessibilityObjectIOS.mm#L185">AccessibilityObjectIOS.mm:185–203</a> — soft-links private <code>AXRemoteElement</code> and initializes cross-process accessibility placeholders.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm#L741">WebAccessibilityObjectWrapperIOS.mm:741</a> &amp; <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm#L2654">:2654–2733</a> — shows ongoing migration toward <code>BEAccessibilityContainerTypeFieldset</code> and <code>browserAccessibility*</code> selectors alongside legacy SPIs.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=darwin-notification.introspect">Entitlements explorer › com.apple.private.darwin-notification.introspect</a> — private entitlement used with <code>ForwardedNotifications.def</code> to relay <code>kAXS*</code> accessibility notifications into the sandboxed <code>WebContent</code> process.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; areas for further research</h2>
+      <ul>
+        <li><strong>Why this is rated P3 / Medium confidence:</strong> WebKit's reliance on 282 private UIKit SPIs and 53 private Accessibility SPIs is directly verified in <code>spi_inventory.json</code>. However, because other browser engines (Chromium, Gecko) use their own graphics and compositing stacks rather than WebKit's UIKit-based <code>RemoteLayerTree</code>, they do not need all of the same OS integration primitives (such as per-element <code>UIScrollView</code> bounce and parent-chaining selectors). At the same time, given how much engineering effort WebKit expends on UIKit/OS coordination and how different a self-contained compositor architecture is, important gaps in platform integration are very likely.</li>
+        <li><strong>Research area 1 — Accessibility (VoiceOver &amp; assistive technologies across processes):</strong> How does a third-party engine that composites into a single Metal surface expose a fast, complete, out-of-process DOM accessibility tree to iOS VoiceOver without WebKit's private <code>AXRemoteElement</code>, <code>ax-uuid</code>/<code>ax-pid</code> token registration, and <code>UIAccessibilityToken*</code> attributes?</li>
+        <li><strong>Research area 2 — Complex IME &amp; international text input:</strong> Does <code>BETextInput</code> / <code>BETextInteraction</code> fully cover multi-stage CJK IME composition, marked-text sub-range selection (<code>setSelectedRangeInMarkedText:</code>), live candidate window positioning, transliteration queries, and hardware keyboard dead-key / modifier state when the text layout lives in a non-WebKit rendering engine?</li>
+        <li><strong>Research area 3 — Touch, gesture &amp; viewport coordination with a custom compositor:</strong> When an engine runs its own scrolling physics or bridges its compositor to <code>BEScrollView</code>, where do edge cases arise in dynamic toolbar shrinking, keyboard overlap animations, text selection loupe tracking during scroll flings, and system gesture disambiguation?</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, browser engines ship their own input and gesture stacks directly. Android applications create a custom <code>SurfaceView</code> or <code>TextureView</code> and interact with the operating system through public platform APIs: <code>InputMethodManager</code> and <code>InputConnection</code> for software keyboard input, <code>AccessibilityNodeProvider</code> for accessibility, and <code>OverScroller</code> for momentum physics. Third-party engines like Blink/Chromium and Gecko implement their own physics decay formulas and gesture recognizers, operating as first-class peers to the system browser. On iOS, by contrast, touch gestures, momentum physics, and text input are deeply entangled with private UIKit internals, making it impossible for third-party engines to achieve identical feel without access to the same private selectors WebKit uses.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../spi.html#tab=data&feat=UIKit%20Views%2C%20Scrolling%2C%20Gestures%20%26%20Text%20Input">SPI explorer › UIKit Views, Scrolling, Gestures &amp; Text Input (282 SPIs)</a> — detailed overview of the 282 UIKit SPIs.</li>
+        <li><a href="../spi.html#tab=data&amp;feat=Accessibility%20%26%20Speech%20Synthesis">SPI explorer › Accessibility &amp; Speech Synthesis (53 SPIs)</a> — searchable inventory of <code>AXRemoteElement</code>, <code>UIAccessibilityToken*</code>, and <code>_AXS*</code> SPIs.</li>
+        <li><a href="../spi.html#legacySpotlightSection">SPI explorer › Legacy Allowlist Spotlight</a> — examination of the 282 UIKit symbols quarantined in <code>AllowedSPI-legacy.toml</code>.</li>
+        <li><a href="../spi.html#insight-technical-debt">SPI explorer › Technical Debt &amp; Allowlist Churn</a> — metrics on allowlist additions and reversions.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=statusbarstyleoverrides">Entitlements explorer › <code>com.apple.springboard.statusbarstyleoverrides</code></a> — code pointers and enforcement details for the status bar override entitlement.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=darwin-notification.introspect">Entitlements explorer › <code>com.apple.private.darwin-notification.introspect</code></a> — notification allowlist forwarding accessibility settings into <code>WebContent</code>.</li>
+        <li><a href="graphics-hdr.html">Issue › Compositor performance &amp; HDR</a> — how WebKit's UIKit-backed <code>RemoteLayerTree</code> contrasts with Chromium and Gecko's in-engine compositors.</li>
+        <li><a href="data-detectors.html">Issue › Data detectors &amp; link previews</a> — analysis of contextual menus and Look Up integration.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

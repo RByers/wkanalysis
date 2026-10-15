@@ -94,128 +94,7 @@
     },
   };
 
-  const THEMATIC_ASYMMETRIES = [
-    { slug: "media-capture",
-
-      title: "1. GPU Media Capture, TCC Delegation & Sensor Indicators",
-      badge: "31 vs 2 Entitlements in GPU Process",
-      badgeClass: "ent-pill-private",
-      filterDomain: "TCC, Privacy & Permissions",
-      body: "WebKit's iOS GPU process holds com.apple.tcc.delegated-services (Camera & Microphone), com.apple.systemstatus.activityattribution, com.apple.private.attribution.explicitly-assumed-identities, and com.apple.springboard.statusbarstyleoverrides. This allows WebKit to capture camera/microphone audio and video inside the sandboxed GPU process on behalf of the host app and drive iOS status-bar recording indicators. A 3P BERenderingProcess extension receives none of these entitlements.",
-      entitlements: [
-        "com.apple.tcc.delegated-services",
-        "com.apple.systemstatus.activityattribution",
-        "com.apple.private.attribution.explicitly-assumed-identities",
-        "com.apple.springboard.statusbarstyleoverrides",
-        "com.apple.private.mediaexperience.startrecordinginthebackground.allow",
-        "com.apple.private.coremedia.pidinheritance.allow",
-      ],
-    },
-    { slug: "jit-hardening",
-
-      title: "2. JIT Hardening, PAC Shared Regions & Memory Integrity (MIE)",
-      badge: "JIT & Hardware Mitigations",
-      badgeClass: "ent-pill-private",
-      filterDomain: "JIT & Memory Hardening",
-      body: "While BrowserEngineKit explicitly grants standard JIT (com.apple.developer.cs.allow-jit) to 3P engines, WebKit's iOS WebContent process is signed with com.apple.pac.shared_region_id ('WebKit'), com.apple.private.verified-jit, com.apple.security.fatal-exceptions ('jit'), and on EnhancedSecurity helpers com.apple.security.hardened-process.checked-allocations. Third-party engines cannot configure custom PAC shared-region keys or Apple-internal verified-JIT kernel flags, reflecting a structural defence-in-depth security gap rather than a functional JIT capability gap.",
-      entitlements: [
-        "com.apple.pac.shared_region_id",
-        "com.apple.private.verified-jit",
-        "com.apple.security.fatal-exceptions",
-        "com.apple.security.hardened-process.checked-allocations.no-tagged-receive",
-        "com.apple.private.pac.exception",
-        "com.apple.developer.cs.allow-jit",
-      ],
-    },
-    { slug: "graphics-ane",
-
-      title: "3. WindowServer Compositing & IOSurface Accounting",
-      badge: "Graphics & Compositing Acceleration",
-      badgeClass: "ent-pill-private",
-      filterDomain: "GPU, Graphics & Display",
-      body: "WebKit's GPU process holds com.apple.QuartzCore.webkit-end-points, com.apple.QuartzCore.webkit-limited-types, and com.apple.QuartzCore.secure-mode for direct remote layer tree endpoints, com.apple.private.memory.ownership_transfer to reassign IOSurface Jetsam memory footprint to WebContent processes. Note that the QuartzCore endpoints largely reflect WebKit's specific RemoteLayerTree compositing architecture rather than a functionality an alternative pipeline necessarily requires.",
-      entitlements: [
-        "com.apple.QuartzCore.webkit-end-points",
-        "com.apple.QuartzCore.webkit-limited-types",
-        "com.apple.QuartzCore.secure-mode",
-        "com.apple.private.memory.ownership_transfer",
-        "com.apple.private.allow-explicit-graphics-priority",
-      ],
-    },
-    { slug: "apple-pay-identity",
-
-      title: "4. Apple Pay All-Access",
-      badge: "Apple Pay Integration",
-      badgeClass: "ent-pill-private",
-      filterDomain: "Apple Pay, PassKit & Identity",
-      body: "WebKit's Networking process holds com.apple.payment.all-access and com.apple.private.accounts.bundleidspoofing so it can coordinate PassKit Apple Pay sessions on behalf of arbitrary host applications. ",
-      entitlements: [
-        "com.apple.payment.all-access",
-        "com.apple.private.accounts.bundleidspoofing",
-      ],
-    },
-    { slug: "networking-ohttp",
-
-      title: "5. Oblivious HTTP (CipherML), Socket Delegation & Parental Controls",
-      badge: "Networking & Screen Time",
-      badgeClass: "ent-pill-private",
-      filterDomain: "Networking & Privacy Proxies",
-      body: "WebKit's Networking process is signed with com.apple.private.ciphermld.allow (Apple's Oblivious HTTP / Private Relay proxy daemon), com.apple.private.network.socket-delegate, com.apple.symptom_analytics.configure, com.apple.private.dmd.policy, and com.apple.private.assets.accessible-asset-types (Screen Time / Parental Controls content filtering). A 3P BENetworkingProcess only receives com.apple.developer.web-browser-engine.networking.",
-      entitlements: [
-        "com.apple.private.ciphermld.allow",
-        "com.apple.private.network.socket-delegate",
-        "com.apple.symptom_analytics.configure",
-        "com.apple.private.dmd.policy",
-        "com.apple.private.assets.accessible-asset-types",
-        "com.apple.private.appstored",
-      ],
-    },
-    { slug: "web-push",
-
-      title: "6. Web Push Daemon (webpushd) & Home Screen Web App Launching",
-      badge: "12 Private Daemon Entitlements",
-      badgeClass: "ent-pill-private",
-      filterDomain: "System UI, SpringBoard & Status Bar",
-      body: "WebKit's webpushd daemon holds 12 Apple-private entitlements including aps-connection-initiate, com.apple.private.webkit.webpush, com.apple.frontboard.launchapplications, com.apple.springboard.opensensitiveurl, and com.apple.usernotification.notificationschedulerproxy. BrowserEngineKit does not provide a background push daemon extension point for 3P browser engines.",
-      entitlements: [
-        "aps-connection-initiate",
-        "com.apple.private.webkit.webpush",
-        "com.apple.frontboard.launchapplications",
-        "com.apple.springboard.opensensitiveurl",
-        "com.apple.usernotification.notificationschedulerproxy",
-        "com.apple.private.usernotifications.app-management-domain.proxy",
-      ],
-    },
-    { slug: "process-lifecycle",
-
-      title: "7. RunningBoard Assertions, MemoryStatus & Background Downloads",
-      badge: "Process Lifecycle & Jetsam",
-      badgeClass: "ent-pill-private",
-      filterDomain: "RunningBoard & Process Lifecycle",
-      body: "WebKit's UIProcess and Networking process check com.apple.runningboard.assertions.webkit and com.apple.multitasking.systemappassertions to acquire privileged RunningBoard assertions and finish downloads in the background, while helper processes hold com.apple.private.memorystatus and com.apple.private.kernel.override-cpumon.",
-      entitlements: [
-        "com.apple.runningboard.assertions.webkit",
-        "com.apple.multitasking.systemappassertions",
-        "com.apple.private.memorystatus",
-        "com.apple.private.kernel.override-cpumon",
-      ],
-    },
-    { slug: "extensions",
-
-      title: "8. System Extension Host Exemption & Universal Links Management",
-      badge: "Host App & ExtensionKit Gates",
-      badgeClass: "ent-pill-private",
-      filterDomain: "Process Launching & BrowserEngineKit",
-      body: "In ProcessLauncherCocoa.mm, system WKWebView extensions reside in /System/Library/ExtensionKit/Extensions/ and hold com.apple.private.extensionkit.host-requirement-exemption so any app can spawn them without com.apple.developer.web-browser-engine.host. Meanwhile, WKActionSheetAssistant gates Universal Link permission management behind com.apple.private.canGetAppLinkInfo and com.apple.private.canModifyAppLinkPermissions.",
-      entitlements: [
-        "com.apple.private.extensionkit.host-requirement-exemption",
-        "com.apple.private.canGetAppLinkInfo",
-        "com.apple.private.canModifyAppLinkPermissions",
-        "com.apple.private.allow-ldm-exempt-webview",
-      ],
-    },
-  ];
-
+  
   // Application State
   const state = {
     activeView: "insights",
@@ -385,7 +264,8 @@
           e.browserenginekit_implications,
           e.functional_domain,
           ...(e.canonical_processes || []),
-          ...(e.key_code_pointers || []).map((p) => `${p.file} ${p.role}`),
+          ...(e.key_code_pointers || []).map((p) => `${p.file} ${p.role || p.description || ""}`),
+          ...(e.key_commits || []).map((c) => `${c.hash || ""} ${c.short_hash || ""} ${c.subject || ""}`),
           ...(e.related_spis || []).map((s) => s.name),
         ]
           .join(" ")
@@ -401,7 +281,7 @@
     if (!container) return;
     container.replaceChildren();
 
-    // 1. Executive Summary Hero Card
+    // 1. Process Map Hero Card
     const heroCard = el("section", "ent-hero-card");
     heroCard.id = "executive-summary";
     const heroGrid = el("div", "ent-hero-grid");
@@ -411,14 +291,14 @@
       el(
         "h2",
         "ent-hero-title",
-        "How WebKit's System Entitlements Compare to Third-Party BrowserEngineKit Browsers on iOS"
+        "WebKit Code-Signing Entitlements on iOS"
       )
     );
     leftCol.appendChild(
       el(
         "p",
         "ent-hero-lead",
-        "Across the WebKit repository, 159 distinct entitlements govern sandbox capabilities, JIT compilation, hardware acceleration, TCC privacy attribution, Apple Pay, Oblivious HTTP, and background execution. While Apple's BrowserEngineKit grants 6 entitlements to third-party iOS browser engines, WebKit's own iOS processes are signed via Source/WebKit/Scripts/process-entitlements.sh with 84 iOS WebKit-exclusive entitlements (82 Apple-private, 2 restricted) that third-party browsers cannot obtain."
+        "Across the WebKit repository, 159 distinct entitlements govern sandbox capabilities, JIT compilation, hardware acceleration, TCC privacy attribution, Apple Pay, Oblivious HTTP, and background execution. This page analyzes how these entitlements are declared in Source/WebKit/Scripts/process-entitlements.sh, checked at runtime, and modeled in Seatbelt profiles."
       )
     );
 
@@ -433,7 +313,7 @@
       el(
         "p",
         null,
-        "Not every WebKit-exclusive entitlement represents a 1:1 capability deficit for third-party browsers. Some reflect WebKit's specific software architecture (e.g., com.apple.QuartzCore.webkit-end-points for RemoteLayerTree compositing) rather than a feature an alternative engine necessarily requires. The per-entitlement BrowserEngineKit classifications should be considered with this architectural context in mind."
+        "The ios_parity_status classification records only whether an entitlement is available outside Apple-signed WebKit processes. Some WebKit-exclusive entitlements reflect WebKit's specific architecture (e.g., com.apple.QuartzCore.webkit-end-points for RemoteLayerTree compositing); the capability-gap interpretation of each entitlement is covered in the issue pages linked from the index."
       )
     );
 
@@ -658,7 +538,7 @@
       // Asymmetry highlights box
       const hiBox = el("div", "ent-highlights-box");
       hiBox.appendChild(
-        el("h4", "ent-highlights-title", `Key Competitive & Architectural Implications for ${current.process}`)
+        el("h4", "ent-highlights-title", `Notable Apple-only entitlement differences for ${current.process}`)
       );
       const hiList = el("ul", "ent-highlights-list");
       (current.asymmetry_highlights || []).forEach((h) => {
@@ -674,61 +554,7 @@
     container.appendChild(procSection);
 
     // 3. Thematic Asymmetry Deep-Dive Cards (8 cards)
-    const asymSection = el("section");
-    asymSection.id = "thematic-gaps";
-    const asymHeader = el("div", "card-header");
-    const asymTitleWrap = el("div");
-    asymTitleWrap.appendChild(
-      el("h2", "card-title", "8 Major Entitlement Gaps Between WebKit and 3P BrowserEngineKit Browsers on iOS")
-    );
-    asymTitleWrap.appendChild(
-      el(
-        "p",
-        "card-subtitle",
-        "Click any entitlement pill to open its full code-pointer dossier, or click a domain button to filter the Data Explorer"
-      )
-    );
-    asymHeader.appendChild(asymTitleWrap);
-    asymSection.appendChild(asymHeader);
-
-    const asymGrid = el("div", "ent-asymmetry-grid");
-    THEMATIC_ASYMMETRIES.forEach((cardData) => {
-      const card = el("article", "ent-asymmetry-card");
-      card.id = "gap-" + cardData.slug;
-      const hdr = el("div", "ent-asymmetry-header");
-      hdr.appendChild(el("h3", "ent-asymmetry-title", cardData.title));
-      hdr.appendChild(el("span", `ent-pill ${cardData.badgeClass}`, cardData.badge));
-      card.appendChild(hdr);
-      card.appendChild(el("p", "ent-asymmetry-body", cardData.body));
-
-      const chipWrap = el("div", "ent-proc-list");
-      cardData.entitlements.forEach((entKey) => {
-        const chip = el("button", "ent-code-chip", entKey);
-        chip.type = "button";
-        chip.addEventListener("click", () => {
-          jumpToExplorerWithFilters({
-            search: entKey,
-            expandKey: entKey,
-          });
-        });
-        chipWrap.appendChild(chip);
-      });
-      card.appendChild(chipWrap);
-
-      const actionRow = el("div");
-      const filterBtn = el("button", "btn-secondary", `Explore ${cardData.filterDomain} in Data View →`);
-      filterBtn.type = "button";
-      filterBtn.addEventListener("click", () => {
-        jumpToExplorerWithFilters({ domain: cardData.filterDomain });
-      });
-      actionRow.appendChild(filterBtn);
-      card.appendChild(actionRow);
-
-      asymGrid.appendChild(card);
-    });
-    asymSection.appendChild(asymGrid);
-    container.appendChild(asymSection);
-  }
+      }
 
   function renderKpis(filtered) {
     const grid = document.getElementById("kpiGrid");
@@ -745,7 +571,7 @@
       {
         label: "Matching Entitlements",
         value: `${filtered.length} / ${ENTITLEMENTS.length}`,
-        sub: `${iosExclCount} iOS WebKit-Exclusive asymmetries`,
+        sub: `${iosExclCount} iOS WebKit-exclusive entitlements`,
         accent: "teal",
       },
       {
@@ -1078,11 +904,34 @@
 
     const panel = el("div", "ent-dossier-panel");
 
+    // Top metadata strip showing all table columns so hidden columns remain accessible
+    const metaStrip = el("div", "ent-dossier-meta-strip");
+    const keyCode = el("code", "ent-code-chip", e.entitlement);
+    metaStrip.appendChild(keyCode);
+    metaStrip.appendChild(createCategoryBadge(e.category));
+    metaStrip.appendChild(createParityBadge(e.ios_parity_status));
+    if (e.functional_domain) {
+      metaStrip.appendChild(el("span", "ent-pill ent-pill-slate", "Domain: " + e.functional_domain));
+    }
+    (e.canonical_processes || []).forEach((p) => {
+      metaStrip.appendChild(el("span", "ent-pill ent-pill-slate", "Process: " + p));
+    });
+    if (Array.isArray(e.platforms) && e.platforms.length > 0) {
+      metaStrip.appendChild(el("span", "ent-pill ent-pill-slate", "Platforms: " + e.platforms.join(", ")));
+    }
+    panel.appendChild(metaStrip);
+
     // Top 2-column summary: WebKit Usage Summary vs 3P BrowserEngineKit Implications
     const summaryGrid = el("div", "ent-dossier-grid");
 
     const wkBox = el("div", "ent-dossier-box ent-dossier-box-wk");
     wkBox.appendChild(el("h4", "ent-dossier-heading", "What WebKit Uses This Entitlement To Do"));
+    if (e.short_purpose && e.webkit_usage_summary && e.short_purpose !== e.webkit_usage_summary) {
+      const shortP = el("p", "ent-dossier-text", "Summary: " + e.short_purpose);
+      shortP.style.fontWeight = "600";
+      shortP.style.marginBottom = "6px";
+      wkBox.appendChild(shortP);
+    }
     wkBox.appendChild(el("p", "ent-dossier-text", e.webkit_usage_summary || e.short_purpose));
     summaryGrid.appendChild(wkBox);
 
@@ -1106,12 +955,13 @@
     (e.key_code_pointers || []).forEach((pt) => {
       const li = el("li", "ent-pointer-item");
       const a = el("a", "ent-pointer-link", `${pt.file}${pt.line ? ":" + pt.line : ""}`);
-      a.href = buildGitHubFileUrl(pt.file, pt.line);
+      a.href = pt.github_url || buildGitHubFileUrl(pt.file, pt.line);
       a.target = "_blank";
       a.rel = "noopener noreferrer";
       li.appendChild(a);
-      if (pt.role) {
-        li.appendChild(el("span", "ent-pointer-role", pt.role));
+      const roleText = pt.role || pt.description;
+      if (roleText) {
+        li.appendChild(el("span", "ent-pointer-role", roleText));
       }
       pList.appendChild(li);
     });
@@ -1129,15 +979,17 @@
     const cList = el("ul", "ent-pointers-list");
     (e.key_commits || []).forEach((c) => {
       const li = el("li", "ent-pointer-item");
-      const a = el("a", "ent-commit-badge", c.hash.slice(0, 10));
-      a.href = buildGitHubCommitUrl(c.hash);
+      const shortHash = c.short_hash || (c.hash ? String(c.hash).slice(0, 12) : "");
+      const a = el("a", "ent-commit-badge", shortHash.slice(0, 10));
+      a.href = c.github_url || buildGitHubCommitUrl(c.hash);
       a.target = "_blank";
       a.rel = "noopener noreferrer";
       li.appendChild(a);
       li.appendChild(el("strong", null, c.date ? `(${c.date}) ` : ""));
       li.appendChild(el("span", null, c.subject || ""));
-      if (c.significance) {
-        li.appendChild(el("span", "ent-pointer-role", c.significance));
+      const sigText = c.significance || c.description;
+      if (sigText && sigText !== c.subject) {
+        li.appendChild(el("span", "ent-pointer-role", sigText));
       }
       cList.appendChild(li);
     });
@@ -1189,18 +1041,18 @@
       const tdExpand = el("td", "col-expand", isExpanded ? "▾" : "▸");
       tr.appendChild(tdExpand);
 
-      const tdKey = el("td", "ent-key-cell", e.entitlement);
+      const tdKey = el("td", "col-ent-key ent-key-cell", e.entitlement);
       tr.appendChild(tdKey);
 
-      const tdCat = el("td");
+      const tdCat = el("td", "col-ent-cat");
       tdCat.appendChild(createCategoryBadge(e.category));
       tr.appendChild(tdCat);
 
-      const tdParity = el("td");
+      const tdParity = el("td", "col-ent-parity");
       tdParity.appendChild(createParityBadge(e.ios_parity_status));
       tr.appendChild(tdParity);
 
-      const tdProcs = el("td");
+      const tdProcs = el("td", "col-ent-procs");
       const procWrap = el("div", "ent-proc-list");
       (e.canonical_processes || []).forEach((p) => {
         procWrap.appendChild(el("span", "ent-pill ent-pill-slate", p));
@@ -1208,13 +1060,13 @@
       tdProcs.appendChild(procWrap);
       tr.appendChild(tdProcs);
 
-      const tdDom = el("td", null, e.functional_domain);
+      const tdDom = el("td", "col-ent-domain", e.functional_domain);
       tr.appendChild(tdDom);
 
-      const tdPurpose = el("td", null, e.short_purpose);
+      const tdPurpose = el("td", "col-ent-purpose", e.short_purpose);
       tr.appendChild(tdPurpose);
 
-      const tdRefs = el("td");
+      const tdRefs = el("td", "col-ent-refs");
       const firstPtr = (e.key_code_pointers || [])[0];
       if (firstPtr) {
         const a = el(
@@ -1317,7 +1169,7 @@
     if (state.enforcement !== "all") params.set("enf", state.enforcement);
     if (state.search) params.set("q", state.search);
     const qs = params.toString();
-    // Preserve in-page deep-link anchors (e.g. #gap-jit-hardening from index.html) while on the
+    // Preserve in-page deep-link anchors (e.g. #process-inspector from index.html) while on the
     // Insights view; previously this replaceState() wiped the fragment before it could be used.
     const keepHash = state.activeView === "insights" ? window.location.hash : "";
     const newUrl = `${window.location.pathname}${qs ? "?" + qs : ""}${keepHash}`;
@@ -1362,7 +1214,7 @@
     renderAll();
     setViewTab(state.activeView, true);
 
-    // Deep links (e.g. entitlements.html#gap-jit-hardening from index.html). The target cards are
+    // Deep links (e.g. entitlements.html#process-inspector from index.html). The target cards are
     // rendered dynamically, so the browser's native fragment scroll can't find them on load.
     const scrollToHashAnchor = (smooth) => {
       let anchorId = window.location.hash.slice(1);

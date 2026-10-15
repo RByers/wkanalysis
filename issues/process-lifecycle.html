@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why downloads, uploads, and background tabs behave differently in Safari versus BrowserEngineKit alternative browsers on iOS.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Background execution: uploads, downloads &amp; tab survival — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Background execution: uploads, downloads &amp; tab survival
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Background execution: uploads, downloads &amp; tab survival</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P2</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Confirmed across WebKit assertion logic and APIs)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Mostly (Foreground services and OS grouping allow equivalent priority adjustments)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> When a user switches apps, Safari uses Apple-private RunningBoard assertions to keep background uploads running and protect inactive tabs from Jetsam memory kills, while a third-party browser is forced to let uploads time out and tabs reload, though iOS 18.2 introduced <code>BEDownloadMonitor</code> to partially bridge the gap for file downloads.</p>
+        <p><strong>What this page adds:</strong> WebKit's source code shows how the engine relies on private entitlements and process-management SPIs to manipulate Jetsam memory bands and networking assertions. While Apple closed the file-download gap via the public <code>BEDownloadMonitor</code>, <code>AssertionCapability.mm</code> explicitly strips any attempt by a third-party browser extension to request "UnboundedNetworking" or "BoostedJetsam" capabilities, leaving uploads and background tabs vulnerable to immediate suspension.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">Process suspension and the socket failure mode</a></li>
+        <li><a href="#aspect-2">Downloads: The BEDownloadMonitor API (iOS 18.2+)</a></li>
+        <li><a href="#aspect-3">Downloads: Safari's classic UnboundedNetworking assertion</a></li>
+        <li><a href="#aspect-4">The background NSURLSession fallback</a></li>
+        <li><a href="#aspect-5">Uploads: In-flight detection and assertion chains</a></li>
+        <li><a href="#aspect-6">The asymmetric BEDownloadMonitor solution</a></li>
+        <li><a href="#aspect-7">Tab survival: Jetsam and RunningBoard bands</a></li>
+        <li><a href="#aspect-8">Kernel freezer control and memory mitigations</a></li>
+        <li><a href="#aspect-9">The root cause: AssertionCapability limitations</a></li>
+        <li><a href="#aspect-10">Private lifecycle Entitlements &amp; 102 XPC SPIs</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>Process suspension and the socket failure mode</h2>
+<p>On iOS, when the user switches to another app or locks the phone, the app they left is given a short grace period (roughly 30 seconds) and is then <em>suspended</em>: its threads stop running and its network sockets go idle. A download that the browser is performing in one of its own processes simply stops making progress until the user comes back. If the connection times out in the meantime the download fails.</p>
+      <p>Technically, this is decided by <strong>RunningBoard</strong> (the iOS process-lifecycle daemon). A process stays runnable in the background only while something holds an <em>assertion</em> on it. Apps get a time-limited "Background" assertion when they leave the foreground; anything longer needs a specific grant. WebKit models these as <code>ProcessAssertionType</code> values and translates them to RunningBoard assertion names such as <code>Background</code>, <code>UnboundedNetworking</code>, <code>MediaPlayback</code> and <code>BoostedJetsam</code> in the <code>com.apple.webkit</code> domain.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm#L338">ProcessAssertionCocoa.mm:338–384</a> — maps each <code>ProcessAssertionType</code> to its RunningBoard name and domain; the comment on line 343 notes that "background assertions time out after 30 seconds on iOS".</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ProcessAssertion.h#L66">ProcessAssertion.h:66</a> — the <code>UnboundedNetworking</code> assertion type.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer › Process Lifecycle asymmetry card</a> — overview of the RunningBoard-related entitlements WebKit's processes carry.</li>
+        </ul>
+      </div>
+<p>When an upload cannot be completed within iOS's standard background grace period, the consequences for the web user and web application are severe: the upload freezes mid-transfer, times out, and crashes with an unrecoverable network error.</p>
+      
+      <p>While the client is frozen in the background, several failure modes occur in sequence:</p>
+      <ul>
+        <li><strong>Server-side timeout:</strong> Upstream web servers and intermediate reverse proxies (such as NGINX, Cloudflare, or AWS load balancers) maintain strict HTTP request and TCP keep-alive timers (typically 30 to 60 seconds). When client packets cease flowing, the server sends a <code>TCP RST</code> or <code>FIN</code> packet to close the stalled socket.</li>
+        <li><strong>Socket reset on resume:</strong> When the user eventually switches back to the browser app, RunningBoard resumes thread execution. The networking process attempts to write the next buffered chunk to the socket, immediately encountering a broken pipe (<code>EPIPE</code>) or connection reset by peer (<code>ECONNRESET</code>).</li>
+        <li><strong>Web API failure:</strong> The network stack reports a transfer error up to WebContent. In modern web standards, the pending <code>fetch()</code> promise is rejected with a <code>TypeError: Failed to fetch</code> (or <code>TypeError: Load failed</code> in WebKit). For <code>XMLHttpRequest</code>, the instance fires an <code>error</code> event (<code>onerror</code>) or <code>abort</code> event. If the web page lacks complex custom chunk-resumption logic, the user's uploaded form or media file is lost and must be started over.</li>
+        <li><strong>Jetsam termination:</strong> If other foreground apps consume substantial memory while the browser is in the background, iOS's kernel memory daemon (jetsam) prioritizes suspended processes for termination. If the WebContent process is jetsammed, the tab crashes completely, losing all transient form inputs.</li>
+      </ul>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm#L343">ProcessAssertionCocoa.mm:343</a> — source comment confirming that "background assertions time out after 30 seconds on iOS".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer › Process Lifecycle asymmetry card</a> — details on background expiration and jetsam suspension mechanics.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Downloads: The BEDownloadMonitor API (iOS 18.2+)</h2>
+<p>This is the part the main-page summary under-states. BrowserEngineKit added a public class, <code>BEDownloadMonitor</code>, that lets a browser engine tell the system "this network task is a user-visible file download going to this destination". Once registered, the system's activity scheduler keeps the download's process alive on the engine's behalf, so the engine no longer needs the private assertion at all.</p>
+      <p>Crucially, WebKit's own iOS code path now uses exactly this mechanism. In October 2024 WebKit removed its Networking-process download assertions with the commit message "now that <code>dasd</code> is taking this assertion for us" (<code>dasd</code> is the Duet Activity Scheduler daemon). On device builds of iOS, <code>enableModernDownloadProgress()</code> returns <code>true</code>, every download task is wrapped in a <code>WKModernDownloadProgress</code> object that owns a <code>BEDownloadMonitor</code>, and <code>beginMonitoring:</code> is called when the download starts. The UIProcess-side assertion in <code>DownloadProxyMap</code> is compiled out on the same builds.</p>
+      <div class="issue-callout good"><strong>Implication:</strong> on iOS 18.2 or later, a BrowserEngineKit browser that routes its downloads through <code>BEDownloadMonitor</code> is using the same system path as Safari. The hard "downloads stall" gap described on the main page applies to older iOS versions, to engines that do not adopt the API, and to transfers that are not downloads (see <a href="#aspect-5">background uploads</a>).</div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>Download::publishProgress</code> creates a <code>WKModernDownloadProgress</code> for the <code>NSURLSessionDownloadTask</code>, passing the source URL, destination URL and an optional Live Activity access token.</li>
+            <li><code>WKModernDownloadProgress</code> allocates a <code>BEDownloadMonitor</code>, calls <code>initWithSourceURL:destinationURL:observedProgress:liveActivityAccessToken:</code>, optionally <code>useDownloadsFolderWithPlaceholderType:finalFileCreatedHandler:</code>, then <code>beginMonitoring:</code>; resuming a download calls <code>resumeMonitoring:completionHandler:</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>The same. <code>BEDownloadMonitor</code> and <code>BEDownloadMonitorLocation</code> are public BrowserEngineKit API (iOS 18.2+), designed to be called from the engine's networking extension. The engine must still implement the HTTP transfer itself (e.g. with its own network stack), but the process-lifetime problem is handled by the system.</li>
+            <li>Adoption requires the engine to express each download as an <code>NSProgress</code> and a destination file URL, which is a modest integration task for a Chromium- or Gecko-based engine.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c804c90d7236810c046ffdae6ac977bec91f6ad4">c804c90d7236 (2024-07-19)</a> "Report network download progress" — introduces the <code>HAVE(MODERN_DOWNLOADPROGRESS)</code> path built on <code>BEDownloadMonitor</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/b95877fdcedb339c3460243d143bd20dc0118e59">b95877fdcedb (2024-10-07)</a> "WebKit no longer needs to take unbounded network assertions on the network process for downloads … now that dasd is taking this assertion for us" — deletes the Networking-process <code>DownloadMap</code> assertion logic.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/Downloads/cocoa/WKDownloadProgress.mm#L47">WKDownloadProgress.mm:47–60</a> — <code>enableModernDownloadProgress()</code> is <code>true</code> on device iOS; <code>activityAccessToken()</code> calls <code>[BEDownloadMonitor createAccessToken]</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/Downloads/cocoa/WKDownloadProgress.mm#L78">WKDownloadProgress.mm:78–93</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/Downloads/cocoa/WKDownloadProgress.mm#L132">:132–140</a> — <code>beginMonitoring:</code>, <code>resumeMonitoring:</code> and the <code>BEDownloadMonitor</code> initialiser.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/Downloads/cocoa/DownloadCocoa.mm#L164">DownloadCocoa.mm:164–186</a> — chooses the modern <code>BEDownloadMonitor</code> path over the legacy <code>NSProgress</code> publishing path.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/downloading-files-in-a-web-browser">Downloading files in a web browser with an alternative browser engine</a> and <a href="https://developer.apple.com/documentation/browserenginekit/bedownloadmonitor-9bwls">BEDownloadMonitor</a> — public BrowserEngineKit documentation.</li>
+        </ul>
+      </div>
+<p>Two user-visible niceties ride on the same mechanism. First, Safari can show a greyed-out <em>placeholder</em> file in the Files app's Downloads folder while a download is in progress, which turns into the real file when it completes. Second, download progress can be surfaced as a Live Activity (the Dynamic Island / Lock Screen progress indicator) using an access token minted by the system.</p>
+      <p>Both come from <code>BEDownloadMonitor</code>: <code>useDownloadsFolderWithPlaceholderType:finalFileCreatedHandler:</code> asks the system to manage the placeholder and reports back the final file location (as a <code>BEDownloadMonitorLocation</code> with a security-scoped bookmark), and <code>createAccessToken</code> provides the Live Activity token that WebKit forwards from the UIProcess to the Networking process. Because these are public BrowserEngineKit calls, a third-party engine can offer the same placeholder and progress experience. WebKit fixed a bug in September 2025 where service-worker-initiated downloads were not using this path, showing it is actively maintained.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/Downloads/cocoa/WKDownloadProgress.mm#L117">WKDownloadProgress.mm:117–140</a> — placeholder handling via <code>useDownloadsFolderWithPlaceholderType:</code> and the final-file-created handler.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Downloads/DownloadProxyCocoa.mm#L43">DownloadProxyCocoa.mm:43–52</a> — the UIProcess creates a minimal bookmark for the destination and sends <code>PublishDownloadProgress</code> with the Live Activity access token to the Networking process.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/465721e59955c1f54f1262b1276ba268ee4ae96b">465721e59955 (2025-09-04)</a> "Service worker downloads are not being saved to Downloads folder".</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/bedownloadmonitorlocation">BEDownloadMonitorLocation</a>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Downloads: Safari's classic UnboundedNetworking assertion</h2>
+<p>From 2019 onward, WebKit's answer was to have the browser app itself (the "UIProcess", i.e. Safari) take an <code>UnboundedNetworking</code> assertion on its own process for as long as at least one download is active. That assertion type is reserved for system apps: RunningBoard only honours it if the calling process is signed with the Apple-private entitlement <code>com.apple.multitasking.systemappassertions</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>DownloadProxyMap</code> checks at construction whether the host process has <code>com.apple.multitasking.systemappassertions</code>; if so, the first download creates a <code>ProcessAssertion</code> of type <code>UnboundedNetworking</code> (reason string "WebKit downloads") and the last download finishing releases it.</li>
+            <li>WebKit's own Networking process is also signed with the same entitlement by Apple's build script, so historically both the app and the Networking process held the assertion (added to "avoid races" in 2019).</li>
+            <li>This code is now compiled only when <code>HAVE(MODERN_DOWNLOADPROGRESS)</code> is <em>off</em>, i.e. it is the legacy path (see aspect 3).</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Nothing equivalent. <code>com.apple.multitasking.systemappassertions</code> is not among the six BrowserEngineKit entitlements and is not available to third-party apps, so a request for an <code>UnboundedNetworking</code> assertion would be refused.</li>
+            <li>A third-party browser gets only the standard time-limited background grace period and the public background-task APIs (<code>beginBackgroundTask</code> / <code>BGTaskScheduler</code>), which do not keep a socket alive indefinitely.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp#L52">DownloadProxyMap.cpp:52–54</a> — the <code>processHasEntitlement("com.apple.multitasking.systemappassertions")</code> check, guarded by <code>!HAVE(MODERN_DOWNLOADPROGRESS)</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp#L92">DownloadProxyMap.cpp:92–96</a> — taking the "WebKit downloads" <code>UnboundedNetworking</code> assertion on the UIProcess when the first download starts.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L634">process-entitlements.sh:634</a> — Apple's signing script grants the entitlement to the iOS Networking process.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/27d6db6681de85026668e8ec8414fd361f219eff">27d6db6681de (2019-03-08)</a> "Have the UIProcess take the UnboundedNetworking assertion when downloads are in progress"; <a href="https://github.com/WebKit/WebKit/commit/0cc1a40179a64b65a128cfbe0298417a7f6b29d5">0cc1a40179a6 (2019-05-17)</a> "Avoid races in taking networking assertions for downloads by having both Networking and UIProcess do it".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=systemappassertions">Entitlements explorer › com.apple.multitasking.systemappassertions</a> — full dossier (category: Apple-private; iOS parity: WebKit-exclusive).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>The background NSURLSession fallback</h2>
+<p>On iOS versions before 18.2 (or if an engine chooses not to adopt <code>BEDownloadMonitor</code>), the only public way to keep a download going after the app is suspended is to hand the URL to iOS's background download service: a background-configured <code>NSURLSession</code>, whose transfer is performed by a system daemon outside the app and delivered to the app when it completes.</p>
+      <p>This works, but the transfer then runs outside the browser engine. It uses Apple's networking stack rather than the engine's own, so the engine's cookies, HTTP cache, proxy configuration, certificate handling and any custom protocol behaviour (for example HTTP/3 or QUIC settings in the engine's stack) do not apply unless the browser manually copies cookies and headers into the request. The browser also loses fine-grained control over the transfer while it is in flight. For a WebKit-based browser this is less of an issue because WebKit already uses <code>NSURLSession</code> for all networking; for an engine with its own stack it is a visible seam.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/Downloads/cocoa/DownloadCocoa.mm#L179">DownloadCocoa.mm:179–186</a> — WebKit's legacy path (non-device builds) publishes an <code>NSProgress</code> for the task rather than using a background session; WebKit itself never needed the background-session workaround because it had the private assertion.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/foundation/urlsessionconfiguration/background(withidentifier:)">URLSessionConfiguration.background(withIdentifier:)</a> — the public background transfer API.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer › Process Lifecycle</a> — the analysis page's description of public alternatives.</li>
+        </ul>
+      </div>
+<p>iOS provides a public API designed for background data transfers: <code>NSURLSessionConfiguration.background(withIdentifier:)</code>. However, this system service was designed for native app asset sync, not general-purpose web browsing, and imposes technical constraints that make it unusable for web page uploads.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari never routes web page uploads through background <code>NSURLSession</code> tasks.</li>
+            <li>WebKit executes all HTTP uploads directly inside its own NetworkProcess using its standard network stack.</li>
+            <li>The private <code>UnboundedNetworking</code> assertion keeps the process alive in place, ensuring seamless compatibility with streamed request bodies, WebCore cookie jars, and JavaScript callbacks.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Cannot use background <code>NSURLSession</code> for streamed or dynamic web uploads. Background sessions strictly require on-disk files via <code>uploadTask(with:fromFile:)</code>; memory data and stream tasks are forbidden by Apple's API contract.</li>
+            <li>Bypasses the engine's network stack: the transfer is performed out-of-process by Apple's <code>nsurlsessiond</code> daemon, ignoring engine-specific HTTP/3, QUIC, proxy, certificate, and cookie state.</li>
+            <li>Requires awkward out-of-band app-lifecycle delegates (<code>handleEventsForBackgroundURLSession:</code>) that cannot easily resume a suspended WebContent JavaScript execution context.</li>
+          </ul>
+        </div>
+      </div>
+      <p>Specifically, Apple's documentation for background upload tasks explicitly states:</p>
+      <div class="issue-callout note">
+        <strong>Apple API Requirement:</strong> <em>"Upload tasks from data or streams are not supported in background sessions. You must upload from a file."</em> Attempting to initiate an upload from an in-memory <code>NSData</code> buffer or an <code>NSInputStream</code> in a background session raises a runtime exception or immediate error.
+      </div>
+      <p>In modern web applications, uploads are rarely simple standalone files on the filesystem. They frequently use the Fetch API with upload streaming (<code>ReadableStream</code> bodies), <code>FormData</code> objects composed dynamically from canvas elements (<code>toBlob()</code>) or media recording snippets, or encrypted payload chunks generated on the fly. To use background <code>NSURLSession</code>, an alternative browser engine would have to intercept every fetch request, buffer the entire stream to a temporary file on disk, launch the transfer through <code>nsurlsessiond</code>, and construct artificial response events when the app is next brought to the foreground—breaking standard web platform streaming and interactive semantics.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/foundation/urlsession/uploadtask(with:fromfile:)">URLSession.uploadTask(with:fromFile:)</a> — Apple developer documentation establishing that background uploads require a file URL on disk.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/foundation/urlsessionconfiguration/background(withidentifier:)">URLSessionConfiguration.background(withIdentifier:)</a> — background transfer session configuration documentation.</li>
+          <li><span class="ev-kind">WebKit</span><a href="#aspect-4">Aspect 4: The background NSURLSession fallback</a> — analysis of how background <code>NSURLSession</code> bifurcates network stacks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Uploads: In-flight detection and assertion chains</h2>
+<p>When a web page submits a large form (such as a high-definition video or a photo attachment), or issues a <code>fetch()</code> or <code>XMLHttpRequest</code> with binary data, the browser engine must recognize that a data upload is in progress and track it until completion. In WebKit, this detection is embedded directly into the network loading infrastructure.</p>
+      <p>At the core request layer, WebCore's <code>ResourceRequestBase::hasUpload()</code> inspects the HTTP request body to check whether it contains file data (<code>EncodedFileData</code>) or blob data (<code>EncodedBlobData</code>). In the NetworkProcess, each connection to a web process manages its active network loads inside a <code>NetworkResourceLoadMap</code>. Whenever a loader with an upload starts, <code>NetworkResourceLoadMap::add</code> flags the connection as having active uploads and triggers <code>hasUploadStateChanged(true)</code>. That notification is sent across IPC to the UIProcess via <code>Messages::NetworkProcessProxy::SetWebProcessHasUploads</code>. When loads complete or abort, <code>NetworkResourceLoadMap::take</code> re-evaluates whether any active load still has an upload, notifying the UIProcess when the count returns to zero.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/network/ResourceRequestBase.cpp#L569">ResourceRequestBase.cpp:569–579</a> — <code>ResourceRequestBase::hasUpload()</code> tests if any body element holds file or blob data.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkResourceLoadMap.cpp#L44">NetworkResourceLoadMap.cpp:44–52</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkResourceLoadMap.cpp#L71">:71–75</a> — adds and removes track active loaders and notify <code>m_hasUploadChangeListener</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp#L150">NetworkConnectionToWebProcess.cpp:150–153</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp#L237">:237–241</a> — forwards upload status changes to the UIProcess with <code>SetWebProcessHasUploads</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/033d8a856ac3b7a55b2f22b618d1319854032d84">033d8a856ac3 (2019-03-13)</a> "Take UnboundedNetworking assertion when a file upload is in progress" — original implementation of the upload tracking pipeline.</li>
+        </ul>
+      </div>
+<p>Completing a web upload requires far more than keeping a raw network socket open. The page's JavaScript environment must remain alive to deliver chunked data or receive upload progress and completion callbacks; the networking process must continue sending packets; and the main application must stay alive so the user can return to a completed action. WebKit meets this requirement by keeping all three tiers runnable simultaneously.</p>
+      <p>When <code>NetworkProcessProxy::setWebProcessHasUploads</code> receives word that a WebContent process has started an upload, it instantiates an <code>UploadActivity</code> record and acquires three distinct <code>ProcessAssertion</code> instances with reason <code>"WebKit uploads"</code> and type <code>ProcessAssertionType::UnboundedNetworking</code>:</p>
+      <ol>
+        <li><strong>UIProcess</strong> (the Safari browser app itself, identified via <code>getCurrentProcessID()</code>),</li>
+        <li><strong>NetworkProcess</strong> (the networking helper process, identified via <code>*this</code>),</li>
+        <li><strong>WebContent</strong> (the specific page process hosting the upload, identified via <code>*process</code>).</li>
+      </ol>
+      <p>If another page in a different WebContent process also begins an upload, an additional assertion is registered for that second process in <code>m_uploadActivity-&gt;webProcessAssertions</code>. When all uploads for a given web process finish, its assertion is released. When zero uploads remain across the entire engine, <code>m_uploadActivity</code> is reset to <code>std::nullopt</code>, releasing the UIProcess and NetworkProcess assertions. If a WebContent process or the NetworkProcess crashes, cleanup handlers automatically teardown the associated assertions to prevent process leaks.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>NetworkProcessProxy::setWebProcessHasUploads</code> takes <code>UnboundedNetworking</code> assertions across UIProcess, NetworkProcess, and WebContent simultaneously under reason <code>"WebKit uploads"</code>.</li>
+            <li>All three processes remain fully scheduled by the iOS kernel even when the user switches to other apps or locks the screen.</li>
+            <li>Assertions are automatically managed and released the moment the last upload transfer concludes.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>No equivalent capability. BrowserEngineKit provides no API to request an unbounded networking assertion on any process.</li>
+            <li>A third-party browser can only request standard <code>BEProcessCapability</code> states (<code>Foreground</code>, <code>Background</code>, or <code>Suspended</code>), none of which permit indefinite execution.</li>
+            <li>When backgrounded, the host app and its extension processes receive only a standard ~30-second grace period before being frozen.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Network/NetworkProcessProxy.cpp#L1763">NetworkProcessProxy.cpp:1763–1799</a> — <code>setWebProcessHasUploads</code> creates and manages the <code>UploadActivity</code> holding assertions for UIProcess, NetworkProcess, and WebContent.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/3a871e75aec10e97a413ef82e46735bf075465e3">3a871e75aec1 (2020-04-17)</a> "[iOS] Refactor WebKit uploads process assertion logic to minimize chances of leaking them" — unified UIProcess, NetworkProcess, and WebProcess assertions into <code>UploadActivity</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer › Process Lifecycle &amp; Jetsam</a> — analysis of private RunningBoard assertion capabilities in WebKit.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>The asymmetric solution: BEDownloadMonitor exists, but no &quot;BEUploadMonitor&quot;</h2>
+<p>The gap in background uploads is especially striking when compared to file downloads. In iOS 18.2, Apple introduced <code>BEDownloadMonitor</code> to BrowserEngineKit, creating a sanctioned public path for browser engines to perform background file downloads using their own networking processes.</p>
+      <p>As documented on the <a href="#aspect-2">Aspect 2: The BEDownloadMonitor API</a> analysis page, when an engine creates a <code>BEDownloadMonitor</code>, the system daemon (<code>dasd</code>, the Duet Activity Scheduler) takes a background assertion on the engine's networking process for the duration of the transfer. WebKit itself adopted this in October 2024 (commit <code>b95877fdcedb</code>), removing its own private download assertions in favor of <code>BEDownloadMonitor</code>.</p>
+      <p>However, <strong>no corresponding upload monitor exists</strong>. A search across WebKit's source code, BrowserEngineKit public headers, and Apple developer documentation reveals zero references to any <code>BEUploadMonitor</code> or similar upload-lifecycle API:</p>
+      <ul>
+        <li>Downloads write incoming network data into a destination file URL in the user's Downloads folder. Once the HTTP response headers are received and the stream begins, the WebContent process is no longer strictly necessary; the system can track progress and placeholders via <code>BEDownloadMonitorLocation</code>.</li>
+        <li>Uploads originate from the web application: they require WebContent to feed data chunks, compute progress events, handle authentication challenges, or process responses. Keeping an upload alive requires keeping the entire multi-process pipeline (UIProcess + NetworkProcess + WebContent) running.</li>
+      </ul>
+      <p>Because BrowserEngineKit provides no upload monitoring abstraction, WebKit continues to rely on its legacy, privileged <code>UnboundedNetworking</code> assertion chain in <code>NetworkProcessProxy.cpp:1763–1799</code>. For Safari, uploads keep running indefinitely in the background. For third-party engines, background uploads remain fundamentally broken.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Network/NetworkProcessProxy.cpp#L1763">NetworkProcessProxy.cpp:1763–1799</a> — WebKit retains active <code>UnboundedNetworking</code> assertions for uploads on current <code>main</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/b95877fdcedb339c3460243d143bd20dc0118e59">b95877fdcedb (2024-10-07)</a> "WebKit no longer needs to take unbounded network assertions on the network process for downloads … now that dasd is taking this assertion for us" — removed download assertions while leaving upload assertions untouched.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/bedownloadmonitor-9bwls">BEDownloadMonitor</a> — public BrowserEngineKit download progress monitoring API.</li>
+          <li><span class="ev-kind">WebKit</span><a href="#aspect-2">Aspect 2: The BEDownloadMonitor API</a> — detailed examination of <code>BEDownloadMonitor</code> mechanics.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-7">
+      <h2><span class="aspect-num">7</span>Tab survival: Jetsam and RunningBoard bands</h2>
+<p>Modern mobile web browsers run tabs in separate renderer processes to isolate memory and security contexts. On iOS, memory is aggressively managed by the Darwin kernel through a low-memory killer subsystem known as <strong>Jetsam</strong> (also referred to as <code>memorystatus</code>). Unlike desktop operating systems, iOS does not have traditional disk swap space. When physical memory becomes scarce, Jetsam terminates processes based on numerical priority bands, starting with the least important background processes or those that exceed their per-process memory limits.</p>
+      <p>When an inactive background tab's process is killed by Jetsam, the browser shell (the main UIProcess) detects the termination. Rather than crashing the entire browser, WebKit records the exit and sets a flag (<code>m_shouldReloadDueToCrashWhenVisible</code>). When the user subsequently taps back to that tab, the browser detects that the process is dead and reloads the URL from the network or disk cache. To the user, this tab discard appears as an unexpected blank screen followed by a page reload, often causing lost scroll position, lost form entries, and lost dynamic state in single-page web applications.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>In <code>WebPageProxy::dispatchProcessDidTerminate</code>, when a WebContent process is terminated by Jetsam while its tab is invisible, WebKit avoids reloading immediately, setting <code>m_shouldReloadDueToCrashWhenVisible = true</code>.</li>
+            <li>When the user switches back to the tab, <code>WebPageProxy::activityStateDidChange</code> observes the tab becoming visible and invokes <code>tryReloadAfterProcessTermination()</code> to reload the page.</li>
+            <li>WebKit coordinates with system daemons to position active and background tabs in favorable Jetsam bands, delaying termination until other background apps or cached processes are reclaimed first.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>The user experience symptom is identical: when an extension process is killed by Jetsam, the third-party browser's host app must detect the process termination and reload the web page when the user selects the tab.</li>
+            <li>Because third-party engines cannot request fine-grained Jetsam priority boosts from the kernel, their background tabs sit at standard extension priority and are vulnerable to being chosen earlier by Jetsam during memory spikes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebPageProxy.cpp#L14448">WebPageProxy.cpp:14448–14457</a> — <code>dispatchProcessDidTerminate</code> marks <code>m_shouldReloadDueToCrashWhenVisible = true</code> when an invisible tab's process dies.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebPageProxy.cpp#L3651">WebPageProxy.cpp:3651–3657</a> — <code>activityStateDidChange</code> intercepts view visibility changes to trigger <code>tryReloadAfterProcessTermination()</code> after a termination.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer › Process Lifecycle &amp; RunningBoard asymmetry</a> — architectural overview of process lifecycle management differences.</li>
+        </ul>
+      </div>
+<p>Process priorities and lifecycles on Apple platforms are governed by <strong>RunningBoard</strong>, the system process-management daemon. RunningBoard translates high-level process assertions into XNU kernel scheduling states and Jetsam priority bands (ranging from active foreground apps down to idle cached processes). WebKit defines a suite of internal assertion types in <code>ProcessAssertion.h</code> to steer process priority.</p>
+      <p>Among these, WebKit includes two assertions tailored to Jetsam memory management: <code>BoostedJetsam</code> and <code>BackgroundIdleJetsam</code>. The <code>BoostedJetsam</code> assertion was introduced to elevate processes to a Jetsam band of at least 40, ensuring they are protected against premature termination even across suspension states. Conversely, WebKit uses <code>BackgroundIdleJetsam</code> (which RunningBoard internally maps to its <code>"Suspended"</code> attribute in the <code>com.apple.webkit</code> domain) to let prewarmed or cached background processes continue running work specifically in the lowest idle Jetsam band so the kernel reclaims them before hurting user-visible tabs. Taking assertions in the <code>com.apple.webkit</code> domain requires the private entitlement <code>com.apple.runningboard.assertions.webkit</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>ProcessAssertionCocoa.mm</code> maps <code>ProcessAssertionType::BoostedJetsam</code> to RunningBoard name <code>"BoostedJetsam"</code> in domain <code>"com.apple.webkit"</code>, and maps <code>BackgroundIdleJetsam</code> to RunningBoard name <code>"Suspended"</code>.</li>
+            <li>In <code>AuxiliaryProcessProxy</code>, <code>updateJetsamBoostAssertion()</code> acquires a <code>BoostedJetsam</code> assertion for auxiliary processes to protect them from low-memory termination.</li>
+            <li><code>ProcessThrottler::assertionTypeForState</code> dynamically switches background processes between <code>Background</code> and <code>BackgroundIdleJetsam</code> based on whether the process represents background activity or an idle cached process.</li>
+            <li>All auxiliary processes carry <code>com.apple.runningboard.assertions.webkit</code>, allowing RunningBoard to accept assertions in WebKit's private lifecycle domain.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party browsers and their helper extensions do not carry <code>com.apple.runningboard.assertions.webkit</code> and are forbidden from acquiring assertions directly in the <code>com.apple.webkit</code> RunningBoard domain.</li>
+            <li>A third-party engine cannot ask RunningBoard for a <code>BoostedJetsam</code> assertion or an idle Jetsam band grant; any attempt to acquire private RunningBoard attributes triggers an invalidation error from the daemon.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm#L338">ProcessAssertionCocoa.mm:338–384</a> — maps <code>ProcessAssertionType</code> values (including <code>BoostedJetsam</code> and <code>BackgroundIdleJetsam</code>) to RunningBoard names and the <code>com.apple.webkit</code> domain.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/AuxiliaryProcessProxy.cpp#L705">AuxiliaryProcessProxy.cpp:705–725</a> — <code>setJetsamBoostEnabled()</code> and <code>updateJetsamBoostAssertion()</code> taking the "Jetsam Boost" assertion.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ProcessThrottler.cpp#L283">ProcessThrottler.cpp:283–295</a> — <code>assertionTypeForState()</code> selecting <code>BackgroundIdleJetsam</code> when background activities should run in the idle Jetsam band.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c655abc1dd4a00c5e635e85d94ef66050108bfd1">c655abc1dd4a (2023-03-23)</a> "Prevent WebContent Process from Jetsam" — introduces <code>BoostedJetsam</code> assertion to maintain a higher Jetsam band.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/23997cdd825d50528bcc77d7b532e44541d6bf45">23997cdd825d (2026-08-25)</a> "Make prewarmed and cached processes run in idle jetsam band" — details how <code>BackgroundIdleJetsam</code> allows execution while remaining in the idle Jetsam reclaim band.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer › com.apple.runningboard.assertions.webkit</a> — entitlement granting access to WebKit's RunningBoard domain.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-8">
+      <h2><span class="aspect-num">8</span>Kernel freezer control and memory mitigations</h2>
+<p>Beyond RunningBoard, Apple's Darwin kernel provides a low-level system call, <code>memorystatus_control</code>, that interacts directly with kernel memory management and the iOS app freezer. The freezer is an operating system facility that compacts and freezes suspended process memory pages, reducing physical footprint so the processes can remain resident without triggering Jetsam kills.</p>
+      <p>WebKit's helper processes (WebContent, GPU, Networking, and Model) are signed by Apple with the private entitlement <code>com.apple.private.memorystatus</code>. In WebKit's source code, this entitlement enables WebContent processes to call <code>memorystatus_control(MEMORYSTATUS_CMD_SET_PROCESS_IS_FREEZABLE, ...)</code> in <code>WebProcessCocoa.mm</code>. When all pages inside a WebContent process are suspended, WebKit explicitly marks the process as unfreezable (because suspended pages are already pruned), but when active pages are present, it opts into kernel freezer management. The entitlement also authorizes querying and setting per-process Jetsam memory limits. Third-party engines cannot hold this entitlement and cannot issue privileged <code>memorystatus_control</code> commands.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Apple's build script <code>process-entitlements.sh</code> signs <code>com.apple.private.memorystatus</code> into WebContent (line 439), GPU (line 529), Model (line 586), and Networking (line 639) processes.</li>
+            <li>In <code>WebProcess::updateFreezerStatus()</code>, WebKit invokes <code>memorystatus_control(MEMORYSTATUS_CMD_SET_PROCESS_IS_FREEZABLE, getpid(), ...)</code> to inform the kernel whether the process is eligible for Darwin freezing.</li>
+            <li>Auxiliary sandboxes explicitly allow the <code>SYS_memorystatus_control</code> syscall and <code>(allow system-memorystatus-control)</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li><code>com.apple.private.memorystatus</code> is an Apple-internal entitlement not granted to third parties or BrowserEngineKit extensions.</li>
+            <li>Third-party WebContent, Rendering, and Networking extensions cannot invoke privileged <code>memorystatus_control</code> commands to tune freezer status or manipulate Jetsam limits; they must rely entirely on OS-managed lifecycle transitions.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L439">process-entitlements.sh:439, 529, 586, 639</a> — grants <code>com.apple.private.memorystatus</code> to WebContent, GPU, Model, and Network processes on iOS.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm#L1159">WebProcessCocoa.mm:1159–1167</a> — <code>updateFreezerStatus()</code> calls <code>memorystatus_control(MEMORYSTATUS_CMD_SET_PROCESS_IS_FREEZABLE, ...)</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WTF/wtf/spi/darwin/MemoryStatusSPI.h#L39">MemoryStatusSPI.h:39–55</a> — declarations for <code>memorystatus_control</code>, <code>memorystatus_memlimit_properties_t</code>, and freezer command constants.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/d8ce09ad934d08b5179429188ff30fa06dcb1037">d8ce09ad934d (2019-03-22)</a> "Implement WebProcess freezer opt-in completely on WebContent process side" — implements direct kernel freezer control in WebProcess.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=memorystatus">Entitlements explorer › com.apple.private.memorystatus</a> — full entitlement dossier.</li>
+        </ul>
+      </div>
+<p>To avoid Jetsam termination, an engine needs accurate visibility into its physical memory usage and remaining headroom. Fortunately, unlike process priority manipulation, memory observation is well-supported by public Darwin kernel and libdispatch APIs available to all iOS applications.</p>
+      <p>WebKit monitors system-wide memory pressure through a standard libdispatch event source (<code>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</code>) configured in <code>MemoryPressureHandlerCocoa.mm</code>, which delivers <code>WARN</code> and <code>CRITICAL</code> pressure notifications. To calculate remaining headroom before reaching its Jetsam ceiling, WebKit calls the public Mach kernel interface <code>task_info(mach_task_self(), TASK_VM_INFO, ...)</code> in <code>AvailableMemory.cpp</code>, reading <code>phys_footprint</code> and <code>limit_bytes_remaining</code> (mirrored in Darwin's public <code>os_proc_available_memory()</code> API). Furthermore, while WebKit's GPU process holds a private entitlement (<code>com.apple.private.memory.ownership_transfer</code>) to reassign graphics buffer accounting back to the client WebProcess, BrowserEngineKit provides an equivalent public path for third-party engines via <code>task_create_identity_token</code> and <code>IOSurfaceSetOwnershipIdentity</code>.</p>
+      <div class="issue-callout good"><strong>Parity in observation:</strong> Third-party engines have access to the same public memory pressure notifications and remaining memory calculations as WebKit, allowing them to detect impending low-memory situations and trigger internal pruning before Jetsam strikes.</div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>MemoryPressureHandler</code> creates a <code>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</code> dispatch source to receive kernel warnings (normal, warning, critical, process-limit-warning).</li>
+            <li><code>AvailableMemory.cpp</code> calls <code>task_info()</code> with <code>TASK_VM_INFO</code> to read <code>limit_bytes_remaining</code> and physical footprint.</li>
+            <li>WebKit's GPU process transfers IOSurface memory attribution to the calling WebProcess using <code>com.apple.private.memory.ownership_transfer</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines can listen to the exact same <code>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</code> events and read <code>task_info</code> or <code>os_proc_available_memory()</code> to monitor memory headroom.</li>
+            <li>BrowserEngineKit's rendering entitlement allows third-party GPU/rendering extensions to transfer IOSurface buffer ownership using public <code>task_identity_token_t</code> and <code>IOSurfaceSetOwnershipIdentity</code> APIs, avoiding artificial Jetsam kills in the graphics helper.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WTF/wtf/cocoa/MemoryPressureHandlerCocoa.mm#L89">MemoryPressureHandlerCocoa.mm:89–127</a> — sets up <code>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</code> to handle VM pressure and process memory limit events.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WTF/wtf/AvailableMemory.cpp#L55">AvailableMemory.cpp:55–68</a> — inspects <code>task_vm_info_data_t</code> to determine <code>limit_bytes_remaining</code> and calculate available memory.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/ios/SystemMemoryIOS.cpp#L40">SystemMemoryIOS.cpp:40–56</a> — reads <code>kern.memorystatus_level</code> sysctl to check system memory availability.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=ownership_transfer">Entitlements explorer › com.apple.private.memory.ownership_transfer</a> — memory ledger transfer in GPUProcess, matched by public BrowserEngineKit capability.</li>
+        </ul>
+      </div>
+<p>Because third-party browser engines cannot rely on privileged Jetsam bands, their tab survival strategy depends heavily on application-level and engine-level architecture. WebKit itself demonstrates that much of memory resilience is achieved through in-engine caching and reclamation policies rather than kernel privileges alone.</p>
+      <p>In WebKit, <code>WebProcessPool::reclaimIdleProcesses()</code> responds to memory pressure warnings by systematically purging the back-forward cache (<code>WebBackForwardCache</code>), clearing cached processes (<code>WebProcessCache</code>), and terminating prewarmed standby processes before user-facing tabs are harmed. Furthermore, WebKit preserves navigational state (form data, session history, and scroll offsets) in the UIProcess. A third-party engine adopting BrowserEngineKit can implement analogous strategies: proactively dropping cached render trees and JS heaps when memory pressure fires, and serializing tab restoration state so that if Jetsam does kill a background process, the tab can restore smoothly upon reactivation.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WebProcessPool::handleMemoryPressureWarning</code> immediately clears <code>m_backForwardCache</code> and <code>m_webProcessCache</code>, and shuts down standby prewarmed processes via <code>reclaimIdleProcesses()</code>.</li>
+            <li>WebKit's <code>WebBackForwardCache</code> maintains suspended pages in dedicated processes, automatically pruning oldest entries under memory constraints.</li>
+            <li>Tab state (session history, view state, form values) is preserved in UIProcess memory or disk so reloads restore context gracefully.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>An alternative engine (such as Chromium or Gecko) can implement identical application-level memory management: evicting BFCache entries, discarding inactive DOM trees, and shedding image decodes upon receiving memory pressure notifications.</li>
+            <li>Engines can serialize detailed tab state (scroll position, form state, and session history) to the main browser app process, making tab reactivation seamless even if the background renderer was terminated by Jetsam.</li>
+            <li>What remains missing is the ability to signal to Jetsam which background process is most valuable, meaning the OS may terminate a recently used tab before an older, idle process from another application.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebProcessPool.cpp#L1604">WebProcessPool.cpp:1604–1627</a> — <code>reclaimIdleProcesses()</code> and <code>handleMemoryPressureWarning()</code> purging caches and prewarmed processes.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebBackForwardCache.cpp#L234">WebBackForwardCache.cpp:234–248</a> — <code>clear()</code> and <code>pruneToSize()</code> implementations for back-forward cache management.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebProcessCache.cpp#L140">WebProcessCache.cpp:140–160</a> — clearing cached WebContent processes upon memory pressure.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-9">
+      <h2><span class="aspect-num">9</span>The root cause: AssertionCapability limitations</h2>
+<p>BrowserEngineKit introduces a public abstraction called <code>BEProcessCapability</code> that allows host apps to request process lifecycle states for their extension processes. However, this abstraction is deliberately high-level. WebKit's own capability bridge, implemented in <code>AssertionCapability.mm</code>, reveals the strict boundary between what RunningBoard supports internally and what BrowserEngineKit exposes to third parties.</p>
+      <p>When WebKit runs with ExtensionKit capability management enabled, <code>AssertionCapability</code> inspects the requested assertion name. It only recognizes exactly three strings: <code>"Suspended"</code>, <code>"Background"</code>, and <code>"Foreground"</code>. When WebKit encounters any specialized assertion type—such as <code>BoostedJetsam</code>, <code>UnboundedNetworking</code>, or <code>MediaPlayback</code>—<code>AssertionCapability</code> does nothing. In <code>ProcessAssertionCocoa.mm</code>, WebKit logs <code>"Failed to create capability"</code> and falls back to calling <code>RBSAssertion acquireWithError:</code>, which immediately fails for third-party apps lacking the private RunningBoard entitlement. A BrowserEngineKit browser simply has no API to express relative priority or custom Jetsam levels among its child processes.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari utilizes full RunningBoard services with Apple-private domain attributes (<code>com.apple.webkit</code>), allowing it to set granular lifecycle and Jetsam bands for each individual child process.</li>
+            <li>WebKit can independently adjust suspension timers, execution limits, and Jetsam boost properties without being constrained by the public BrowserEngineKit capability enum.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines must manage process priority exclusively through <code>[BEProcessCapability foreground]</code>, <code>[BEProcessCapability background]</code>, and <code>[BEProcessCapability suspended]</code> (plus media playback and capture capabilities).</li>
+            <li>BrowserEngineKit provides no relative priority mechanism: an engine cannot mark one background tab as "recently used" and another as "stale", nor can it boost an active background tab's Jetsam band above the system default for background extensions.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/cocoa/AssertionCapability.mm#L37">AssertionCapability.mm:37–51</a> — maps only <code>"Suspended"</code>, <code>"Background"</code>, and <code>"Foreground"</code> to <code>BEProcessCapability</code>; ignores all other assertion types.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm#L424">ProcessAssertionCocoa.mm:424–431</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm#L498">:498–520</a> — logs failure when capability creation fails and falls back to raw <code>RBSAssertion</code> acquisition.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/processcapability">BEProcessCapability</a> — Apple developer documentation for public process capabilities.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Process%20Management%2C%20RunningBoard%2C%20XPC%20%26%20System%20Lifecycle">SPI analyzer › Process lifecycle &amp; XPC problem card</a> — analysis of private RunningBoard APIs gated by entitlements.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-10">
+      <h2><span class="aspect-num">10</span>Private lifecycle Entitlements &amp; 102 XPC SPIs</h2>
+<p>Beyond assertions, WebKit manages its entire lifecycle using dedicated system capabilities hidden behind strictly enforced Apple-private criteria.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebKit's OS integration spans 102 private SPIs related to Process Management, RunningBoard, and XPC.</li>
+            <li>Apple-private entitlements such as <code>com.apple.private.kernel.override-cpumon</code> and <code>com.apple.private.memorystatus</code> are embedded in the engine's internal <code>process-entitlements.sh</code> schema.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Access to 102 XPC/lifecycle APIs is blocked or functionally gated.</li>
+            <li>Third-party browsers must rely entirely on default OS heuristics for scheduling or app limits, causing subtle degradation over time.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Process%20Management%2C%20RunningBoard%2C%20XPC%20%26%20System%20Lifecycle">SPI Analyzer › Process Management, RunningBoard, XPC &amp; System Lifecycle</a> — 102 process-management SPIs.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=override-cpumon">Entitlements explorer › com.apple.private.kernel.override-cpumon</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+<ul>
+        <li><strong>Not tested on a device.</strong> The conclusion that <code>BEDownloadMonitor</code> keeps a third-party engine's download alive rests on WebKit's own source and commit message ("dasd is taking this assertion for us") plus Apple's documentation; we have not measured a third-party engine's behaviour on hardware.</li>
+        <li><strong>Which process stays alive?</strong> The system assertion presumably targets the networking extension performing the transfer. Whether the host app also stays runnable (for example to update UI) is not established from source.</li>
+        <li><strong>Minimum OS.</strong> <code>BEDownloadMonitor</code> is documented from iOS 18.2; devices on 17.4–18.1 are limited to the background-<code>NSURLSession</code> fallback (aspect 5).</li>
+        <li><strong>Main-page wording.</strong> Given the above, the main page's statement that a BEK browser's download "stalls" is accurate only for older iOS or non-adopting engines. A fairer summary is that the gap is largely closed by public API on current iOS, with the residual loss being the older-iOS fallback's separate network stack. We therefore rate this P3 rather than P2.</li>
+      </ul>
+<ul>
+        <li><strong>Physical device validation:</strong> WebKit's assertion logic (taking <code>UnboundedNetworking</code> across UIProcess, NetworkProcess, and WebContent) and the capability mapping in <code>AssertionCapability.mm</code> are verified in source code. However, empirical measurements of upload timeout thresholds across various iOS versions on physical hardware have not been conducted.</li>
+        <li><strong>Streaming Fetch bodies without files or blobs:</strong> In <code>ResourceRequestBase.cpp:569</code>, <code>hasUpload()</code> returns true only when the request body contains <code>EncodedFileData</code> or <code>EncodedBlobData</code>. It is an open implementation question whether pure byte streams (e.g. streaming fetch from a synthetic <code>ReadableStream</code> without blob backing) trigger WebKit's upload assertion, or whether WebKit treats them as regular network loads.</li>
+        <li><strong>Potential future BrowserEngineKit API:</strong> Apple introduced <code>BEDownloadMonitor</code> in iOS 18.2 to solve downloads; it is conceivable that an upload counterpart could be designed in a future iOS release. However, as of iOS 18.x and WebKit HEAD, no such API has appeared in source or documentation.</li>
+        <li><strong>Main-page alignment:</strong> The findings fully substantiate the main page's description. The gap is a genuine, unmitigated capability barrier (Priority P2, Confidence High), as unlike downloads, no public BrowserEngineKit mechanism exists to bridge it.</li>
+      </ul>
+<ul>
+        <li><strong>Not measured on hardware.</strong> The conclusion that Safari's tabs survive longer under severe memory pressure rests on code inspection of WebKit's RunningBoard assertions (<code>BoostedJetsam</code>, <code>BackgroundIdleJetsam</code>) and <code>memorystatus_control</code> freezer controls. We have not run controlled automated benchmarks measuring tab discard rates on physical iOS devices.</li>
+        <li><strong>Platform distribution of <code>BoostedJetsam</code>.</strong> While <code>BoostedJetsam</code> is defined across Cocoa platforms in <code>ProcessAssertionCocoa.mm</code>, its initial adoption was specifically targeted at macOS WebContent management to maintain a Jetsam band of 40+. On iOS, WebKit primarily relies on standard <code>Foreground</code>, <code>Background</code>, and <code>Suspended</code>/<code>BackgroundIdleJetsam</code> assertions in the private <code>com.apple.webkit</code> RunningBoard domain.</li>
+        <li><strong>Significance of in-engine mitigations.</strong> A third-party browser that aggressively compresses inactive tabs, evicts image decodes, and serializes state can significantly reduce its memory footprint, potentially mitigating Jetsam termination without needing kernel priority boosts.</li>
+        <li><strong>Confidence rating.</strong> Medium. The entitlement and API differences are fully verified in WebKit source and build scripts, but real-world user impact depends heavily on device RAM tiers (e.g. 6GB vs 8GB iPhones) and the engine's memory efficiency.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+<p>Android does not freeze an app as soon as it leaves the foreground, and any app can keep a transfer running by hosting it in a foreground service (with a persistent notification) or by delegating it to the system <code>DownloadManager</code>. Chrome on Android uses both patterns, and alternative engines are free to do the same with their own network stacks. So on Android the question of "can my engine finish a download in the background with its own stack" has long had a public "yes"; on iOS the answer is "yes via <code>BEDownloadMonitor</code> on 18.2+, otherwise only by handing the URL to the system".</p>
+<p>On Android, applications are not aggressively frozen immediately upon leaving the foreground. Background processes remain in cached or background states where active network sockets can continue transferring data, subject to standard Android Doze and App Standby battery optimizations.</p>
+      <p>For large or mission-critical background transfers, Android provides clear public mechanisms that any browser engine can leverage:</p>
+      <ul>
+        <li><strong>Foreground Services:</strong> A browser app on Android can elevate an ongoing upload by launching a Foreground Service (with <code>android.permission.FOREGROUND_SERVICE_DATA_SYNC</code>) displaying an ongoing notification in the notification shade. The browser engine's own network stack and process architecture remain fully active and unsuspended for the entire duration of the upload.</li>
+        <li><strong>WorkManager / JobScheduler:</strong> For deferred or resumable transfers, Android offers system-managed background job scheduling that can execute tasks when network connectivity conditions are optimal.</li>
+      </ul>
+      <p>Because alternative engines on Android can keep their own processes running via foreground services, background uploads do not suffer the instant freeze and socket termination experienced on iOS.</p>
+<p>On Android, the operating system manages low-memory situations using the <strong>Low Memory Killer Daemon (lmkd)</strong>, which terminates background processes according to an Out-Of-Memory score adjustment (<code>oom_score_adj</code>) ranging from -1000 to 1000.</p>
+      <p>Unlike iOS, Android provides public APIs that allow a browser host process to directly influence child renderer process priority. Through Android's <code>Context.bindService()</code> API, a browser can specify binding flags such as <code>BIND_IMPORTANT</code>, <code>BIND_NOT_FOREGROUND</code>, or <code>BIND_WAIVE_PRIORITY</code>. In Chromium on Android, the browser process actively ranks child renderer processes by Recency of Use (LRU): the most recently used background tab is assigned a lower OOM score than older tabs. As a result, Android's <code>lmkd</code> terminates the oldest, least-recently-used tabs first, preserving the user's active and recent tabs. On iOS, BrowserEngineKit offers no API to express relative priority among background extension processes to Jetsam.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../spi.html#tab=data&amp;feat=Process%20Management%2C%20RunningBoard%2C%20XPC%20%26%20System%20Lifecycle">SPI explorer &rsaquo; Process Management</a> &mdash; searchable dataset of 102 process-management symbols used by WebKit.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements explorer &rsaquo; com.apple.runningboard.assertions.webkit</a></li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=memorystatus">Entitlements explorer &rsaquo; com.apple.private.memorystatus</a></li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=systemappassertions">Entitlements explorer &rsaquo; com.apple.multitasking.systemappassertions</a></li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">&larr; Back to the capability-gap summary</a> &middot; Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

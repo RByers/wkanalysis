@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why web-to-app install attribution (SKAdNetwork for Web Ads) is exclusive to Safari on iOS, how WebKit communicates with appstored, and what BrowserEngineKit lacks.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Web-to-app install attribution — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Web-to-app install attribution
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Web-to-app install attribution</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P2</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Apple docs: Safari-only, excludes even WKWebView)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Yes (Play Install Referrer; Android Attribution Reporting API supports web-to-app from any browser)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> When a user taps an ad on the web leading to an App Store app installation, Safari anonymously passes the click to Apple's App Store daemon (<code>appstored</code>) to credit the ad network via SKAdNetwork and AdAttributionKit; third-party browser engines have no access to this daemon or private entitlement, leaving web ads displayed in non-Safari browsers unable to receive install attribution.</p>
+        <p><strong>What this page adds:</strong> We trace the end-to-end mechanism in WebKit source from <code>HTMLAnchorElement</code> link parsing to <code>NetworkSessionCocoa::donateToSKAdNetwork()</code>, audit the private <code>com.apple.private.appstored</code> entitlement and Mach sandbox rules, detail Apple's private <code>ASDInstallWebAttributionService</code> SPI, clarify how web-to-app attribution diverges from web-to-web Private Click Measurement (<code>adattributiond</code>), and explain how Android provides open alternatives via the Play Install Referrer and the OS-level Attribution Reporting API.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">The attribution pipeline: from anchor click to <code>appstored</code></a></li>
+        <li><a href="#aspect-2">The privilege barrier: <code>com.apple.private.appstored</code> and Mach sandbox gates</a></li>
+        <li><a href="#aspect-3">Public framework limits: why AdAttributionKit and SKAdNetwork exclude web engines</a></li>
+        <li><a href="#aspect-4">Architectural split: web-to-app install attribution vs. web-to-web PCM</a></li>
+        <li><a href="#aspect-5">Evolution and history: SKAdNetwork 4.0 bridge, SPI migrations, and ephemeral sessions</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>The attribution pipeline: from anchor click to <code>appstored</code></h2>
+      <p>When someone taps a web advertisement for a native iOS application, the advertiser and the ad network need to verify whether that click actually resulted in an app installation from the App Store. In Safari, Apple supports this through <strong>SKAdNetwork for Web Ads</strong> (and its successor framework, <strong>AdAttributionKit</strong>). The browser captures the ad click, binds cryptographic impression parameters, and transfers the attribution record directly to the operating system's App Store daemon (<code>appstored</code>), which later matches the record against the user's App Store purchase and dispatches a signed conversion postback.</p>
+      <p>In WebKit's source code, this entire pipeline operates through a dedicated fast path embedded within the DOM and networking engines:</p>
+      <ul>
+        <li><strong>Link detection in WebContent:</strong> When the user clicks an <code>&lt;a&gt;</code> element, <code>HTMLAnchorElement::parsePrivateClickMeasurementForSKAdNetwork()</code> inspects the link. If <code>document().settings().sKAttributionEnabled()</code> is true and the target URL begins with the prefix <code>https://apps.apple.com/app/id</code>, WebKit extracts the numerical catalog identifier (the <em>Adam ID</em>, Apple's internal catalog identifier for App Store items) via <code>PrivateClickMeasurement::appStoreURLAdamID()</code>.</li>
+        <li><strong>Impression metadata extraction:</strong> WebKit reads the <code>attributionsourcenonce</code> (an ephemeral cryptographic nonce identifying the impression) and <code>attributiondestination</code> attributes on the anchor, extracts the host page's registrable domain as the source site, and constructs a <code>PrivateClickMeasurement</code> object with <code>m_adamID</code> populated. The predicate <code>pcm.isSKAdNetworkAttribution()</code> evaluates to <code>true</code> whenever an Adam ID is present.</li>
+        <li><strong>Forwarding to the Network process:</strong> When the navigation commits, <code>WebPageProxy::didCommitLoadForFrame()</code> in the UIProcess checks <code>privateClickMeasurement-&gt;isSKAdNetworkAttribution()</code> and forwards the attribution object to the website data store, which delivers it to the <code>NetworkProcess</code> over IPC.</li>
+        <li><strong>Donation to <code>appstored</code>:</strong> In <code>NetworkSession::storePrivateClickMeasurement()</code>, WebKit checks <code>if (unattributedPrivateClickMeasurement.isSKAdNetworkAttribution()) return donateToSKAdNetwork(...)</code>. Instead of writing the click to WebKit's local SQLite database for web-to-web Private Click Measurement, the Cocoa network session executes <code>NetworkSessionCocoa::donateToSKAdNetwork()</code>. This allocates an <code>ASDInstallWebAttributionParamsConfig</code> object, assigns the Adam ID, impression nonce, source domain, and destination ad network domain, and invokes the private system method <code>[[ASDInstallWebAttributionService sharedInstance] addInstallWebAttributionParamsWithConfig:completionHandler:]</code>.</li>
+      </ul>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Detects App Store URLs (<code>https://apps.apple.com/app/id...</code>) decorated with <code>attributionsourcenonce</code> directly inside <code>HTMLAnchorElement</code>.</li>
+            <li>Wraps the click in a <code>PrivateClickMeasurement</code> stamped with the app's Adam ID.</li>
+            <li>Routes the click through <code>NetworkSessionCocoa::donateToSKAdNetwork()</code> directly to <code>appstored</code> via private <code>AppStoreDaemon.framework</code> SPIs.</li>
+            <li>The operating system manages attribution state, download validation, and cryptographic postback signing independently of whether the browser remains open.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Can detect App Store links in its own engine, but cannot communicate with <code>appstored</code>.</li>
+            <li>Opening the link launches the App Store via normal URL scheme handling, but the App Store receives zero attribution context.</li>
+            <li>No install attribution postback is ever generated for the ad network; app installations driven by web ads in third-party browsers remain entirely invisible to advertisers.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/html/HTMLAnchorElement.cpp#L406">HTMLAnchorElement.cpp:406–448</a> — <code>parsePrivateClickMeasurementForSKAdNetwork()</code> verifies <code>sKAttributionEnabled()</code>, extracts the Adam ID, nonce, and domains, and creates the attribution object.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/PrivateClickMeasurement.cpp#L43">PrivateClickMeasurement.cpp:43</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/PrivateClickMeasurement.cpp#L438">:438–444</a> — defines <code>https://apps.apple.com/app/id</code> prefix and parses numerical Adam ID from the URL.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/PrivateClickMeasurement.h#L124">PrivateClickMeasurement.h:124–127</a> — defines <code>isSKAdNetworkAttribution() const { return !!m_adamID; }</code> and Adam ID accessors.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebPageProxy.cpp#L9193">WebPageProxy.cpp:9193–9205</a> — verifies <code>isSKAdNetworkAttribution()</code> on main frame load commit and forwards attribution to <code>websiteDataStore()</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkSession.cpp#L503">NetworkSession.cpp:503–516</a> — redirects SKAdNetwork attribution to <code>donateToSKAdNetwork()</code>, bypassing the standard unattributed PCM store.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm#L1984">NetworkSessionCocoa.mm:1984–2006</a> — builds <code>ASDInstallWebAttributionParamsConfig</code> and donates impression parameters to <code>[ASDInstallWebAttributionService sharedInstance]</code>.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/skadnetworkforwebads">SKAdNetwork for Web Ads</a> — Apple developer documentation detailing web ad impression payloads and install postbacks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>The privilege barrier: <code>com.apple.private.appstored</code> and Mach sandbox gates</h2>
+      <p>Even if an alternative browser engine implemented identical DOM parsing and constructed matching attribution payloads, it could not communicate with the App Store daemon. Access to <code>appstored</code> is guarded by two mandatory, kernel-enforced security boundaries: Apple-private code-signing entitlements and Seatbelt sandbox profiles.</p>
+      <p>In WebKit, the iOS and visionOS Network process is granted the private entitlement <code>com.apple.private.appstored</code> containing an array entry for <code>InstallWebAttribution</code>:</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><strong>Entitlement grant:</strong> In <code>Source/WebKit/Scripts/process-entitlements.sh</code> (lines 648–649), WebKit signs its iOS Network process with <code>com.apple.private.appstored</code> containing <code>InstallWebAttribution</code>. <code>appstored</code> verifies this entitlement via audit tokens on incoming XPC connections.</li>
+            <li><strong>Seatbelt lookup grant:</strong> In <code>Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb</code> (lines 144–146), WebKit's Networking sandbox explicitly allows Mach lookups for <code>com.apple.appstored.xpc</code> and <code>com.apple.appstored.xpc.request</code>.</li>
+            <li><strong>Private SPI access:</strong> WebKit links against private <code>AppStoreDaemon.framework</code> classes (<code>ASDInstallWebAttributionService</code>, <code>ASDInstallWebAttributionParamsConfig</code>) cataloged under <code>AllowedSPI-legacy.toml:112–113</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li><strong>No entitlement:</strong> <code>com.apple.private.appstored</code> is an Apple-internal entitlement (classified as <em>apple-private / ios-webkit-exclusive</em>). Third-party apps and <code>BENetworkingProcess</code> extensions cannot receive it.</li>
+            <li><strong>Sandbox denial:</strong> The public BrowserEngineKit networking extension profile does not permit Mach lookups for <code>com.apple.appstored.xpc</code> or <code>com.apple.appstored.xpc.request</code>; any connection attempt is blocked by the Seatbelt kernel sandbox.</li>
+            <li><strong>AllowedSPI restriction:</strong> The <code>ASDInstallWebAttribution*</code> classes are flagged in the SPI inventory as <code>apple-only-entitlement-or-daemon</code>; third-party binaries referencing them fail App Store verification.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L648">process-entitlements.sh:648–650</a> — injects <code>com.apple.private.appstored</code> with <code>InstallWebAttribution</code> into the iOS Network process entitlement plist.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L144">networking-defines.sb:144–146</a> — grants <code>(allow mach-lookup (global-name "com.apple.appstored.xpc") (global-name "com.apple.appstored.xpc.request"))</code> in WebKit's Networking process.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/AppStoreDaemonSPI.h#L43">AppStoreDaemonSPI.h:43–60</a> — SPI interface declarations for <code>ASDInstallWebAttributionParamsConfig</code> and <code>ASDInstallWebAttributionService</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Configurations/AllowedSPI-legacy.toml#L112">AllowedSPI-legacy.toml:112–113</a> — lists <code>ASDInstallWebAttributionParamsConfig</code> and <code>ASDInstallWebAttributionService</code> in the legacy SPI allowlist.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=appstored">Entitlements explorer › com.apple.private.appstored</a> — category: Apple-private; parity: WebKit-exclusive.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=ASDInstallWebAttribution">SPI analyzer › ASDInstallWebAttribution</a> — marked Apple-Only (daemon and entitlement gated).</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#q=appstored">Sandbox search › appstored</a> — historical sandbox grants for <code>appstored.xpc</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Public framework limits: why AdAttributionKit and SKAdNetwork exclude web engines</h2>
+      <p>Apple provides two public ad attribution frameworks for third-party developers: <strong>SKAdNetwork</strong> (StoreKit Ad Network, introduced in iOS 11.3) and <strong>AdAttributionKit</strong> (introduced in iOS 17.4 to support alternative app marketplaces alongside the App Store). However, both public frameworks are designed exclusively for native application contexts.</p>
+      <p>Apple's official documentation for SKAdNetwork for Web Ads explicitly documents this restriction:</p>
+      <div class="issue-callout note">
+        <strong>Apple documentation statement:</strong> <em>"SKAdNetwork for Web Ads is supported only in Safari. It isn't supported in WKWebView, SFSafariViewController, or any third-party browser."</em> (Source: <a href="https://developer.apple.com/documentation/skadnetworkforwebads">Apple Developer Documentation: SKAdNetwork for Web Ads</a>).
+      </div>
+      <p>Public AdAttributionKit APIs provide classes such as <code>UIEventAttributionView</code>, <code>AdImpression</code>, and <code>AdAttributionKit.Postback</code>. These APIs permit native iOS apps to register in-app ad impressions that lead either to app installations (app-to-app) or to merchant websites (app-to-web). Crucially, neither SKAdNetwork nor AdAttributionKit offers any public API for an application or browser engine to register a <em>web-to-app</em> impression from within a browser page.</p>
+      <p>BrowserEngineKit defines extension types for WebContent (<code>BEWebContentProcess</code>), rendering (<code>BEProcessCapability</code>), and networking (<code>BENetworkingProcess</code>). It provides no attribution capability or protocol (such as a hypothetical <code>BEInstallWebAttribution</code>). Consequently, if a user clicks an ad in Chrome, Firefox, or any third-party browser on iOS, the browser has no authorized mechanism to donate the click to the system install attribution engine. Because Apple's privacy guidelines strictly disallow probabilistic fingerprinting and alternative cross-app tracking without user consent, third-party browsers cannot provide any substitute measurement channel for advertisers.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Enjoys full OS-level integration through private <code>AppStoreDaemon</code> channels directly wired into the Safari app bundle and WebKit networking stack.</li>
+            <li>Ad networks receive cryptographically verified install postbacks from Apple's servers when Safari web ad clicks lead to App Store downloads.</li>
+            <li>Advertisers can confidently allocate ad spend to web campaigns in Safari because conversions are reliably measured.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>No public API exists in StoreKit, AdAttributionKit, or BrowserEngineKit for web-to-app attribution.</li>
+            <li>Clicks leading to app downloads result in zero attributed conversions in SKAdNetwork or AdAttributionKit reports.</li>
+            <li>Ad networks and advertisers cannot verify ROI for ads served on third-party browsers, placing third-party browsers at a severe commercial disadvantage for web advertising.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/skadnetworkforwebads">SKAdNetwork for Web Ads</a> — official documentation explicitly stating Safari exclusivity and excluding <code>WKWebView</code> and third-party browsers.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/adattributionkit">AdAttributionKit framework</a> — public framework documentation covering app-to-app and app-to-web conversions, but lacking web-to-app impression donation APIs.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=networkserviceproxy">Entitlements explorer › Networking, OHTTP &amp; System Daemons</a> — overview of networking process entitlement asymmetries between WebKit and <code>BENetworkingProcess</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Architectural split: web-to-app install attribution vs. web-to-web PCM</h2>
+      <p>To understand the WebKit implementation, it is vital to contrast <strong>web-to-app install attribution</strong> (analyzed here) with <strong>web-to-web Private Click Measurement (PCM)</strong> (analyzed in <a href="delayed-pcm-reports.html">delayed PCM reports</a>). While both share common DOM syntax and internal data structures, their execution paths and system dependencies diverge entirely.</p>
+      <p>On web pages, both features use the same HTML attribution attributes (such as <code>attributionsrc</code>, <code>attributiondestination</code>, and <code>attributionsourcenonce</code>), and WebKit parses both into instances of <code>WebCore::PrivateClickMeasurement</code>. However, inside <code>NetworkSession::storePrivateClickMeasurement()</code>, their paths branch based on the target URL:</p>
+      <ul>
+        <li><strong>Web-to-web PCM:</strong> When an ad on <code>publisher.example</code> links to <code>merchant.example</code>, <code>isSKAdNetworkAttribution()</code> is false. WebKit records the impression in its local PCM SQLite database. When the user later converts on the merchant's website, WebKit hands the matched attribution to <code>adattributiond</code> (the Private Click Measurement daemon; see <a href="../services.html#service-adattributiond">services analyzer</a>). <code>adattributiond</code> holds the report for a randomized delay of 24–48 hours to thwart timing-based user re-identification, then issues an HTTP POST request to the ad network's <code>.well-known/private-click-measurement/report-attribution/</code> endpoint.</li>
+        <li><strong>Web-to-app attribution:</strong> When the destination link points to the App Store (<code>https://apps.apple.com/app/id...</code>), <code>isSKAdNetworkAttribution()</code> is true. WebKit never records the click in the local PCM database and never interacts with <code>adattributiond</code>. Instead, it donates the click immediately and synchronously to <code>appstored</code> via <code>ASDInstallWebAttributionService</code>. <code>appstored</code> takes over full ownership: it monitors the App Store purchase pipeline, validates the download, cryptographically signs the attribution token, and sends the SKAdNetwork postback from Apple's servers.</li>
+      </ul>
+      <p>While an alternative browser engine can implement web-to-web PCM independently using its own database and network stack, web-to-app attribution inherently requires cooperation from the operating system's application installer. Because only Apple's <code>appstored</code> manages iOS app installation, a browser cannot attribute app installs without an authorized bridge to that daemon.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkSession.cpp#L512">NetworkSession.cpp:512–516</a> — conditional branch routing SKAdNetwork clicks directly to <code>donateToSKAdNetwork()</code> while standard PCM clicks enter <code>m_privateClickMeasurement-&gt;storeUnattributed()</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm#L1984">NetworkSessionCocoa.mm:1984–2006</a> — Cocoa implementation donating directly to <code>ASDInstallWebAttributionService</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../services.html#service-adattributiond">Services analyzer › adattributiond</a> — analysis of the auxiliary Private Click Measurement daemon used for delayed web-to-web reporting.</li>
+          <li><span class="ev-kind">Sibling</span><a href="delayed-pcm-reports.html">Issue › Delayed PCM reports</a> — detailed analysis of web-to-web attribution and background process suspension.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Evolution and history: SKAdNetwork 4.0 bridge, SPI migrations, and ephemeral sessions</h2>
+      <p>WebKit's web-to-app attribution subsystem has evolved across several major iOS releases, reflecting continuous internal coordination between the WebKit engineering team and Apple's App Store daemon team:</p>
+      <ul>
+        <li><strong>March 2022 (iOS 16.0 / commit <a href="https://github.com/WebKit/WebKit/commit/4f69690a0415079413d2e32cdd65c79d08aca2c0">4f69690a0415</a>):</strong> WebKit introduced the "PCM to SKAdNetwork bridge". This commit added <code>PrivateClickMeasurement::appStoreURLAdamID()</code>, introduced <code>AppStoreDaemonSPI.h</code>, added the initial <code>com.apple.private.appstored</code> entitlement with capability <code>InstallAttribution</code> in <code>process-entitlements.sh</code>, and added the sandbox rule allowing Mach lookup of <code>com.apple.appstored.xpc.request</code>.</li>
+        <li><strong>August 2022 (commit <a href="https://github.com/WebKit/WebKit/commit/e485c13082887ab8c6c36da2d73339396e0ffd49">e485c1308288</a>):</strong> The iOS Networking sandbox was expanded to also permit Mach lookups for <code>com.apple.appstored.xpc</code>, accommodating broadened communication with the App Store daemon.</li>
+        <li><strong>May 2023 (iOS 17.0 / commit <a href="https://github.com/WebKit/WebKit/commit/b40525e847936bf95df365170dfbd4a9175e0e9b">b40525e84793</a>):</strong> WebKit replaced the older <code>ASDInstallAttribution</code> class with <code>ASDInstallWebAttributionService</code>, updating the entitlement string in <code>process-entitlements.sh</code> from <code>InstallAttribution</code> to <code>InstallWebAttribution</code>.</li>
+        <li><strong>December 2024 (iOS 18.2+ / commit <a href="https://github.com/WebKit/WebKit/commit/5d5bb2812b45a398e30816a86da84dbe50dd4948">5d5bb2812b45</a>):</strong> WebKit adopted AdAttributionKit's private browsing verification protocol. For Private Browsing sessions, WebKit generates an ephemeral UUID session ID (<code>m_donatedEphemeralImpressionSessionID</code>) and assigns it to <code>config.privateBrowsingSessionId</code>. When the private session is closed, <code>NetworkSessionCocoa::notifyAdAttributionKitOfSessionTermination()</code> calls <code>[ASDInstallWebAttributionService.sharedInstance removeInstallWebAttributionParamsFromPrivateBrowsingSessionID:completionHandler:]</code>, instructing <code>appstored</code> to purge any pending uninstalled attributions so private browsing actions cannot be linked after the session ends.</li>
+        <li><strong>September 2025 (commit <a href="https://github.com/WebKit/WebKit/commit/f3953af233f97e058ead9b189233ac7ad84662cf">f3953af233f9</a>):</strong> WebKit refactored iOS Seatbelt profiles, moving Mach lookup definitions into <code>Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb</code> while maintaining the exclusive grants for <code>appstored</code>.</li>
+      </ul>
+      <p>Across this four-year evolution, Apple repeatedly expanded and refined the private interface between WebKit and <code>appstored</code>, but at no point exposed a public BrowserEngineKit counterpart for competing engines.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/4f69690a0415079413d2e32cdd65c79d08aca2c0">4f69690a0415 (2022-03-23)</a> "Implement PCM to SKAdNetwork bridge" — initial commit adding Adam ID parsing, SPI header, entitlement, and sandbox rules.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/e485c13082887ab8c6c36da2d73339396e0ffd49">e485c1308288 (2022-08-02)</a> "Allow iOS network process to connect to com.apple.appstored.xpc XPC service".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/b40525e847936bf95df365170dfbd4a9175e0e9b">b40525e84793 (2023-05-22)</a> "Adopt ASDInstallWebAttributionService replacing ASDInstallAttribution" — updates SPI and entitlement capability name.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/5d5bb2812b45a398e30816a86da84dbe50dd4948">5d5bb2812b45 (2024-12-04)</a> "Adopt AdAttributionKit's private browsing verification protocol" — adds ephemeral session UUID donation and teardown notification.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/f3953af233f97e058ead9b189233ac7ad84662cf">f3953af233f9 (2025-09-02)</a> "Create new files for sandbox defines" — consolidates networking Mach rules into <code>networking-defines.sb</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Confidence: High.</strong> Grounded directly in WebKit source code (<code>HTMLAnchorElement.cpp</code>, <code>NetworkSessionCocoa.mm</code>), code-signing scripts (<code>process-entitlements.sh</code>), Seatbelt sandbox profiles (<code>networking-defines.sb</code>), and public Apple documentation explicitly stating that SKAdNetwork for Web Ads is Safari-only and excluded from <code>WKWebView</code> and third-party browsers.</li>
+        <li><strong>Alternative Marketplaces under AdAttributionKit:</strong> AdAttributionKit on iOS 17.4+ supports app installations originating from alternative app marketplaces in native apps. Whether Apple plans to extend AdAttributionKit to support web-to-app install attribution for non-App-Store marketplaces or expose a public API for third-party browser engines remains unannounced; no such capability exists at HEAD in WebKit or public iOS SDKs.</li>
+        <li><strong>Private Browsing Session Lifecycle:</strong> Commit <code>5d5bb2812b45</code> introduced <code>removeInstallWebAttributionParamsFromPrivateBrowsingSessionID:completionHandler:</code>. WebKit source confirms that teardown occurs during <code>NetworkSessionCocoa</code> destruction, but the internal handling and retention policies within <code>appstored</code> before session termination are proprietary to Apple's daemon.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, web-to-app install attribution is fully open to all browser engines through two complementary mechanisms:</p>
+      <ul>
+        <li><strong>Play Install Referrer API:</strong> Any web browser on Android can link to an app listing in an app store using a URL containing a referrer parameter (for example, <code>market://details?id=com.example.app&amp;referrer=tracking_params</code>). When the user installs the app, the app store client captures and stores the referrer parameters. Upon first launch, the installed application retrieves these parameters using the public Play Install Referrer Library. This mechanism works identically regardless of which browser displayed the ad link.</li>
+        <li><strong>Android Privacy Sandbox — Attribution Reporting API:</strong> Android's modern, privacy-preserving Attribution Reporting API (part of Android AdServices) explicitly supports <strong>Web-to-App measurement</strong>. The system allows any browser engine (not just Chrome) to register web ad attribution sources via the Android AdServices measurement manager or standardized HTTP response headers. When the user installs and opens the app, the operating system's AdServices runtime matches the conversion and dispatches attribution reports directly. The capability is implemented at the OS level and exposed equally to all browsers through public Android Jetpack and system SDK APIs.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../entitlements.html?view=explorer&amp;q=networkserviceproxy">Entitlements explorer › Oblivious HTTP, Socket Delegation &amp; System Daemons</a> — audit of private entitlements granted to WebKit's Networking process vs. <code>BENetworkingProcess</code>.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=appstored">Entitlements explorer › <code>com.apple.private.appstored</code></a> — complete entitlement dossier, platform availability, and gated capabilities.</li>
+        <li><a href="../spi.html#tab=data&amp;q=ASDInstallWebAttribution">SPI analyzer › ASDInstallWebAttribution</a> — declarations and call sites for Apple Store daemon install attribution classes.</li>
+        <li><a href="../services.html#service-adattributiond">Services analyzer › adattributiond</a> — examination of WebKit's auxiliary Private Click Measurement daemon for web-to-web reporting.</li>
+        <li><a href="delayed-pcm-reports.html">Issue › Delayed PCM reports</a> — the sibling analysis examining web-to-web Private Click Measurement and background process lifetime challenges.</li>
+        <li><a href="networking.html">Issue › Networking extension limits</a> — broader networking process capability gaps under BrowserEngineKit.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">&larr; All 13 Capability Gaps</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

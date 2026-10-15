@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why Home Screen web apps added via alternative browser engines cannot match Safari's standalone notification identity, icon badging, and background wake on iOS.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Home Screen web apps — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Home Screen web apps
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Home Screen web apps</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P1</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Confirmed in WebKit daemon source, sandbox profiles, and entitlement scripts)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Yes (installed PWAs get their own notification identity and badge via FCM / WebAPK)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> In Safari, a website added to the Home Screen behaves like a native application with its own icon, independent notification permission, per-app notification branding, badge counts, and background push wake; third-party browser engines on iOS can offer "Add to Home Screen" via <code>BEWebAppManifest</code>, but have no API to find, identify, badge, or launch installed web apps, and all notifications must be sent under the browser's own identity and single shared permission.</p>
+        <p><strong>What this page adds:</strong> Tracing WebKit's web push daemon (<code>webpushd</code>) and UIKit integration reveals that Safari's Home Screen web apps rely on a cluster of Apple-private mechanisms: <code>UIWebClip</code> inspection in <code>~/Library/WebClips</code>, synthetic notification bundle IDs (<code>com.apple.WebKit.PushBundle.&lt;id&gt;</code>) authorized by private proxy entitlements, per-clip badge manipulation via <code>UISApplicationState</code>, and background waking via FrontBoard and sensitive LaunchServices URLs. Crucially, <code>webpushd</code> rejects all client connections whose host process is not signed with <code>com.apple.private.webkit.webpush</code> and hardcodes an explicit check allowing only Safari's web-app host (<code>com.apple.SafariViewService</code>), locking third-party engines out of the entire push and web-app infrastructure.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">What a Home Screen web app is on iOS: WebClips and <code>BEWebAppManifest</code></a></li>
+        <li><a href="#aspect-2">Enumerating and identifying installed web apps: <code>UIWebClip</code> SPI and sandbox boundaries</a></li>
+        <li><a href="#aspect-3">Per-web-app notification identity: synthetic <code>PushBundle</code> domains and private proxy entitlements</a></li>
+        <li><a href="#aspect-4">Badging the web app icon: <code>UISApplicationState</code> vs. browser-level badging</a></li>
+        <li><a href="#aspect-5">Waking and launching the web app on push: FrontBoard SPI and sensitive URLs</a></li>
+        <li><a href="#aspect-6">Why alternative engines cannot connect to <code>webpushd</code>: the private webpush entitlement and single-host lock-in</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>What a Home Screen web app is on iOS: WebClips and <code>BEWebAppManifest</code></h2>
+      <p>When a user adds a Progressive Web App (PWA) to their Home Screen in Safari, iOS does not simply save a bookmark shortcut that opens inside a browser tab. Instead, the operating system creates an isolated application instance with its own icon, title, display configuration, and full-screen window isolated from the main browser interface.</p>
+      <p>Under the hood, iOS implements Home Screen web apps as <strong>WebClips</strong>. WebClip bundles are stored on the local filesystem under <code>~/Library/WebClips/&lt;UUID&gt;.webclip</code>, each containing an <code>Info.plist</code> with the web app's start URL (<code>pageURL</code>), title, orientation settings, and icons. When tapped on the Home Screen, iOS launches the web app under a dedicated host process—historically <code>com.apple.webapp</code> or <code>com.apple.SafariViewService</code>—which presents an app-like card in the iOS multitasking app switcher.</p>
+      <p>In iOS 17.5, Apple introduced a public class in BrowserEngineKit: <code>BEWebAppManifest</code>. When an alternative browser presents the standard iOS share sheet (using <code>SFAddToHomeScreenActivityItem</code>), it can pass an instance of <code>BEWebAppManifest</code> populated with the website's raw web app manifest JSON. This allows the system share sheet to extract the manifest's name, icons, and start URL to create a WebClip on the Home Screen. However, creating the WebClip is where BrowserEngineKit's integration ends: once installed, the third-party browser has no public way to interact with, manage, or launch that web app.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari passes website metadata and icons directly to UIKit's internal WebClip generation pipeline when the user taps "Add to Home Screen".</li>
+            <li>The resulting WebClip is registered with the system and executes within Safari's dedicated web-app host process (<code>com.apple.SafariViewService</code>), giving it standalone display mode, its own lifecycle, and its own task card in the iOS app switcher.</li>
+            <li>The WebClip's bundle identifier and origin are tracked by system daemons, enabling persistent push subscriptions, custom notification identities, and badge updates.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party browser can instantiate <code>BEWebAppManifest</code> with <code>initWithJSONData:manifestURL:</code> (iOS 17.5+) and pass it to the share sheet's <code>SFAddToHomeScreenActivityItem</code>.</li>
+            <li>The system share sheet creates a WebClip on the user's Home Screen containing the website's metadata.</li>
+            <li>After installation, the third-party engine receives no callback, no WebClip identifier, and no handle to the installed web app. The browser cannot inspect or manage installed WebClips.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/bewebappmanifest">BEWebAppManifest</a> — public BrowserEngineKit API (iOS 17.5+) representing a parsed web application manifest.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebClipCache.mm#L54">WebClipCache.mm:54–59</a> — demonstrates <code>[UIWebClip pathForWebClipWithIdentifier:]</code> resolving to the clip's <code>Info.plist</code> in the filesystem.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L135">WebPushDaemon.mm:135–137</a> — references the native web app action bundle identifier <code>com.apple.webapp</code> for <code>com.apple.SafariViewService</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Enumerating and identifying installed web apps: <code>UIWebClip</code> SPI and sandbox boundaries</h2>
+      <p>For a browser to support push subscriptions, badge counts, and notifications for a Home Screen web app, it must first be able to enumerate installed web apps and correlate an incoming web origin with its corresponding Home Screen icon. In Safari, this discovery is performed automatically in the background.</p>
+      <p>WebKit achieves this through <strong><code>UIWebClip</code></strong>, a private UIKit class. In WebKit's web push daemon (<code>webpushd</code>), the <code>WebClipCache</code> component calls <code>[UIWebClip webClips]</code> to obtain a complete list of all installed WebClips on the device. For each clip, it inspects <code>pageURL</code> to match against the website's security origin (<code>WebCore::SecurityOriginData</code>), inspects filesystem creation timestamps (<code>FileSystem::fileCreationTime</code>) to select the primary clip, and checks the private property <code>trustedClientBundleIdentifiers</code>.</p>
+      <p>Furthermore, reading installed WebClips requires direct access to <code>~/Library/WebClips</code>. Standard iOS application containers are heavily sandboxed and strictly blocked from reading system or other applications' directories. WebKit's <code>webpushd</code> daemon has an explicit Seatbelt sandbox rule in <code>com.apple.WebKit.webpushd.sb.in</code> granting <code>(allow file-read* (home-subpath "/Library/WebClips"))</code>. Third-party browser engines have neither the sandbox rule nor access to the private <code>UIWebClip</code> class.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WebClipCache::webClipIdentifierForOrigin</code> calls <code>[UIWebClip webClips]</code> to scan all installed web apps and find one matching the requested origin URL.</li>
+            <li>WebKit checks <code>trustedClientBundleIdentifiers</code> on each WebClip to determine which application owns or has access to the clip.</li>
+            <li>The daemon carries an explicit sandbox exemption to read <code>~/Library/WebClips</code> and caches preferred WebClip identifiers in a persistent property list (<code>WebClipCache.plist</code>).</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Nothing equivalent. <code>UIWebClip</code> is private UIKit SPI (listed in WebKit's <code>AllowedSPI.toml</code> and <code>UIKitSPI.h</code>) that is completely off-limits to App Store applications.</li>
+            <li>A third-party browser's sandbox prevents reading <code>~/Library/WebClips</code>, so the engine cannot read <code>Info.plist</code> files or inspect installed clips directly.</li>
+            <li>A third-party engine cannot discover whether the user has installed a specific website, cannot get its clip identifier, and cannot know if the user subsequently uninstalled or deleted the web app.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebClipCache.mm#L68">WebClipCache.mm:68–98</a> — <code>webClipIdentifierForOrigin</code> uses <code>[UIWebClip webClips]</code>, <code>webClip.pageURL</code>, and <code>trustedClientBundleIdentifiers</code> to identify matching installed web apps.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/spi/ios/UIKitSPI.h#L183">UIKitSPI.h:183–191</a> — private header declarations for <code>UIWebClip</code> methods: <code>webClips</code>, <code>webClipWithIdentifier:</code>, <code>pathForWebClipWithIdentifier:</code>, <code>pageURL</code>, and <code>trustedClientBundleIdentifiers</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in#L188">com.apple.WebKit.webpushd.sb.in:188–190</a> — Seatbelt profile rule: <code>(allow file-read* (home-subpath "/Library/WebClips"))</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/77532e760a8b528addf86f4e1a73416e4dad0272">77532e760a8b (2024-09-10)</a> "Implicit web clip mode should choose a web clip that is visible to the application" — introduces <code>WebClipCache</code> and visibility filtering via <code>trustedClientBundleIdentifiers</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=UIWebClip">SPI analyzer › UIWebClip</a> — private class classification and usage in <code>webpushd</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Per-web-app notification identity: synthetic <code>PushBundle</code> domains and private proxy entitlements</h2>
+      <p>In Safari, when a Home Screen web app asks for notification permission and displays notifications, it behaves like an independent native application. The notification prompt displays the web app's own name and icon. When a notification arrives on the lock screen, it shows the web app's icon, the web app's title, and a subtitle attributing the source (e.g. "from Acme News"). In iOS Settings, the web app appears with its own individual entry under Notifications, allowing the user to configure alerts, sounds, and banners specifically for that web app without affecting Safari.</p>
+      <p>To achieve this, WebKit creates a <strong>synthetic bundle identity</strong> for every web app. In <code>WebPushDaemon.mm</code>, the helper function <code>platformNotificationCenterBundleIdentifier</code> formats a dedicated bundle ID: <code>com.apple.WebKit.PushBundle.&lt;webClipIdentifier&gt;</code>. WebKit then instantiates <code>UNUserNotificationCenter</code> using an Apple-private initializer: <code>[[UNUserNotificationCenter alloc] initWithBundleIdentifier:notificationCenterBundleIdentifier]</code>. It configures the notification's icon via private SPI <code>[UNNotificationIcon iconForApplicationIdentifier:]</code> and sets the default action bundle identifier to <code>com.apple.webapp</code>.</p>
+      <p>Normally, iOS's notification daemon (<code>usernotificationsd</code>) enforces that an application can only post notifications under its own code-signed bundle identifier. WebKit bypasses this restriction through an Apple-private entitlement granted to <code>webpushd</code> in <code>process-entitlements.sh</code>: <code>com.apple.private.usernotifications.app-management-domain.proxy</code>, set to the domain string <code>com.apple.WebKit.PushBundles</code>, alongside <code>com.apple.usernotification.notificationschedulerproxy</code> and Mach lookup access to <code>com.apple.usernotifications.listener</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>webpushd</code> generates an isolated synthetic bundle identifier (<code>com.apple.WebKit.PushBundle.&lt;webClipIdentifier&gt;</code>) for each installed web app.</li>
+            <li>It uses the private constructor <code>-[UNUserNotificationCenter initWithBundleIdentifier:]</code> to create an isolated notification center for that synthetic bundle.</li>
+            <li>Backed by <code>com.apple.private.usernotifications.app-management-domain.proxy</code>, <code>usernotificationsd</code> grants the synthetic bundle its own permission record in iOS Settings and independent delivery controls.</li>
+            <li>Notifications display the web app's icon via <code>[UNNotificationIcon iconForApplicationIdentifier:]</code> and route taps directly to <code>com.apple.webapp</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party apps only have access to <code>+[UNUserNotificationCenter currentNotificationCenter]</code>, which represents the browser app as a whole.</li>
+            <li>Calling private constructors like <code>initWithBundleIdentifier:</code> is rejected by the system without the private <code>app-management-domain.proxy</code> entitlement, which Apple does not grant to third parties.</li>
+            <li>All web-app notifications scheduled by a third-party engine appear with the browser's own name and icon, not the web app's.</li>
+            <li>All web apps share the single notification permission of the parent browser in iOS Settings: revoking permission mutes the entire browser and all installed web apps simultaneously.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L144">WebPushDaemon.mm:144–147</a> — <code>platformNotificationCenterBundleIdentifier</code> formats synthetic bundle IDs as <code>com.apple.WebKit.PushBundle.%@</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L1018">WebPushDaemon.mm:1018–1055</a> — <code>showNotification</code> sets <code>defaultActionBundleIdentifier</code> to <code>com.apple.webapp</code>, sets <code>content.icon = [UNNotificationIcon iconForApplicationIdentifier:...]</code>, formats subtitle <code>from &lt;webClip title&gt;</code>, and schedules via <code>[[UNUserNotificationCenter alloc] initWithBundleIdentifier:...]</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/spi/Cocoa/UserNotificationsSPI.h#L54">UserNotificationsSPI.h:54–74</a> — private SPI declarations for <code>UNNotificationIcon</code>, <code>UNMutableNotificationContent.icon</code>, <code>UNMutableNotificationContent.defaultActionBundleIdentifier</code>, and <code>-[UNUserNotificationCenter initWithBundleIdentifier:]</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L617">process-entitlements.sh:617</a> — grants <code>com.apple.private.usernotifications.app-management-domain.proxy</code> with value <code>com.apple.WebKit.PushBundles</code> to <code>webpushd</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=usernotifications">Entitlements explorer › com.apple.private.usernotifications.app-management-domain.proxy</a> — entitlement dossier and WebKit call sites.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Badging the web app icon: <code>UISApplicationState</code> vs. browser-level badging</h2>
+      <p>The standard Web Badging API (<code>navigator.setAppBadge()</code> and <code>navigator.clearAppBadge()</code>) allows installed web applications to display a numeric badge on their Home Screen icon—for example, to indicate unread messages or pending notifications. In Safari, calling this API updates the badge number specifically on the Home Screen icon of the active web app.</p>
+      <p>In WebKit, when JavaScript executes <code>navigator.setAppBadge(count)</code>, the call is forwarded across IPC from the rendering process to the Network Process and finally to <code>webpushd</code>. In <code>WebPushDaemon.mm</code>, the daemon uses <strong><code>UISApplicationState</code></strong>, a private class from Apple's <code>UIKitServices</code> framework:</p>
+      <pre><code>RetainPtr state = adoptNS([[UISApplicationState alloc] initWithBundleIdentifier:platformNotificationCenterBundleIdentifier(identifier.pushPartition).get()]);
+state.get().badgeValue = appBadge ? [NSNumber numberWithUnsignedLongLong:*appBadge] : nil;</code></pre>
+      <p>This allows <code>webpushd</code> to target the Home Screen WebClip's synthetic bundle ID directly. Interacting with the system badging service requires Mach lookup access to <code>com.apple.frontboard.systemappservices</code> and the private entitlement <code>com.apple.uikitservices.app.value-access</code> (added to <code>webpushd</code> in August 2024 via commit <code>4433278ba6e8</code>). Third-party applications have no access to <code>UISApplicationState</code> or <code>frontboard.systemappservices</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>NetworkNotificationManager::setAppBadge</code> dispatches an IPC message to <code>webpushd</code> containing the target origin and requested badge count.</li>
+            <li><code>WebPushDaemon::setAppBadge</code> allocates <code>UISApplicationState</code> initialized with the WebClip's synthetic bundle ID (<code>com.apple.WebKit.PushBundle.&lt;webClipIdentifier&gt;</code>) and sets <code>badgeValue</code>.</li>
+            <li>The system immediately updates the badge number on that specific WebClip icon on the user's Home Screen.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party browser can only call public badge APIs: <code>[UNUserNotificationCenter setBadgeCount:withCompletionHandler:]</code> or <code>UIApplication.applicationIconBadgeNumber</code>.</li>
+            <li>These public APIs can only badge the <em>browser application's own icon</em> on the Home Screen.</li>
+            <li>There is no public API to badge a WebClip. If a web app installed via a third-party engine calls <code>setAppBadge(5)</code>, the browser can either ignore it or put a "5" badge on the main browser's icon, confusing the user.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L1238">WebPushDaemon.mm:1238–1241</a> — <code>WebPushDaemon::setAppBadge</code> allocates <code>UISApplicationState</code> with the synthetic bundle ID and assigns <code>badgeValue</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/spi/ios/UIKitSPI.h#L110">UIKitSPI.h:110</a> — imports private header <code>&lt;UIKitServices/UISApplicationState.h&gt;</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L616">process-entitlements.sh:616</a> — signs <code>webpushd</code> with private entitlement <code>com.apple.uikitservices.app.value-access</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in#L184">com.apple.WebKit.webpushd.sb.in:184–186</a> — sandbox rule: <code>(allow mach-lookup (global-name "com.apple.frontboard.systemappservices"))</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/4433278ba6e8807bab110a7ebf65b27e74351bc5">4433278ba6e8 (2024-08-02)</a> "Handle setAppBadge in webpushd" — adds <code>UISApplicationState</code>, <code>uikitservices.app.value-access</code>, and FrontBoard system app services lookup to <code>webpushd</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=UISApplicationState">SPI analyzer › UISApplicationState</a> — classification as Apple-only FrontBoardServices SPI.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Waking and launching the web app on push: FrontBoard SPI and sensitive URLs</h2>
+      <p>When an incoming push notification arrives from the network while a Home Screen web app is not running, the web app's service worker needs to be activated in the background to handle the push event (for example, to decrypt the payload, fetch updated data, and show a notification). Furthermore, when the user taps on a notification, iOS must open the specific web application window rather than a generic browser tab.</p>
+      <p>In WebKit, <code>webpushd</code> receives incoming push events directly from Apple Push Notification service (<code>apsd</code>). To wake or launch the web-app host process in the background, <code>WebPushDaemon.mm</code> uses private application-launching mechanisms:</p>
+      <ul>
+        <li>For Safari's web-app host (<code>com.apple.SafariViewService</code>), it synthesizes a custom URL with prefix <code>webapp://web-push/&lt;pushPartition&gt;</code> and invokes <code>-[LSApplicationWorkspace openURL:configuration:completionHandler:]</code> using a private <code>_LSOpenConfiguration</code>. It flags the configuration as <code>sensitive = YES</code> (authorized by the private entitlement <code>com.apple.springboard.opensensitiveurl</code>), sets <code>FBSActivateForEventOptionTypeBackgroundContentFetching</code>, and specifies the source application as <code>com.apple.WebKit.webpushd</code> (authorized by <code>com.apple.private.launchservices.canspecifysourceapplication</code>).</li>
+        <li>For other client processes, it utilizes SpringBoardServices SPI: <code>SBSCreateOpenApplicationService()</code> and calls <code>-[SBSOpenApplicationService openApplication:withOptions:completion:]</code>, passing a FrontBoard <code>BSAction</code> payload configured with <code>FBSOpenApplicationOptionKeyActivateSuspended: @YES</code> and background content fetching. This requires the private entitlement <code>com.apple.frontboard.launchapplications</code> and the Seatbelt rule <code>(allow lsopen)</code>.</li>
+      </ul>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>webpushd</code> listens to <code>apsd</code> in the background even when Safari and all web apps are closed.</li>
+            <li>Upon receiving a push payload, <code>webpushd</code> uses FrontBoard and LaunchServices SPIs to launch the web-app host process in the background with suspended activation.</li>
+            <li>The web-app host wakes up, executes the service worker's <code>push</code> event handler, and presents or updates the notification without foregrounding any user interface.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party iOS applications cannot wake or launch secondary processes in the background. Public APIs like <code>UIApplication.openURL:</code> require explicit user interaction and cannot open sensitive system URL schemes.</li>
+            <li>Third-party apps cannot access <code>SBSCreateOpenApplicationService</code> or dispatch <code>BSAction</code> payloads via FrontBoard without <code>com.apple.frontboard.launchapplications</code>.</li>
+            <li>A third-party browser can only receive push notifications sent directly to the browser's own bundle identifier. Standard iOS background push processing is subject to aggressive system throttling (PowerLog and Duet Activity Scheduler), cannot guarantee prompt wake, and cannot launch an isolated web-app window.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L621">WebPushDaemon.mm:621–644</a> — launches <code>com.apple.SafariViewService</code> via <code>webapp://web-push/</code>, <code>_LSOpenConfiguration.sensitive = YES</code>, and <code>FBSActivateForEventOptionTypeBackgroundContentFetching</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L646">WebPushDaemon.mm:646–678</a> — launches client apps via <code>SBSCreateOpenApplicationService</code>, <code>FBSOpenApplicationOptions</code>, and <code>BSAction</code> with suspended background activation.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L613">process-entitlements.sh:613–618</a> — signs <code>webpushd</code> with <code>com.apple.springboard.opensensitiveurl</code>, <code>com.apple.private.launchservices.canspecifysourceapplication</code>, and <code>com.apple.frontboard.launchapplications</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in#L215">com.apple.WebKit.webpushd.sb.in:215</a> — Seatbelt profile rule: <code>(allow lsopen)</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/a984be0fb37d9428c4bdfa7ca7d86755836a44e0">a984be0fb37d (2024-08-23)</a> "`webpushd` app launch improvements" — adopts FrontBoardServices and SpringBoardServices SPIs (<code>BSAction</code>, <code>BSMutableSettings</code>, <code>SBSCreateOpenApplicationService</code>) for background push waking.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=webpush">Entitlements explorer › Web Push Daemon (webpushd)</a> — details on private launch entitlements.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>Why alternative engines cannot connect to <code>webpushd</code>: the private webpush entitlement and single-host lock-in</h2>
+      <p>Given that Apple already developed a robust system daemon (<code>webpushd</code>) that handles WebClips, badges, push routing, and notification isolation on iOS, a natural question is: why can't a BrowserEngineKit browser simply connect to <code>webpushd</code> over XPC and let the system daemon manage its Home Screen web apps?</p>
+      <p>Reading WebKit's daemon source code reveals that <code>webpushd</code> is protected by two distinct enforcement layers that strictly lock out all non-Safari processes:</p>
+      <ol>
+        <li><strong>Entitlement verification on connection:</strong> When an XPC client attempts to connect to <code>webpushd</code>, <code>PushClientConnection::create</code> inspects the client process's audit token. In <code>PushClientConnection.mm</code>, it verifies that the client holds the Apple-private entitlement <code>com.apple.private.webkit.webpush</code>:
+          <pre><code>if (!hostAppHasWebPushEntitlement) {
+    RELEASE_LOG_ERROR(Push, "PushClientConnection::create failed: client is missing Web Push entitlement");
+    return nullptr;
+}</code></pre>
+          This entitlement is not among the capabilities granted to BrowserEngineKit engines and cannot be obtained by third-party developers.
+        </li>
+        <li><strong>Hardcoded single-host bundle check:</strong> Even if a client could pass the entitlement check, <code>webpushd</code> hardcodes an explicit restriction to a single host application. In <code>WebPushDaemon.mm</code>, the helper <code>getAllowedBundleIdentifier()</code> returns <code>"com.apple.SafariViewService"_s</code>. Both the incoming connection handler (<code>connectionEventHandler</code>, line 355) and the incoming push handler (<code>handleIncomingPush</code>, line 518) explicitly check:
+          <pre><code>if (getAllowedBundleIdentifier() != bundleIdentifier || ...) {
+    RELEASE_LOG_ERROR(Push, "Got message from unexpected bundleIdentifier = %{public}s", bundleIdentifier.utf8());
+    tryCloseRequestConnection(request);
+    return;
+}</code></pre>
+          In commit <code>77532e760a8b</code>, Apple engineers noted: <em>"the design from the beginning was to only allow one app to access it [webpushd], so I changed methods that checked whether apps were allowed to connect to webpushd to only allow a single app to connect."</em>
+        </li>
+      </ol>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari and its web-app host (<code>com.apple.SafariViewService</code>) carry Apple's private entitlement <code>com.apple.private.webkit.webpush</code>.</li>
+            <li><code>webpushd</code> specifically matches <code>com.apple.SafariViewService</code> as its allowed bundle identifier, establishing a trusted high-privilege IPC channel.</li>
+            <li>All push notifications, subscription persistence, and WebClip associations are serviced by the shared daemon.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party browsers cannot obtain <code>com.apple.private.webkit.webpush</code>, causing <code>PushClientConnection::create</code> to immediately terminate any connection attempt.</li>
+            <li>Even if granted connection access, the daemon's internal logic strictly rejects any bundle identifier other than <code>com.apple.SafariViewService</code>.</li>
+            <li>A third-party browser is completely barred from using <code>webpushd</code>, forcing it to reinvent push notifications using standard public APIs that lack WebClip integration.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L73">PushClientConnection.mm:73</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L187">:187–190</a> — defines <code>hostAppWebPushEntitlement = "com.apple.private.webkit.webpush"_s</code> and drops connections from clients missing it.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L95">WebPushDaemon.mm:95–100</a> — <code>getAllowedBundleIdentifier()</code> hardcodes <code>"com.apple.SafariViewService"_s</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L355">WebPushDaemon.mm:355–360</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L518">:518–522</a> — rejects messages and push delivery whenever the client bundle identifier does not match <code>getAllowedBundleIdentifier()</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/77532e760a8b528addf86f4e1a73416e4dad0272">77532e760a8b (2024-09-10)</a> — explicitly restricts <code>webpushd</code> to a single client application.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../services.html#service-webpushd">Services analyzer › webpushd</a> — architectural analysis of WebKit's push daemon.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Confidence: High.</strong> Every layer of this architecture is grounded in open-source WebKit code, including <code>webpushd</code>'s source files (<code>WebPushDaemon.mm</code>, <code>PushClientConnection.mm</code>, <code>WebClipCache.mm</code>), the Seatbelt sandbox profile (<code>com.apple.WebKit.webpushd.sb.in</code>), and Apple's entitlement provisioning scripts (<code>process-entitlements.sh</code>).</li>
+        <li><strong>Main-page row verification:</strong> The findings confirm every technical assertion made in the main-page capability gap summary. Safari's Home Screen web app capabilities depend entirely on private system infrastructure (<code>UIWebClip</code>, synthetic <code>com.apple.WebKit.PushBundle</code> notification identities, <code>UISApplicationState</code> badging, and FrontBoard background launching). BrowserEngineKit's <code>BEWebAppManifest</code> (introduced in iOS 17.5) allows creating the initial Home Screen icon via the share sheet, but provides no subsequent discovery, badging, notification, or execution APIs. The P1 priority and High confidence ratings are fully verified.</li>
+        <li><strong>WebClip launch target:</strong> While <code>BEWebAppManifest</code> allows creating a WebClip from a third-party browser, it is currently untested on hardware whether tapping that WebClip launches the site in Safari, in an isolated system web view, or in the creating browser. However, regardless of the launch behavior, the browser engine has no mechanism to manage or communicate with the installed WebClip post-installation.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, Progressive Web Apps installed to the home screen can be minted as <strong>WebAPKs</strong> (via Google Play Services or platform package management). A WebAPK is a real Android application package generated specifically for that web application, complete with its own unique package name (e.g. <code>org.chromium.webapk.a...</code>), distinct icon, and standalone entry in Android's system Settings.</p>
+      <p>Because a WebAPK has a first-class application identity on Android:</p>
+      <ul>
+        <li>Notifications appear under the web app's own name and icon in the Android notification shade and status bar.</li>
+        <li>Notification channels and permissions are managed per web app in system Settings; muting an installed PWA does not mute the browser.</li>
+        <li>The web app can update the notification badge directly on its own launcher icon.</li>
+        <li>Background push notifications arrive via Firebase Cloud Messaging (FCM) and can wake the web app's background service worker directly.</li>
+      </ul>
+      <p>Alternative browser engines on Android (such as Firefox or Samsung Internet) can either integrate with the platform's WebAPK minting service or install standalone shortcuts with dedicated notification channels. On iOS, by contrast, only Safari has access to the privileged system daemon and private entitlements necessary to simulate first-class application identity for web apps.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="web-push.html">Issue › Web Push notifications (webpushd)</a> — detailed breakdown of push registration, APNs connections, VAPID encryption, and background execution limits.</li>
+        <li><a href="../services.html#service-webpushd">Services analyzer › webpushd</a> — sandbox capabilities, entitlements, and lifecycle analysis for WebKit's web push daemon.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=webpush">Entitlements explorer › webpush entitlements (12)</a> — overview of the 12 private system entitlements required by <code>webpushd</code>.</li>
+        <li><a href="../spi.html#tab=data&amp;q=APSConnection&amp;sexp=APSConnection">SPI analyzer › Web Push Notifications &amp; Home Screen WebClips (webpushd)</a> — breakdown of the 104 private iOS symbols used by <code>webpushd</code>.</li>
+        <li><a href="../spi.html#tab=data&amp;q=UIWebClip">SPI data › UIWebClip</a> — call sites and header declarations for the private WebClip class.</li>
+        <li><a href="../spi.html#tab=data&amp;q=UISApplicationState">SPI data › UISApplicationState</a> — private badging SPI used by <code>webpushd</code>.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">&larr; All 13 Capability Gaps</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

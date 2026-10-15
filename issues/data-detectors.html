@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How Safari detects phone numbers, dates, addresses, flight numbers, and package tracking, how Live Text and Writing Tools reach web content, and what BrowserEngineKit browsers can reproduce.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>System intelligence: data detectors &amp; Live Text — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>System intelligence &amp; tappable phone numbers, addresses, dates
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">System intelligence: data detectors, Live Text &amp; Visual Look Up</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P3</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Partial public workaround exists)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Mostly (public TextClassifier / Smart Linkify gives any engine the system's detections and actions; visual look-up is typically via in-app Lens)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> Safari automatically turns plain-text phone numbers, street addresses, calendar dates, flight numbers, and package tracking codes into tappable links with native preview cards, while a third-party engine can detect most of these entities using public APIs but cannot invoke Apple's system preview sheets or deep visual intelligence overlays.</p>
+        <p><strong>What this page adds:</strong> Source analysis of WebKit shows that data detection in web content is a two-stage pipeline: in-process scanning by <code>DataDetectorsCore</code> in the WebContent process which injects synthetic markup into the DOM, followed by context-menu and action-sheet presentation via private <code>DataDetectorsUI</code> in the UIProcess. While public Foundation and UIKit APIs permit scanning text and launching external apps, Apple's interactive flight status cards, shipment tracking sheets, and Visual Look Up modes rely strictly on private frameworks. At the same time, newer public APIs like <code>UIWritingToolsCoordinator</code> (iOS 18.2+) significantly narrow earlier intelligence gaps for editable web content.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">Data detection in page text: DataDetectorsCore scanning and DOM injection</a></li>
+        <li><a href="#aspect-2">Action UI: DataDetectorsUI, flight status, and package tracking cards</a></li>
+        <li><a href="#aspect-3">Live Text &amp; Visual Look Up: VisionKit in web images</a></li>
+        <li><a href="#aspect-4">Writing Tools &amp; system translation: Apple Intelligence integration</a></li>
+        <li><a href="#aspect-5">Link previews, QuickLook, and dictionary Look Up</a></li>
+        <li><a href="#aspect-6">Capability matrix and public workaround feasibility</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>Data detection in page text: DataDetectorsCore scanning and DOM injection</h2>
+      <p>When viewing a webpage in Safari, sequences of characters representing phone numbers, physical addresses, dates, flight numbers, or courier tracking numbers are automatically underlined and turned into interactive links. Users can tap or press them to trigger system actions like calling, adding to calendar, or navigating in Apple Maps, without the website author needing to format them as HTML links.</p>
+      <p>In WebKit, this scanning occurs inside the <strong>WebContent</strong> process (the sandboxed rendering process). WebCore executes <code>DataDetection::detectContentInFrame</code>, which builds a <code>DDScanQuery</code> from plain text fragments traversed across DOM nodes and passes it to the C-level private scanner API <code>DDScannerScanQuery</code> from <strong>DataDetectorsCore</strong>. The scanner reads system regex definition files located in <code>/private/var/db/datadetectors/sys</code> (specifically allowed by WebContent's sandbox profile). When matches are found, WebCore modifies the DOM tree directly: it wraps the matched character ranges in synthetic <code>&lt;a&gt;</code> elements tagged with attributes like <code>x-apple-data-detectors="true"</code>, <code>x-apple-data-detectors-type="telephone"</code>, and an internal URL scheme like <code>x-apple-data-detectors://...</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebCore invokes private C functions in <code>DataDetectorsCore</code> (<code>DDScannerCreate</code>, <code>DDScanQueryCreate</code>, <code>DDScannerScanQuery</code>, <code>DDScannerCopyResultsWithOptions</code>) directly within the sandboxed WebContent process.</li>
+            <li>Matches are converted into synthetic DOM elements during page layout, styled with subtle native underlines (<code>shouldUseLightLinks</code>), and annotated with custom attributes to track result indexes.</li>
+            <li>Detects addresses, phone numbers, dates, calendar events, flight numbers, courier tracking numbers, and monetary amounts in a single pass.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Can perform text scanning on extracted DOM text using public Foundation API: <code>NSDataDetector</code> covers phone numbers, street addresses, dates/times, URLs, and transit/flight information (via <code>NSTextCheckingTypeTransitInformation</code>).</li>
+            <li>Shipment tracking numbers were historically not included in <code>NSDataDetector</code>; on modern targets, Swift's <code>DataDetector</code> provides <code>.shipmentTrackingNumber</code>, or the engine can run courier regex patterns.</li>
+            <li>The browser engine must implement its own DOM tokenization, text range resolution, and visual styling/link generation within its own render engine pipeline.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/editing/cocoa/DataDetection.mm#L89">DataDetection.mm:89–109</a> — <code>DDScannerCreate</code> and <code>DDScannerScanQuery</code> scanning text in WebCore.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/editing/cocoa/DataDetection.mm#L624">DataDetection.mm:624–705</a> — URLification loop wrapping detected ranges into <code>&lt;a&gt;</code> elements with <code>x-apple-data-detectors</code> attributes.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/cocoa/DataDetectorsCoreSPI.h#L197">DataDetectorsCoreSPI.h:197–214</a> — private declarations of <code>DDScannerCreate</code>, <code>DDScanQueryAddTextFragment</code>, and <code>DDScannerCopyResultsWithOptions</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Data%20Detectors%2C%20Look%20Up%2C%20Translation%20%26%20Link%20Preview">SPI analyzer › Data Detectors, Look Up, Translation &amp; Link Preview</a> — dossier of private DataDetectors symbols.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/foundation/nsdatadetector">NSDataDetector</a> — public Foundation API for scanning text on Apple platforms.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Action UI: DataDetectorsUI, flight status, and package tracking cards</h2>
+      <p>When a user taps or long-presses an underline created by a data detector, Safari does not simply navigate to a generic URL. Instead, it presents rich contextual system sheets: tapping a flight number shows an interactive flight card with route maps, departure and arrival times, and gate numbers; tapping a tracking number shows a delivery tracking card; tapping a date displays an inline calendar event creation sheet; and tapping an address shows an Apple Maps preview.</p>
+      <p>This entire interaction presentation is powered by <strong>DataDetectorsUI</strong>, a private system framework. In WebKit's UIProcess, <code>WKActionSheetAssistant</code> and <code>WKContentViewInteraction</code> consult <code>[DDDetectionController sharedController]</code>. For long-press gestures, WebKit calls <code>[DDContextMenuAction contextMenuConfigurationForURL:... results:... inView:... context:...]</code>. This returns a specialized <code>DDContextMenuConfiguration</code> (a private subclass of UIKit's <code>UIContextMenuConfiguration</code>) containing Apple's proprietary preview view controllers and contextual actions. If a user taps the preview, <code>shouldExpandPreview</code> modally presents the interactive full-screen system viewer.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WKActionSheetAssistant.mm</code> queries <code>DDDetectionController</code> to obtain private <code>DDAction</code> objects and context titles for detected entities.</li>
+            <li><code>WKContentViewInteraction.mm</code> delegates context-menu configuration to <code>DDContextMenuAction</code>, which creates native flight preview cards, Maps cards, and tracking view controllers directly.</li>
+            <li>Handles both immediate default actions (e.g. prompt to call) and rich multi-action context menus with animated previews.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Can construct standard UIKit context menus (via <code>UIContextMenuInteraction</code>) with custom <code>UIAction</code> items that invoke public URL schemes: <code>tel:</code>, <code>mailto:</code>, or <code>http://maps.apple.com</code>.</li>
+            <li>Can present public system view controllers for specific domains: <code>EKEventEditViewController</code> (EventKitUI) for calendar events and <code>CNContactViewController</code> (ContactsUI) for contacts.</li>
+            <li><strong>Hard gap:</strong> Cannot display Apple's native flight status cards or package tracking preview cards. Those interactive view controllers are built directly into private <code>DataDetectorsUI</code> and have no public standalone equivalents in iOS SDKs.</li>
+            <li>UIKit's iOS 17 text item menu API (<code>UITextItem</code> and <code>textView(_:menuConfigurationFor:defaultMenu:)</code>) operates exclusively on native <code>UITextView</code> instances and cannot be attached to web content views.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L855">WKActionSheetAssistant.mm:855–880</a> — <code>actionsForURL:identifier:selectedText:results:context:</code> called on <code>DDDetectionController</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L15789">WKContentViewInteraction.mm:15789–15825</a> — handles <code>DDContextMenuConfiguration</code> presentation and preview expansion.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/ios/DataDetectorsUISPI.h#L58">DataDetectorsUISPI.h:58–80</a> — private interfaces for <code>DDContextMenuAction</code> and <code>DDDetectionController</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=DDDetectionController">SPI analyzer › DDDetectionController</a> — allowlist history and call sites.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/uikit/uicontextmenuinteraction">UIContextMenuInteraction</a> — public UIKit context menu interaction API.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Live Text &amp; Visual Look Up: VisionKit in web images</h2>
+      <p>Apple's Live Text feature allows users to select, copy, and translate text embedded within images and video frames directly inside the browser. Visual Look Up extends this by identifying subjects such as dog breeds, plant species, famous landmarks, and art, showing a glowing "sparkle" badge that expands into an informative knowledge card.</p>
+      <p>In Safari, WebKit achieves this through a tight integration with private <strong>VisionKitCore</strong> SPI. The engine runs a dual architecture:
+      First, the WebContent process captures bitmap snapshots of images (via <code>ShareableBitmap</code>) and sends them to the UIProcess. The UIProcess passes the bitmap to <code>VKCImageAnalyzer</code>, converts the returned <code>VKCImageAnalysis</code> via <code>makeTextRecognitionResult</code> into normalized word/line quads, and sends the structured data back to WebContent. WebCore's <code>ImageOverlay.cpp</code> then constructs a synthetic shadow DOM tree inside the <code>&lt;img&gt;</code> element containing transparent text nodes. This allows standard browser selection gestures, dictionary lookup, find-in-page, and accessibility screen readers (VoiceOver) to treat image text as native DOM text.
+      Second, for interactive quick actions (QR codes, subject background lift, and Visual Look Up), WebKit installs a <code>VKCImageAnalysisInteraction</code> on the root content view. When a user looks up an image, WebKit invokes <code>presentVisualSearchPreviewControllerForImage</code> using <code>QLPreviewController</code> configured with the private appearance action <code>QLPreviewControllerFirstTimeAppearanceActionEnableVisualSearchMode</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Runs optical character recognition via private <code>VKCImageAnalyzer</code> and injects transparent shadow DOM elements (<code>ImageOverlay.cpp</code>) directly behind images in the WebContent process.</li>
+            <li>Overlays live UI interaction using private <code>VKCImageAnalysisInteraction</code> with SPI callbacks like <code>setAnalysisButtonRequiresVisibleContentGating:</code>.</li>
+            <li>Visual Look Up is launched by presenting a <code>QLPreviewController</code> with private appearance mode flags (<code>QLPreviewControllerFirstTimeAppearanceActionEnableVisualSearchMode</code>).</li>
+            <li>Extracts subjects (background removal / Copy Subject) using private <code>VKCRemoveBackgroundRequest</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Apple provides public <code>ImageAnalyzer</code> and <code>ImageAnalysisInteraction</code> in <code>VisionKit.framework</code> (iOS 16+). An app can pass a <code>CGImage</code> and attach the interaction to a <code>UIView</code>.</li>
+            <li>However, public <code>ImageAnalysisInteraction</code> is designed for single-view native image controls (like <code>UIImageView</code>). Mapping it over a multi-process browser compositor with dynamic scrolling, pinch-to-zoom, CSS transforms, and layer occlusion requires substantial custom overlay plumbing.</li>
+            <li>WebCore's transparent shadow DOM injection (making image text selectable via normal web text cursors) is an engine-level architecture that any third-party engine would have to reconstruct from scratch.</li>
+            <li><strong>Hard gap:</strong> Third-party engines cannot invoke Apple's system Visual Look Up knowledge cards because the trigger is locked behind private QuickLook appearance action SPI.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/dom/ImageOverlay.cpp#L260">ImageOverlay.cpp:260–310</a> — constructs the shadow DOM tree containing selectable text nodes inside image elements.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L13732">WKContentViewInteraction.mm:13732–13760</a> — installs and delegates <code>VKCImageAnalysisInteraction</code> on <code>WKContentView</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L13117">WKContentViewInteraction.mm:13117–13145</a> — presents <code>QLPreviewController</code> with visual search appearance mode.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/7ab28aa97ebe36b4082ea8bbba97c148d4c9e7bd">7ab28aa97ebe (2021-06-07)</a> "Upstream WebKit support for Live Text" — initial integration of VisionKitCore in WebKit.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Visual%20Intelligence%2C%20Live%20Text%20(VisionKit)%20%26%20Writing%20Tools">SPI inventory › Visual Intelligence, Live Text (VisionKit) &amp; Writing Tools</a> — detailed analysis of VisionKitCore usage.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/visionkit/imageanalysisinteraction">ImageAnalysisInteraction</a> — public VisionKit interaction for iOS 16+.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Writing Tools &amp; system translation: Apple Intelligence integration</h2>
+      <p>Apple Intelligence introduces Writing Tools in iOS 18, enabling users to proofread, rewrite in different tones (friendly, professional, concise), summarize, or convert selected text into lists or tables. In addition, Safari supports system-level full-page and selection translation, replacing foreign language text in-place.</p>
+      <p>WebKit's internal implementation of Writing Tools was built around private SPI in <code>WritingToolsSPI.h</code> (such as <code>WTSession</code>, <code>WTContext</code>, and <code>WTTextSuggestion</code>). For system translation, WebKit interacts with private <code>TranslationUIServices</code> (<code>LTUITranslationViewController</code>) and delegates text translation gestures to <code>[_textInteractionAssistant translate:fromRect:]</code>. However, Apple later introduced public developer APIs that change the outlook for alternative engines:</p>
+      <div class="issue-callout good"><strong>Modern API development:</strong> In iOS 18.2, Apple released <code>UIWritingToolsCoordinator</code> as public UIKit API. This class is specifically designed for custom text engines (such as third-party browser engines) to integrate Apple Intelligence Writing Tools into custom text views and editable DOM elements. Similarly, iOS 17.4 introduced the public <code>Translation</code> framework for running on-device translations.</div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebKit integrates Writing Tools via private <code>WritingTools.framework</code> sessions (<code>WTSession</code>, <code>WTCompositionSessionType</code>, <code>WTRequestedTool</code>), coordinating proofreading suggestions and text animations between the UIProcess and WebContent.</li>
+            <li>Selection translation invokes private <code>LTUITranslationViewController</code> from <code>TranslationUIServices.framework</code> via <code>WKTextInteractionWrapper</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li><strong>Writing Tools:</strong> On iOS 18.2+, third-party engines can adopt the public <code>UIWritingToolsCoordinator</code> (and its delegate protocol). The coordinator accepts custom text contexts, communicates suggested rewrites, and manages Apple Intelligence text replacement lifecycle without private SPI.</li>
+            <li><strong>Translation:</strong> On iOS 17.4+, third-party engines can use the public <code>Translation</code> framework (e.g. <code>TranslationSession</code>) to translate text programmatically. Presenting the translation in an inline context menu sheet similar to Safari requires engine-level UI construction.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/cocoa/WritingToolsSPI.h#L49">WritingToolsSPI.h:49–130</a> — private definitions of <code>WTRequestedTool</code>, <code>WTSession</code>, and <code>WTContext</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L4480">WKContentViewInteraction.mm:4480</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKTextInteractionWrapper.mm#L471">WKTextInteractionWrapper.mm:471–475</a> — translation invocation via <code>_textInteractionAssistant translate:fromRect:</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c6800d4fa31447eac584dee14396ed6d4efbac18">c6800d4fa314 (2024-06-11)</a> "[Writing Tools] Replace ENABLE_UNIFIED_TEXT_REPLACEMENT with ENABLE_WRITING_TOOLS".</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator">UIWritingToolsCoordinator</a> — public UIKit class introduced in iOS 18.2 for custom text engines.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/translation">Translation framework</a> — public system translation API available since iOS 17.4.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Link previews, QuickLook, and dictionary Look Up</h2>
+      <p>When long-pressing a web link or selected word in Safari, users receive rich preview sheets: links display a live rendering of the destination page, selected words open dictionary definitions and Wikipedia summaries via "Look Up", and documents trigger QuickLook previews.</p>
+      <p>Standard file previews use <code>QLPreviewController</code>, which is a public framework. However, WebKit utilizes private SPI to enrich preview interactions:
+      First, dictionary and Spotlight lookups use <strong>RevealCore</strong> (<code>RVItem</code>, <code>RVPresenter</code>, <code>RVPresentingContext</code>), an internal framework that coordinates dictionary definitions, Siri suggested websites, and knowledge cards.
+      Second, rich link metadata previews leverage <strong>LinkPresentation</strong> (<code>LPMetadataProvider</code> and private SPI <code>_startFetchingMetadataForURL:</code>).
+      While a third-party browser can present a secondary web view inside a <code>UIContextMenuConfiguration</code> preview provider to simulate Safari's link peek, it cannot access the private <code>RevealCore</code> service for system Look Up cards.</p>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/editing/cocoa/DictionaryLookup.mm#L102">DictionaryLookup.mm:102–135</a> — system Look Up integration using private <code>RevealCore</code> (<code>RVItem</code>, <code>RVPresentingContext</code>).</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/ios/QuickLookSPI.h#L80">QuickLookSPI.h:80–92</a> — private <code>QLPreviewControllerFirstTimeAppearanceActions</code> bitmask flags.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/quicklook/qlpreviewcontroller">QLPreviewController</a> — public QuickLook preview controller documentation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>Capability matrix and public workaround feasibility</h2>
+      <p>System intelligence features on iOS fall into three distinct tiers: capabilities that have direct public replacements, capabilities requiring custom engine engineering, and capabilities that are completely blocked by private framework dependencies.</p>
+      <table class="issue-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>WebKit / Safari Implementation</th>
+            <th>Public Alternative for BEK</th>
+            <th>Status / Fidelity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Text Data Detection</strong></td>
+            <td>Private <code>DataDetectorsCore</code> (<code>DDScanner</code>) in WebContent</td>
+            <td><code>NSDataDetector</code> / Swift <code>DataDetector</code></td>
+            <td><span class="badge-conf badge-conf-high">Parity</span> — Engine must handle DOM tokenization &amp; range mapping.</td>
+          </tr>
+          <tr>
+            <td><strong>Basic Actions (Call, Mail, Maps)</strong></td>
+            <td>Private <code>DataDetectorsUI</code> (<code>DDAction</code>)</td>
+            <td>URL schemes (<code>tel:</code>, <code>mailto:</code>, <code>maps:</code>) &amp; <code>ContactsUI</code></td>
+            <td><span class="badge-conf badge-conf-high">Parity</span> — Functional equivalent via standard action sheets.</td>
+          </tr>
+          <tr>
+            <td><strong>Flight Status Cards</strong></td>
+            <td>Private <code>DataDetectorsUI</code> (<code>DDContextMenuAction</code>)</td>
+            <td>None (links out to search engine or airline site)</td>
+            <td><span class="badge-priority">Hard gap</span> — No public API to present Apple's live flight preview card.</td>
+          </tr>
+          <tr>
+            <td><strong>Package Tracking Cards</strong></td>
+            <td>Private <code>DataDetectorsUI</code> (<code>DDContextMenuAction</code>)</td>
+            <td>None (links out to carrier tracking web page)</td>
+            <td><span class="badge-priority">Hard gap</span> — No public API for system shipment tracking sheet.</td>
+          </tr>
+          <tr>
+            <td><strong>Live Text on Images</strong></td>
+            <td>Private <code>VisionKitCore</code> + WebCore <code>ImageOverlay</code></td>
+            <td>Public <code>VisionKit</code> (<code>ImageAnalysisInteraction</code>)</td>
+            <td><span class="badge-conf badge-conf-med">Partial</span> — Heavy engineering needed to overlay on remote compositor.</td>
+          </tr>
+          <tr>
+            <td><strong>Visual Look Up (Images)</strong></td>
+            <td>Private <code>QLPreviewController</code> visual search mode</td>
+            <td>None</td>
+            <td><span class="badge-priority">Hard gap</span> — System knowledge cards cannot be invoked by 3P apps.</td>
+          </tr>
+          <tr>
+            <td><strong>Writing Tools</strong></td>
+            <td>Private <code>WritingTools.framework</code> (<code>WTSession</code>)</td>
+            <td>Public <code>UIWritingToolsCoordinator</code> (iOS 18.2+)</td>
+            <td><span class="badge-conf badge-conf-high">Parity</span> — Supported public API for custom text engines.</td>
+          </tr>
+          <tr>
+            <td><strong>System Translation</strong></td>
+            <td>Private <code>TranslationUIServices</code> + UIKit SPI</td>
+            <td>Public <code>Translation</code> framework (iOS 17.4+)</td>
+            <td><span class="badge-conf badge-conf-med">Workaround</span> — Engine must build custom translation presentation UI.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Confidence: High.</strong> The mechanics of DataDetectorsCore scanning, WebContent DOM modification, and DataDetectorsUI context menu presentation are verified across multiple WebKit source files.</li>
+        <li><strong>Evolving Public API Surface:</strong> The main-page description previously asserted that Writing Tools and system translation reach web content through private frameworks that third-party engines cannot use. Our analysis indicates this is partially outdated: Apple introduced the public <code>Translation</code> framework in iOS 17.4 and public <code>UIWritingToolsCoordinator</code> in iOS 18.2 specifically to allow custom text engines to participate in Apple Intelligence.</li>
+        <li><strong>DOM-Level Live Text:</strong> While public <code>ImageAnalysisInteraction</code> exists in VisionKit for UIKit views, WebKit's unique approach of building a transparent shadow DOM overlay (<code>ImageOverlay.cpp</code>) allows standard web selection, copy, and accessibility tree integration. Third-party engines can technically replicate this DOM technique using raw OCR bounding boxes, but Apple does not provide a turnkey web-engine component.</li>
+        <li><strong>Main-page text recommendation:</strong> We recommend updating the main-page summary to distinguish between features now supported via public API (Writing Tools on iOS 18.2+, Translation on iOS 17.4+) and the residual hard gaps that remain private: specifically Apple's interactive flight and shipment tracking preview cards in <code>DataDetectorsUI</code> and the Visual Look Up search mode in <code>QLPreviewController</code>.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, system text intelligence is exposed through the public <code>TextClassifier</code> API (introduced in Android 8.1 / API 27 and expanded in Android 9 and 10). Any third-party browser engine can pass plain text to <code>TextClassifier.classifyText()</code> or <code>TextClassifier.generateLinks()</code> to detect entity types including phone numbers, physical addresses, dates, flight numbers, and URLs.</p>
+      <p>Crucially, unlike iOS's private <code>DataDetectorsUI</code>, Android's <code>TextClassification</code> returns public <code>RemoteAction</code> objects complete with titles, icons, and pending intents. This allows Chromium, Gecko, or any alternative engine to render the system-standard context menu actions (such as tracking a flight in Google or opening an address in Maps) with full system fidelity. For visual search on images, Android browsers typically invoke Google Lens or on-device ML Kit models through public intent interfaces.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../spi.html#tab=data&amp;feat=Visual%20Intelligence%2C%20Live%20Text%20(VisionKit)%20%26%20Writing%20Tools">SPI inventory › Visual Intelligence, Live Text (VisionKit) &amp; Writing Tools</a> — deep dive into VisionKitCore and WritingTools SPI usage (103 SPIs, tracking commits like <code>43470b73513f</code>, <code>819594670532</code>, and UIIntelligenceSupport Swift declarations added in <code>3b57457b56b5</code>, <code>8a4f2c1e1043</code>, and <code>430b93e4959d</code>).</li>
+        <li><a href="../spi.html#tab=data&amp;feat=Data%20Detectors%2C%20Look%20Up%2C%20Translation%20%26%20Link%20Preview">SPI inventory › Data Detectors, Look Up, Translation &amp; Link Preview</a> — full inventory of private DataDetectors and Translation symbols (79 SPIs including <code>_LTTranslator</code>).</li>
+        <li><a href="scrolling-text-input.html">Issue › Scrolling and software keyboard text input</a> — text input architecture, input accessory bars, and edit menus.</li>
+        <li><a href="media-playback.html">Issue › Fullscreen and media playback</a> — custom overlay rendering over composited web media.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,5 +1,5 @@
 /**
- * WebKit iOS Private API (SPI) & DMA Interoperability Analyzer — Frontend Logic
+ * WebKit iOS Private API (SPI) & BrowserEngineKit Analyzer — Frontend Logic
  *
  * Security & Architecture Invariants:
  * - Zero build step; loads data from window.__WKANALYZE_SPI_INVENTORY__ and window.__WKANALYZE_SPI_HISTORY__
@@ -14,42 +14,42 @@
   const WEBKIT_GH_COMMIT_BASE = 'https://github.com/WebKit/WebKit/commit/';
   const WEBKIT_GH_BLOB_BASE = 'https://github.com/WebKit/WebKit/blob/main/';
 
-  // High-contrast dark-theme palette (no purple/violet on dark)
+  // Light-theme palette aligned with styles.css
   const SLICE_PALETTE = [
-    '#38bdf8', '#2dd4bf', '#34d399', '#fbbf24', '#fb7185', '#fb923c',
-    '#0ea5e9', '#10b981', '#f43f5e', '#f59e0b', '#06b6d4', '#14b8a6',
-    '#eab308', '#f97316', '#60a5fa', '#4ade80', '#94a3b8'
+    '#2563eb', '#0d9488', '#059669', '#d97706', '#dc2626', '#ea580c',
+    '#0284c7', '#4f46e5', '#db2777', '#7c3aed', '#0891b2', '#16a34a',
+    '#ca8a04', '#c2410c', '#3b82f6', '#10b981', '#64748b'
   ];
 
   const AVAILABILITY_META = {
     'apple-only-entitlement-or-daemon': {
       shortLabel: 'Tier 1: Entitlement / XPC Restricted',
       badgeClass: 'badge-rose',
-      color: '#fb7185',
+      color: '#dc2626',
       description: 'Gated at runtime by restricted com.apple.private.* or system entitlements or privileged Mach services inaccessible to 3P apps and 3P browser engines.'
     },
     'apple-only-internal-sdk': {
       shortLabel: 'Tier 2: Apple-Internal SDK Only',
       badgeClass: 'badge-orange',
-      color: '#fb923c',
+      color: '#ea580c',
       description: 'Gated by requires = ["USE_APPLE_INTERNAL_SDK"], categorized as [[not-web-essential]], or bound to internal-only private frameworks.'
     },
     '3p-via-browserenginekit-or-system-webkit': {
       shortLabel: 'Tier 3: BrowserEngineKit / System WebKit',
       badgeClass: 'badge-teal',
-      color: '#2dd4bf',
+      color: '#0d9488',
       description: 'Raw SPI symbols are private, but equivalent capabilities are exposed to approved 3P EU browser engines via BrowserEngineKit or to standard apps via WKWebView.'
     },
     '3p-inprocess-private-symbol-unentitled': {
       shortLabel: 'Tier 4: In-Process Private Symbol',
       badgeClass: 'badge-amber',
-      color: '#fbbf24',
+      color: '#d97706',
       description: 'In-process private C/ObjC APIs in public frameworks that do not check a Mach entitlement at runtime, but are prohibited for direct 3P use by App Store review.'
     },
     'conditionally-promoted-to-public-sdk': {
       shortLabel: 'Tier 5: Conditionally Promoted to SDK',
       badgeClass: 'badge-emerald',
-      color: '#34d399',
+      color: '#059669',
       description: 'Guarded by !SDKDB_HAS_* or requires-sdk after being promoted to public API in newer iOS SDKs.'
     }
   };
@@ -297,6 +297,8 @@
             processType: proc,
             module: occ.module,
             file: occ.file,
+            line: occ.line || null,
+            githubUrl: occ.github_url || null,
             form: occ.form,
             reason: occ.reason || '',
             requiresStr: reqStr,
@@ -616,7 +618,7 @@
     }
     const str = params.toString();
     if (!str && state.activeTab === 'insights' && getPlainAnchorId()) {
-      // Preserve in-page deep links (e.g. #problem-web-push from index.html).
+      // Preserve in-page deep links (e.g. #legacySpotlightSection from issue pages).
       return window.location.hash;
     }
     return str ? '#' + str : '';
@@ -998,7 +1000,7 @@
           label: avMeta.shortLabel || item.label,
           count: item.count,
           percentage: item.percentage,
-          color: avMeta.color || '#38bdf8',
+          color: avMeta.color || '#2563eb',
           description: item.description,
           jumpOpts: { subview: 'spi', granularity: 'unique', availability: item.id }
         };
@@ -1116,7 +1118,7 @@
       x: cx,
       y: cy - 8,
       'text-anchor': 'middle',
-      fill: '#f8fafc',
+      fill: '#0f172a',
       'font-family': 'JetBrains Mono, monospace',
       'font-size': '26',
       'font-weight': '700'
@@ -1127,7 +1129,7 @@
       x: cx,
       y: cy + 15,
       'text-anchor': 'middle',
-      fill: '#94a3b8',
+      fill: '#64748b',
       'font-size': '11.5',
       'font-weight': '600'
     });
@@ -1137,7 +1139,7 @@
       x: cx,
       y: cy + 33,
       'text-anchor': 'middle',
-      fill: '#38bdf8',
+      fill: '#2563eb',
       'font-size': '11',
       'font-weight': '600'
     });
@@ -1160,7 +1162,7 @@
       const pathNode = svgEl('path', {
         d: pathData,
         fill: slice.color,
-        stroke: '#0f172a',
+        stroke: '#ffffff',
         'stroke-width': '2',
         class: 'pie-slice-path'
       });
@@ -1339,9 +1341,9 @@
 
     if (metric === 'deltas') {
       const legendItems = [
-        { color: '#fb7185', label: 'SPIs Added in Commit (+Reviewed / Feature Additions)' },
-        { color: '#fbbf24', label: 'Commit Adding to AllowedSPI-legacy.toml (24 post-baseline commits)' },
-        { color: '#34d399', label: 'SPIs Removed in Commit (-Cleanups & SDKDB Promotions)' }
+        { color: '#dc2626', label: 'SPIs Added in Commit (+Reviewed / Feature Additions)' },
+        { color: '#d97706', label: 'Commit Adding to AllowedSPI-legacy.toml (24 post-baseline commits)' },
+        { color: '#059669', label: 'SPIs Removed in Commit (-Cleanups & SDKDB Promotions)' }
       ];
       for (const item of legendItems) {
         const li = el('div', 'legend-item');
@@ -1365,7 +1367,7 @@
             y1: y,
             x2: width - padRight,
             y2: y,
-            stroke: tick === 0 ? '#475569' : '#1e293b',
+            stroke: tick === 0 ? '#94a3b8' : '#e2e8f0',
             'stroke-width': tick === 0 ? '1.5' : '1',
             'stroke-dasharray': tick === 0 ? '' : '3,3'
           })
@@ -1374,7 +1376,7 @@
           x: padLeft - 6,
           y: y + 4,
           'text-anchor': 'end',
-          fill: '#94a3b8',
+          fill: '#64748b',
           'font-family': 'JetBrains Mono, monospace',
           'font-size': isMobile ? '9.5' : '10.5'
         });
@@ -1396,7 +1398,7 @@
             y: zeroY - h,
             width: barW,
             height: h,
-            fill: pt.legacy_added_count > 0 ? '#fbbf24' : '#fb7185',
+            fill: pt.legacy_added_count > 0 ? '#d97706' : '#dc2626',
             class: 'chart-bar-rect'
           });
           attachTimelinePointEvents(rect, pt, tooltip);
@@ -1410,7 +1412,7 @@
             y: zeroY,
             width: barW,
             height: h,
-            fill: '#34d399',
+            fill: '#059669',
             class: 'chart-bar-rect'
           });
           attachTimelinePointEvents(rect, pt, tooltip);
@@ -1425,14 +1427,14 @@
     const seriesList =
       metric === 'modules'
         ? [
-            { key: 'WebKit', label: 'WebKit (1,051 \u2192 1,405 peak \u2192 1,077)', color: '#38bdf8', getter: (p) => (p.by_module && p.by_module.WebKit) || 0 },
-            { key: 'WebCore', label: 'WebCore (840 \u2192 871)', color: '#2dd4bf', getter: (p) => (p.by_module && p.by_module.WebCore) || 0 },
-            { key: 'WebKitLegacy', label: 'WebKitLegacy (105 \u2192 114, +8.6%, 0 removals)', color: '#fb7185', getter: (p) => (p.by_module && p.by_module.WebKitLegacy) || 0 },
-            { key: 'JavaScriptCore', label: 'JavaScriptCore (23 \u2192 23)', color: '#fbbf24', getter: (p) => (p.by_module && p.by_module.JavaScriptCore) || 0 }
+            { key: 'WebKit', label: 'WebKit (1,051 \u2192 1,405 peak \u2192 1,077)', color: '#2563eb', getter: (p) => (p.by_module && p.by_module.WebKit) || 0 },
+            { key: 'WebCore', label: 'WebCore (840 \u2192 871)', color: '#0d9488', getter: (p) => (p.by_module && p.by_module.WebCore) || 0 },
+            { key: 'WebKitLegacy', label: 'WebKitLegacy (105 \u2192 114, +8.6%, 0 removals)', color: '#dc2626', getter: (p) => (p.by_module && p.by_module.WebKitLegacy) || 0 },
+            { key: 'JavaScriptCore', label: 'JavaScriptCore (23 \u2192 23)', color: '#d97706', getter: (p) => (p.by_module && p.by_module.JavaScriptCore) || 0 }
           ]
         : [
-            { key: 'legacy_file_entries', label: 'Legacy Allowlist Entries (AllowedSPI-legacy.toml: 1,956 \u2192 1,889)', color: '#fb7185', getter: (p) => p.legacy_file_entries || 0 },
-            { key: 'reviewed_file_entries', label: 'Reviewed Allowlist Entries (AllowedSPI.toml: 65 \u2192 496 peak \u2192 197)', color: '#34d399', getter: (p) => p.reviewed_file_entries || 0 }
+            { key: 'legacy_file_entries', label: 'Legacy Allowlist Entries (AllowedSPI-legacy.toml: 1,956 \u2192 1,889)', color: '#dc2626', getter: (p) => p.legacy_file_entries || 0 },
+            { key: 'reviewed_file_entries', label: 'Reviewed Allowlist Entries (AllowedSPI.toml: 65 \u2192 496 peak \u2192 197)', color: '#059669', getter: (p) => p.reviewed_file_entries || 0 }
           ];
 
     for (const s of seriesList) {
@@ -1447,7 +1449,7 @@
     if (metric === 'totals') {
       const spikeLegend = el('div', 'legend-item');
       const sw = el('span', 'legend-swatch');
-      sw.style.backgroundColor = '#fbbf24';
+      sw.style.backgroundColor = '#d97706';
       sw.style.borderRadius = '50%';
       spikeLegend.appendChild(sw);
       spikeLegend.appendChild(el('span', '', 'Amber Marker = Post-Baseline Addition to AllowedSPI-legacy.toml (24 commits)'));
@@ -1472,7 +1474,7 @@
           y1: y,
           x2: width - padRight,
           y2: y,
-          stroke: '#1e293b',
+          stroke: tick === 0 ? '#94a3b8' : '#e2e8f0',
           'stroke-width': '1',
           'stroke-dasharray': tick === 0 ? '' : '3,3'
         })
@@ -1481,7 +1483,7 @@
         x: padLeft - 6,
         y: y + 4,
         'text-anchor': 'end',
-        fill: '#94a3b8',
+        fill: '#64748b',
         'font-family': 'JetBrains Mono, monospace',
         'font-size': isMobile ? '9.5' : '10.5'
       });
@@ -1513,8 +1515,8 @@
             cx,
             cy,
             r: isMobile ? '4.2' : '4.8',
-            fill: '#fbbf24',
-            stroke: '#070b14',
+            fill: '#d97706',
+            stroke: '#ffffff',
             'stroke-width': '1.5',
             class: 'chart-point-circle'
           });
@@ -1553,7 +1555,7 @@
         x,
         y: height - padBottom + 20,
         'text-anchor': i === 0 ? 'start' : i === timeline.length - 1 ? 'end' : 'middle',
-        fill: '#94a3b8',
+        fill: '#475569',
         'font-family': 'JetBrains Mono, monospace',
         'font-size': isMobile ? '9.5' : '10.5'
       });
@@ -1641,8 +1643,8 @@
     legend.replaceChildren();
 
     const legendItems = [
-      { color: '#fb7185', label: 'Gross SPIs Added in Category (Excluding Initial Baseline Dump)' },
-      { color: '#34d399', label: 'Gross SPIs Removed in Category' }
+      { color: '#dc2626', label: 'Gross SPIs Added in Category (Excluding Initial Baseline Dump)' },
+      { color: '#059669', label: 'Gross SPIs Removed in Category' }
     ];
     for (const item of legendItems) {
       const li = el('div', 'legend-item');
@@ -1695,7 +1697,7 @@
           x: padLeft,
           y: rowTop + 13,
           'text-anchor': 'start',
-          fill: '#e2e8f0',
+          fill: '#1e293b',
           'font-size': '11',
           'font-weight': '600'
         });
@@ -1707,7 +1709,7 @@
           x: width - padRight,
           y: rowTop + 13,
           'text-anchor': 'end',
-          fill: '#94a3b8',
+          fill: '#475569',
           'font-family': 'JetBrains Mono, monospace',
           'font-size': '10'
         });
@@ -1723,7 +1725,7 @@
           y: rowTop + 17,
           width: Math.max(2, addedW),
           height: barH,
-          fill: '#fb7185',
+          fill: '#dc2626',
           rx: '2',
           class: 'chart-bar-rect'
         });
@@ -1732,7 +1734,7 @@
           y: rowTop + 17 + barH + 2,
           width: Math.max(2, removedW),
           height: barH,
-          fill: '#34d399',
+          fill: '#059669',
           rx: '2',
           class: 'chart-bar-rect'
         });
@@ -1780,7 +1782,7 @@
         x: padLeft - 10,
         y: yCenter + 4,
         'text-anchor': 'end',
-        fill: '#e2e8f0',
+        fill: '#1e293b',
         'font-size': '11.5',
         'font-weight': '600'
       });
@@ -1796,7 +1798,7 @@
         y: yCenter - barH - 1,
         width: Math.max(2, addedW),
         height: barH,
-        fill: '#fb7185',
+        fill: '#dc2626',
         rx: '2',
         class: 'chart-bar-rect'
       });
@@ -1805,7 +1807,7 @@
         y: yCenter + 1,
         width: Math.max(2, removedW),
         height: barH,
-        fill: '#34d399',
+        fill: '#059669',
         rx: '2',
         class: 'chart-bar-rect'
       });
@@ -1813,7 +1815,7 @@
       const statsTxt = svgEl('text', {
         x: padLeft + Math.max(addedW, removedW) + 8,
         y: yCenter + 4,
-        fill: '#94a3b8',
+        fill: '#475569',
         'font-family': 'JetBrains Mono, monospace',
         'font-size': '10.5'
       });
@@ -2043,34 +2045,50 @@
         pctChange +
         '%)';
 
-      tr.appendChild(el('td', '', m.module));
-      tr.appendChild(el('td', '', fmtNum(m.initial_entries)));
+      const tdModName = el('td', 'col-mod-name');
+      tdModName.appendChild(el('div', '', m.module));
+      const modSub = el(
+        'div',
+        'spi-sub-meta mod-mobile-summary',
+        'Init: ' +
+          fmtNum(m.initial_entries) +
+          ' \u00B7 -' +
+          (m.removed_from_initial || 0) +
+          ' rem \u00B7 +' +
+          (m.re_added_from_initial_at_head || 0) +
+          ' re-add \u00B7 +' +
+          (m.added_after_initial_at_head || 0) +
+          ' new'
+      );
+      tdModName.appendChild(modSub);
+      tr.appendChild(tdModName);
+      tr.appendChild(el('td', 'col-mod-init', fmtNum(m.initial_entries)));
       tr.appendChild(
         el(
           'td',
-          m.removed_from_initial > 0 ? 'delta-neg-emerald' : 'delta-neutral',
+          'col-mod-rem ' + (m.removed_from_initial > 0 ? 'delta-neg-emerald' : 'delta-neutral'),
           m.removed_from_initial > 0 ? '-' + m.removed_from_initial : '0'
         )
       );
       tr.appendChild(
         el(
           'td',
-          m.re_added_from_initial_at_head > 0 ? 'delta-pos-rose' : 'delta-neutral',
+          'col-mod-readd ' + (m.re_added_from_initial_at_head > 0 ? 'delta-pos-rose' : 'delta-neutral'),
           m.re_added_from_initial_at_head > 0 ? '+' + m.re_added_from_initial_at_head : '0'
         )
       );
       tr.appendChild(
         el(
           'td',
-          m.added_after_initial_at_head > 0 ? 'delta-pos-rose' : 'delta-neutral',
+          'col-mod-new ' + (m.added_after_initial_at_head > 0 ? 'delta-pos-rose' : 'delta-neutral'),
           '+' + m.added_after_initial_at_head
         )
       );
-      tr.appendChild(el('td', '', fmtNum(m.head_entries)));
+      tr.appendChild(el('td', 'col-mod-head', fmtNum(m.head_entries)));
       tr.appendChild(
         el(
           'td',
-          m.net_change > 0 ? 'delta-pos-rose' : m.net_change < 0 ? 'delta-neg-emerald' : 'delta-neutral',
+          'col-mod-net ' + (m.net_change > 0 ? 'delta-pos-rose' : m.net_change < 0 ? 'delta-neg-emerald' : 'delta-neutral'),
           netStr
         )
       );
@@ -2114,45 +2132,57 @@
 
     for (const c of lpa.commits_adding_to_legacy || []) {
       const tr = el('tr', 'item-row');
-      tr.appendChild(el('td', '', fmtDateShort(c.date)));
+      tr.appendChild(el('td', 'col-leg-date', fmtDateShort(c.date)));
 
-      const tdGh = el('td');
+      const tdGh = el('td', 'col-leg-gh');
       tdGh.appendChild(createInlineSpiCommitBadge(c.hash, c.short_hash));
       tr.appendChild(tdGh);
 
-      tr.appendChild(el('td', 'delta-pos-rose', '+' + c.legacy_added_count));
+      tr.appendChild(el('td', 'col-leg-add delta-pos-rose', '+' + c.legacy_added_count));
       tr.appendChild(
         el(
           'td',
-          c.legacy_removed_count > 0 ? 'delta-neg-emerald' : 'delta-neutral',
+          'col-leg-rem ' + (c.legacy_removed_count > 0 ? 'delta-neg-emerald' : 'delta-neutral'),
           c.legacy_removed_count > 0 ? '-' + c.legacy_removed_count : '0'
         )
       );
       tr.appendChild(
         el(
           'td',
-          c.still_in_legacy_at_head_count > 0 ? 'delta-pos-rose' : 'delta-neutral',
+          'col-leg-head ' + (c.still_in_legacy_at_head_count > 0 ? 'delta-pos-rose' : 'delta-neutral'),
           fmtNum(c.still_in_legacy_at_head_count) + ' at HEAD'
         )
       );
 
-      const tdCat = el('td');
+      const tdCat = el('td', 'col-leg-cat');
       const catLabel = state.legacyCatLabelsById.get(c.legacy_addition_category) || c.legacy_addition_category;
       tdCat.appendChild(el('span', 'badge-pill badge-amber', catLabel));
       tr.appendChild(tdCat);
 
-      const tdSubj = el('td');
+      const tdSubj = el('td', 'col-leg-subj');
       const subjTitle = el('div', '');
       subjTitle.style.fontWeight = '600';
-      subjTitle.style.color = '#f8fafc';
+      subjTitle.style.color = 'var(--text-primary)';
       appendTextWithSpiCommitLinks(subjTitle, c.subject);
       const whySub = el('div', 'spi-sub-meta');
       appendTextWithSpiCommitLinks(whySub, c.legacy_addition_reason || '');
+      const mobileMeta = el('div', 'spi-sub-meta leg-mobile-meta');
+      mobileMeta.textContent =
+        fmtDateShort(c.date) +
+        ' \u00B7 +' +
+        c.legacy_added_count +
+        ' added / -' +
+        (c.legacy_removed_count || 0) +
+        ' rem (' +
+        fmtNum(c.still_in_legacy_at_head_count) +
+        ' at HEAD) \u00B7 ' +
+        catLabel;
       tdSubj.appendChild(subjTitle);
       tdSubj.appendChild(whySub);
+      tdSubj.appendChild(mobileMeta);
       tr.appendChild(tdSubj);
 
-      const tdAction = el('td');
+      const tdAction = el('td', 'col-leg-act');
       const inspectBtn = el('button', 'insight-data-link tone-rose', 'Inspect in Data Tab \u2192');
       inspectBtn.type = 'button';
       inspectBtn.addEventListener('click', (ev) => {
@@ -2179,14 +2209,14 @@
   }
 
   // =========================================================================
-  // SECTION 6: Architectural Insights & 8 Predicted 3P BrowserEngineKit Problems
+  // SECTION 6: Architectural Insights & Data Findings
   // =========================================================================
 
   function renderInsightsAndPredictions() {
     const archGrid = document.getElementById('archInsightsGrid');
     const predGrid = document.getElementById('predictionsGrid');
     archGrid.replaceChildren();
-    predGrid.replaceChildren();
+    if (predGrid) predGrid.replaceChildren();
 
     const archInsights = [
       {
@@ -2262,146 +2292,10 @@
       archGrid.appendChild(buildInsightCardNode(item));
     }
 
-    const predictions = [
-      {
-        id: 'problem-uikit-scrolling',
-        title: 'Problem 1: UIKit Views, Scrolling Physics, Gestures & Text Input Parity',
-        badge: 'UIKit Views & Text Input (282 SPIs)',
-        badgeClass: 'badge-rose',
-        paragraphs: [
-          'UIKit Views, Scrolling, Gestures & Text Input is WebKit\u2019s largest SPI category (282 unique SPIs / 14.0%). Even with BrowserEngineKit\u2019s BETextInteraction and BEScrollView, WebKit directly invokes hundreds of private UIScrollView, UIKeyboardImpl, _UIEditMenuInteraction, and gesture recognizer selectors.',
-          'Notably, when WebKit attempted in f0db2bb7cc96 to remove private scrolling selectors (_setAvoidsJumpOnInterruptedBounce: and setTracksImmediatelyWhileDecelerating:), runtime scrolling regressions forced commit 2a02830783a0 to restore them to AllowedSPI-legacy.toml.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Jitter or jump regressions during interrupted scroll bounces, differences in CJK IME composition and edit-menu callouts, and lag in adopting new iOS visual treatments (such as scroll pocket backdrop effects).',
-        links: [
-          { label: 'View 282 UIKit Views & Input SPIs \u2192', tone: 'tone-rose', opts: { subview: 'spi', feature: 'UIKit Views, Scrolling, Gestures & Text Input' } },
-          { label: 'Inspect Scroll Regression Restorations \u2192', tone: 'tone-amber', opts: { subview: 'commits', legacyAddCat: 'revert-or-regression-restoration' } },
-          { label: 'UIKitSPI.h', path: 'Source/WebKit/Platform/spi/ios/UIKitSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-networking',
-        title: 'Problem 2: Networking, HTTP/3, WebTransport, Proxies & Cookie Partitioning',
-        badge: 'Networking & CFNetwork (239 SPIs)',
-        badgeClass: 'badge-rose',
-        paragraphs: [
-          'WebKit\u2019s Networking process relies on 239 private SPIs (11.9%) across CFNetwork and Network.framework\u2014including nw_settings_get_unified_http_enabled_webkit (1b83ed066bae, c391d1cfa50f), _CFNetworkHTTPConnectionCacheSetLimit, private CFHTTPCookieStorage partitioning hooks (098c5e4bc8d2, 38021f3656b2), and ne_filter_crypto_* content filter evaluators.',
-          'While BrowserEngineKit provides BENetworkingProcess, low-level CFNetwork session tuning and system cookie/credential sharing hooks remain private.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Obstacles matching Safari\u2019s HTTP/3 connection coalescing, system VPN/Enterprise proxy authentication handoffs, and parental/enterprise content-filter integration.',
-        links: [
-          { label: 'View 239 Networking & HTTP/3 SPIs \u2192', tone: 'tone-rose', opts: { subview: 'spi', feature: 'Networking, HTTP/3, WebTransport & Cookies' } },
-          { label: 'View 236 Networking Process Configs \u2192', tone: '', opts: { subview: 'spi', granularity: 'config', process: 'Networking' } },
-          { label: 'CFNetworkSPI.h', path: 'Source/WebCore/PAL/pal/spi/cf/CFNetworkSPI.h' },
-          { label: 'NetworkSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/NetworkSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-graphics-iosurface',
-        title: 'Problem 3: Zero-Copy Cross-Process Compositing, Wide-Gamut HDR & IOSurface',
-        badge: 'Graphics, HDR & IOSurface (205 SPIs)',
-        badgeClass: 'badge-amber',
-        paragraphs: [
-          'WebKit\u2019s rendering pipeline uses 205 private SPIs (10.2%) across QuartzCore/CoreAnimation, CoreGraphics, and IOSurface\u2014including CAContext, CALayerHost, CGIOSurfaceContextGetBitmapInfo, CGShadingCreateConic, and HDR display headroom SPIs (HAVE_SUPPORT_HDR_DISPLAY_APIS in 1a76ef7e9b2a and ff6f5a8f4007).',
-          'When WebKit tried removing CGIOSurfaceContextGetBitmapInfo or CGShadingCreateConic (5e93c4d3d62c), rendering regressions forced commits 8ad60ae162b2 and 906c6983e08c to restore them (before re-landing gradient sampling in d74fea7adbbd).'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Extra texture copies or higher GPU memory usage when compositing out-of-process frames via BELayerHierarchy, and difficulty matching EDR/HDR canvas and video tone-mapping.',
-        links: [
-          { label: 'View 205 Graphics, HDR & IOSurface SPIs \u2192', tone: 'tone-amber', opts: { subview: 'spi', feature: 'Graphics, CoreAnimation, Color, HDR & IOSurface' } },
-          { label: 'Search IOSurface SPIs \u2192', tone: '', opts: { subview: 'spi', search: 'IOSurface' } },
-          { label: 'CoreGraphicsSPI.h', path: 'Source/WebCore/PAL/pal/spi/cg/CoreGraphicsSPI.h' },
-          { label: 'QuartzCoreSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/QuartzCoreSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-media-codecs',
-        title: 'Problem 4: Protected Media Playback, AirPlay, Spatial Audio & AVKit Fullscreen',
-        badge: 'Media, AirPlay & Codecs (180 SPIs)',
-        badgeClass: 'badge-amber',
-        paragraphs: [
-          'WebKit invokes 180 private media SPIs (8.9%) across AVFoundation, MediaToolbox, CoreMedia, AudioToolbox, MediaRemote, and AVKit\u2014such as FigVideoTarget, AVOutputContext, WebAVPlayerLayerView.webPlayerLayer (081c4c12c5c5), and private Picture-in-Picture/fullscreen controllers (39f4250d8cda).',
-          'Many media routing and remote-control hooks require com.apple.mediaremote.* or audio session privileges unavailable to third-party processes.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Limitations in custom AirPlay route selection, Spatial Audio head-tracking metadata, FairPlay DRM power efficiency, and seamless fullscreen video transitions.',
-        links: [
-          { label: 'View 180 Media, AirPlay & Codec SPIs \u2192', tone: 'tone-amber', opts: { subview: 'spi', feature: 'Media Playback, AirPlay, AVFoundation & Codecs' } },
-          { label: 'Filter AVFoundation Framework \u2192', tone: '', opts: { subview: 'spi', framework: 'AVFoundation' } },
-          { label: 'AVFoundationSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/AVFoundationSPI.h' },
-          { label: 'MediaToolboxSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/MediaToolboxSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-auth-apple-pay',
-        title: 'Problem 5: Passkeys, Enterprise SSO, Apple Pay & Wallet Installments',
-        badge: 'Auth/Passkeys (152) + Apple Pay (61)',
-        badgeClass: 'badge-rose',
-        paragraphs: [
-          'Combined, Authentication/Passkeys/SSO (152 SPIs) and Apple Pay/PassKit (61 SPIs) account for 213 private APIs (10.6%). These include AuthenticationServicesCore, AuthKit (AKAuthorizationController), ExtensibleSSO, and PKPaymentAuthorizationController private delegates (3508d9e5a872, c945958015e6, 66c073b22627) gated by com.apple.payment.all-access.',
-          'Because third-party apps cannot obtain com.apple.payment.all-access or link against AuthenticationServicesCore, they cannot invoke these underlying hooks directly.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Inability to offer full parity with Safari\u2019s native Apple Pay / Wallet installment sheets, enterprise Single Sign-On (SSO) extensions, and autofill passkey conditional mediation.',
-        links: [
-          { label: 'View 152 Auth, Passkeys & SSO SPIs \u2192', tone: 'tone-rose', opts: { subview: 'spi', feature: 'Authentication, Passkeys, Enterprise SSO & Security' } },
-          { label: 'View 61 Apple Pay & PassKit SPIs \u2192', tone: 'tone-rose', opts: { subview: 'spi', feature: 'Apple Pay, PassKit & Wallet Installments' } },
-          { label: 'PassKitSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/PassKitSPI.h' },
-          { label: 'AuthenticationServicesCoreSPI.h', path: 'Source/WebKit/Platform/spi/Cocoa/AuthenticationServicesCoreSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-process-xpc',
-        title: 'Problem 6: RunningBoard Process Assertions, Jetsam Limits & XPC Lifecycle',
-        badge: 'Process, RunningBoard & XPC (102 SPIs)',
-        badgeClass: 'badge-cyan',
-        paragraphs: [
-          'WebKit manages its multi-process hierarchy using 102 private SPIs (5.1%) gated by entitlements like com.apple.runningboard.assertions.webkit and Darwin kernel memorystatus/Jetsam and crash-reporting hooks (e.g., 9790ba0df4c6).',
-          '3P browser engines must rely exclusively on BrowserEngineKit\u2019s public process grant objects (BEProcessCapability) without direct visibility into RunningBoard priority bands or Jetsam watermark thresholds.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Higher risk of background tab eviction or GPU/WebContent process termination under memory pressure when switching between apps or running heavy WebAssembly/WebGPU workloads.',
-        links: [
-          { label: 'View 102 Process, RunningBoard & XPC SPIs \u2192', tone: '', opts: { subview: 'spi', feature: 'Process Management, RunningBoard, XPC & System Lifecycle' } },
-          { label: 'Filter Entitlement-Gated SPIs \u2192', tone: 'tone-rose', opts: { subview: 'spi', legacyStatus: 'has_entitlement' } },
-          { label: 'RunningBoardServicesSPI.h', path: 'Source/WebKit/Platform/spi/ios/RunningBoardServicesSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-visual-intelligence',
-        title: 'Problem 7: Live Text (VisionKit), Writing Tools, Siri Intelligence & Translation',
-        badge: 'Visual Intelligence (103) + Translation (79)',
-        badgeClass: 'badge-teal',
-        paragraphs: [
-          'WebKit integrates deeply with iOS system intelligence via 103 Visual Intelligence / Live Text / Writing Tools SPIs (e.g., 43470b73513f, 819594670532) and 79 Data Detectors / Look Up / Translation SPIs\u2014including VKImageAnalyzer, UIIntelligenceSupport Swift declarations (added in 3b57457b56b5, 8a4f2c1e1043, and 430b93e4959d), and _LTTranslator.',
-          'Most of these integrations rely on private UIKit/VisionKit/TranslationSPI headers or internal SDK frameworks.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Missing or degraded inline image Live Text selection/QR detection, native page translation bars, and Siri AI / Writing Tools context menu integration on web content.',
-        links: [
-          { label: 'View 103 Visual Intelligence & Writing Tools SPIs \u2192', tone: '', opts: { subview: 'spi', feature: 'Visual Intelligence, Live Text (VisionKit) & Writing Tools' } },
-          { label: 'View 79 Data Detectors & Translation SPIs \u2192', tone: '', opts: { subview: 'spi', feature: 'Data Detectors, Look Up, Translation & Link Preview' } },
-          { label: 'VisionKitCoreSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/VisionKitCoreSPI.h' },
-          { label: 'TranslationUIServicesSPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/TranslationUIServicesSPI.h' }
-        ]
-      },
-      {
-        id: 'problem-web-push',
-        title: 'Problem 8: Web Push (webpushd), Safe Browsing, Content Filtering & Typography',
-        badge: 'Typography (127) + Privacy (112) + Push (50)',
-        badgeClass: 'badge-amber',
-        paragraphs: [
-          'WebKit uses 127 Typography/CoreText SPIs (for system-ui font descriptors and math/emoji shaping, e.g., 3b5afeaaf5da, bf2bd2f72c62, 46525dbf2abb), 112 Privacy/Content-Filtering SPIs (WebPrivacy in 172f52ace994, SafariSafeBrowsing in c8f97782bb12, WebContentAnalysis in 19d9c2eda1ef), and 50 Web Push / Home Screen WebClip SPIs in webpushd.',
-          'For the 501 unentitled in-process private symbols (such as CoreText and CoreGraphics internals), third-party engines typically ship their own mature shaping stacks (e.g., HarfBuzz/Skia) avoiding a strict dependency, but discrepancies with native iOS CoreText rendering metrics may still occur.'
-        ],
-        riskText: 'Predicted 3P Engine Impact: Typography metric discrepancies on system fonts, lack of system-level WebClip/PWA push parity, and fragility if attempting to use undocumented in-process symbols.',
-        links: [
-          { label: 'View 127 Typography & CoreText SPIs \u2192', tone: '', opts: { subview: 'spi', feature: 'Typography, Fonts, Emoji & Rich Text' } },
-          { label: 'View 112 Privacy & Content Filtering SPIs \u2192', tone: '', opts: { subview: 'spi', feature: 'Privacy, Tracking Prevention, Content Filtering & Safe Browsing' } },
-          { label: 'View 50 Web Push (webpushd) SPIs \u2192', tone: 'tone-amber', opts: { subview: 'spi', feature: 'Web Push Notifications & Home Screen WebClips (webpushd)' } },
-          { label: 'CoreTextSPI.h', path: 'Source/WebCore/PAL/pal/spi/cf/CoreTextSPI.h' },
-          { label: 'WebPrivacySPI.h', path: 'Source/WebCore/PAL/pal/spi/cocoa/WebPrivacySPI.h' }
-        ]
-      }
-    ];
+    const predictions = [];
 
     for (const item of predictions) {
-      predGrid.appendChild(buildInsightCardNode(item));
+      if (predGrid) predGrid.appendChild(buildInsightCardNode(item));
     }
   }
 
@@ -2701,21 +2595,20 @@
 
     const trHead = el('tr');
     const columns = [
-      { key: 'name', label: 'SPI Name, Kind & Framework', width: '44%' },
+      { key: 'name', label: 'SPI Name, Kind & Framework', colClass: 'col-spi-name' },
       {
         key: 'processType',
         label: state.spiGranularity === 'config' ? 'Enabled Process' : 'Process(es)',
-        width: '28%'
+        colClass: 'col-spi-proc'
       },
-      { key: 'module', label: 'Allowlist & Module', width: '28%' }
+      { key: 'module', label: 'Allowlist & Module', colClass: 'col-spi-allow' }
     ];
 
     for (const col of columns) {
       const arrow =
         state.spiSortField === col.key ? (state.spiSortDir === 'asc' ? ' \u2191' : ' \u2193') : '';
-      const th = el('th', '', col.label + arrow);
+      const th = el('th', col.colClass || '', col.label + arrow);
       th.setAttribute('data-sort', col.key);
-      if (col.width) th.style.width = col.width;
       th.addEventListener('click', () => {
         if (state.spiSortField === col.key) {
           state.spiSortDir = state.spiSortDir === 'asc' ? 'desc' : 'asc';
@@ -2747,7 +2640,7 @@
 
       const tr = el('tr', 'item-row' + (isExpanded ? ' expanded' : ''));
 
-      const tdName = el('td');
+      const tdName = el('td', 'col-spi-name');
       tdName.appendChild(el('div', 'spi-name-primary', row.name));
       const metaWrap = el('div', 'spi-sub-meta');
       metaWrap.style.display = 'flex';
@@ -2767,7 +2660,7 @@
       tdName.appendChild(metaWrap);
       tr.appendChild(tdName);
 
-      const tdProc = el('td');
+      const tdProc = el('td', 'col-spi-proc');
       if (state.spiGranularity === 'config') {
         const procBadgeClass =
           row.processType === 'UIProcess'
@@ -2785,7 +2678,7 @@
       }
       tr.appendChild(tdProc);
 
-      const tdAllow = el('td');
+      const tdAllow = el('td', 'col-spi-allow');
       const allowTop = el('div');
       allowTop.style.display = 'flex';
       allowTop.style.gap = '5px';
@@ -2849,6 +2742,15 @@
     }
     metaRow.appendChild(el('span', 'mono-chip', 'Framework: ' + row.framework));
     metaRow.appendChild(el('span', 'mono-chip', 'Kind: ' + row.kind));
+    metaRow.appendChild(el('span', 'mono-chip', 'Process: ' + (row.processType || (row.processesList || []).join(', '))));
+    metaRow.appendChild(el('span', 'mono-chip', 'Module: ' + row.module));
+    if (row.hasLegacyFile && !row.hasReviewedFile) {
+      metaRow.appendChild(el('span', 'badge-pill badge-orange', 'Legacy Allowlist'));
+    } else if (row.hasReviewedFile && !row.hasLegacyFile) {
+      metaRow.appendChild(el('span', 'badge-pill badge-emerald', 'Reviewed (' + (occ.reason || 'approved') + ')'));
+    } else {
+      metaRow.appendChild(el('span', 'badge-pill badge-amber', 'Legacy + Reviewed'));
+    }
     if (occ.selector_class) {
       metaRow.appendChild(el('span', 'mono-chip', 'Class: ' + occ.selector_class));
     }
@@ -2909,12 +2811,14 @@
       const topRow = el('div', 'detail-config-top');
 
       topRow.appendChild(el('span', 'badge-pill badge-cyan', cfg.processType));
+      const tomlUrl = cfg.githubUrl || (WEBKIT_GH_BLOB_BASE + cfg.file + (cfg.line ? '#L' + cfg.line : ''));
+      const tomlLabel = cfg.file + (cfg.line ? ':' + cfg.line : '');
       topRow.appendChild(
         createExternalLink(
-          WEBKIT_GH_BLOB_BASE + cfg.file,
-          cfg.file,
+          tomlUrl,
+          tomlLabel,
           'github-commit-link',
-          'Open TOML allowlist file on GitHub'
+          'Open TOML allowlist entry on GitHub'
         )
       );
       topRow.appendChild(el('span', 'mono-chip', cfg.form));
@@ -2957,21 +2861,29 @@
 
     const rightCol = el('div');
 
+    const hdrList = Array.isArray(spi.spi_header_locations) && spi.spi_header_locations.length > 0
+      ? spi.spi_header_locations
+      : (spi.spi_headers || []);
     rightCol.appendChild(
       el(
         'h4',
         'detail-section-title',
-        'WebKit *SPI.h & *SoftLink* Declarations (' + ((spi.spi_headers || []).length) + ')'
+        'WebKit *SPI.h & *SoftLink* Declarations (' + hdrList.length + ')'
       )
     );
     const hdrBox = el('div', 'detail-box');
-    if (Array.isArray(spi.spi_headers) && spi.spi_headers.length > 0) {
-      for (const hPath of spi.spi_headers) {
+    if (hdrList.length > 0) {
+      for (const hItem of hdrList) {
+        const hPath = typeof hItem === 'string' ? hItem : hItem.file || '';
+        const hLine = typeof hItem === 'object' && hItem ? hItem.line : null;
+        const hUrl = (typeof hItem === 'object' && hItem && hItem.github_url)
+          ? hItem.github_url
+          : WEBKIT_GH_BLOB_BASE + hPath + (hLine ? '#L' + hLine : '');
         const link = createExternalLink(
-          WEBKIT_GH_BLOB_BASE + hPath,
-          hPath,
+          hUrl,
+          hPath + (hLine ? ':' + hLine : ''),
           'github-commit-link',
-          'View header in WebKit repository on GitHub'
+          'View header declaration in WebKit repository on GitHub'
         );
         link.style.margin = '2px 6px 2px 0';
         hdrBox.appendChild(link);
@@ -2981,19 +2893,26 @@
     }
     rightCol.appendChild(hdrBox);
 
+    const csList = Array.isArray(spi.call_site_locations) && spi.call_site_locations.length > 0
+      ? spi.call_site_locations
+      : (spi.call_sites || []);
     rightCol.appendChild(
-      el('h4', 'detail-section-title', 'WebKit Source Call Sites (' + (spi.call_site_count || 0) + ' total)')
+      el('h4', 'detail-section-title', 'WebKit Source Call Sites (' + (spi.call_site_count || csList.length) + ' total)')
     );
     const csBox = el('div', 'detail-box');
-    if (Array.isArray(spi.call_sites) && spi.call_sites.length > 0) {
-      for (const cs of spi.call_sites) {
+    if (csList.length > 0) {
+      for (const cs of csList) {
         const csPath = typeof cs === 'string' ? cs : cs.file || '';
         if (!csPath) continue;
+        const csLine = typeof cs === 'object' && cs ? cs.line : null;
+        const csUrl = (typeof cs === 'object' && cs && cs.github_url)
+          ? cs.github_url
+          : WEBKIT_GH_BLOB_BASE + csPath + (csLine ? '#L' + csLine : '');
         const link = createExternalLink(
-          WEBKIT_GH_BLOB_BASE + csPath,
-          csPath,
+          csUrl,
+          csPath + (csLine ? ':' + csLine : ''),
           'github-commit-link',
-          'Open source file in WebKit repository on GitHub'
+          'Open source call site in WebKit repository on GitHub'
         );
         link.style.margin = '2px 6px 2px 0';
         csBox.appendChild(link);
@@ -3099,6 +3018,7 @@
           c.legacy_addition_category || '',
           c.legacy_addition_reason || '',
           (c.bugs || []).join(' '),
+          (c.other_touched_files_sample || []).join(' '),
           addedNames,
           removedNames,
           modNames
@@ -3200,10 +3120,10 @@
       const isExpanded = state.expandedCommitHashes.has(c.hash);
       const tr = el('tr', 'item-row' + (isExpanded ? ' expanded' : ''));
 
-      tr.appendChild(el('td', 'delta-neutral', '#' + c.index));
-      tr.appendChild(el('td', '', c.dateShort));
+      tr.appendChild(el('td', 'col-commit-idx delta-neutral', '#' + c.index));
+      tr.appendChild(el('td', 'col-commit-date', c.dateShort));
 
-      const tdGh = el('td');
+      const tdGh = el('td', 'col-commit-gh');
       const ghLink = createExternalLink(
         c.github_url || WEBKIT_GH_COMMIT_BASE + c.hash,
         c.short_hash,
@@ -3220,7 +3140,7 @@
       tdGh.appendChild(ghLink);
       tr.appendChild(tdGh);
 
-      const tdCat = el('td');
+      const tdCat = el('td', 'col-commit-cat');
       const catLabel = state.categoryLabelsById.get(c.primary_category) || c.primary_category;
       const catBadgeClass =
         c.primary_category === 'cleanup-remove-spi' || c.primary_category === 'feature-removal'
@@ -3231,14 +3151,14 @@
       tdCat.appendChild(el('span', 'badge-pill ' + catBadgeClass, catLabel));
       tr.appendChild(tdCat);
 
-      const tdArea = el('td');
+      const tdArea = el('td', 'col-commit-area');
       tdArea.appendChild(el('span', 'mono-chip', c.feature_area));
       tr.appendChild(tdArea);
 
       tr.appendChild(
         el(
           'td',
-          c.added_count > 0 ? 'delta-pos-rose' : 'delta-neutral',
+          'col-commit-add ' + (c.added_count > 0 ? 'delta-pos-rose' : 'delta-neutral'),
           c.added_count > 0 ? '+' + fmtNum(c.added_count) : '0'
         )
       );
@@ -3246,12 +3166,12 @@
       tr.appendChild(
         el(
           'td',
-          c.removed_count > 0 ? 'delta-neg-emerald' : 'delta-neutral',
+          'col-commit-rem ' + (c.removed_count > 0 ? 'delta-neg-emerald' : 'delta-neutral'),
           c.removed_count > 0 ? '-' + fmtNum(c.removed_count) : '0'
         )
       );
 
-      const tdLeg = el('td');
+      const tdLeg = el('td', 'col-commit-leg');
       if (c.legacy_added_count > 0) {
         tdLeg.appendChild(el('span', 'badge-pill badge-rose', '+' + c.legacy_added_count + ' Legacy'));
       }
@@ -3265,12 +3185,12 @@
       }
       tr.appendChild(tdLeg);
 
-      tr.appendChild(el('td', 'delta-neutral', fmtNum(c.unique_spis)));
+      tr.appendChild(el('td', 'col-commit-tot delta-neutral', fmtNum(c.unique_spis)));
 
-      const tdSubj = el('td');
+      const tdSubj = el('td', 'col-commit-subj');
       const sLine = el('div', '');
       sLine.style.fontWeight = '600';
-      sLine.style.color = '#f8fafc';
+      sLine.style.color = 'var(--text-primary)';
       appendTextWithSpiCommitLinks(sLine, c.subject);
       tdSubj.appendChild(sLine);
 
@@ -3325,6 +3245,39 @@
     const leftCol = el('div');
     leftCol.appendChild(el('h4', 'detail-section-title', 'Curated Commit Analysis & Links'));
     const whyBox = el('div', 'detail-box');
+
+    // Top metadata strip showing all 10 table columns so hidden columns are always accessible
+    const metaStrip = el('div', 'detail-meta-strip');
+    metaStrip.appendChild(el('span', 'mono-chip', 'Commit #' + c.index));
+    metaStrip.appendChild(el('span', 'mono-chip', 'Date: ' + (c.dateShort || '')));
+    const catLabel = state.categoryLabelsById.get(c.primary_category) || c.primary_category || '';
+    const catBadgeClass =
+      c.primary_category === 'cleanup-remove-spi' || c.primary_category === 'feature-removal'
+        ? 'badge-emerald'
+        : c.primary_category === 'bugfix-or-security-spi'
+          ? 'badge-rose'
+          : 'badge-cyan';
+    metaStrip.appendChild(el('span', 'badge-pill ' + catBadgeClass, catLabel));
+    if (c.feature_area) {
+      metaStrip.appendChild(el('span', 'mono-chip', 'Feature Area: ' + c.feature_area));
+    }
+    metaStrip.appendChild(
+      el(
+        'span',
+        'mono-chip',
+        'SPI Delta: +' + fmtNum(c.added_count || 0) + ' / -' + fmtNum(c.removed_count || 0)
+      )
+    );
+    metaStrip.appendChild(
+      el(
+        'span',
+        'mono-chip',
+        'Legacy Delta: +' + fmtNum(c.legacy_added_count || 0) + ' / -' + fmtNum(c.legacy_removed_count || 0)
+      )
+    );
+    metaStrip.appendChild(el('span', 'mono-chip', 'Total SPIs: ' + fmtNum(c.unique_spis || 0)));
+    whyBox.appendChild(metaStrip);
+
     const pWhy = el('div', '');
     pWhy.style.fontWeight = '600';
     pWhy.style.marginBottom = '6px';
@@ -3409,6 +3362,32 @@
     appendSpiDiffList('Removed SPI Entries', c.removed || []);
     if (Array.isArray(c.modified) && c.modified.length > 0) {
       appendSpiDiffList('Modified SPI Entries', c.modified);
+    }
+
+    if (Array.isArray(c.other_touched_files_sample) && c.other_touched_files_sample.length > 0) {
+      const totalOther = c.other_touched_files_count || c.other_touched_files_sample.length;
+      rightCol.appendChild(
+        el('h4', 'detail-section-title', 'Coupled WebKit Source & Test Files (' + totalOther + ')')
+      );
+      const otherBox = el('div', 'detail-box');
+      otherBox.style.maxHeight = '140px';
+      otherBox.style.overflowY = 'auto';
+      for (const fPath of c.other_touched_files_sample) {
+        const fLink = createExternalLink(
+          'https://github.com/WebKit/WebKit/blob/' + c.hash + '/' + fPath,
+          fPath,
+          'github-commit-link',
+          'View ' + fPath + ' at commit ' + c.short_hash + ' on GitHub'
+        );
+        fLink.style.margin = '2px 6px 2px 0';
+        otherBox.appendChild(fLink);
+      }
+      if (totalOther > c.other_touched_files_sample.length) {
+        otherBox.appendChild(
+          el('div', 'spi-sub-meta', '+ ' + fmtNum(totalOther - c.other_touched_files_sample.length) + ' more files in commit diff')
+        );
+      }
+      rightCol.appendChild(otherBox);
     }
 
     drawer.appendChild(leftCol);
@@ -3778,7 +3757,7 @@
   }
 
   
-  // Hash handler for deep links to cards/sections (e.g. spi.html#problem-web-push from index.html).
+  // Hash handler for deep links to cards/sections (e.g. spi.html#legacySpotlightSection from issue pages).
   function scrollToHashAnchor(smooth) {
     const anchorId = getPlainAnchorId();
     if (!anchorId) return;

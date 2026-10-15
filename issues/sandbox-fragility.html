@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How iOS Seatbelt sandbox profiles couple third-party browser engines to Apple's release cycles and private telemetry, creating silent breakage risks when system libraries drift.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Sandbox fragility &amp; silent breakage — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Sandbox fragility &amp; silent breakage
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Sandbox fragility &amp; silent breakage</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P2</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Empirically grounded in 919 WebKit sandbox commits and BrowserEngineKit rules)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> N/A (engine controls its own sandbox)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> Safari's sandbox profiles evolve in lockstep with iOS updates and internal telemetry; third-party BrowserEngineKit engines inherit these rigid profiles without kernel telemetry visibility, risking silent production crashes when iOS system libraries change until Apple ships an explicit exemption in an OS point release.</p>
+        <p><strong>What this page adds:</strong> Analysis of WebKit's 919 iOS Seatbelt sandbox commits (2014–2026) reveals that the sandbox is not a static security boundary but a rapidly shifting policy surface (~75–138 edits/year; 70.1% sandbox-only changes). We document how Apple's internal <code>(with telemetry)</code> pipeline leaves third-party engines blind when system frameworks fail inside the shared cache, highlight real-world third-party breakages that required explicit <code>!is-apple-signed-executable</code> exceptions from Apple (such as <code>mkdtemp</code> in the GPU process and container cache access in Networking), and analyze the architectural mismatch between POSIX/Linux engine design and iOS's strict default-deny kernel whitelists.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">Inherited Seatbelt profiles and the <code>!is-apple-signed-executable</code> divide</a></li>
+        <li><a href="#aspect-2">Relentless policy churn: 919 commits and the opaque-fix problem</a></li>
+        <li><a href="#aspect-3">Telemetry asymmetry &amp; blind failure in production</a></li>
+        <li><a href="#aspect-4">OS library drift &amp; mid-process revocation</a></li>
+        <li><a href="#aspect-5">Release-cycle coupling and coarse API knobs</a></li>
+        <li><a href="#aspect-6">POSIX and kernel primitive mismatch</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>Inherited Seatbelt profiles and the <code>!is-apple-signed-executable</code> divide</h2>
+      <p>On iOS, untrusted web execution is constrained by <strong>Seatbelt</strong> (macOS/iOS's mandatory access control kernel facility, implemented in <code>Sandbox.kext</code> and configured via Scheme-like <code>.sb</code> profiles). In desktop operating systems or Linux/Android containers, browser vendors define and compile their own sandboxing rules. Under Apple's BrowserEngineKit framework, however, third-party browser helper processes (WebContent, GPU, and Networking extensions) run inside the exact Seatbelt profiles authored for WebKit: <code>com.apple.WebKit.WebContent.sb.in</code>, <code>com.apple.WebKit.GPU.sb.in</code>, and <code>com.apple.WebKit.Networking.sb.in</code>.</p>
+      <p>Because third-party browsers compile and sign their own binaries rather than running Apple-signed system executables, their processes trigger conditional branches evaluated by the kernel. WebKit's sandbox profiles explicitly branch on <code>(process-attribute is-apple-signed-executable)</code>. Historically, any rule written without testing non-Apple executables could quietly block legitimate operations in alternative engines. WebKit's codebase contains 8 commits specifically tagged with third-party rules (and 4 covering both), demonstrating that Apple has repeatedly had to patch holes where third-party engines were blocked by assumptions tailored only to Safari.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari's auxiliary processes (<code>com.apple.WebKit.WebContent</code>, <code>com.apple.WebKit.GPU</code>, <code>com.apple.WebKit.Networking</code>) are first-party Apple-signed system daemons in <code>/System/Library/Frameworks/WebKit.framework</code>.</li>
+            <li>They satisfy <code>(process-attribute is-apple-signed-executable)</code> unconditionally, avoiding all non-Apple restrictions and inheriting Apple-internal diagnostic paths.</li>
+            <li>Profile definitions are authored, tested, and shipped in direct coordination with WebKit engine developers.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines cannot provide custom Seatbelt profiles; the operating system applies WebKit's system profiles to all <code>WebContentExtension</code>, <code>GPUProcessExtension</code>, and <code>NetworkExtension</code> bundles.</li>
+            <li>Alternative binaries evaluate to false for <code>is-apple-signed-executable</code>. If an engine relies on an unwhitelisted system call or file path, it immediately triggers an <code>EPERM</code> or fatal kernel signal (<code>SIGKILL</code>/<code>EXC_BAD_INSTRUCTION</code>).</li>
+            <li>Fixes require petitioning Apple to add explicit <code>(require-not (process-attribute is-apple-signed-executable))</code> allowances into WebKit's upstream profiles and waiting for an iOS release.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in#L265">com.apple.WebKit.GPU.sb.in:265–269</a> — explicit rule granting <code>SYS_mkdirat</code> when <code>(require-not (process-attribute is-apple-signed-executable))</code> because "The mkdtemp function requires this syscall."</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L150">com.apple.WebKit.Networking.sb.in:150–155</a> — rule granting file read/write access to container <code>Library/Caches</code> and <code>tmp</code> specifically for non-Apple-signed executables under ExtensionKit.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/33cc299a31691189fa4f32b17a23bb22ca2cbcaf">33cc299a3169 (2025-06-13)</a> "Allow SYS_mkdirat syscall (for mkdtemp) when !is-apple-signed-executable (GPU sandbox)".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c01e8de3c16c6d8b3c00ab2dbf958f2e8a4475b7">c01e8de3c16c (2026-09-29)</a> "Allow file access to container temp and cache directory for !is-apple-signed-executable (Networking sandbox)".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#insight-6-architecture">Sandbox analyzer › Insight 6: BrowserEngineKit 3P Divergence</a> — empirical review of third-party conditionals.</li>
+          <li><span class="ev-kind">Commit</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">ba762580c098 (2025-06-05)</a> &mdash; Allows com.apple.diagnosticd Mach lookup for !is-apple-signed-executable to stream os_log.</li>
+          <li><span class="ev-kind">Commit</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">66e7f7b2c531 (2025-06-10)</a> &mdash; Revert diagnosticd log-streaming for !is-apple-signed-executable in WebContent.</li>
+          <li><span class="ev-kind">Commit</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">e0c788b57e1d (2025-09-08)</a> &mdash; Reduce size of Development sandboxes.</li>
+          <li><span class="ev-kind">Commit</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">507789a21582 (2026-04-21)</a> &mdash; Remove entitlement check in sandbox.</li>
+          <li><span class="ev-kind">Commit</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">e62ea2ac63 (2026-06-06)</a> &mdash; Further restrict Networking container paths prior to 3P fix.</li>
+          <li><span class="ev-kind">Commit</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">f3953af233f9 (2025-09-02)</a> &mdash; Create new files for sandbox defines.</li>
+
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Relentless policy churn: 919 commits and the opaque-fix problem</h2>
+      <p>A central misconception about iOS sandboxing is that Seatbelt profiles are stable contracts. In reality, WebKit's iOS sandboxes are subject to extreme, continuous modification. Between 2014 and 2026, WebKit recorded 919 sandbox commits on iOS, averaging ~75 to 138 commits every year (115 in 2025 alone, representing more than two sandbox edits every week). The WebContent profile alone accounts for 668 commits (72.7%), with the GPU Process (181 commits) and Networking Process (175 commits) seeing rapid churn since their introduction.</p>
+      <p>Crucially, 70.1% of these changes (644 commits) are <em>sandbox-only</em>: they touch strictly <code>.sb</code> and <code>.sb.in</code> files without changing a single line of WebKit C++, Objective-C, or Swift implementation code. Furthermore, at least 72 commits (7.8%) were confirmed adjustments triggered by external iOS OS and framework changes, while another 223 commits (24.3%) represent "opaque runtime fixes" — commits where Apple engineers added an allow rule citing only internal Radar IDs or vague messages like "Allow required syscall" or "to unblock an underlying framework". Together, nearly a third of all sandbox churn (32.1%) is reactive maintenance to keep pace with shifting iOS internals.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Apple engineers continuously iterate on sandbox policies alongside internal iOS system builds.</li>
+            <li>When an internal OS update alters an underlying framework or introduces a new daemon connection, sandbox updates land upstream immediately.</li>
+            <li>Even with direct visibility and continuous integration against iOS daily builds, WebKit has had to revert 76 sandbox commits (an 8.3% revert rate) due to unintended functional breakages.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>An alternative browser engine receives the combined effect of all 919 commits as a static, immutable sandbox ceiling on each iOS version.</li>
+            <li>If an iOS framework begins issuing an unwhitelisted system call or Mach lookup, third-party browsers have no ability to relax the profile or insert temporary exemptions.</li>
+            <li>Third-party teams cannot distinguish whether a breakage was caused by their own engine code or an opaque change in an iOS dynamic library.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#insight-1-churn">Sandbox analyzer › Insight 1: Continuous Policy Churn &amp; Sandbox-Only Edits</a> — statistical breakdown of the 919 iOS sandbox commits and 70.1% sandbox-only edits.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#insight-2-os-attribution">Sandbox analyzer › Insight 2: OS vs. WebKit Attribution</a> — analysis of the 72 confirmed OS/framework commits and 223 opaque runtime fixes.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/3e277d994fe5fa7482b96d1dd87e0e7643803d42">3e277d994fe5 (2026-07-20)</a> "[Sandboxing] Update sandbox profiles to allow the <code>*at</code> counterparts to some syscalls" (<code>SYS_renameat</code>, <code>SYS_openat_dprotected_np</code>, <code>SYS_openat</code>).</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/9e4f68885457c1b436d6e9b0879b4988ab979199">9e4f68885457 (2023-05-01)</a> "Revert 'Address kernel MIG sandbox telemetry' after introducing crashes" — illustrating the fragility of sandbox tightening even within Apple.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Telemetry asymmetry &amp; blind failure in production</h2>
+      <p>When a sandbox violation occurs on an end-user device, the most critical operational requirement is observability: knowing which process, framework, and call site triggered the denial. Apple maintains an elaborate two-stage sandbox telemetry pipeline: candidate hardening rules are first wrapped with <code>(with telemetry)</code> or <code>(with telemetry-backtrace)</code> modifiers (accounting for 113 commits). When a rule is violated, <code>Sandbox.kext</code> traps the event and dispatches a report via <code>sandboxd</code> directly into Apple's internal <code>CoreAnalytics</code> pipeline, allowing Apple to observe potential breakages across millions of beta devices before turning the rule into a hard deny.</p>
+      <p>Third-party browser engines have zero access to this kernel telemetry channel. In fact, production sandbox rules actively suppress diagnostics for third parties. In WebContent, access to <code>com.apple.logd</code> (the system unified logging daemon) is blocked by default to prevent IPC exploitation; while Apple initially used an entitlement check, commit <code>507789a21582</code> made the denial unconditional (<code>(deny mach-lookup NO_REPORT (log-services))</code>). While Apple introduced a <code>(log-streaming)</code> rule permitting <code>com.apple.diagnosticd</code> for <code>!is-apple-signed-executable</code> in GPU and Networking (commit <code>ba762580c098</code>), it was explicitly reverted from WebContent in commit <code>66e7f7b2c531</code>. Furthermore, streaming via <code>diagnosticd</code> operates only when a physical device is tethered to Xcode in Developer Mode, offering zero observability for production user crashes.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari utilizes Apple's internal <code>CoreAnalytics</code> ingestion: <code>Sandbox.kext</code> and <code>sandboxd</code> report non-fatal audit telemetry directly to Apple's engineering dashboards.</li>
+            <li>Apple engineers inspect kernel backtraces for unexpected denials across iOS beta populations before converting rules into hard blocks.</li>
+            <li>WebKit's internal logging streams through private SPIs such as <code>os_log_set_hook</code>, bypassing standard sandbox hurdles.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines cannot register for <code>(with telemetry)</code> callbacks or access <code>sandboxd</code> event streams in production.</li>
+            <li>When closed-source system libraries in the dyld shared cache (such as CoreText, ImageIO, or AVFoundation) encounter an <code>EPERM</code> from Seatbelt, they often silently swallow the failure and return generic <code>NULL</code> handles or fallback software paths, leaving no crash dump.</li>
+            <li>In the WebContent process, <code>logd</code> is blocked, meaning standard <code>os_log</code> entries may not even reach disk or crash reporters.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/common.sb#L87">common.sb:87–93</a> — definition of <code>(log-streaming)</code> permitting <code>com.apple.diagnosticd</code> for <code>(require-not (process-attribute is-apple-signed-executable))</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in#L93">com.apple.WebKit.WebContent.sb.in:93–96</a> — unconditional block on unified log services: <code>(deny mach-lookup NO_REPORT (log-services))</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/ba762580c098651d310c39ae81d070fa61c5ab3b">ba762580c098 (2025-06-05)</a> "Unify access to log-streaming service (com.apple.diagnosticd for !is-apple-signed-executable) in sandboxes".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/66e7f7b2c531ac544c7a4934a7f02a4d1722fec5">66e7f7b2c531 (2025-06-10)</a> "Revise diagnosticd sandbox rule — Revert log-streaming (!is-apple-signed-executable) in WebContent sandbox".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/507789a21582fde6cdc27ea97474f13d2b1e5c77">507789a21582 (2026-04-21)</a> "Remove entitlement check in sandbox — The entitlement is always present, so there is no need to perform the check" (blocking log services unconditionally).</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#view=explorer&amp;cat=telemetry-logging">Sandbox analyzer › Challenge B: Asymmetric Kernel Telemetry &amp; Tracing</a> — deep-dive on sandbox observability gaps.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>OS library drift &amp; mid-process revocation</h2>
+      <p>Because browser processes dynamically link against dozens of Apple system frameworks (such as CoreGraphics, CoreMedia, Metal, and libsystem), any internal refactoring of an Apple framework can instantly break a sandboxed process. A prominent example occurred when Apple split media decoding out of <code>mediaserverd</code> into a dedicated daemon called <code>mediaplaybackd</code>; WebKit had to add dozens of new Mach lookup permissions (such as <code>com.apple.coremedia.mediaplaybackd.player.xpc</code> and <code>figmetriceventtimeline.xpc</code> in commit <code>746fa2c96a99</code>). Similarly, changes in <code>libsystem_pthread</code> required adding <code>SYS_ulock_wait2</code> (commit <code>088424c3ef5f</code>).</p>
+      <p>Even more perilous for alternative engines is WebKit's <strong>two-phase post-launch sandbox model</strong>. To minimize attack surface, WebKit grants broad syscalls and Mach traps during process startup (allowing dynamic linker bindings, thread initialization, and memory allocator setup). Once the process is initialized, <code>WebPage::setHasLaunchedWebContentProcess()</code> invokes the private kernel function <code>sandbox_enable_state_flag("local:WebContentProcessLaunched")</code>. At this exact instant, the kernel dynamically revokes 10 Unix syscalls (including <code>SYS_proc_info</code>, <code>SYS_connect</code>, and <code>SYS_getrlimit</code>), 2 Mach traps (<code>MSC_mach_timebase_info_trap</code> and <code>MSC_task_self_trap</code>), and 5 MIG routines (including <code>host_info</code>). If an alternative engine performs lazy initialization of timers, thread pools, or metrics after the first web page begins loading, the call abruptly traps and crashes.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebKit carefully sequences its startup routines: all Mach timebase queries, thread registrations, and system info queries are completed strictly before <code>setHasLaunchedWebContentProcess()</code> is called.</li>
+            <li>When Apple's own frameworks break under this regime — such as ICU's <code>detectHostTimeZone</code> crashing in Lockdown Mode — Apple rapidly patches the profile (commit <code>7395b2831bdc</code>).</li>
+            <li>WebKit processes possess the private entitlement <code>com.apple.private.security.enable-state-flags</code>, allowing the UIProcess to manipulate sandbox flags dynamically.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Engines ported from Linux/Android (such as Chromium or Gecko) frequently use lazy initialization for fundamental runtime primitives (e.g. <code>base::TimeTicks</code>, thread affinity, memory managers).</li>
+            <li>Once <code>WebContentProcessLaunched</code> flips, these lazy calls trigger immediate kernel rejections.</li>
+            <li>Engine developers must audit every third-party dependency to ensure zero Mach traps or unwhitelisted syscalls are executed on worker threads or background tasks after launch.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm#L273">WebPageCocoa.mm:273–285</a> — <code>WebPage::setHasLaunchedWebContentProcess()</code> toggles <code>sandbox_enable_state_flag("local:WebContentProcessLaunched", *auditToken)</code> and invokes <code>lockdownSandbox:@"2.0"</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in#L447">com.apple.WebKit.WebContent.sb.in:447–455</a> — Mach traps permitted only before launch; post-launch calls trigger <code>(deny syscall-mach (with message "Mach syscall used after launch"))</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb#L436">webcontent-defines.sb:436–439</a> — <code>MSC_mach_timebase_info_trap</code> and <code>MSC_task_self_trap</code> restricted strictly to launch phase.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/746fa2c96a997d39da48e7886281c81c36ca04b3">746fa2c96a99 (2024-07-09)</a> "Allow additional CoreMedia endpoint to support mediaserverd refactoring effort (GPU sandbox)".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/088424c3ef5f0da29e868cd21b22ea83127b4f66">088424c3eff0 (2023-01-03)</a> "Add required syscall to all WebKit sandboxes — Add SYS_ulock_wait2 to all WebKit sandboxes".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/7395b2831bdc001a3f8604fe77e91998ee8cade0">7395b2831bdc (2025-10-02)</a> "Crash under icu::TimeZone::detectHostTimeZone in Lockdown Mode — caused by syscalls related to pthread synchronization being blocked".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#insight-5-mid-process-revocation">Sandbox analyzer › Insight 5: Two-Phase Launch &amp; Lockdown Mode</a> — detailed breakdown of mid-flight revoked primitives.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Release-cycle coupling and coarse API knobs</h2>
+      <p>Per-OS-version workarounds add further friction. Apple provides monolithic opt-in revisions (<code>applyRestrictedSandbox(.revision2)</code> mapped to <code>local:tested_version_2.0</code>) and coarse feature switches (<code>enableFeature(.coreML)</code>). A third-party engine cannot adopt 99% of a new sandbox revision while exempting a single conflicting call; this structural coupling forces engine developers to maintain complex runtime checks and IPC fallbacks for older iOS releases.</p>
+
+      <p>Because Seatbelt profiles are compiled system assets stored in the iOS root filesystem (under <code>/System/Library/Sandbox/Profiles/</code>), a third-party browser cannot patch or augment its sandbox configuration via an App Store application update. If a new iOS point release introduces a minor system framework regression that trips a sandbox denial, alternative browser engines are completely dead in the water. They must submit a bug report to Apple, wait for WebKit engineers to commit a fix, and wait for Apple to package and distribute an iOS system update to end-user devices.</p>
+      <p>Apple has recognized this rigidity to a limited degree by providing high-level BrowserEngineKit configuration switches, but these controls are coarse and all-or-nothing. For instance, BrowserEngineKit exposes <code>applyRestrictedSandbox(revision: .revision2)</code> (backed by the internal sandbox state flag <code>local:tested_version_2.0</code>, introduced in commits <code>3578a0f4e7f3</code> and <code>f1f264edcff8</code>). Rather than allowing fine-grained capability toggles, revision 2 bundles together dozens of disparate restrictions across WebContent and GPU processes. Similarly, BrowserEngineKit grants <code>com.apple.developer.web-browser-engine.restrict.notifyd</code> (commit <code>c28465076e27</code>), which enables <code>(notify-blocking)</code> in <code>common.sb:81</code> and requires the browser host to proxy Darwin notifications over IPC.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari and WebKit ship directly as components of iOS; any sandbox adjustment ships in the very same operating system update that introduces framework changes.</li>
+            <li>WebKit developers can add private build flags (such as <code>HAVE(AVMETRICS)</code> or <code>USE(MEDIAPARSERD)</code>) to synchronize sandbox rules with framework capabilities dynamically.</li>
+            <li>Apple internal test suites run against prerelease iOS builds with immediate feedback.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines must support multiple iOS versions in a single App Store binary, requiring runtime OS version checks and legacy fallback branches.</li>
+            <li>Opting into newer security revisions (like <code>RestrictedSandboxRevision.revision2</code>) is an all-or-nothing commitment: an engine cannot accept 95% of a revision's hardening while exempting a single conflicting call.</li>
+            <li>A single unpredicted sandbox denial in an iOS point release can cause widespread user-facing crashes that the browser vendor cannot mitigate without an Apple OS fix.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift#L40">WebContentProcessExtension.swift:40–50</a> — <code>lockdownSandbox</code> mapping version strings to BrowserEngineKit's <code>applyRestrictedSandbox(revision:)</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/common.sb#L127">common.sb:127–128</a> — <code>(define (sandbox-version-2) (state-flag "local:tested_version_2.0"))</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/common.sb#L81">common.sb:81</a> — <code>(define (notify-blocking) (require-entitlement "com.apple.developer.web-browser-engine.restrict.notifyd"))</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/3578a0f4e7f375a0ad1fde0b7ccc867e84c5d6a6">3578a0f4e7f3 (2025-05-11)</a> "Add sandbox-version-2 macro (local:tested_version_2.0)".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/f1f264edcff84a596de14759c04b5657b65f5f99">f1f264edcff8 (2025-05-22)</a> "Guard recent sandbox hardening with sandbox version (local:tested_version_2.0) for BrowserEngineKit".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c28465076e27a0f7a100dc7ae77c2b3a8c1368a9">c28465076e27 (2024-03-19)</a> "Restrict access to notifyd only when process has entitlement".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">Sandbox analyzer › Challenge A: Monolithic OS Release Cycles</a> — coupling between browser fixes and iOS updates.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/666daa6403da4f67ab444892f93eb6dc920a114a">666daa6403</a> &mdash; Support RenderingExtension.enableFeature(.coreML) via local:FeatureCoreMLDisabled.</li>
+
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>POSIX and kernel primitive mismatch</h2>
+      <p>Engines such as Chromium (Blink/V8) and Firefox (Gecko/SpiderMonkey) were designed around POSIX, Linux, and desktop Darwin kernel semantics. On macOS, WebKit's Seatbelt profiles allow general Unix syscalls, Mach traps, and MIG routines by default; helper profiles do not restrict file descriptor operations via <code>system-fcntl</code>. Engineers developing cross-platform browser code on macOS are therefore lulled into a false sense of security, as standard C++ library calls succeed without friction.</p>
+      <p>On iOS, however, WebKit discards default-allow semantics and replaces them with draconian default-deny whitelists. The iOS WebContent process permits only 134 out of approximately 550 Unix syscalls (dropping to 91 in Lockdown Mode) and only 40 Mach traps. In the GPU Process, <code>gpu-defines.sb</code> restricts <code>system-fcntl</code> to an allowlist of exactly 8 commands (<code>F_ADDFILESIGS_RETURN</code>, <code>F_CHECK_LV</code>, <code>F_GETFL</code>, <code>F_GETPATH</code>, <code>F_GETPROTECTIONCLASS</code>, <code>F_SETFD</code>, <code>F_SETFL</code>, and <code>F_SETNOSIGPIPE</code>). Routine calls such as <code>fcntl(fd, F_GETFD)</code>, <code>F_DUPFD</code>, or <code>F_DUPFD_CLOEXEC</code> are blocked. Even basic filesystem operations like <code>SYS_unlink</code>, <code>SYS_rmdir</code>, and <code>SYS_mkdirat</code> are blocked in WebContent unless the host app activates QuickLook preview extensions (commit <code>f3953af233f9</code>). When third-party engines attempt standard POSIX operations — such as calling <code>mkdtemp()</code> in the GPU process — they fail immediately until Apple adds an explicit exemption.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebKit's codebase has been refactored over a decade to avoid disallowed POSIX primitives, routing all file creation, temporary directories, and IPC through helper daemons and sandbox extensions.</li>
+            <li>Where WebKit does require a specific primitive (like <code>F_GETPROTECTIONCLASS</code> in the GPU Process), Apple developers add it directly to <code>gpu-defines.sb</code> (commit <code>66efa46ff030</code>).</li>
+            <li>WebKit uses internal IPC brokering to delegate unsupported syscalls to the privileged UIProcess.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines inherit massive codebases built on assumptions that POSIX standard library functions (<code>mkdtemp</code>, <code>unlink</code>, <code>fcntl</code>, <code>sysctl</code>) work predictably.</li>
+            <li>Discovering which primitive failed requires manual debugging under a tethered LLDB session, as Seatbelt denies the call with <code>EPERM</code> or kills the thread.</li>
+            <li>Porting an engine requires extensive rewrites of low-level base libraries to intercept standard library calls and replace them with Apple-approved alternatives.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L565">gpu-defines.sb:565–574</a> — strict allowlist of exactly 8 <code>fcntl</code> commands permitted in the GPU Process.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb#L389">webcontent-defines.sb:389–397</a> — <code>syscall-quicklook</code> defining <code>SYS_mkdirat</code>, <code>SYS_rmdir</code>, and <code>SYS_unlink</code>, which are denied post-launch unless QuickLook is active.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in#L380">com.apple.WebKit.WebContent.sb.in:380–387</a> — <code>ENABLE(QUICKLOOK_SANDBOX_RESTRICTIONS)</code> blocking <code>syscall-quicklook</code> with telemetry.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/66efa46ff030d3c4c5a6149adaafb85c8e617355">66efa46ff030 (2023-05-18)</a> "Allow F_GETPROTECTIONCLASS in the GPU Process Sandbox — Telemetry shows a lot of logging for F_GETPROTECTIONCLASS Sandbox denials".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/33cc299a31691189fa4f32b17a23bb22ca2cbcaf">33cc299a3169 (2025-06-13)</a> "Allow SYS_mkdirat syscall (for mkdtemp) when !is-apple-signed-executable (GPU sandbox)".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#insight-4-posix-mismatch">Sandbox analyzer › Insight 4: Kernel Primitive Whitelists</a> — comparison of macOS vs iOS kernel whitelists.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#view=explorer&amp;trigger=os-framework-3p">Sandbox analyzer › Challenge C: macOS vs. iOS Seatbelt Gap</a> — breakdown of POSIX mismatches.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#view=explorer&amp;res=syscall-unix">Data view: 271 syscall-unix commits</a>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#view=explorer&amp;res=fcntl">Data view: 23 fcntl commits</a>.</li>
+
+        </ul>
+      </div>
+    </section>
+
+    
+    <section class="issue-section" id="aspect-7">
+      <h2><span class="aspect-num">7</span>Post-launch state flag traps &amp; deferred initialisation</h2>
+      <p>When porting Chromium or Gecko, engineers rely on lazy initialization for low-level abstractions (like <code>base::TimeTicks</code>, fetching <code>kern.boottime</code>, or fetching host process info). On macOS, these evaluate smoothly. On iOS, WebKit transitions the sandbox into Lockdown Mode immediately after web content starts (via <code>sandbox_enable_state_flag("local:WebContentProcessLaunched")</code>). This instantly revokes dozens of Mach traps and POSIX syscalls. Any deferred initialization evaluating post-launch crashes the engine.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebKit completes all basic Mach time and host lookups prior to invoking the launch trap.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines crash dynamically when asynchronous or lazy thread tasks fire standard environment queries after the first seconds of execution.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/7ddd37b4adb9033ead70433f4d4139f83fae228d">7ddd37b4ad</a> &mdash; Fix Mach trap access.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/568ff7623f7a79a2fefbf96f9c840a3f7ea4e096">568ff7623f</a> &mdash; Deferred traps.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/44000a3a3aaf0de7b6a741dc1545e3a44d67410c">44000a3a3a</a> &mdash; Post-launch execution traps.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../sandbox.html#insight-5-mid-process-revocation">Sandbox Analyzer &rsaquo; 19 primitives revoked</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Confidence: High.</strong> The empirical findings are directly validated against WebKit's full commit history (919 iOS sandbox commits), the upstream <code>.sb.in</code> source profiles, and BrowserEngineKit extension Swift interfaces at HEAD.</li>
+        <li><strong>Crash rate under field conditions.</strong> While source analysis proves that unwhitelisted syscalls and Mach traps fail with <code>EPERM</code> or terminate the calling process, the frequency with which production users encounter silent framework fallbacks versus hard crashes depends heavily on each engine's internal call graphs and exception handling.</li>
+        <li><strong>Evolution of BrowserEngineKit revisions.</strong> Apple's introduction of <code>applyRestrictedSandbox(revision:)</code> and <code>local:tested_version_2.0</code> demonstrates an awareness of third-party sandbox coupling. However, whether Apple will transition from coarse monolithic revisions to fine-grained feature entitlements remains an open architectural question.</li>
+        <li><strong>Main-page row assessment:</strong> The main-page summary is fully confirmed by our findings: third-party engines inherit WebKit's rigid profiles, lack kernel telemetry visibility, and are coupled to Apple's OS release cadence when underlying libraries drift. Priority P2 and Confidence High are well justified.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, the sandboxing model is completely inverted. An alternative browser engine controls its own process architecture and sandboxing implementation. Multi-process isolation on Android is achieved via standard Linux user IDs (UID-per-process isolation via Android's <code>isolatedProcess=true</code> service attribute) and the engine's own Linux <strong>seccomp-bpf</strong> filter programs.</p>
+      <p>Because the browser engine compiles its own seccomp filter directly into its application binary, the engine developers have full visibility and control: they can add allowlisted syscalls, update filters immediately when Android NDK libraries evolve, and ship emergency sandbox patches via standard Google Play Store app updates within hours. Android engines never have to wait for an OEM operating system point release to fix a sandbox mismatch, nor are they subject to secret kernel telemetry channels that exclude third-party developers.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../sandbox.html">Sandbox evolution analyzer</a> — full interactive dashboard covering all 919 iOS Seatbelt commits, policy churn charts, and architectural insights.</li>
+        <li><a href="../sandbox.html#insight-1-churn">Sandbox analyzer › Insight 1: Continuous Policy Churn</a> — annual commit trends and sandbox-only change statistics.</li>
+        <li><a href="../sandbox.html#insight-3-telemetry">Sandbox analyzer › Insight 3: Telemetry &amp; Hardening Churn</a> — analysis of the 113 telemetry commits and 8.3% revert rate.</li>
+        <li><a href="../sandbox.html#insight-6-architecture">Sandbox analyzer › Insight 6: BrowserEngineKit 3P Divergence</a> — documentation of the 8 third-party specific commits.</li>
+        <li><a href="../sandbox.html#view=explorer&amp;tag=3p-specific">Sandbox analyzer › Challenge A: Monolithic OS Release Cycles</a> — coupling between engine fixes and iOS point updates.</li>
+        <li><a href="../sandbox.html#view=explorer&amp;cat=telemetry-logging">Sandbox analyzer › Challenge B: Asymmetric Kernel Telemetry</a> — kernel tracing limitations for alternative browsers.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=restrict.notifyd">Entitlements explorer › <code>com.apple.developer.web-browser-engine.restrict.notifyd</code></a> — dossier on the notification broker entitlement.</li>
+        <li><a href="../index.html#set-aside-heading">Issue › Security hardening &amp; JIT restrictions</a> — sibling analysis of memory protection and process restrictions under BrowserEngineKit.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

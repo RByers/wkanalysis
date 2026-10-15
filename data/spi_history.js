@@ -1,6 +1,10 @@
 window.__WKANALYZE_SPI_HISTORY__ = {
   "metadata": {
-    "generated_at": "2026-10-04T02:27:58.293728+00:00",
+    "generated_at": "2026-10-14T20:50:13.581469+00:00",
+    "source_repo": "https://github.com/WebKit/WebKit",
+    "github_repo_url": "https://github.com/WebKit/WebKit",
+    "github_blob_base_url": "https://github.com/WebKit/WebKit/blob/main/",
+    "github_commit_base_url": "https://github.com/WebKit/WebKit/commit/",
     "tool_introduced_commit": {
       "hash": "0a497503904f1efffa0a777a416bfa2224f0d6f5",
       "short_hash": "0a497503904f",

@@ -134,7 +134,8 @@
       }
       const tok = match[0];
       if (tok.startsWith('**') && tok.endsWith('**')) {
-        const strong = el('strong', '', tok.slice(2, -2));
+        const strong = el('strong', '', '');
+        appendInlineMarkdown(strong, tok.slice(2, -2));
         parent.appendChild(strong);
       } else if (tok.startsWith('`') && tok.endsWith('`')) {
         const code = el('code', '', tok.slice(1, -1));
@@ -201,7 +202,8 @@
         }
         if (i < n) i++; // skip closing ```
         const pre = el('pre');
-        const code = el('code', '', codeLines.join('\n'));
+        const wrapFriendlyCode = codeLines.join('\n').replace(/(-{8})/g, '$1\u200B');
+        const code = el('code', '', wrapFriendlyCode);
         pre.appendChild(code);
         container.appendChild(pre);
         continue;
@@ -450,13 +452,13 @@
     pillarsGrid.appendChild(p2);
 
     const p3 = el('div', 'pillar-card');
-    p3.appendChild(el('div', 'pillar-num', 'Pattern 3 • BrowserEngineKit & EU DMA Asymmetry'));
-    p3.appendChild(el('h3', 'pillar-title', 'Why 3P Browser Engines Cannot Access Active WebKit Auxiliary Services'));
+    p3.appendChild(el('div', 'pillar-num', 'Pattern 3 • Caller Entitlements & XPC Endpoints'));
+    p3.appendChild(el('h3', 'pillar-title', 'XPC Listener Entitlements & Process Types'));
     p3.appendChild(
       el(
         'p',
         'pillar-desc',
-        'Apple’s BrowserEngineKit (iOS 17.4+) exposes only three extension types: WebContent, Rendering (GPU), and Networking. Third-party engines cannot spawn a ModelProcess equivalent (no BEModelProcess), and cannot connect to webpushd or adattributiond because XPC connections require Apple-private caller entitlements (com.apple.private.webkit.webpush and com.apple.private.webkit.adattributiond) granted only to Apple’s com.apple.WebKit.Networking.'
+        'Apple’s BrowserEngineKit exposes three extension types: WebContent, Rendering (GPU), and Networking. XPC connections to webpushd and adattributiond require specific caller entitlements (com.apple.private.webkit.webpush and com.apple.private.webkit.adattributiond) checked by the daemon listener.'
       )
     );
     const p3Btn = el('button', 'btn-secondary', 'Inspect ' + meta.apple_only_capabilities_count + ' Apple-Only Capabilities →');
@@ -489,19 +491,19 @@
     matrixCard.appendChild(matrixHeader);
 
     const tableWrap = el('div', 'table-scroll-container');
-    const table = el('table', 'changes-table');
+    const table = el('table', 'changes-table matrix-comparison-table');
     const thead = el('thead');
     const headRow = el('tr');
     [
-      'Service / Binary',
-      'Status at HEAD',
-      'Process Model & Inheritance',
-      'Cataloged Capabilities',
-      'Unique vs. Core Triad',
-      'Signature Seatbelt & Entitlement Grants',
-      '3P BrowserEngineKit / DMA Status',
-      'Report / CSV'
-    ].forEach((col) => headRow.appendChild(el('th', '', col)));
+      ['Service / Binary', 'col-mat-svc'],
+      ['Status at HEAD', 'col-mat-status'],
+      ['Process Model & Inheritance', 'col-mat-model'],
+      ['Cataloged Capabilities', 'col-mat-caps'],
+      ['Unique vs. Core Triad', 'col-mat-uniq'],
+      ['Signature Seatbelt & Entitlement Grants', 'col-mat-grants'],
+      ['3P BrowserEngineKit Status', 'col-mat-bek'],
+      ['Report / CSV', 'col-mat-dl']
+    ].forEach(([col, cls]) => headRow.appendChild(el('th', cls, col)));
     thead.appendChild(headRow);
     table.appendChild(thead);
 
@@ -518,7 +520,7 @@
       });
 
       // Col 1: Name
-      const tdName = el('td');
+      const tdName = el('td', 'col-mat-svc');
       const strongName = el('strong', '', svc.name);
       const codeBin = el('div', '', '');
       codeBin.appendChild(el('code', '', svc.binary_or_bundle_id));
@@ -527,7 +529,7 @@
       tr.appendChild(tdName);
 
       // Col 2: Status
-      const tdStatus = el('td');
+      const tdStatus = el('td', 'col-mat-status');
       const statusBadge = el(
         'span',
         svc.status_at_head === 'active'
@@ -536,18 +538,18 @@
         svc.status_at_head === 'active' ? 'Active at HEAD' : 'Retired (' + (svc.retired_date || '').slice(0, 4) + ')'
       );
       tdStatus.appendChild(statusBadge);
-      const commitsSub = el('div', 'card-subtitle', svc.sandbox_commit_count + ' .sb commits (' + svc.introduced_date + ')');
+      const commitsSub = el('div', 'card-subtitle', svc.sandbox_commit_count + ' .sb commits \u00B7 ' + svc.capability_count + ' caps');
       tdStatus.appendChild(commitsSub);
       tr.appendChild(tdStatus);
 
       // Col 3: Model & Inheritance
-      const tdModel = el('td');
+      const tdModel = el('td', 'col-mat-model');
       tdModel.appendChild(el('div', '', svc.process_kind));
       tdModel.appendChild(el('div', 'card-subtitle', svc.inheritance_model));
       tr.appendChild(tdModel);
 
       // Col 4: Capability counts
-      const tdCount = el('td');
+      const tdCount = el('td', 'col-mat-caps');
       const btnAll = el('button', 'btn-secondary', svc.capability_count + ' capabilities');
       btnAll.type = 'button';
       btnAll.addEventListener('click', (e) => {
@@ -558,7 +560,7 @@
       tr.appendChild(tdCount);
 
       // Col 5: Unique vs Core Triad
-      const tdUniq = el('td');
+      const tdUniq = el('td', 'col-mat-uniq');
       const uniqCount = (svc.uniqueness_counts && svc.uniqueness_counts['unique-to-service']) || 0;
       const elevCount = (svc.uniqueness_counts && svc.uniqueness_counts['unique-vs-webcontent']) || 0;
       tdUniq.appendChild(el('span', 'svc-pill svc-pill-purple', uniqCount + ' unique to service'));
@@ -567,7 +569,7 @@
       tr.appendChild(tdUniq);
 
       // Col 6: Signature grants
-      const tdGrants = el('td');
+      const tdGrants = el('td', 'col-mat-grants');
       const topUnique = svc.capabilities
         .filter((c) => c.unique_vs_core_triad === 'unique-to-service')
         .slice(0, 4);
@@ -578,12 +580,12 @@
       tdGrants.appendChild(chipWrap);
       tr.appendChild(tdGrants);
 
-      // Col 7: 3P DMA summary
-      const tdDma = el('td', '', svc.dma_3p_summary.slice(0, 140) + '…');
-      tr.appendChild(tdDma);
+      // Col 7: 3P BrowserEngineKit summary
+      const tdBek = el('td', 'col-mat-bek', svc.bek_3p_summary.slice(0, 140) + '…');
+      tr.appendChild(tdBek);
 
       // Col 8: Actions
-      const tdActions = el('td');
+      const tdActions = el('td', 'col-mat-dl');
       const dlCsvBtn = el('button', 'btn-secondary', 'CSV');
       dlCsvBtn.type = 'button';
       dlCsvBtn.title = 'Download ' + svc.csv_file;
@@ -744,8 +746,8 @@
     reasonGrid.appendChild(r2);
 
     const r3 = el('div', 'service-reason-card');
-    r3.appendChild(el('h4', '', '3. 3P BrowserEngineKit & EU DMA Implications'));
-    r3.appendChild(el('p', '', activeSvc.dma_3p_summary));
+    r3.appendChild(el('h4', '', '3. 3P BrowserEngineKit Implications'));
+    r3.appendChild(el('p', '', activeSvc.bek_3p_summary));
     reasonGrid.appendChild(r3);
     body.appendChild(reasonGrid);
 
@@ -808,60 +810,180 @@
     inspectorSection.appendChild(body);
   }
 
+  function buildCapabilityDetailRow(cap, svc, colSpan, includeDeepDiveBtn) {
+    const ctMeta = getCapTypeMeta(cap.capability_type);
+    const uMeta = getUniquenessMeta(cap.unique_vs_core_triad);
+    const aMeta = getAvailabilityMeta(cap['3p_browser_availability']);
+
+    const detailTr = el('tr', 'commit-detail-row');
+    const detailTd = el('td');
+    detailTd.colSpan = colSpan;
+    const box = el('div', 'service-meta-box');
+
+    const topPills = el('div', 'source-link-list');
+    topPills.style.marginBottom = '8px';
+    topPills.appendChild(
+      el(
+        'span',
+        cap.status_at_head === 'active'
+          ? 'svc-status-badge svc-status-active'
+          : 'svc-status-badge svc-status-retired',
+        (svc ? svc.name : cap.service_id) + ' (' + (cap.status_at_head === 'active' ? 'Active at HEAD' : 'Retired') + ')'
+      )
+    );
+    topPills.appendChild(el('span', getCapTypePillClass(cap.capability_type), ctMeta.label || ctMeta.short_label));
+    topPills.appendChild(el('span', getUniquenessPillClass(cap.unique_vs_core_triad), uMeta.label || uMeta.short_label));
+    topPills.appendChild(el('span', getAvailabilityPillClass(cap['3p_browser_availability']), aMeta.label || aMeta.short_label));
+    box.appendChild(topPills);
+
+    box.appendChild(
+      el(
+        'div',
+        'service-meta-val',
+        'Identifier: ' +
+          cap.identifier +
+          '  |  Access / Direction: ' +
+          cap.direction_or_access +
+          '  |  Seatbelt File: ' +
+          cap.seatbelt_file
+      )
+    );
+    box.appendChild(el('p', 'service-hero-lead', cap.purpose_summary));
+
+    const locs = Array.isArray(cap.source_locations) && cap.source_locations.length > 0
+      ? cap.source_locations
+      : (cap.source_files_list || []).map((sf) => ({ file: sf, line: null, github_url: buildSourceFileUrl(svc, sf) }));
+    if (locs.length > 0 || (cap.source_symbols_list || []).length > 0) {
+      const srcRow = el('div', 'source-link-list');
+      srcRow.style.marginBottom = '10px';
+      srcRow.appendChild(el('span', 'service-meta-val', 'WebKit Source Files & Symbols: '));
+      locs.forEach((loc) => {
+        const sf = loc.file || '';
+        const url = loc.github_url || buildSourceFileUrl(svc, sf);
+        const shortName = sf.split('/').slice(-2).join('/') + (loc.line ? ':' + loc.line : '');
+        if (isSafeExternalUrl(url)) {
+          const a = el('a', 'source-file-chip', shortName + ' \u2197');
+          a.setAttribute('href', url);
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+          a.title = sf + (loc.line ? ':' + loc.line : '');
+          a.addEventListener('click', (e) => e.stopPropagation());
+          srcRow.appendChild(a);
+        } else {
+          srcRow.appendChild(el('span', 'symbol-chip', shortName));
+        }
+      });
+      (cap.source_symbols_list || []).forEach((sym) => {
+        srcRow.appendChild(el('span', 'symbol-chip', sym));
+      });
+      box.appendChild(srcRow);
+    }
+
+    if (Array.isArray(cap.related_commits) && cap.related_commits.length > 0) {
+      const comRow = el('div', 'source-link-list');
+      comRow.style.marginBottom = '10px';
+      comRow.appendChild(el('span', 'service-meta-val', 'Related Sandbox Commits: '));
+      cap.related_commits.forEach((rc) => {
+        const cUrl = rc.github_url || (GITHUB_COMMIT_BASE + encodeURIComponent(rc.hash));
+        if (isSafeExternalUrl(cUrl)) {
+          const a = el('a', 'source-file-chip', rc.short_hash + ' (' + rc.date + ') \u2197');
+          a.setAttribute('href', cUrl);
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+          a.title = rc.subject || '';
+          a.addEventListener('click', (e) => e.stopPropagation());
+          comRow.appendChild(a);
+        }
+      });
+      box.appendChild(comRow);
+    }
+
+    if (includeDeepDiveBtn) {
+      const openDeepDiveBtn = el(
+        'button',
+        'btn-secondary',
+        'Open ' + (svc ? svc.name : cap.service_id) + ' Full Deep-Dive Report \u2192'
+      );
+      openDeepDiveBtn.type = 'button';
+      openDeepDiveBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.selectedServiceId = cap.service_id;
+        state.selectedSubTab = 'markdown';
+        switchView('insights');
+        renderInsightsView();
+      });
+      box.appendChild(openDeepDiveBtn);
+    }
+
+    detailTd.appendChild(box);
+    detailTr.appendChild(detailTd);
+    return detailTr;
+  }
+
   function renderServiceCapabilitiesSubTab(container, svc) {
     const wrap = el('div', 'table-scroll-container');
     const table = el('table', 'changes-table');
     const thead = el('thead');
     const trH = el('tr');
     [
-      'Capability Type',
-      'Identifier (Rule / Entitlement / IPC)',
-      'Access / Direction',
-      'Uniqueness vs. Core Triad',
-      'Purpose & Code Role',
-      'Source Files & Symbols',
-      '3P Availability'
-    ].forEach((h) => trH.appendChild(el('th', '', h)));
+      ['', 'col-expand'],
+      ['Capability Type', 'col-type'],
+      ['Identifier (Rule / Entitlement / IPC)', 'col-id'],
+      ['Access / Direction', 'col-dir'],
+      ['Uniqueness vs. Core Triad', 'col-uniq'],
+      ['Purpose & Code Role', 'col-purpose'],
+      ['Source Files & Symbols', 'col-sources'],
+      ['3P Availability', 'col-avail']
+    ].forEach(([h, cls]) => trH.appendChild(el('th', cls, h)));
     thead.appendChild(trH);
     table.appendChild(thead);
 
     const tbody = el('tbody');
     svc.capabilities.forEach((cap) => {
-      const tr = el('tr');
+      const rowKey = 'subcap-' + (cap.row_id || cap.identifier);
+      const isExpanded = state.expandedRowIds.has(rowKey);
+      const tr = el('tr', 'commit-row' + (isExpanded ? ' expanded' : ''));
       const ctMeta = getCapTypeMeta(cap.capability_type);
       const uMeta = getUniquenessMeta(cap.unique_vs_core_triad);
       const aMeta = getAvailabilityMeta(cap['3p_browser_availability']);
 
-      const tdType = el('td');
+      tr.appendChild(el('td', 'col-expand', isExpanded ? '▼' : '▶'));
+
+      const tdType = el('td', 'col-type');
       tdType.appendChild(el('span', getCapTypePillClass(cap.capability_type), ctMeta.short_label));
       tr.appendChild(tdType);
 
-      const tdId = el('td');
+      const tdId = el('td', 'col-id');
       tdId.appendChild(el('code', '', cap.identifier));
       tr.appendChild(tdId);
 
-      const tdDir = el('td');
+      const tdDir = el('td', 'col-dir');
       tdDir.appendChild(el('code', '', cap.direction_or_access));
       tr.appendChild(tdDir);
 
-      const tdUniq = el('td');
+      const tdUniq = el('td', 'col-uniq');
       tdUniq.appendChild(el('span', getUniquenessPillClass(cap.unique_vs_core_triad), uMeta.short_label));
       tr.appendChild(tdUniq);
 
-      const tdPurpose = el('td', '', cap.purpose_summary);
+      const tdPurpose = el('td', 'col-purpose', cap.purpose_summary);
       tr.appendChild(tdPurpose);
 
-      const tdSource = el('td');
+      const tdSource = el('td', 'col-sources');
       const fileList = el('div', 'source-link-list');
-      (cap.source_files_list || []).forEach((sf) => {
-        const url = buildSourceFileUrl(svc, sf);
-        const shortName = sf.split('/').slice(-2).join('/');
+      const locs = Array.isArray(cap.source_locations) && cap.source_locations.length > 0
+        ? cap.source_locations
+        : (cap.source_files_list || []).map((sf) => ({ file: sf, line: null, github_url: buildSourceFileUrl(svc, sf) }));
+      locs.forEach((loc) => {
+        const sf = loc.file || '';
+        const url = loc.github_url || buildSourceFileUrl(svc, sf);
+        const shortName = sf.split('/').slice(-2).join('/') + (loc.line ? ':' + loc.line : '');
         if (isSafeExternalUrl(url)) {
           const a = el('a', 'source-file-chip', shortName + ' ↗');
           a.setAttribute('href', url);
           a.setAttribute('target', '_blank');
           a.setAttribute('rel', 'noopener noreferrer');
-          a.title = sf;
+          a.title = sf + (loc.line ? ':' + loc.line : '');
+          a.addEventListener('click', (e) => e.stopPropagation());
           fileList.appendChild(a);
         } else {
           fileList.appendChild(el('span', 'symbol-chip', shortName));
@@ -873,13 +995,25 @@
       tdSource.appendChild(fileList);
       tr.appendChild(tdSource);
 
-      const tdAvail = el('td');
+      const tdAvail = el('td', 'col-avail');
       tdAvail.appendChild(
         el('span', getAvailabilityPillClass(cap['3p_browser_availability']), aMeta.short_label)
       );
       tr.appendChild(tdAvail);
 
+      tr.addEventListener('click', () => {
+        if (state.expandedRowIds.has(rowKey)) {
+          state.expandedRowIds.delete(rowKey);
+        } else {
+          state.expandedRowIds.add(rowKey);
+        }
+        renderServiceInspector();
+      });
+
       tbody.appendChild(tr);
+      if (isExpanded) {
+        tbody.appendChild(buildCapabilityDetailRow(cap, svc, 8, false));
+      }
     });
     table.appendChild(tbody);
     wrap.appendChild(table);
@@ -891,29 +1025,39 @@
     const table = el('table', 'changes-table');
     const thead = el('thead');
     const trH = el('tr');
-    ['Commit', 'Date', 'Category', 'Sandbox Effect', 'Summary & Touched Rules'].forEach((h) =>
-      trH.appendChild(el('th', '', h))
-    );
+    [
+      ['', 'col-expand'],
+      ['Commit', 'col-commit'],
+      ['Date', 'col-date'],
+      ['Category', 'col-category'],
+      ['Sandbox Effect', 'col-effect'],
+      ['Summary & Touched Rules', 'col-summary']
+    ].forEach(([h, cls]) => trH.appendChild(el('th', cls, h)));
     thead.appendChild(trH);
     table.appendChild(thead);
 
     const tbody = el('tbody');
     (svc.sandbox_commits || []).forEach((c) => {
-      const tr = el('tr');
-      const tdHash = el('td');
+      const rowKey = 'subcommit-' + svc.id + '-' + c.hash;
+      const isExpanded = state.expandedRowIds.has(rowKey);
+      const tr = el('tr', 'commit-row' + (isExpanded ? ' expanded' : ''));
+      tr.appendChild(el('td', 'col-expand', isExpanded ? '▼' : '▶'));
+
+      const tdHash = el('td', 'col-commit');
       const ghUrl = GITHUB_COMMIT_BASE + encodeURIComponent(c.hash);
       const a = el('a', 'source-file-chip', c.short_hash + ' ↗');
       a.setAttribute('href', ghUrl);
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener noreferrer');
+      a.addEventListener('click', (e) => e.stopPropagation());
       tdHash.appendChild(a);
       tr.appendChild(tdHash);
 
-      tr.appendChild(el('td', '', c.date));
-      tr.appendChild(el('td', '', c.category));
-      tr.appendChild(el('td', '', c.effect));
+      tr.appendChild(el('td', 'col-date', c.date));
+      tr.appendChild(el('td', 'col-category', c.category));
+      tr.appendChild(el('td', 'col-effect', c.effect));
 
-      const tdSum = el('td');
+      const tdSum = el('td', 'col-summary');
       tdSum.appendChild(el('div', '', c.summary));
       if (Array.isArray(c.rules) && c.rules.length > 0) {
         const rWrap = el('div', 'source-link-list');
@@ -921,7 +1065,47 @@
         tdSum.appendChild(rWrap);
       }
       tr.appendChild(tdSum);
+
+      tr.addEventListener('click', () => {
+        if (state.expandedRowIds.has(rowKey)) {
+          state.expandedRowIds.delete(rowKey);
+        } else {
+          state.expandedRowIds.add(rowKey);
+        }
+        renderServiceInspector();
+      });
+
       tbody.appendChild(tr);
+      if (isExpanded) {
+        const dTr = el('tr', 'commit-detail-row');
+        const dTd = el('td');
+        dTd.colSpan = 6;
+        const dBox = el('div', 'service-meta-box');
+        dBox.appendChild(
+          el(
+            'div',
+            'service-meta-val',
+            'Commit: ' +
+              c.short_hash +
+              '  |  Date: ' +
+              c.date +
+              '  |  Category: ' +
+              c.category +
+              '  |  Sandbox Effect: ' +
+              c.effect
+          )
+        );
+        dBox.appendChild(el('p', 'service-hero-lead', c.summary));
+        if (Array.isArray(c.rules) && c.rules.length > 0) {
+          const allRules = el('div', 'source-link-list');
+          allRules.appendChild(el('span', 'service-meta-val', 'All Touched Seatbelt Rules: '));
+          c.rules.forEach((r) => allRules.appendChild(el('span', 'symbol-chip', r)));
+          dBox.appendChild(allRules);
+        }
+        dTd.appendChild(dBox);
+        dTr.appendChild(dTd);
+        tbody.appendChild(dTr);
+      }
     });
     table.appendChild(tbody);
     wrap.appendChild(table);
@@ -1246,9 +1430,16 @@
       const count = matching.filter((c) => c.service_id === svc.id).length;
       const pct = Math.round((count / total) * 100);
       const row = el('div', 'breakdown-row' + (state.filterService === svc.id ? ' active' : ''));
-      row.style.cursor = 'pointer';
-      row.appendChild(el('span', 'breakdown-label', svc.name));
-      row.appendChild(el('span', 'breakdown-count', count + ' (' + pct + '%)'));
+      const top = el('div', 'breakdown-row-top');
+      top.appendChild(el('span', 'breakdown-label', svc.name));
+      top.appendChild(el('span', 'breakdown-count', count + ' (' + pct + '%)'));
+      row.appendChild(top);
+      const track = el('div', 'breakdown-bar-track');
+      const fill = el('div', 'breakdown-bar-fill');
+      fill.style.width = Math.max(count > 0 ? 3 : 0, pct) + '%';
+      fill.style.backgroundColor = svc.status === 'ACTIVE' ? '#2563eb' : '#64748b';
+      track.appendChild(fill);
+      row.appendChild(track);
       row.addEventListener('click', () => {
         state.filterService = state.filterService === svc.id ? 'all' : svc.id;
         syncControlsFromState();
@@ -1261,9 +1452,16 @@
       const count = matching.filter((c) => c.capability_type === ct.id).length;
       const pct = Math.round((count / total) * 100);
       const row = el('div', 'breakdown-row' + (state.filterCapType === ct.id ? ' active' : ''));
-      row.style.cursor = 'pointer';
-      row.appendChild(el('span', 'breakdown-label', ct.label));
-      row.appendChild(el('span', 'breakdown-count', count + ' (' + pct + '%)'));
+      const top = el('div', 'breakdown-row-top');
+      top.appendChild(el('span', 'breakdown-label', ct.label));
+      top.appendChild(el('span', 'breakdown-count', count + ' (' + pct + '%)'));
+      row.appendChild(top);
+      const track = el('div', 'breakdown-bar-track');
+      const fill = el('div', 'breakdown-bar-fill');
+      fill.style.width = Math.max(count > 0 ? 3 : 0, pct) + '%';
+      fill.style.backgroundColor = ct.color || '#2563eb';
+      track.appendChild(fill);
+      row.appendChild(track);
       row.addEventListener('click', () => {
         state.filterCapType = state.filterCapType === ct.id ? 'all' : ct.id;
         syncControlsFromState();
@@ -1289,9 +1487,16 @@
           ? state.filterUniqueness === item.id
           : state.filterAvailability === item.id;
       const row = el('div', 'breakdown-row' + (isActive ? ' active' : ''));
-      row.style.cursor = 'pointer';
-      row.appendChild(el('span', 'breakdown-label', item.short_label));
-      row.appendChild(el('span', 'breakdown-count', count + ' (' + pct + '%)'));
+      const top = el('div', 'breakdown-row-top');
+      top.appendChild(el('span', 'breakdown-label', item.short_label));
+      top.appendChild(el('span', 'breakdown-count', count + ' (' + pct + '%)'));
+      row.appendChild(top);
+      const track = el('div', 'breakdown-bar-track');
+      const fill = el('div', 'breakdown-bar-fill');
+      fill.style.width = Math.max(count > 0 ? 3 : 0, pct) + '%';
+      fill.style.backgroundColor = item.color || '#2563eb';
+      track.appendChild(fill);
+      row.appendChild(track);
       row.addEventListener('click', () => {
         if (state.breakdownTab === 'uniqueness') {
           state.filterUniqueness = state.filterUniqueness === item.id ? 'all' : item.id;
@@ -1328,7 +1533,7 @@
       const tdExp = el('td', 'col-expand', isExpanded ? '▼' : '▶');
       tr.appendChild(tdExp);
 
-      const tdSvc = el('td');
+      const tdSvc = el('td', 'col-svc');
       tdSvc.appendChild(el('strong', '', svc ? svc.name : cap.service_id));
       tdSvc.appendChild(
         el(
@@ -1340,33 +1545,37 @@
       tr.appendChild(tdSvc);
 
       const ctMeta = getCapTypeMeta(cap.capability_type);
-      const tdType = el('td');
+      const tdType = el('td', 'col-type');
       tdType.appendChild(el('span', getCapTypePillClass(cap.capability_type), ctMeta.short_label));
       tr.appendChild(tdType);
 
-      const tdId = el('td');
+      const tdId = el('td', 'col-id');
       tdId.appendChild(el('code', '', cap.identifier));
       tdId.appendChild(el('div', 'card-subtitle', cap.direction_or_access));
       tr.appendChild(tdId);
 
       const uMeta = getUniquenessMeta(cap.unique_vs_core_triad);
-      const tdUniq = el('td');
+      const tdUniq = el('td', 'col-uniq');
       tdUniq.appendChild(el('span', getUniquenessPillClass(cap.unique_vs_core_triad), uMeta.short_label));
       tr.appendChild(tdUniq);
 
-      tr.appendChild(el('td', '', cap.purpose_summary));
+      tr.appendChild(el('td', 'col-purpose', cap.purpose_summary));
 
-      const tdSrc = el('td');
+      const tdSrc = el('td', 'col-sources');
       const srcWrap = el('div', 'source-link-list');
-      (cap.source_files_list || []).forEach((sf) => {
-        const url = buildSourceFileUrl(svc, sf);
-        const shortName = sf.split('/').slice(-2).join('/');
+      const locs = Array.isArray(cap.source_locations) && cap.source_locations.length > 0
+        ? cap.source_locations
+        : (cap.source_files_list || []).map((sf) => ({ file: sf, line: null, github_url: buildSourceFileUrl(svc, sf) }));
+      locs.forEach((loc) => {
+        const sf = loc.file || '';
+        const url = loc.github_url || buildSourceFileUrl(svc, sf);
+        const shortName = sf.split('/').slice(-2).join('/') + (loc.line ? ':' + loc.line : '');
         if (isSafeExternalUrl(url)) {
           const a = el('a', 'source-file-chip', shortName + ' ↗');
           a.setAttribute('href', url);
           a.setAttribute('target', '_blank');
           a.setAttribute('rel', 'noopener noreferrer');
-          a.title = sf;
+          a.title = sf + (loc.line ? ':' + loc.line : '');
           a.addEventListener('click', (e) => e.stopPropagation());
           srcWrap.appendChild(a);
         } else {
@@ -1380,7 +1589,7 @@
       tr.appendChild(tdSrc);
 
       const aMeta = getAvailabilityMeta(cap['3p_browser_availability']);
-      const tdAvail = el('td');
+      const tdAvail = el('td', 'col-avail');
       tdAvail.appendChild(
         el('span', getAvailabilityPillClass(cap['3p_browser_availability']), aMeta.short_label)
       );
@@ -1398,42 +1607,7 @@
       tbody.appendChild(tr);
 
       if (isExpanded) {
-        const detailTr = el('tr', 'commit-detail-row');
-        const detailTd = el('td');
-        detailTd.colSpan = 8;
-        const box = el('div', 'service-meta-box');
-        box.appendChild(
-          el(
-            'div',
-            'service-meta-val',
-            'Seatbelt File: ' +
-              cap.seatbelt_file +
-              '  |  Access Mode: ' +
-              cap.direction_or_access +
-              '  |  Uniqueness: ' +
-              uMeta.label +
-              '  |  3P Browser Availability: ' +
-              aMeta.label
-          )
-        );
-        box.appendChild(el('p', 'service-hero-lead', cap.purpose_summary));
-        const openDeepDiveBtn = el(
-          'button',
-          'btn-secondary',
-          'Open ' + (svc ? svc.name : cap.service_id) + ' Full Deep-Dive Report →'
-        );
-        openDeepDiveBtn.type = 'button';
-        openDeepDiveBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          state.selectedServiceId = cap.service_id;
-          state.selectedSubTab = 'markdown';
-          switchView('insights');
-          renderInsightsView();
-        });
-        box.appendChild(openDeepDiveBtn);
-        detailTd.appendChild(box);
-        detailTr.appendChild(detailTd);
-        tbody.appendChild(detailTr);
+        tbody.appendChild(buildCapabilityDetailRow(cap, svc, 8, true));
       }
     });
   }

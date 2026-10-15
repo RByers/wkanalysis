@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Longitudinal analysis of WebKit iOS Seatbelt sandbox profiles tracking syscall, Mach, IOKit, and file policy changes since inception.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
-  <title>WebKit iOS Sandbox Evolution — Seatbelt Policy Analyzer</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>WebKit iOS Sandbox Evolution — Change Analysis &amp; Visualization</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,119 +12,113 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- Unified Sticky Top Header -->
   <header class="app-header">
     <div class="header-inner">
       <div class="brand">
-        <a href="index.html" class="brand-icon" title="Back to WebKit source analysis" aria-label="Back to WebKit source analysis">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            <path d="M9 12l2 2 4-4"></path>
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
           </svg>
-        </a>
+        </div>
         <div>
           <div class="brand-title-row">
+            <a href="index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
             <h1 class="brand-title">WebKit iOS Sandbox Evolution</h1>
-            <span class="brand-badge">Seatbelt Policy Analysis</span>
-            <span class="ai-warning-pill" role="note" title="Analysis is AI-generated and may contain errors">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                <line x1="12" y1="9" x2="12" y2="13"></line>
-                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-              </svg>
-              Analysis is AI-generated and may contain errors
-            </span>
+            <span class="brand-badge">Seatbelt Profile Analysis</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; AI-generated analysis &mdash; may contain errors</span>
           </div>
-          <p class="brand-subtitle">Longitudinal analysis of WebKit iOS sandbox profiles (<code>Source/WebKit/Resources/SandboxProfiles/ios</code>) &mdash; tracking syscall, Mach, IOKit, and file policy changes since inception</p>
+          <p class="brand-subtitle">
+            Historical analysis of changes to WebKit's iOS sandbox profiles (<code>Source/WebKit/Resources/SandboxProfiles/ios</code> &amp; <code>Shared/Sandbox/iOS</code>)
+          </p>
         </div>
       </div>
       <div class="header-actions">
-        <a href="index.html" class="btn-secondary" title="Back to WebKit source analysis index">&larr; All Analyses</a>
-        <div id="datasetMetaBadge" class="meta-badge" aria-live="polite">Loading dataset&hellip;</div>
-        <button id="toggleMethodologyBtn" type="button" class="btn-secondary" aria-expanded="false" aria-controls="methodologyPanel">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
-          Methodology
+        <span id="datasetMetaBadge" class="meta-badge">Loading dataset…</span>
+        <button id="toggleMethodologyBtn" class="btn btn-secondary" type="button" aria-expanded="false">
+          Methodology &amp; Taxonomy
+        </button>
+        <button id="exportCsvBtn" class="btn btn-secondary" type="button" title="Export currently filtered commits as CSV">
+          Export CSV
         </button>
       </div>
     </div>
   </header>
 
   <main class="app-main">
-    <!-- Collapsible Methodology & Scope Note -->
-    <section id="methodologyPanel" class="methodology-panel hidden" aria-label="Analysis Methodology">
-      <div class="methodology-grid">
-        <div class="methodology-col">
-          <h3>Tracked Seatbelt Paths</h3>
-          <p>Captures every commit touching WebKit&rsquo;s iOS Seatbelt (<code>.sb</code> / <code>.sb.in</code>) sandbox definitions from May 2014 to present across historical renames and macro extractions:</p>
-          <ul class="compact-list">
-            <li><code>Source/WebKit/Resources/SandboxProfiles/ios/</code> (primary iOS process profiles: WebContent, GPU, Networking, WebAuthn, adattributiond, webpushd, Model)</li>
-            <li><code>Source/WebKit/Shared/Sandbox/iOS/</code> (shared <code>*-defines.sb</code> and <code>common.sb</code> syscall/Mach tables extracted in Sep 2025 and <code>#include</code>d by the iOS profiles)</li>
-            <li><code>Source/WebKit2/Resources/SandboxProfiles/ios/</code> &amp; <code>DatabaseProcess/ios/</code> (pre-2017 paths prior to the <code>WebKit2</code> &rarr; <code>WebKit</code> directory rename)</li>
-          </ul>
-        </div>
-        <div class="methodology-col">
-          <h3>Sandbox Effect Classification (Diff Polarity)</h3>
-          <p>Each commit diff is parsed as normalized Seatbelt S-expressions, tracking rule polarity (<code>allow</code>, <code>deny</code>, and conditional tiers like <code>only-in-use-before-launch</code> or <code>denied-in-lockdown-mode</code>) and canceling pure line-movement / closing-parenthesis shifts:</p>
-          <ul class="compact-list">
-            <li><strong>Block More (Tighten)</strong>: Adds <code>deny</code> rules, removes <code>allow</code> rules, or moves primitives into stricter tiers (e.g., pre-launch only or Lockdown Mode).</li>
-            <li><strong>Allow More (Expand)</strong>: Adds <code>allow</code> rules, unblocks syscalls/Mach services/IOKit properties, or introduces a new process profile.</li>
-            <li><strong>Combination (Allow &amp; Block)</strong>: Simultaneously expands and restricts rules (e.g., replacing broad wildcard access with narrower rules plus targeted blocks).</li>
-            <li><strong>No Sandbox Impact</strong>: Comment-only edits, formatting, macro deduplication, build guard fixes, or telemetry/logging modifier changes (<code>with telemetry</code> / <code>with no-report</code>).</li>
-          </ul>
-        </div>
-        <div class="methodology-col">
-          <h3>Purpose Categories &amp; Binary Tags</h3>
-          <p>Commit descriptions and diff semantics are synthesized into six purpose categories, a concise one-line summary, and binary-specificity tags (<code>apple-specific</code> / <code>3p-specific</code>):</p>
-          <ul class="compact-list">
-            <li><strong>Security Hardening</strong>: Proactively reducing attack surface, blocking unused syscalls/Mach endpoints, Lockdown Mode hardening, and acting on telemetry.</li>
-            <li><strong>Feature &amp; Process Enablement</strong>: Enabling new web platform features, OS frameworks, or new sandboxed auxiliary processes (GPU, WebAuthn, PCM, webpushd, Model).</li>
-            <li><strong>Bug Fix &amp; OS Compatibility</strong>: Resolving runtime sandbox violations, crashes, hangs, or iOS/visionOS SDK regressions.</li>
-            <li><strong>Telemetry &amp; Violation Logging</strong>: Adding/removing <code>with telemetry</code> or silencing noisy violation reports without altering enforcement.</li>
-            <li><strong>Refactoring, Cleanup &amp; Formatting</strong>: Sharing macros, removing dead rules/comments, or formatting.</li>
-            <li><strong>Revert</strong>: Reverting a previous sandbox commit due to regressions or build breakage.</li>
-            <li><strong>Binary Tags (<code>apple-specific</code> / <code>3p-specific</code>)</strong>: Tracks whether a commit touches rules gated on Apple code signing / <code>com.apple.private.*</code> entitlements vs. <code>(require-not (process-attribute is-apple-signed-executable))</code> for 3rd-party browser engines.</li>
-          </ul>
+    <!-- Collapsible Methodology & Taxonomy Panel -->
+    <aside id="methodologyPanel" class="methodology-panel hidden">
+      <div class="methodology-inner">
+        <div class="methodology-grid">
+          <div class="methodology-col">
+            <h3>1. Purpose Categories (Why the change was made)</h3>
+            <ul class="taxonomy-list">
+              <li><span class="badge-pill cat-security-hardening">Security Hardening</span> Proactively reducing attack surface: blocking Unix syscalls, Mach services, IOKit user-clients/properties, kernel MIG routines, or restricting rules to pre-launch / Lockdown Mode.</li>
+              <li><span class="badge-pill cat-feature-expansion">Feature Enablement</span> Granting permissions required by new WebKit features, OS frameworks, or introducing new sandboxed processes (GPU, WebAuthn, Model, adattributiond, webpushd).</li>
+              <li><span class="badge-pill cat-bugfix-compatibility">Bug Fix &amp; Compat</span> Fixing runtime sandbox violations, crashes, hangs, or regressions caused by iOS/visionOS SDK updates or overly tight prior blocks.</li>
+              <li><span class="badge-pill cat-telemetry-logging">Telemetry &amp; Logging</span> Adding or removing <code>with telemetry</code>, <code>with telemetry-backtrace</code>, or <code>with no-report</code> to audit rule usage before blocking.</li>
+              <li><span class="badge-pill cat-refactor-cleanup">Refactor &amp; Cleanup</span> Extracting shared macros (<code>*-defines.sb</code>), removing dead rules/comments, or formatting without changing intended policy.</li>
+              <li><span class="badge-pill cat-revert">Revert</span> Reverting a prior sandbox commit due to functional regressions, performance hits, or build breakage.</li>
+            </ul>
+          </div>
+          <div class="methodology-col">
+            <h3>2. Sandbox Effect (How the policy changed)</h3>
+            <ul class="taxonomy-list">
+              <li><span class="badge-pill eff-block-more">▼ Block More</span> Net tightening of the sandbox: adds <code>(deny ...)</code> rules, removes <code>(allow ...)</code> rules, or gates existing permissions behind narrower conditions (e.g., <code>sandbox-state-flags</code> or Lockdown Mode).</li>
+              <li><span class="badge-pill eff-allow-more">▲ Allow More</span> Net expansion of the sandbox: adds <code>(allow ...)</code> rules, removes <code>(deny ...)</code> rules, or introduces a new process profile.</li>
+              <li><span class="badge-pill eff-combination">◆ Combination</span> Simultaneously tightens and relaxes permissions (e.g., blocking direct Mach service access in WebContent while allowing an alternative IOKit property or Narrower syscall).</li>
+              <li><span class="badge-pill eff-no-impact">○ No Impact</span> No runtime enforcement change (pure refactoring, comments, macro reorganization, build guards, or telemetry/logging modifiers).</li>
+            </ul>
+            <p class="methodology-note">
+              <strong>Data Scope:</strong> Includes all <code>git log --no-merges</code> commits touching WebKit's iOS sandbox profiles across historical path moves (<code>WebKit2/Resources/SandboxProfiles/ios</code> &rarr; <code>WebKit/Resources/SandboxProfiles/ios</code> + <code>WebKit/Shared/Sandbox/iOS</code>).
+            </p>
+          </div>
+          <div class="methodology-col">
+            <h3>3. Trigger Attribution &amp; Binary Tags</h3>
+            <ul class="taxonomy-list">
+              <li><span class="badge-pill trig-os-framework">OS / Framework / 3P</span> Sandbox-only commits explicitly driven by iOS framework changes (UIKit, CoreText, Metal, AVFoundation, RunningBoard), dyld/libSystem, or 3P <code>BrowserEngineKit</code> rules.</li>
+              <li><span class="badge-pill trig-opaque-fix">Opaque Runtime Fix</span> Sandbox-only permission expansions/fixes with terse <code>rdar://</code> messages where OS framework vs. WebKit internal origin is not stated in the commit log.</li>
+              <li><span class="badge-pill trig-webkit-code">WebKit Code-Coupled</span> Commits that modify WebKit C++/ObjC/Swift source files alongside <code>.sb</code> profiles (e.g., moving APIs to GPU/Network process, state flags, new WebKit features).</li>
+              <li><span class="badge-pill trig-hardening">Proactive Hardening</span> Sandbox-only commits tightening attack surface (<code>block-more</code>) or reverting experimental blocks without C++ code changes.</li>
+              <li><span class="badge-pill tag-apple-specific">apple-specific</span> Rules gated on Apple code signing (<code>apple-signed-executable?</code>, <code>process-attribute is-apple-signed-executable</code>, <code>signing-identifier "com.apple.WebKit..."</code>) or <code>com.apple.private.*</code> entitlements.</li>
+              <li><span class="badge-pill tag-3p-specific">3p-specific</span> Rules gated on <code>(require-not (process-attribute is-apple-signed-executable))</code>, <code>(log-streaming)</code>, or <code>(require-not (logd-blocking))</code> for 3rd-party browser engines.</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
+    </aside>
 
-    <!-- Top-Level View Tabs: Insights (Default) vs. Data Explorer -->
-    <nav class="view-tabs-bar" role="tablist" aria-label="Sandbox Analysis Views">
-      <button type="button" id="viewTabInsights" class="view-tab-btn active" role="tab" aria-selected="true" aria-controls="insightsViewPanel">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 18h6"></path>
-          <path d="M10 22h4"></path>
-          <path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2z"></path>
-        </svg>
-        <span>Insights &amp; Overview</span>
-        <span class="view-tab-badge">Default</span>
-      </button>
-      <button type="button" id="viewTabExplorer" class="view-tab-btn" role="tab" aria-selected="false" aria-controls="explorerViewPanel">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="3" y1="9" x2="21" y2="9"></line>
-          <line x1="9" y1="21" x2="9" y2="9"></line>
-        </svg>
-        <span>Data View: Commit Explorer &amp; Charts</span>
-        <span id="explorerTabCountBadge" class="view-tab-badge">919</span>
-      </button>
+    <!-- Primary View Switcher Bar (Insights Tab vs. Data View Tab) -->
+    <nav class="view-tabs-bar" role="tablist" aria-label="Primary Analysis Views">
+      <div class="view-tabs-group">
+        <button id="viewTabInsights" class="view-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="insightsViewPanel">
+          <span class="view-tab-title">Overview &amp; Data Findings</span>
+          <span class="view-tab-badge">Data Findings</span>
+        </button>
+        <button id="viewTabExplorer" class="view-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="explorerViewPanel">
+          <span class="view-tab-title">Data View (Commit Explorer)</span>
+          <span id="explorerTabCountBadge" class="view-tab-badge">919</span>
+        </button>
+      </div>
     </nav>
 
-    <!-- View 1 (Default): Insights & High-Level Overview -->
+    <!-- ====================================================================
+         VIEW 1: INSIGHTS & ARCHITECTURAL OVERVIEW (Default Landing Tab)
+         ==================================================================== -->
     <div id="insightsViewPanel" class="view-panel" role="tabpanel" aria-labelledby="viewTabInsights">
-      <div id="insightsContent" class="insights-layout"></div>
+      <div id="insightsContent"></div>
     </div>
 
-    <!-- View 2: Data View (Commit Explorer & Charts) -->
+    <!-- ====================================================================
+         VIEW 2: DATA VIEW — INTERACTIVE CHARTS, FILTERS & COMMIT TABLE
+         ==================================================================== -->
     <div id="explorerViewPanel" class="view-panel hidden" role="tabpanel" aria-labelledby="viewTabExplorer">
       <!-- KPI Summary Cards -->
-      <section id="kpiGrid" class="kpi-grid" aria-label="Summary Metrics"></section>
+      <section class="kpi-grid" id="kpiGrid" aria-label="Summary Statistics"></section>
 
       <!-- Interactive Filter Bar -->
-      <section class="filter-panel" aria-label="Filter Sandbox Changes">
+      <section class="filter-panel" aria-label="Filters">
         <div class="filter-bar">
           <div class="filter-group">
             <label for="filterCategory">Purpose Category</label>
@@ -142,14 +135,14 @@
           </div>
 
           <div class="filter-group">
-            <label for="filterTrigger">Trigger Attribution</label>
+            <label for="filterTrigger">Change Trigger / Driver</label>
             <select id="filterTrigger">
               <option value="all">All Triggers</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="filterProfile">Process Profile</label>
+            <label for="filterProfile">iOS Process Profile</label>
             <select id="filterProfile">
               <option value="all">All iOS Profiles</option>
             </select>
@@ -163,150 +156,151 @@
           </div>
 
           <div class="filter-group">
-            <label for="filterTag">Binary Tag</label>
+            <label for="filterTag">Binary Tag (Apple vs. 3P)</label>
             <select id="filterTag">
               <option value="all">All Commits</option>
             </select>
           </div>
 
-          <div class="filter-group filter-group-date">
-            <label for="filterStartDate">Start Date</label>
-            <input type="date" id="filterStartDate">
+          <div class="filter-group">
+            <label for="filterStartDate">From Date</label>
+            <input type="date" id="filterStartDate" min="2014-01-01" max="2026-12-31">
           </div>
 
-          <div class="filter-group filter-group-date">
-            <label for="filterEndDate">End Date</label>
-            <input type="date" id="filterEndDate">
+          <div class="filter-group">
+            <label for="filterEndDate">To Date</label>
+            <input type="date" id="filterEndDate" min="2014-01-01" max="2026-12-31">
           </div>
 
-          <div class="filter-group filter-group-search">
-            <label for="filterSearch">Search Summary / Commit / Rule / Tag</label>
-            <input type="search" id="filterSearch" placeholder="e.g. 3p-specific, apple-specific, Lockdown Mode, SYS_mkdirat, 33cc299a...">
+          <div class="filter-group filter-search-group">
+            <label for="filterSearch">Search Commits, Rules, Bug IDs, Hashes</label>
+            <input type="search" id="filterSearch" placeholder="e.g. Lockdown, IOKit, mach-lookup, syscall, 297057…">
           </div>
 
-          <div class="filter-actions">
-            <button id="resetFiltersBtn" type="button" class="btn-reset" title="Reset all active filters">Reset</button>
-            <button id="exportCsvBtn" type="button" class="btn-secondary" title="Export matching commits as CSV">Export CSV</button>
+          <div class="filter-group filter-actions-group">
+            <label>&nbsp;</label>
+            <button id="resetFiltersBtn" class="btn-reset" type="button">Reset Filters</button>
           </div>
         </div>
 
         <!-- Quick Category Filter Pills -->
         <div class="quick-pills-row">
-          <span class="quick-pills-label">Quick Filter by Category:</span>
-          <div id="categoryPillBar" class="pill-bar" role="group" aria-label="Filter by Purpose Category"></div>
+          <span class="quick-pills-label">Quick Filter:</span>
+          <div id="categoryPillBar" class="pill-bar"></div>
         </div>
       </section>
 
-      <!-- Primary Time-Series Chart -->
-      <section class="card chart-card" aria-label="Sandbox Changes Over Time">
+      <!-- Main Visualization Card -->
+      <section class="card chart-card">
         <div class="card-header">
           <div>
-            <h2 id="mainChartTitle" class="card-title">Sandbox Changes Over Time by Purpose Category</h2>
-            <p id="mainChartSubtitle" class="card-subtitle">Click any bar segment or legend item to filter the commit table below</p>
+            <h2 class="card-title" id="mainChartTitle">Sandbox Changes Over Time</h2>
+            <p class="card-subtitle" id="mainChartSubtitle">Click any bar segment or legend item to filter the commit table below</p>
           </div>
           <div class="chart-controls">
             <div class="control-inline">
-              <label for="chartBucketSelect">Group X-Axis</label>
+              <label for="chartBucketSelect">Group X-Axis:</label>
               <select id="chartBucketSelect">
-                <option value="year" selected>Yearly (2014&ndash;2026)</option>
-                <option value="quarter">Quarterly</option>
-                <option value="month">Monthly</option>
+                <option value="year" selected>By Year (2014–2026)</option>
+                <option value="quarter">By Quarter</option>
+                <option value="month">By Month</option>
                 <option value="category">By Purpose Category</option>
                 <option value="effect">By Sandbox Effect</option>
-                <option value="trigger">By Trigger Attribution</option>
+                <option value="trigger">By Change Trigger / Driver</option>
                 <option value="profile">By Process Profile</option>
                 <option value="resource">By Seatbelt Resource</option>
               </select>
             </div>
-
             <div class="control-inline">
-              <label for="chartStackSelect">Color / Stack By</label>
+              <label for="chartStackSelect">Stack / Color By:</label>
               <select id="chartStackSelect">
                 <option value="category" selected>Purpose Category</option>
-                <option value="effect">Sandbox Effect (Allow vs Block)</option>
-                <option value="trigger">Trigger Attribution (OS vs WebKit)</option>
+                <option value="effect">Sandbox Effect (Allow vs. Block)</option>
+                <option value="trigger">Change Trigger (OS vs. WebKit)</option>
                 <option value="profile">Primary Process Profile</option>
               </select>
             </div>
-
-            <div class="segmented-control" role="group" aria-label="Chart Y-Axis Scale">
-              <button type="button" id="scaleAbsoluteBtn" class="seg-btn active" data-scale="absolute">Absolute</button>
-              <button type="button" id="scaleRelativeBtn" class="seg-btn" data-scale="relative">Relative (%)</button>
+            <div class="control-inline">
+              <label>Y-Scale:</label>
+              <div class="segmented-control" role="group" aria-label="Chart Y Scale">
+                <button type="button" class="seg-btn active" data-scale="absolute" id="scaleAbsoluteBtn">Count</button>
+                <button type="button" class="seg-btn" data-scale="relative" id="scaleRelativeBtn">100% Share</button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div id="chartLegend" class="chart-legend" role="group" aria-label="Chart Legend"></div>
+        <div id="chartLegend" class="chart-legend"></div>
 
-        <div id="mainChartContainer" class="chart-svg-wrapper">
-          <svg id="mainChartSvg" class="chart-svg" role="img" aria-label="Stacked bar chart of WebKit iOS sandbox changes"></svg>
-          <div id="chartTooltip" class="chart-tooltip hidden" role="status" aria-live="polite"></div>
+        <div class="chart-svg-wrapper" id="mainChartContainer">
+          <svg id="mainChartSvg" role="img" aria-label="Interactive bar chart of WebKit iOS sandbox changes"></svg>
+          <div id="chartTooltip" class="chart-tooltip hidden"></div>
         </div>
       </section>
 
-      <!-- Three-Column Breakdown Cards -->
-      <section class="breakdown-grid" aria-label="Dimensional Breakdowns">
-        <article class="card breakdown-card">
-          <div class="card-header-compact">
-            <h3 class="card-title-sm">By Purpose Category</h3>
+      <!-- Secondary 3-Column Breakdown Grid -->
+      <section class="breakdown-grid">
+        <div class="card breakdown-card">
+          <div class="card-header card-header-compact">
+            <h3 class="card-title">By Purpose Category</h3>
             <span class="card-hint">Click row to filter</span>
           </div>
           <div id="categoryBreakdownList" class="breakdown-list"></div>
-        </article>
+        </div>
 
-        <article class="card breakdown-card">
-          <div class="card-header-compact">
-            <h3 class="card-title-sm">By Sandbox Effect (Allow vs. Block)</h3>
-            <span class="card-hint">Click row to filter</span>
+        <div class="card breakdown-card">
+          <div class="card-header card-header-compact">
+            <h3 class="card-title">By Sandbox Effect</h3>
+            <span class="card-hint">Tighten vs. Expand</span>
           </div>
           <div id="effectBreakdownList" class="breakdown-list"></div>
-        </article>
+        </div>
 
-        <article class="card breakdown-card">
-          <div class="card-header-compact">
-            <div class="card-tab-group" role="tablist" aria-label="Process, Resource, Trigger, or Binary Tag Breakdown">
-              <button type="button" id="tabProfilesBtn" class="tab-btn active" role="tab" aria-selected="true">Profiles</button>
-              <button type="button" id="tabResourcesBtn" class="tab-btn" role="tab" aria-selected="false">Resources</button>
-              <button type="button" id="tabTriggersBtn" class="tab-btn" role="tab" aria-selected="false">Triggers</button>
-              <button type="button" id="tabTagsBtn" class="tab-btn" role="tab" aria-selected="false">Tags</button>
+        <div class="card breakdown-card">
+          <div class="card-header card-header-compact">
+            <h3 class="card-title">By Process, Resource &amp; Tags</h3>
+            <div class="segmented-control" role="tablist">
+              <button type="button" class="seg-btn seg-btn-sm active" id="tabProfilesBtn">Profiles</button>
+              <button type="button" class="seg-btn seg-btn-sm" id="tabResourcesBtn">Resources</button>
+              <button type="button" class="seg-btn seg-btn-sm" id="tabTriggersBtn">Triggers</button>
+              <button type="button" class="seg-btn seg-btn-sm" id="tabTagsBtn">Tags</button>
             </div>
-            <span class="card-hint">Click row to filter</span>
           </div>
           <div id="profileResourceBreakdownList" class="breakdown-list"></div>
-        </article>
+        </div>
       </section>
 
-      <!-- Changes Table -->
-      <section class="card table-card" aria-label="Table of Sandbox Changes">
-        <div class="card-header table-header-bar">
+      <!-- Commit Explorer Table -->
+      <section class="card table-card">
+        <div class="card-header table-header">
           <div>
-            <h2 class="card-title">WebKit iOS Sandbox Commits</h2>
-            <p id="tableSummaryText" class="card-subtitle">Showing matching changes &mdash; click any commit hash to view the full diff on GitHub, or click a row to inspect details</p>
+            <h2 class="card-title">Sandbox Change Commit Log</h2>
+            <p class="card-subtitle" id="tableSummaryText">Showing 0 commits</p>
           </div>
           <div class="table-controls">
             <div class="control-inline">
-              <label for="tableSortSelect">Sort By</label>
+              <label for="tableSortSelect">Sort:</label>
               <select id="tableSortSelect">
-                <option value="date-desc" selected>Date (Newest First)</option>
-                <option value="date-asc">Date (Oldest First)</option>
+                <option value="date-desc" selected>Newest First</option>
+                <option value="date-asc">Oldest First</option>
                 <option value="category-asc">Purpose Category</option>
                 <option value="effect-asc">Sandbox Effect</option>
-                <option value="rules-desc">Rules Changed (Most First)</option>
+                <option value="rules-desc">Most Rule Changes</option>
               </select>
             </div>
             <div class="control-inline">
-              <label for="tablePageSizeSelect">Rows</label>
+              <label for="tablePageSizeSelect">Rows:</label>
               <select id="tablePageSizeSelect">
-                <option value="50">50 / page</option>
-                <option value="100" selected>100 / page</option>
-                <option value="250">250 / page</option>
-                <option value="1000">All rows</option>
+                <option value="50">50</option>
+                <option value="100" selected>100</option>
+                <option value="250">250</option>
+                <option value="1000">All</option>
               </select>
             </div>
             <div class="pagination-controls">
-              <button type="button" id="prevPageBtn" class="btn-page" aria-label="Previous page">&larr; Prev</button>
+              <button type="button" class="btn-page" id="prevPageBtn" disabled>&larr; Prev</button>
               <span id="pageIndicator" class="page-indicator">Page 1 of 1</span>
-              <button type="button" id="nextPageBtn" class="btn-page" aria-label="Next page">Next &rarr;</button>
+              <button type="button" class="btn-page" id="nextPageBtn" disabled>Next &rarr;</button>
             </div>
           </div>
         </div>
@@ -315,13 +309,13 @@
           <table class="changes-table" id="changesTable">
             <thead>
               <tr>
-                <th class="col-date" data-sort="date">Date</th>
-                <th class="col-commit">GitHub Diff</th>
-                <th class="col-category" data-sort="category">Category</th>
-                <th class="col-effect" data-sort="effect">Sandbox Effect</th>
-                <th class="col-profiles">Profiles</th>
-                <th class="col-summary">One-Line Purpose Summary &amp; Commit Subject</th>
-                <th class="col-delta" data-sort="rules" title="Net Seatbelt rule changes (+allow / -allow / +deny)">Rule &Delta;</th>
+                <th class="col-date">Date</th>
+                <th class="col-commit">GitHub Commit</th>
+                <th class="col-category">Purpose Category</th>
+                <th class="col-effect">Sandbox Effect</th>
+                <th class="col-profiles">iOS Profiles</th>
+                <th class="col-summary">Change Summary &amp; Touched Resources</th>
+                <th class="col-delta">Rule Diff (±)</th>
               </tr>
             </thead>
             <tbody id="changesTableBody"></tbody>
@@ -329,18 +323,17 @@
         </div>
 
         <div class="table-footer">
-          <span id="tableFooterInfo" class="table-footer-info"></span>
+          <span id="tableFooterInfo"></span>
           <div class="pagination-controls">
-            <button type="button" id="prevPageBottomBtn" class="btn-page">&larr; Previous</button>
+            <button type="button" class="btn-page" id="prevPageBottomBtn" disabled>&larr; Prev</button>
             <span id="pageIndicatorBottom" class="page-indicator">Page 1 of 1</span>
-            <button type="button" id="nextPageBottomBtn" class="btn-page">Next &rarr;</button>
+            <button type="button" class="btn-page" id="nextPageBottomBtn" disabled>Next &rarr;</button>
           </div>
         </div>
       </section>
     </div>
   </main>
 
-  <!-- Static JS data payload (works on file://, localhost, and sandboxed opaque origins without fetch) -->
   <script src="data/sandbox_changes.js"></script>
   <script src="js/app.js"></script>
 </body>

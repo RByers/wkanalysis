@@ -421,7 +421,7 @@
     if (params.get('sort')) state.sort = params.get('sort');
   }
 
-  // Plain in-page anchors (e.g. #challenge-b-telemetry deep links from index.html), as opposed
+  // Plain in-page anchors (e.g. #insight-part-seatbelt deep links from index.html), as opposed
   // to key=value state hashes. These must survive URL state syncing and scroll into view.
   function getPlainAnchorId() {
     const raw = window.location.hash.replace(/^#/, '');
@@ -638,6 +638,7 @@
           (c.tags || []).join(' '),
           (c.rules || []).join(' '),
           (c.files || []).join(' '),
+          (c.code_files || []).join(' '),
           (c.bugs || []).join(' ')
         ].join(' ').toLowerCase();
         const qNorm = q.charAt(0) === '!' ? q.slice(1) : q;
@@ -1677,8 +1678,68 @@
 
     const drawer = el('div', 'detail-drawer');
 
-    // Left column: Full Commit Description
+    // Left column: Summary, Full Commit Description
     const leftCol = el('div');
+
+    // Top summary strip inside expanded view ensuring all table columns are present when hidden on smaller screens
+    const overviewBox = el('div', 'detail-meta-item');
+    overviewBox.style.marginBottom = '10px';
+    overviewBox.appendChild(el('h4', 'detail-section-title', 'Commit Overview & Classification'));
+
+    const metaBadgesRow = el('div', 'detail-meta-strip');
+    metaBadgesRow.appendChild(el('span', 'mono-chip', 'Date: ' + (c.date || '')));
+    if (c.author) {
+      metaBadgesRow.appendChild(el('span', 'mono-chip', 'Author: ' + c.author));
+    }
+    const catMeta = CATEGORY_META[c.category] || { label: c.category, shortLabel: c.category, badgeClass: 'cat-refactor-cleanup' };
+    metaBadgesRow.appendChild(el('span', 'badge-pill ' + catMeta.badgeClass, 'Category: ' + (catMeta.label || catMeta.shortLabel)));
+
+    const effMeta = EFFECT_META[c.effect] || { label: c.effect, shortLabel: c.effect, symbol: '\u25CB', badgeClass: 'eff-no-impact' };
+    metaBadgesRow.appendChild(el('span', 'badge-pill ' + effMeta.badgeClass, 'Effect: ' + effMeta.symbol + ' ' + (effMeta.label || effMeta.shortLabel)));
+
+    if (c.trigger && TRIGGER_META[c.trigger]) {
+      const tMeta = TRIGGER_META[c.trigger];
+      metaBadgesRow.appendChild(el('span', 'trigger-sub-pill ' + tMeta.badgeClass, 'Trigger: ' + tMeta.shortLabel));
+    }
+
+    const tightenRules = (c.deny_added || 0) + (c.allow_removed || 0);
+    const loosenRules = (c.allow_added || 0) + (c.deny_removed || 0);
+    const deltaParts = [];
+    if (tightenRules > 0) deltaParts.push('-' + tightenRules + ' tightened');
+    if (loosenRules > 0) deltaParts.push('+' + loosenRules + ' allowed');
+    if (deltaParts.length === 0) deltaParts.push('+' + (c.lines_added || 0) + ' / -' + (c.lines_deleted || 0) + ' ln');
+    metaBadgesRow.appendChild(el('span', 'mono-chip', 'Rule Diff: ' + deltaParts.join(', ')));
+    overviewBox.appendChild(metaBadgesRow);
+
+    if (c.summary) {
+      const sumLine = el('div', 'summary-primary');
+      sumLine.style.marginBottom = '6px';
+      appendTextWithCommitLinks(sumLine, c.summary);
+      overviewBox.appendChild(sumLine);
+    }
+
+    if (Array.isArray(c.profiles) && c.profiles.length > 0) {
+      const profRow = el('div', 'profile-tags');
+      profRow.style.marginTop = '4px';
+      profRow.appendChild(el('span', 'detail-section-title', 'iOS Profiles: '));
+      c.profiles.forEach((p) => {
+        profRow.appendChild(el('span', 'profile-tag', p));
+      });
+      overviewBox.appendChild(profRow);
+    }
+
+    if (Array.isArray(c.resources) && c.resources.length > 0) {
+      const resRow = el('div', 'profile-tags');
+      resRow.style.marginTop = '4px';
+      resRow.appendChild(el('span', 'detail-section-title', 'Touched Resources: '));
+      c.resources.forEach((r) => {
+        resRow.appendChild(el('span', 'resource-chip', r));
+      });
+      overviewBox.appendChild(resRow);
+    }
+
+    leftCol.appendChild(overviewBox);
+
     leftCol.appendChild(el('h4', 'detail-section-title', 'Full Commit Description & ChangeLog'));
     const descBox = el('pre', 'detail-description');
     appendTextWithCommitLinks(descBox, c.description || c.subject || '');
@@ -1774,10 +1835,49 @@
     filesBox.appendChild(el('h4', 'detail-section-title', 'Modified iOS Sandbox Files (' + (c.files || []).length + ')'));
     const ul = el('ul', 'detail-file-list');
     (c.files || []).forEach((f) => {
-      ul.appendChild(el('li', null, f));
+      const li = el('li');
+      const fileLink = el('a', 'github-commit-link', f + ' \u2197');
+      const cleanHash = String(c.hash || '').replace(/[^0-9a-f]/gi, '');
+      const cleanPath = String(f || '').replace(/[^a-zA-Z0-9_./+#-]/g, '');
+      fileLink.href = 'https://github.com/WebKit/WebKit/blob/' + cleanHash + '/' + cleanPath;
+      fileLink.target = '_blank';
+      fileLink.rel = 'noopener noreferrer';
+      fileLink.title = 'View ' + f + ' at commit ' + (c.short_hash || cleanHash.slice(0, 12)) + ' on GitHub';
+      li.appendChild(fileLink);
+      ul.appendChild(li);
     });
     filesBox.appendChild(ul);
     rightCol.appendChild(filesBox);
+
+    if (Array.isArray(c.code_files) && c.code_files.length > 0) {
+      const codeBox = el('div', 'detail-meta-item');
+      const totalOther = Math.max(c.code_files.length, (c.total_commit_files_count || 0) - (c.files || []).length);
+      codeBox.appendChild(
+        el(
+          'h4',
+          'detail-section-title',
+          'Coupled WebKit Source & Config Files (' + totalOther + ')'
+        )
+      );
+      const codeUl = el('ul', 'detail-file-list');
+      c.code_files.slice(0, 20).forEach((f) => {
+        const li = el('li');
+        const fileLink = el('a', 'github-commit-link', f + ' \u2197');
+        const cleanHash = String(c.hash || '').replace(/[^0-9a-f]/gi, '');
+        const cleanPath = String(f || '').replace(/[^a-zA-Z0-9_./+#-]/g, '');
+        fileLink.href = 'https://github.com/WebKit/WebKit/blob/' + cleanHash + '/' + cleanPath;
+        fileLink.target = '_blank';
+        fileLink.rel = 'noopener noreferrer';
+        fileLink.title = 'View ' + f + ' at commit ' + (c.short_hash || cleanHash.slice(0, 12)) + ' on GitHub';
+        li.appendChild(fileLink);
+        codeUl.appendChild(li);
+      });
+      if (totalOther > 20) {
+        codeUl.appendChild(el('li', null, '+ ' + (totalOther - 20) + ' more files in commit diff'));
+      }
+      codeBox.appendChild(codeUl);
+      rightCol.appendChild(codeBox);
+    }
 
     drawer.appendChild(leftCol);
     drawer.appendChild(rightCol);
@@ -2269,19 +2369,19 @@
     const hero = el('div', 'insights-hero-card');
     const heroTopRow = el('div', 'insights-hero-top');
     const heroTextCol = el('div', 'insights-hero-header');
-    heroTextCol.appendChild(el('span', 'insights-kicker', 'EXECUTIVE BRIEFING & EMPIRICAL DATASET (919 COMMITS, 2014\u20132026)'));
+    heroTextCol.appendChild(el('span', 'insights-kicker', 'EMPIRICAL DATASET (919 COMMITS, 2014\u20132026)'));
     heroTextCol.appendChild(
       el(
         'h2',
         'insights-hero-title',
-        'How the iOS Seatbelt Sandbox Works & Why a Custom Chromium Browser Struggles with OS-Bundled Policies'
+        'How the iOS Seatbelt Sandbox Works'
       )
     );
     heroTextCol.appendChild(
       createBulletList([
         {
           lead: 'Core Question',
-          text: 'Can a third-party browser engine (such as Chromium) reliably operate on iOS using BrowserEngineKit\u2019s predefined, OS-bundled Seatbelt sandbox policies?'
+          text: 'This dataset indexes 919 commits to WebKit iOS sandbox profiles to analyze their evolution, complexity, and dependencies over time.'
         },
         {
           lead: 'Key Finding',
@@ -2303,8 +2403,7 @@
     const jumpNav = el('div', 'insights-jump-nav');
     [
       { id: 'insight-part-seatbelt', label: '1. What Seatbelt (.sb) Files Are & How the iOS Sandbox Works' },
-      { id: 'insight-part-chromium', label: '2. Why a Custom Chromium Browser Struggles on iOS' },
-      { id: 'insight-part-cards', label: '3. Six Data-Backed Insight Cards & Figures' }
+            { id: 'insight-part-cards', label: '2. Data Findings & Figures' }
     ].forEach((navItem) => {
       const a = el('a', 'insights-jump-link', navItem.label);
       a.href = '#' + navItem.id;
@@ -2326,7 +2425,7 @@
         title: 'Continuous Policy Evolution',
         bullets: [
           `${getStats().sbPct}% (${getStats().sbOnly}) modify only .sb/.sb.in profiles without WebKit C++/ObjC code changes`,
-          'OS-bundled policies mean 3P browsers cannot ship .sb hotfixes in App Store updates'
+          'Sandbox profiles are deeply tied to engine implementations.'
         ],
         color: '#4f46e5',
         filter: { trigger: 'sb-only-all', bucket: 'year', stackBy: 'trigger' },
@@ -2350,7 +2449,7 @@
         title: 'WebKit-Driven Hardening Loop',
         bullets: [
           'Apple probes rules with (with telemetry) in Safari/WebKit and blocks unused primitives',
-          'Syscalls unused by WebKit get stripped even if Chromium (V8/Blink/Skia///net) needs them'
+          'Syscalls unused by WebKit are systematically stripped from profiles.'
         ],
         color: '#dc2626',
         filter: { category: 'security-hardening', bucket: 'year', stackBy: 'effect' },
@@ -2362,7 +2461,7 @@
         title: 'macOS Code Breaks on iOS',
         bullets: [
           'iOS default-denies syscall-unix (134 in WebContent), syscall-mach (40), MIG (38), fcntl (8 in GPU)',
-          'Routine POSIX/Mach code that passes Chromium\u2019s macOS sandbox traps on iOS'
+          'POSIX/Mach code using denied primitives triggers sandbox violations.'
         ],
         color: '#d97706',
         filter: { resource: 'syscall-unix', bucket: 'year', stackBy: 'effect' },
@@ -2560,250 +2659,17 @@
     container.appendChild(part1);
 
     // =========================================================================
-    // PART 2: How a Custom Chromium Browser Struggles to Use the Sandbox Reliably
-    // =========================================================================
-    const part2 = el('section', 'insights-section');
-    part2.id = 'insight-part-chromium';
-    const p2Hdr = el('div', 'insights-section-header');
-    p2Hdr.appendChild(el('span', 'insights-section-num', 'PART 2 \u00B7 THE ARCHITECTURAL MISMATCH'));
-    p2Hdr.appendChild(
-      el(
-        'h3',
-        'insights-section-title',
-        'Why a Custom Chromium Browser Struggles with BrowserEngineKit\u2019s OS-Tied Sandbox'
-      )
-    );
-    part2.appendChild(p2Hdr);
-
-    // Side-by-Side Comparison Matrix (Compact & Scannable)
-    const compTable = el('table', 'insights-comparison-table');
-    const thead = el('thead');
-    const hRow = el('tr');
-    [
-      'Dimension',
-      'Chromium on macOS / Desktop (sandbox/policy/mac/*.sb)',
-      'Chromium on iOS via BrowserEngineKit (OS-Bundled .sb)',
-      'Operational Risk for a Custom Chromium Browser'
-    ].forEach((hText) => hRow.appendChild(el('th', null, hText)));
-    thead.appendChild(hRow);
-    compTable.appendChild(thead);
-
-    const tbody = el('tbody');
-    [
-      [
-        'Where Sandbox Policy Lives',
-        'Bundled inside the Chrome app binary; versioned 1:1 with every Chromium commit.',
-        'Compiled into the iOS OS image (BEWebContentProcess, BERenderingProcess, BENetworkingProcess).',
-        'Cannot ship a .sb rule change or hotfix in an App Store update; must wait for an iOS OS release (e.g., 33cc299a31, c01e8de3c1).'
-      ],
-      [
-        'Sandbox Telemetry & Policy Tightening',
-        'Chromium security team tests policy changes against Chromium CI and owns in-app crash/sandbox telemetry.',
-        'Apple tightens profiles via Safari/WebKit (with telemetry) rules (58.0% tighten/probe, e.g., 4994f537ea \u2192 d5c48f8a19); Sandbox.kext routes telemetry only to Apple CoreAnalytics.',
-        'Primitives unused by WebKit get stripped; beyond errors surfaced to engine code, 3P engines lack kernel telemetry for non-fatal or system-framework denials (e.g., 0e5778bebe).'
-      ],
-      [
-        'Kernel Primitive Filtering',
-        'Unix syscalls, Mach traps, MIG routines, and fcntl commands are broadly allowed.',
-        'Strict default-deny whitelists on syscall-unix, syscall-mach, syscall-mig, system-fcntl, sysctl-read, & socket-option (129d7629be, f3953af233).',
-        'Shared Apple C++/POSIX code (//base, //gpu, //net) passes all macOS tests but crashes with SIGSYS/EPERM on iOS (e.g., dffe77ef58, 66efa46ff0).'
-      ],
-      [
-        'OS Framework & Daemon Drift',
-        'Broad syscall/Mach rules absorb minor macOS framework implementation changes.',
-        '72 confirmed commits (up to 295 incl. opaque fixes) required .sb edits when iOS frameworks/daemons changed (e.g., 088424c3ef, 3e277d994f, 83fb745b0a).',
-        'Apple updates WebKit .sb files in the same OS build train; 3P engines hit asymmetric !is-apple-signed-executable bugs (e.g., b148037850 \u2192 c01e8de3c1).'
-      ]
-    ].forEach((r) => {
-      const tr = el('tr');
-      const tdPrim = el('td', 'comp-col-prim', r[0]);
-      tdPrim.setAttribute('data-label', 'Dimension');
-      const tdMac = el('td', 'comp-col-mac');
-      appendTextWithCommitLinks(tdMac, r[1]);
-      tdMac.setAttribute('data-label', 'Chromium on macOS / Desktop');
-      const tdIos = el('td', 'comp-col-ios');
-      appendTextWithCommitLinks(tdIos, r[2]);
-      tdIos.setAttribute('data-label', 'Chromium on iOS via BrowserEngineKit');
-      const tdImpact = el('td', 'comp-col-impact');
-      appendTextWithCommitLinks(tdImpact, r[3]);
-      tdImpact.setAttribute('data-label', 'Operational Risk for Custom Chromium');
-      tr.appendChild(tdPrim);
-      tr.appendChild(tdMac);
-      tr.appendChild(tdIos);
-      tr.appendChild(tdImpact);
-      tbody.appendChild(tr);
-    });
-    compTable.appendChild(tbody);
-    part2.appendChild(compTable);
-
-    // 4 Concise Bullet-Point Challenge Cards
-    const p2Grid = el('div', 'insights-cards-grid cols-2');
-    [
-      {
-        id: 'challenge-a-release-cycles',
-        kicker: 'CHALLENGE A \u00B7 DECOUPLED RELEASE CYCLES',
-        title: '1. Zero Policy Hotfix Agility & Multi-OS Version Skew',
-        bullets: [
-          {
-            lead: 'No App-Bundled .sb Profiles',
-            text: 'BrowserEngineKit extensions (WebContentExtension, RenderingExtension, NetworkingExtension) cannot supply custom Seatbelt rules; they inherit whatever compiled profile shipped in the user\u2019s installed iOS version.',
-            links: [
-              { label: 'WebContentProcessExtension.swift', path: 'Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift' },
-              { label: 'GPUProcessExtension.swift', path: 'Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.swift' },
-              { label: 'NetworkingProcessExtension.swift', path: 'Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.swift' },
-              { label: 'WebContent.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in' },
-              { label: 'GPU.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in' },
-              { label: 'Networking.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in' }
-            ]
-          },
-          {
-            lead: 'Blocked Until Next iOS Point Release',
-            text: 'When a missing permission is discovered \u2014 such as GPU mkdtemp() / SYS_mkdirat in 33cc299a31, CoreML compilation syscalls in 666daa6403, or Networking container /tmp & /Library/Caches in c01e8de3c1 \u2014 the browser cannot hotfix the policy in an App Store update and must wait for an iOS OS release.',
-            links: [
-              { label: 'GPU.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in' },
-              { label: 'Networking.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in' },
-              { label: 'All 8 3P-Specific Commits', filter: { tag: '3p-specific', bucket: 'year', stackBy: 'effect' } }
-            ]
-          },
-          {
-            lead: 'Per-OS-Version Workarounds & Coarse Revision Flags',
-            text: 'BrowserEngineKit exposes only monolithic opt-in revisions (applyRestrictedSandbox(.revision2) mapped to local:tested_version_2.0 in 3578a0f4e7 & f1f264edcf) and coarse feature switches (enableFeature(.coreML) in 666daa6403), forcing Chromium to maintain runtime OS version checks and IPC fallbacks for older iOS releases.',
-            links: [
-              { label: 'iOS/common.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/common.sb' },
-              { label: 'Filter .revision2 Commits', filter: { search: 'tested_version_2', bucket: 'year', stackBy: 'effect' } }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'challenge-b-telemetry',
-        kicker: 'CHALLENGE B \u00B7 ASYMMETRIC KERNEL TELEMETRY & TRACING',
-        title: '2. One-Way Seatbelt Telemetry & Blindness to System-Framework Denials',
-        bullets: [
-          {
-            lead: 'One-Way Kernel Telemetry & Private SPIs',
-            text: 'Seatbelt\u2019s (with telemetry) and (with telemetry-backtrace) modifiers trap in Sandbox.kext and report via sandboxd exclusively to Apple\u2019s internal CoreAnalytics pipeline. 3P BrowserEngineKit extensions inherit fixed OS profiles and cannot customize .sb rules, query sandbox_check, or toggle runtime telemetry via sandbox_enable_state_flag (a private libsandbox SPI gated by com.apple.private.security.enable-state-flags, used in 9167490750).',
-            links: [
-              { label: 'WebContent.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in' },
-              { label: 'SandboxSPI.h', path: 'Source/WTF/wtf/spi/darwin/SandboxSPI.h' },
-              { label: 'libsystem_sandbox.sdkdb', path: 'WebKitLibraries/SDKDBs/iphoneos/libsystem_sandbox.partial.sdkdb' },
-              { label: 'process-entitlements.sh', path: 'Source/WebKit/Scripts/process-entitlements.sh' },
-              { label: 'WebContentProcessExtension.entitlements', path: 'Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements' },
-              { label: 'WebPageCocoa.mm', path: 'Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm' }
-            ]
-          },
-          {
-            lead: 'No Audit-Before-Block Probes & Opaque System-Framework Denials',
-            text: 'Beyond failures surfaced directly to its own engine code, a 3P engine cannot run non-blocking (with telemetry-backtrace) probes before rules are tightened (e.g., 4994f537ea \u2192 d5c48f8a19, or 9ad3a6f571) and has no kernel-level visibility when closed-source iOS system frameworks (UIKit, CoreText, Metal, CoreAudio, AVFoundation, libsystem) inside the dyld shared cache hit an EPERM denial, swallow the error, and silently fall back or degrade (e.g., silent image decoding sysctl denials fixed in 0e5778bebe).',
-            links: [
-              { label: '113 Telemetry Commits', filter: { category: 'telemetry-logging', bucket: 'year', stackBy: 'profile' } },
-              { label: '223 Opaque .sb-Only Fixes', filter: { trigger: 'opaque-runtime-fix', bucket: 'year', stackBy: 'category' } }
-            ]
-          },
-          {
-            lead: 'Local-Only 3P Debug Hooks & Blocked logd in WebContent',
-            text: 'Apple\u2019s 3P diagnostic rules \u2014 (log-streaming) allowing com.apple.diagnosticd for (!is-apple-signed-executable) in GPU/Networking (added in ba762580c0, removed from WebContent in 66e7f7b2c5) and report-only .Development.sb.in profiles (e10954862c, 89abb63fda, e0c788b57e) \u2014 only emit local logs on a Mac-tethered Developer Mode device, not production telemetry. Meanwhile, WebContent unconditionally blocks com.apple.logd (507789a215), and WebKit\u2019s IPC LogStream relies on the private os_log_set_hook SPI.',
-            links: [
-              { label: 'common.sb', path: 'Source/WebKit/Shared/Sandbox/common.sb' },
-              { label: 'iOS/common.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/common.sb' },
-              { label: 'WebContent.Development.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in' },
-              { label: 'OSLogSPI.h', path: 'Source/WTF/wtf/spi/cocoa/OSLogSPI.h' },
-              { label: 'AuxiliaryProcessCocoa.mm', path: 'Source/WebKit/Shared/Cocoa/AuxiliaryProcessCocoa.mm' }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'challenge-c-macos-mismatch',
-        kicker: 'CHALLENGE C \u00B7 MACOS VS. IOS SEATBELT GAP',
-        title: '3. Routine Cross-Platform Chromium Code Breaks Only on iOS',
-        bullets: [
-          {
-            lead: 'False Sense of Compatibility on macOS',
-            text: 'Chromium engineers develop and test Apple platform code on macOS, where Shared/Sandbox/common.sb allows syscall-mach and syscall-mig by default and macOS helper profiles do not filter system-fcntl (or syscall-unix in GPU/Networking) \u2014 whereas iOS overrides all of them with strict default-deny whitelists (129d7629be, f3953af233).',
-            links: [
-              { label: 'Shared/Sandbox/common.sb', path: 'Source/WebKit/Shared/Sandbox/common.sb' },
-              { label: 'macOS/WebProcess.sb.in', path: 'Source/WebKit/WebProcess/com.apple.WebProcess.sb.in' },
-              { label: 'macOS/GPUProcess.sb.in', path: 'Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in' },
-              { label: 'iOS/WebContent.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in' }
-            ]
-          },
-          {
-            lead: 'Unwhitelisted POSIX & C++ Stdlib Calls',
-            text: 'Calling mkdtemp() in GPU (SYS_mkdirat in 33cc299a31), std::this_thread::sleep_for (clock_get_time MIG in dffe77ef58, re-blocked in 11357b5ed3), unlink/rmdir/mkdirat in WebContent (gated on EnableQuickLookSandboxResources in 0f7a4c9df8 & c139243526), or unwhitelisted fcntls (only 8 in GPU; F_GETPROTECTIONCLASS in 66efa46ff0, WebContent fcntls in 5dce7a7cf7) crashes or fails with EPERM on iOS.',
-            links: [
-              { label: 'webcontent-defines.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb' },
-              { label: 'gpu-defines.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb' },
-              { label: 'WebPageProxy.cpp', path: 'Source/WebKit/UIProcess/WebPageProxy.cpp' },
-              { label: '271 syscall-unix Commits', filter: { resource: 'syscall-unix', bucket: 'year', stackBy: 'effect' } },
-              { label: '23 fcntl Commits', filter: { resource: 'fcntl', bucket: 'year', stackBy: 'effect' } }
-            ]
-          },
-          {
-            lead: 'Post-Launch State Flag Traps',
-            text: 'Lazy initialization of base::TimeTicks (MSC_mach_timebase_info_trap), mach_task_self() (MSC_task_self_trap), host_info, kern.boottime, or SYS_proc_info after local:WebContentProcessLaunched (7ddd37b4ad, 568ff7623f, 44000a3a3a) succeeds on macOS but traps mid-process on iOS.',
-            links: [
-              { label: 'webcontent-defines.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb' },
-              { label: 'WebPageCocoa.mm', path: 'Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm' },
-              { label: '85 Mach/MIG Commits', filter: { resource: 'syscall-mach', bucket: 'year', stackBy: 'effect' } }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'challenge-d-library-drift',
-        kicker: 'CHALLENGE D \u00B7 OS LIBRARY DRIFT & 1P/3P ASYMMETRY',
-        title: '4. OS Updates & !is-apple-signed-executable Regressions',
-        bullets: [
-          {
-            lead: 'System Libraries Change Under the Hood',
-            text: 'Updates to libsystem_pthread (SYS_ulock_wait2 in 088424c3ef & ba06d5cacb), underlying framework *at syscalls (SYS_openat / SYS_renameat in 3e277d994f), Metal (sysctl-reads in 83fb745b0a), CoreAudio (Mach semaphore_wait_signal in b2c8b58a72), mediaserverd \u2192 mediaplaybackd XPC splits (3bf860bb44), or ICU (detectHostTimeZone Lockdown Mode pthreads in 7395b2831b) regularly require new .sb allowances.',
-            links: [
-              { label: '72 Confirmed OS/Framework Commits', filter: { trigger: 'os-framework-3p', bucket: 'year', stackBy: 'effect' } },
-              { label: '223 Opaque .sb-Only Fixes', filter: { trigger: 'opaque-runtime-fix', bucket: 'year', stackBy: 'category' } }
-            ]
-          },
-          {
-            lead: '1P Hardening Breaks 3P Containers',
-            text: 'When Apple blocked container temp/cache access in Networking (b148037850, temporarily reverted in e62ea2ac63 after breaking Fastmail login), it broke 3P BrowserEngineKit engines until c01e8de3c1 restored /tmp and /Library/Caches solely for (!is-apple-signed-executable).',
-            links: [
-              { label: 'Networking.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in' },
-              { label: 'iOS/common.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/common.sb' },
-              { label: '!is-apple-signed-executable Commits', filter: { search: 'is-apple-signed-executable', bucket: 'year', stackBy: 'effect' } }
-            ]
-          },
-          {
-            lead: 'Expert Nuance \u2014 8.3% Revert Rate Even in Lockstep',
-            text: 'Even WebKit itself had to revert 76 sandbox commits (8.3%) due to regressions (e.g., 9e4f688854 reverting kernel MIG tightening after crashes, 4af081a141 reverting Networking sandbox inheritance, and 771a8c6945 reverting Mach lookup extension telemetry) \u2014 and WebKit ships in lockstep with the OS.',
-            links: [
-              { label: 'All 76 Revert Commits', filter: { category: 'revert', bucket: 'year', stackBy: 'effect' } }
-            ]
-          }
-        ]
-      }
-    ].forEach((c) => {
-      const card = el('div', 'insights-detail-card');
-      if (c.id) card.id = c.id;
-      card.appendChild(el('div', 'insights-card-kicker', c.kicker));
-      card.appendChild(el('h4', 'insights-card-title', c.title));
-      card.appendChild(createBulletList(c.bullets));
-      p2Grid.appendChild(card);
-    });
-    part2.appendChild(p2Grid);
-    container.appendChild(part2);
-
-    // =========================================================================
     // PART 3: Six Data-Backed Insight Cards (With Figures & Data View Links)
     // =========================================================================
     const part3HdrWrap = el('div', 'insights-part3-banner');
     part3HdrWrap.id = 'insight-part-cards';
     const p3Left = el('div');
-    p3Left.appendChild(el('span', 'insights-section-num', 'PART 3 \u00B7 EMPIRICAL EVIDENCE & FIGURES'));
+    p3Left.appendChild(el('span', 'insights-section-num', 'PART 2 \u00B7 DATA FINDINGS & FIGURES'));
     p3Left.appendChild(
       el(
         'h3',
         'insights-section-title',
-        'Six Data-Backed Insight Cards (Click Any Chart Bar, Commit, or Button to Inspect Raw Data)'
+        'Data Findings & Figures (Click Any Chart Bar, Commit, or Button to Inspect Raw Data)'
       )
     );
     part3HdrWrap.appendChild(p3Left);
@@ -3041,7 +2907,7 @@
         },
         {
           lead: 'Why 3P Engines Cannot Replicate This Telemetry Loop',
-          text: 'Beyond errors surfaced directly to engine code, 3P BrowserEngineKit engines cannot attach (with telemetry) probes, call private libsandbox/os_log_set_hook SPIs (9167490750), or receive sandboxd telemetry when closed-source iOS system frameworks silently fail inside the dyld shared cache (0e5778bebe); Apple\u2019s (!is-apple-signed-executable) (log-streaming) (ba762580c0, 66e7f7b2c5) and .Development.sb.in hooks only emit local logs on Mac-tethered development devices.',
+          text: 'Telemetry is gathered through (with telemetry) probes and private libsandbox/os_log_set_hook SPIs (9167490750), and sandboxd reports denials raised inside the dyld shared cache (0e5778bebe); the (!is-apple-signed-executable) (log-streaming) rules (ba762580c0, 66e7f7b2c5) and the .Development.sb.in hooks emit local os_log output on development devices only.',
           links: [
             { label: 'SandboxSPI.h', path: 'Source/WTF/wtf/spi/darwin/SandboxSPI.h' },
             { label: 'OSLogSPI.h', path: 'Source/WTF/wtf/spi/cocoa/OSLogSPI.h' },
@@ -3078,7 +2944,7 @@
     c4Hdr.appendChild(el('span', 'insight-card-num', 'INSIGHT 4 \u00B7 KERNEL PRIMITIVE WHITELISTS'));
     c4Hdr.appendChild(el('span', 'insight-card-stat-badge', '88.2% iOS-Only \u00B7 134/550 Syscalls'));
     card4.appendChild(c4Hdr);
-    card4.appendChild(el('h4', 'insight-data-card-title', 'Why Chromium Code Works on macOS Yet Traps on iOS: Strict Default-Deny Kernel Whitelists'));
+    card4.appendChild(el('h4', 'insight-data-card-title', 'macOS vs. iOS: default-deny kernel primitive allow-lists'));
 
     card4.appendChild(
       buildHorizontalMeterChart(
@@ -3224,7 +3090,7 @@
       createBulletList([
         {
           lead: 'Post-Launch Traps Catch Lazy Init',
-          text: 'Once WebContentProcessLaunched (44000a3a3a) is set, MSC_mach_timebase_info_trap, MSC_task_self_trap, host_info, kern.boottime, and SYS_proc_info are blocked (7ddd37b4ad, 568ff7623f, d5c48f8a19) \u2014 breaking lazy Chromium timer/allocator init.',
+          text: 'Once WebContentProcessLaunched (44000a3a3a) is set, MSC_mach_timebase_info_trap, MSC_task_self_trap, host_info, kern.boottime, and SYS_proc_info are blocked (7ddd37b4ad, 568ff7623f, d5c48f8a19).',
           links: [
             { label: 'common.sb', path: 'Source/WebKit/Shared/Sandbox/common.sb' },
             { label: 'webcontent-defines.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb' },
@@ -3266,22 +3132,22 @@
     // -------------------------------------------------------------------------
     // INSIGHT CARD 6: Direct Evidence from BrowserEngineKit (!is-apple-signed-executable)
     // -------------------------------------------------------------------------
-    const card6 = el('article', 'insight-data-card');
+        const card6 = el('article', 'insight-data-card');
     card6.id = 'insight-6-architecture';
     const c6Hdr = el('div', 'insight-data-card-header');
-    c6Hdr.appendChild(el('span', 'insight-card-num', 'INSIGHT 6 \u00B7 BROWSERENGINEKIT 3P DIVERGENCE'));
+    c6Hdr.appendChild(el('span', 'insight-card-num', 'INSIGHT 6 \u00B7 THIRD-PARTY ENGINE SPECIFIC RULES'));
     c6Hdr.appendChild(el('span', 'insight-card-stat-badge', '8 Direct 3P Engine Sandbox Commits'));
     card6.appendChild(c6Hdr);
-    card6.appendChild(el('h4', 'insight-data-card-title', 'Real-World BrowserEngineKit Fixes Prove 1P Hardening Breaks 3P Engines (!is-apple-signed-executable)'));
+    card6.appendChild(el('h4', 'insight-data-card-title', 'Third-Party Engine Specific Rules (!is-apple-signed-executable)'));
 
     card6.appendChild(
       buildHorizontalMeterChart(
-        'Figure 6A: Third-Party BrowserEngineKit Conditionals in WebKit iOS Sandbox Profiles (HEAD)',
+        'Figure 6A: Third-Party Engine Conditionals in WebKit iOS Sandbox Profiles',
         'Click any commit hash or row to inspect commit details',
         [
           {
             label: '!is-apple-signed-executable in Networking (c01e8de3c1)',
-            sublabel: 'Restores container /tmp and /Library/Caches after 1P hardening (b148037850) broke 3P engines',
+            sublabel: 'Restores container /tmp and /Library/Caches after b148037850 restricted them',
             rightText: 'Networking: /tmp & /Library/Caches',
             pct: 100,
             color: '#0284c7',
@@ -3289,7 +3155,7 @@
           },
           {
             label: '!is-apple-signed-executable in GPU (33cc299a31)',
-            sublabel: 'Grants SYS_mkdirat so 3P rendering extensions can call mkdtemp() without crashing',
+            sublabel: 'Grants SYS_mkdirat so third-party rendering extensions can call mkdtemp() without crashing',
             rightText: 'GPU: SYS_mkdirat (mkdtemp)',
             pct: 85,
             color: '#0284c7',
@@ -3297,7 +3163,7 @@
           },
           {
             label: '!is-apple-signed-executable Diagnostic Logging (ba762580c0)',
-            sublabel: 'Allows com.apple.diagnosticd Mach lookup so 3P engines can stream os_log',
+            sublabel: 'Allows com.apple.diagnosticd Mach lookup so third-party engines can stream os_log',
             rightText: 'Shared: com.apple.diagnosticd',
             pct: 70,
             color: '#0284c7',
@@ -3321,7 +3187,7 @@
       createBulletList([
         {
           lead: 'Networking Container Breakage & Fix',
-          text: 'Commits b148037850 & e62ea2ac63 blocked container file access in Networking (fine for WebKit, which brokers via UIProcess), breaking 3P engines until c01e8de3c1 added a !is-apple-signed-executable exemption.',
+          text: 'c01e8de3c1 adds a (require-not (process-attribute is-apple-signed-executable)) exception for container /tmp and /Library/Caches in Networking after b148037850/e62ea2ac63 restricted them.',
           links: [
             { label: 'Networking.sb.in', path: 'Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in' },
             { label: 'Data View: !is-apple-signed-executable', filter: { search: 'is-apple-signed-executable', bucket: 'year', stackBy: 'effect' } }
@@ -3329,7 +3195,7 @@
         },
         {
           lead: 'GPU mkdtemp Crash in 3P Engines',
-          text: '3P GPU extensions calling POSIX mkdtemp() crashed because SYS_mkdirat was missing from gpu-defines.sb until 33cc299a31.',
+          text: 'Third-party GPU extensions calling POSIX mkdtemp() crashed because SYS_mkdirat was missing from gpu-defines.sb until 33cc299a31.',
           links: [
             { label: 'gpu-defines.sb', path: 'Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb' }
           ]
@@ -3363,6 +3229,7 @@
     c6Actions.appendChild(createFilterActionButton('Data View: All 8 3p-specific Commits', { tag: '3p-specific', bucket: 'year', stackBy: 'effect' }, true));
     card6.appendChild(c6Actions);
     cardsContainer.appendChild(card6);
+
 
     container.appendChild(cardsContainer);
   }
@@ -3661,7 +3528,7 @@
     init();
   }
 
-  // Handle initialization and hash fragment deep linking (e.g. sandbox.html#challenge-b-telemetry)
+  // Handle initialization and hash fragment deep linking (e.g. sandbox.html#insight-part-seatbelt)
   function handleHash(ev) {
     const anchorId = getPlainAnchorId();
     if (!anchorId) return;

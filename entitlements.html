@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Comprehensive analysis of all 159 entitlements across the WebKit codebase, comparing Apple-private and restricted entitlements used by WebKit against what third-party iOS browsers using BrowserEngineKit can access.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
-  <title>WebKit Entitlements &amp; BrowserEngineKit Asymmetry Analyzer</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>WebKit Entitlements &amp; BrowserEngineKit Analysis — iOS &amp; macOS Code-Signing Inventory</title>
   <link rel="icon" type="image/svg+xml" href="favicon-entitlements.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,138 +13,130 @@
   <link rel="stylesheet" href="css/entitlements.css">
 </head>
 <body>
+  <!-- Unified Sticky Top Header -->
   <header class="app-header">
     <div class="header-inner">
       <div class="brand">
-        <a href="index.html" class="brand-icon ent-brand-icon" title="Back to WebKit source analysis" aria-label="Back to WebKit source analysis">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            <circle cx="12" cy="10" r="2"></circle>
-            <path d="M12 12v4"></path>
+        <div class="brand-icon brand-icon-entitlements" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+            <circle cx="12" cy="10" r="2.3"/>
+            <path d="M12 12.3v4.2"/>
           </svg>
-        </a>
+        </div>
         <div>
           <div class="brand-title-row">
-            <h1 class="brand-title">WebKit Entitlements &amp; BrowserEngineKit Asymmetry Analyzer</h1>
-            <span class="brand-badge ent-brand-badge">159 Entitlements Audited</span>
-            <span class="ai-warning-pill" role="note" title="Analysis is AI-generated and may contain errors">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                <line x1="12" y1="9" x2="12" y2="13"></line>
-                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-              </svg>
-              Analysis is AI-generated and may contain errors
-            </span>
+            <h1 class="brand-title">WebKit Entitlements &amp; BrowserEngineKit Asymmetry</h1>
+            <span class="brand-badge">Code-Signing &amp; Privilege Audit</span>
+            <span class="ai-warning-pill" title="Generated with AI assistance — always verify claims against the linked WebKit source files and commits">⚠️ AI-generated analysis — verify claims against linked source</span>
           </div>
-          <p class="brand-subtitle">Complete enumeration and code-pointer mapping of every entitlement across WebKit (<code>.entitlements</code>, <code>process-entitlements.sh</code>, runtime C++ checks, Seatbelt profiles) and implications for 3P iOS browsers using <code>BrowserEngineKit</code></p>
+          <p class="brand-subtitle">
+            Comprehensive inventory of all 159 entitlements across WebKit (<code>process-entitlements.sh</code>, <code>*.entitlements</code>, runtime checks &amp; Seatbelt gates) and their implications for 3rd-party iOS browsers
+          </p>
         </div>
       </div>
       <div class="header-actions">
-        <a href="index.html" class="btn-secondary" title="Back to WebKit source analysis index">&larr; All Analyses</a>
-        <div id="datasetMetaBadge" class="meta-badge" aria-live="polite">Loading dataset&hellip;</div>
-        <button id="toggleMethodologyBtn" type="button" class="btn-secondary" aria-expanded="false" aria-controls="methodologyPanel">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
-          Taxonomy &amp; Methodology
+        <a href="index.html" class="btn-secondary" title="Back to all WebKit analyses">&larr; All Analyses</a>
+        <span id="datasetMetaBadge" class="meta-badge">Loading dataset…</span>
+        <button id="toggleMethodologyBtn" class="btn-secondary" type="button" aria-expanded="false">
+          Methodology &amp; Taxonomy
         </button>
       </div>
     </div>
   </header>
 
   <main class="app-main">
-    <!-- Collapsible Taxonomy & Methodology Drawer -->
-    <section id="methodologyPanel" class="methodology-panel hidden" aria-label="Entitlement Availability Taxonomy and Extraction Methodology">
-      <div class="methodology-grid">
-        <div class="methodology-col">
-          <h3>4-Tier Availability Classification</h3>
-          <p>Every entitlement across the WebKit repository is categorized into one of four availability tiers:</p>
-          <ul class="compact-list">
-            <li><span class="ent-pill ent-pill-private">Private to Apple</span> (<strong>114</strong>): <code>com.apple.private.*</code> and internal OS entitlements (<code>com.apple.QuartzCore.*</code>, <code>com.apple.mediaremote.*</code>, <code>com.apple.tcc.*</code>, <code>com.apple.runningboard.*</code>, <code>com.apple.pac.*</code>) that provisioning profiles only grant to Apple-signed system binaries.</li>
-            <li><span class="ent-pill ent-pill-bek">BrowserEngineKit</span> (<strong>6</strong>): Entitlements available to approved 3P alternative browser engines on iOS (<code>com.apple.developer.web-browser-engine.{host,webcontent,rendering,networking,restrict.notifyd}</code> and <code>com.apple.developer.cs.allow-jit</code>).</li>
-            <li><span class="ent-pill ent-pill-restricted">Restricted Other Way</span> (<strong>20</strong>): Managed capabilities requiring separate Apple approval outside BrowserEngineKit (e.g., <code>com.apple.developer.web-browser</code>, <code>com.apple.developer.WebKit.ServiceWorkers</code>) or legacy/development App Sandbox exceptions.</li>
-            <li><span class="ent-pill ent-pill-public">Generally Available</span> (<strong>19</strong>): Public developer entitlements available via standard Xcode capabilities (e.g., <code>com.apple.developer.kernel.extended-virtual-addressing</code>, <code>com.apple.developer.hardened-process</code>, <code>keychain-access-groups</code>).</li>
-          </ul>
-        </div>
-        <div class="methodology-col">
-          <h3>Dual-Signing Architecture in WebKit</h3>
-          <p>Why do static <code>.entitlements</code> files in <code>Source/WebKit/UIProcess/AuxiliaryProcessExtensions/</code> look so minimal compared to production WebKit on iOS?</p>
-          <ul class="compact-list">
-            <li><strong>Template Plists (<code>AuxiliaryProcessExtensions/*.entitlements</code>):</strong> Only used when building standalone <code>BrowserEngineKit</code> extensions or simulator builds where <code>WK_USE_RESTRICTED_ENTITLEMENTS == NO</code>. They contain only the 6 <code>BrowserEngineKit</code> + public entitlements.</li>
-            <li><strong>Production System Signing (<code>Source/WebKit/Scripts/process-entitlements.sh</code>):</strong> When building Apple&rsquo;s system WebKit on <code>iphoneos</code> (<code>WK_USE_RESTRICTED_ENTITLEMENTS == YES</code>), <code>ios_family_process_{webcontent,gpu,network,webpushd,adattributiond,model}_entitlements</code> dynamically injects ~60 Apple-private entitlements into WebKit&rsquo;s system helper processes.</li>
-          </ul>
-        </div>
-        <div class="methodology-col">
-          <h3>Multi-Source Extraction &amp; Per-Entitlement Audit</h3>
-          <p>Extracted from the WebKit repository, with each of the 159 entitlements analyzed individually:</p>
-          <ul class="compact-list">
-            <li><strong>4 Extraction Vectors:</strong> Parses all 22 <code>.entitlements</code> / <code>entitlements.plist</code> files, 3 <code>process-entitlements.sh</code> scripts, 57 runtime C++/ObjC <code>hasEntitlement</code> / <code>SecTaskCopyValueForEntitlement</code> checks, and 26 Seatbelt <code>require-entitlement</code> / <code>extension</code> rules.</li>
-            <li><strong>Code Pointers &amp; Git History:</strong> Each entitlement was investigated individually to trace its exact C++/ObjC/Seatbelt implementation, <code>github.com/WebKit/WebKit</code> line references, and historical commits.</li>
-          </ul>
+    <!-- Collapsible 4-Tier Classification & Methodology Panel -->
+    <aside id="methodologyPanel" class="methodology-panel hidden">
+      <div class="methodology-inner">
+        <div class="methodology-grid">
+          <div class="methodology-col">
+            <h3>1. 4-Tier Entitlement Availability Taxonomy</h3>
+            <ul class="taxonomy-list">
+              <li><span class="ent-pill ent-pill-private">Private to Apple (114)</span> <code>com.apple.private.*</code> and internal system entitlements (<code>com.apple.QuartzCore.*</code>, <code>com.apple.runningboard.*</code>, <code>com.apple.tcc.delegated-services</code>, <code>aps-connection-initiate</code>) granted exclusively to Apple-signed platform binaries.</li>
+              <li><span class="ent-pill ent-pill-bek">BrowserEngineKit (6)</span> The 6 entitlements documented for third-party browser engines on iOS (<code>com.apple.developer.web-browser-engine.{host,webcontent,rendering,networking}</code>, <code>restrict.notifyd</code>, and <code>com.apple.developer.cs.allow-jit</code>).</li>
+              <li><span class="ent-pill ent-pill-restricted">Restricted Other (20)</span> Managed capabilities requiring separate Apple approval outside BrowserEngineKit (e.g., <code>com.apple.developer.web-browser</code>, <code>embedded-web-browser-engine</code>, <code>group-session</code>, <code>in-app-identity-presentment</code>) or App Sandbox temporary exceptions.</li>
+              <li><span class="ent-pill ent-pill-public">Generally Available (19)</span> Standard public entitlements available to any Apple Developer account in Xcode (e.g., <code>increased-memory-limit</code>, <code>extended-virtual-addressing</code>, <code>hardened-process</code>, <code>keychain-access-groups</code>).</li>
+            </ul>
+          </div>
+          <div class="methodology-col">
+            <h3>2. How WebKit Signs iOS Processes vs. 3P BrowserEngineKit</h3>
+            <ul class="taxonomy-list">
+              <li><span class="badge-pill badge-blue">Static .entitlements Plists</span> <code>Source/WebKit/UIProcess/AuxiliaryProcessExtensions/*.entitlements</code> define the baseline BrowserEngineKit plists (2–6 keys per extension) used on iOS Simulator or open-source builds.</li>
+              <li><span class="badge-pill badge-rose">process-entitlements.sh (iphoneos)</span> When built by Apple with <code>WK_USE_RESTRICTED_ENTITLEMENTS=YES</code>, <code>Source/WebKit/Scripts/process-entitlements.sh</code> dynamically injects ~60 private entitlements into <code>WebContent</code> (28), <code>GPU</code> (31), <code>Networking</code> (25), <code>webpushd</code> (12), <code>adattributiond</code> (4), and <code>ModelProcess</code> (6).</li>
+              <li><span class="badge-pill badge-emerald">Runtime &amp; Seatbelt Checks</span> WebKit's UIProcess, NetworkProcess, and Seatbelt profiles (<code>require-entitlement</code>) actively inspect caller/host entitlements via <code>WTF::hasEntitlement()</code> to gate privileged IPC endpoints, JIT flags, and sandbox extensions.</li>
+            </ul>
+          </div>
+          <div class="methodology-col">
+            <h3>3. iOS Competitive Parity Status Tiers</h3>
+            <ul class="taxonomy-list">
+              <li><span class="ent-pill ent-pill-private">iOS WebKit-Exclusive (84)</span> Active on iOS production WebKit processes or checked on iOS host apps, but unavailable to 3P BrowserEngineKit browsers (82 Apple-private + 2 restricted-other).</li>
+              <li><span class="ent-pill ent-pill-bek">BrowserEngineKit Granted (6)</span> Explicitly granted to 3P browser engine extensions and host apps under BrowserEngineKit.</li>
+              <li><span class="ent-pill ent-pill-restricted">iOS Managed Approval (3)</span> Requires separate Apple developer approval on iOS (Default Browser, GroupActivities, IdentityDocumentServices).</li>
+              <li><span class="ent-pill ent-pill-public">iOS Public Parity (7)</span> Public iOS entitlements any developer can enable (extended virtual addressing, hardened-process, app-groups).</li>
+              <li><span class="ent-pill ent-pill-slate">macOS / Test Harness Only (59)</span> Used only on macOS (<code>mac_process_*</code>, App Sandbox) or internal WebKit test runners (<code>DumpRenderTree</code>, <code>WebKitTestRunner</code>).</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
+    </aside>
 
-    <!-- Top-Level View Tabs -->
-    <nav class="view-tabs-bar" role="tablist" aria-label="Entitlements Analysis Views">
-      <button type="button" id="viewTabInsights" class="view-tab-btn active" role="tab" aria-selected="true" aria-controls="insightsViewPanel">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-        </svg>
-        <span>Insights, BrowserEngineKit Asymmetry &amp; Process Comparison</span>
-        <span class="view-tab-badge">84 iOS Exclusives</span>
-      </button>
-      <button type="button" id="viewTabExplorer" class="view-tab-btn" role="tab" aria-selected="false" aria-controls="explorerViewPanel">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="3" y1="9" x2="21" y2="9"></line>
-          <line x1="9" y1="21" x2="9" y2="9"></line>
-        </svg>
-        <span>Data View: Interactive Entitlement Explorer</span>
-        <span id="explorerTabCountBadge" class="view-tab-badge">159</span>
-      </button>
+    <!-- Primary View Switcher Bar -->
+    <nav class="view-tabs-bar" role="tablist" aria-label="Primary Analysis Views">
+      <div class="view-tabs-group">
+        <button id="viewTabInsights" class="view-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="insightsViewPanel">
+          <span class="view-tab-title">Insights &amp; Asymmetry Deep-Dives</span>
+          <span class="view-tab-badge">Process Comparison &amp; 8 Key Gaps</span>
+        </button>
+        <button id="viewTabExplorer" class="view-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="explorerViewPanel">
+          <span class="view-tab-title">Data View (159 Entitlement Explorer)</span>
+          <span id="explorerTabCountBadge" class="view-tab-badge">159</span>
+        </button>
+      </div>
     </nav>
 
-    <!-- View 1 (Default): Insights, BrowserEngineKit Asymmetry & Process Comparison -->
+    <!-- ====================================================================
+         VIEW 1: INSIGHTS, PROCESS COMPARISON & THEMATIC ASYMMETRY DEEP-DIVES
+         ==================================================================== -->
     <div id="insightsViewPanel" class="view-panel" role="tabpanel" aria-labelledby="viewTabInsights">
-      <div id="insightsContent" class="insights-layout"></div>
+      <div id="insightsContent"></div>
     </div>
 
-    <!-- View 2: Data View (Interactive Entitlement Explorer) -->
+    <!-- ====================================================================
+         VIEW 2: DATA VIEW — INTERACTIVE 159-ENTITLEMENT EXPLORER
+         ==================================================================== -->
     <div id="explorerViewPanel" class="view-panel hidden" role="tabpanel" aria-labelledby="viewTabExplorer">
       <!-- KPI Summary Cards -->
-      <section id="kpiGrid" class="kpi-grid" aria-label="Entitlement Summary Metrics"></section>
+      <section class="kpi-grid" id="kpiGrid" aria-label="Summary Statistics"></section>
 
       <!-- Interactive Filter Bar -->
-      <section class="filter-panel" aria-label="Filter Entitlements">
+      <section class="filter-panel" aria-label="Entitlement Filters">
         <div class="filter-bar">
           <div class="filter-group">
-            <label for="filterCategory">Availability Category</label>
+            <label for="filterCategory">Availability Category (4 Tiers)</label>
             <select id="filterCategory">
-              <option value="all">All 4 Availability Categories (159)</option>
+              <option value="all">All Categories (159)</option>
               <option value="apple-private">Private to Apple (114)</option>
               <option value="browserenginekit">Available to BrowserEngineKit (6)</option>
               <option value="restricted-other">Restricted Some Other Way (20)</option>
-              <option value="generally-available">Generally Available (19)</option>
+              <option value="generally-available">Generally Available / Public (19)</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="filterParity">iOS BrowserEngineKit Parity</label>
+            <label for="filterParity">iOS Competitive Parity Status</label>
             <select id="filterParity">
-              <option value="all">All iOS / Platform Scopes</option>
+              <option value="all">All iOS / macOS Statuses (159)</option>
               <option value="ios-webkit-exclusive">iOS WebKit-Exclusive Asymmetry (84)</option>
               <option value="browserenginekit-granted">Granted via BrowserEngineKit (6)</option>
-              <option value="ios-managed-approval">iOS Managed Approval Outside BEK (5)</option>
+              <option value="ios-managed-approval">iOS Managed Approval (3)</option>
               <option value="ios-public-parity">iOS Public Developer Parity (7)</option>
-              <option value="macos-or-harness-only">macOS-Only or Test Harness Only (57)</option>
+              <option value="macos-or-harness-only">macOS-Only or Test Harness (59)</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="filterProcess">Process / Target</label>
+            <label for="filterProcess">WebKit Process / Target</label>
             <select id="filterProcess">
               <option value="all">All Processes &amp; Targets</option>
             </select>
@@ -154,133 +145,136 @@
           <div class="filter-group">
             <label for="filterDomain">Functional Domain</label>
             <select id="filterDomain">
-              <option value="all">All Functional Domains</option>
+              <option value="all">All 12 Functional Domains</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="filterEnforcement">Enforcement / Usage Vector</label>
+            <label for="filterEnforcement">Enforcement / Usage Mechanism</label>
             <select id="filterEnforcement">
-              <option value="all">All Enforcement Vectors</option>
+              <option value="all">All Mechanisms</option>
             </select>
           </div>
 
-          <div class="filter-group filter-group-search">
-            <label for="filterSearch">Search Entitlement Key / Code File / Purpose / 3P Implication</label>
-            <input type="search" id="filterSearch" placeholder="e.g. allow-jit, QuartzCore, tcc, ciphermld, payment, runningboard...">
+          <div class="filter-group filter-search-group">
+            <label for="filterSearch">Search Entitlement Key, Purpose, Source File, Commit</label>
+            <input type="search" id="filterSearch" placeholder="e.g. tcc.delegated, QuartzCore, verified-jit, ciphermld, allow-jit…">
           </div>
 
-          <div class="filter-actions">
-            <button id="resetFiltersBtn" type="button" class="btn-reset" title="Reset all active filters">Reset</button>
-            <button id="exportCsvBtn" type="button" class="btn-secondary" title="Export matching entitlements as CSV">Export CSV</button>
+          <div class="filter-group filter-actions-group">
+            <label>&nbsp;</label>
+            <div style="display:flex; gap:8px;">
+              <button id="resetFiltersBtn" class="btn-reset" type="button">Reset Filters</button>
+              <button id="exportCsvBtn" class="btn-secondary" type="button" title="Download matching entitlements as CSV">Export CSV</button>
+            </div>
           </div>
         </div>
 
         <!-- Quick Category Filter Pills -->
         <div class="quick-pills-row">
-          <span class="quick-pills-label">Quick Filter by Availability:</span>
-          <div id="categoryPillBar" class="pill-bar" role="group" aria-label="Filter by Availability Category"></div>
+          <span class="quick-pills-label">Quick Category Filter:</span>
+          <div id="categoryPillBar" class="pill-bar"></div>
         </div>
       </section>
 
-      <!-- Primary Entitlement Distribution Chart -->
-      <section class="card chart-card" aria-label="Entitlements Distribution Chart">
+      <!-- Main Visualization Card -->
+      <section class="card chart-card">
         <div class="card-header">
           <div>
-            <h2 id="mainChartTitle" class="card-title">WebKit Entitlements by Functional Domain &amp; Availability</h2>
-            <p id="mainChartSubtitle" class="card-subtitle">Click any bar segment or legend item to filter the entitlement explorer table below</p>
+            <h2 class="card-title" id="mainChartTitle">Entitlements by Functional Domain &amp; Availability Category</h2>
+            <p class="card-subtitle" id="mainChartSubtitle">Click any bar segment or legend item to filter the entitlement table below</p>
           </div>
           <div class="chart-controls">
             <div class="control-inline">
-              <label for="chartGroupSelect">Group X-Axis</label>
+              <label for="chartGroupSelect">Group Bars By:</label>
               <select id="chartGroupSelect">
-                <option value="domain" selected>By Functional Domain (12)</option>
-                <option value="process">By Process / Target (8)</option>
-                <option value="category">By Availability Category (4)</option>
-                <option value="parity">By iOS BrowserEngineKit Parity (5)</option>
+                <option value="domain" selected>Functional Domain (12)</option>
+                <option value="process">WebKit Process / Target</option>
+                <option value="category">Availability Category (4)</option>
+                <option value="parity">iOS Parity Status (5)</option>
               </select>
             </div>
-
             <div class="control-inline">
-              <label for="chartStackSelect">Color / Stack By</label>
+              <label for="chartStackSelect">Stack / Color By:</label>
               <select id="chartStackSelect">
-                <option value="category" selected>Availability Category (4 Tiers)</option>
-                <option value="parity">iOS BrowserEngineKit Parity Status</option>
+                <option value="category" selected>Availability Category (4)</option>
+                <option value="parity">iOS Parity Status (5)</option>
               </select>
             </div>
           </div>
         </div>
 
-        <div id="chartLegend" class="chart-legend" role="group" aria-label="Chart Legend"></div>
+        <div id="chartLegend" class="chart-legend"></div>
 
-        <div id="mainChartContainer" class="chart-svg-wrapper">
-          <svg id="mainChartSvg" class="chart-svg" role="img" aria-label="Stacked bar chart of WebKit entitlements"></svg>
+        <div class="chart-svg-wrapper" id="mainChartContainer">
+          <svg id="mainChartSvg" role="img" aria-label="Interactive stacked bar chart of WebKit entitlements"></svg>
+          <div id="chartTooltip" class="chart-tooltip hidden"></div>
         </div>
       </section>
 
-      <!-- Three-Column Breakdown Cards -->
-      <section class="breakdown-grid" aria-label="Dimensional Breakdowns">
-        <article class="card breakdown-card">
-          <div class="card-header-compact">
-            <h3 class="card-title-sm">By Availability Category</h3>
+      <!-- 3-Column Breakdown Grid -->
+      <section class="breakdown-grid">
+        <div class="card breakdown-card">
+          <div class="card-header card-header-compact">
+            <h3 class="card-title">By Availability Category</h3>
             <span class="card-hint">Click row to filter</span>
           </div>
           <div id="categoryBreakdownList" class="breakdown-list"></div>
-        </article>
+        </div>
 
-        <article class="card breakdown-card">
-          <div class="card-header-compact">
-            <h3 class="card-title-sm">By Functional Domain</h3>
-            <span class="card-hint">Click row to filter</span>
+        <div class="card breakdown-card">
+          <div class="card-header card-header-compact">
+            <h3 class="card-title">By Functional Domain</h3>
+            <span class="card-hint">12 technical areas</span>
           </div>
           <div id="domainBreakdownList" class="breakdown-list"></div>
-        </article>
+        </div>
 
-        <article class="card breakdown-card">
-          <div class="card-header-compact">
-            <div class="card-tab-group" role="tablist" aria-label="Process or iOS Parity Breakdown">
-              <button type="button" id="tabProcessBtn" class="tab-btn active" role="tab" aria-selected="true">By Process</button>
-              <button type="button" id="tabParityBtn" class="tab-btn" role="tab" aria-selected="false">iOS Parity</button>
+        <div class="card breakdown-card">
+          <div class="card-header card-header-compact">
+            <h3 class="card-title">By Process &amp; iOS Parity</h3>
+            <div class="segmented-control" role="tablist">
+              <button type="button" class="seg-btn seg-btn-sm active" id="tabProcessBtn">Processes</button>
+              <button type="button" class="seg-btn seg-btn-sm" id="tabParityBtn">iOS Parity</button>
             </div>
-            <span class="card-hint">Click row to filter</span>
           </div>
           <div id="processParityBreakdownList" class="breakdown-list"></div>
-        </article>
+        </div>
       </section>
 
-      <!-- Entitlements Table -->
-      <section class="card table-card" aria-label="Table of WebKit Entitlements">
-        <div class="card-header table-header-bar">
+      <!-- Entitlements Inventory Table -->
+      <section class="card table-card">
+        <div class="card-header table-header">
           <div>
-            <h2 class="card-title">WebKit Entitlements Inventory, Code Pointers &amp; 3P Browser Implications</h2>
-            <p id="tableSummaryText" class="card-subtitle">Showing matching entitlements &mdash; click any row to inspect full WebKit usage summary, 3P BrowserEngineKit implications, source code pointers, and GitHub commits</p>
+            <h2 class="card-title">Complete WebKit Entitlements Inventory &amp; Code-Pointer Dossiers</h2>
+            <p class="card-subtitle" id="tableSummaryText">Showing 159 entitlements — click any row to inspect WebKit usage summary, 3P BrowserEngineKit implications, source code pointers, and GitHub commits</p>
           </div>
           <div class="table-controls">
             <div class="control-inline">
-              <label for="tableSortSelect">Sort By</label>
+              <label for="tableSortSelect">Sort:</label>
               <select id="tableSortSelect">
-                <option value="parity-asc" selected>iOS Asymmetry Priority &rarr; Key</option>
-                <option value="category-asc">Availability Category &rarr; Key</option>
-                <option value="domain-asc">Functional Domain &rarr; Key</option>
-                <option value="key-asc">Entitlement Key (A&ndash;Z)</option>
-                <option value="refs-desc">Most Code &amp; SPI References</option>
+                <option value="parity-asc" selected>iOS WebKit-Exclusive First</option>
+                <option value="category-asc">By Availability Category</option>
+                <option value="domain-asc">By Functional Domain</option>
+                <option value="refs-desc">Most Code Pointers &amp; SPIs</option>
+                <option value="key-asc">Entitlement Key (A–Z)</option>
               </select>
             </div>
           </div>
         </div>
 
         <div class="table-scroll-container">
-          <table class="changes-table">
+          <table class="changes-table" id="entitlementsTable">
             <thead>
               <tr>
-                <th class="col-expand" aria-label="Expand details"></th>
-                <th>Entitlement Key</th>
-                <th>Availability Tier</th>
-                <th>iOS Parity Status</th>
-                <th>Processes / Targets</th>
-                <th>Domain</th>
-                <th>WebKit Purpose &amp; 3P Browser Implication</th>
-                <th>Code Pointers &amp; Commits</th>
+                <th class="col-expand" aria-label="Expand"></th>
+                <th class="col-ent-key">Entitlement Key</th>
+                <th class="col-ent-cat">Availability Category</th>
+                <th class="col-ent-parity">iOS Parity Status</th>
+                <th class="col-ent-procs">Processes / Targets</th>
+                <th class="col-ent-domain">Functional Domain</th>
+                <th class="col-ent-purpose">Short Purpose</th>
+                <th class="col-ent-refs">Code Pointers &amp; Commits</th>
               </tr>
             </thead>
             <tbody id="entitlementsTableBody"></tbody>

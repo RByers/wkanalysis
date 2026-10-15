@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How WebKit's private adattributiond daemon schedules 24–48h delayed Private Click Measurement attribution reports when Safari is closed, and why BrowserEngineKit browsers face report delays or data loss.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Delayed web-to-web ad-attribution reports — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Delayed web-to-web ad-attribution reports
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Delayed web-to-web ad-attribution reports</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P3</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Confirmed in WebKit daemon source and launchd configurations)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Unverified <span class="badge-note">(Chrome uses internal background scheduling)</span></span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> For Private Click Measurement (PCM), Safari delegates ad-attribution reporting to a persistent system daemon (<code>adattributiond</code>) that fires 24–48 hours later even if the browser has been closed; third-party browser engines on iOS have no background daemon extension type or persistent <code>launchd</code> trigger, so they can only send reports while running or via opportunistic background task refreshes, delaying or losing attribution data when users do not reopen the browser.</p>
+        <p><strong>What this page adds:</strong> Reading WebKit's source code and the <code>adattributiond</code> service architecture reveals that WebKit completely separated PCM attribution storage into an isolated system <code>launchd</code> daemon (<code>com.apple.webkit.adattributiond</code>) that registers a 24-hour maintenance activity (<code>xpc_activity_register</code>). In June 2026, Apple further hardened report delivery by routing outbound conversion reports fail-closed through Apple's Oblivious HTTP / iCloud Private Relay infrastructure (<code>com.apple.networkserviceproxy</code>) using the private entitlement <code>com.apple.private.networkserviceproxy</code>. Third-party BrowserEngineKit browsers are locked out of both <code>adattributiond</code> (gated by <code>com.apple.private.webkit.adattributiond</code>) and Apple's Private Relay proxying, forcing them to run an in-process SQLite fallback (mirroring WebKit's legacy macOS / ephemeral store) and rely on non-guaranteed <code>BGTaskScheduler</code> background execution.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">What Private Click Measurement is and why reports are delayed 24–48 hours</a></li>
+        <li><a href="#aspect-2">The <code>adattributiond</code> daemon architecture: persistent system-wide coordination</a></li>
+        <li><a href="#aspect-3">Background execution and the <code>xpc_activity</code> gap: waking when the browser is closed</a></li>
+        <li><a href="#aspect-4">Privacy transport: Oblivious HTTP &amp; iCloud Private Relay integration</a></li>
+        <li><a href="#aspect-5">Cryptographic parity: RSA-BSSA blind signatures in userland</a></li>
+        <li><a href="#aspect-6">WebKit's in-engine fallback: the <code>PrivateClickMeasurementManager</code> SQLite store</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>What Private Click Measurement is and why reports are delayed 24–48 hours</h2>
+      <p>Private Click Measurement (PCM) is Apple's proposed web standard (developed in the W3C Privacy Community Group) for measuring advertising conversions without third-party cookies or cross-site tracking. When a user clicks an ad on a publisher website, the browser stores an unattributed ad-click event (an 8-bit source ID, providing 256 values). If the user subsequently performs a conversion on the advertiser website (such as purchasing a product or registering an account), the advertiser triggers an attribution event (a 4-bit trigger value, providing 16 values, plus an optional priority).</p>
+      <p>Crucially, the browser does not send an attribution report immediately upon conversion. Instead, the specification mandates a random delay between <strong>24 and 48 hours</strong> before dispatching the attribution report to both the publisher and advertiser endpoints. This deliberate temporal detachment is fundamental to user privacy: if the attribution request were transmitted at the instant of conversion, the publisher and advertiser could correlate the server timestamp of the conversion request with the original ad click timestamp, effectively reconstructing the user's cross-site browsing journey despite the absence of cookies.</p>
+      <p>WebKit's source code implements this in <code>PrivateClickMeasurement::attributeAndGetEarliestTimeToSend()</code>, setting two randomized send times: <code>24_h + Seconds(cryptographicallyRandomUnitInterval() * (24_h).value())</code>. Furthermore, if multiple conversion reports are pending or overdue when the reporting timer evaluates, WebKit enforces a second layer of temporal jitter in <code>PrivateClickMeasurementManager::randomlyBetweenFifteenAndThirtyMinutes()</code>. By staggering overdue reports by a random 15 to 30 minutes, WebKit prevents network bursts that could otherwise reveal a batch of conversions tied to a single user awakening their device.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>When a conversion occurs, WebKit records the conversion and calculates two independent send timestamps randomized between 24 and 48 hours in the future (one for the ad source site and one for the conversion destination site).</li>
+            <li>Attribution reports are stored persistently on disk. When overdue reports are ready, they are sent individually, and any additional overdue reports are staggered by a random 15–30 minute interval to avoid burst correlation.</li>
+            <li>Because report dispatch is offloaded to a system daemon, the 24–48 hour delay is faithfully preserved even if Safari is terminated immediately after the conversion.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party engine can implement the exact same 24–48 hour mathematical delay calculation and 15–30 minute overdue staggering logic in its own code.</li>
+            <li>However, the engine can only honour the delay timer while its processes are actively running on the device. Once the user closes the app or switches away, the timing guarantees collapse.</li>
+            <li>If the user does not return to the browser within the 24–48 hour window, reports cannot be sent on schedule. When the user eventually reopens the browser days or weeks later, all pending reports fire belatedly, degrading advertiser measurement freshness.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/PrivateClickMeasurement.cpp#L251">PrivateClickMeasurement.cpp:251–269</a> — <code>randomlyBetweenTwentyFourAndFortyEightHours()</code> computes the 24–48 hour randomized delay, noting in comments: <em>"This helps privacy since the conversion and the attribution requests are detached and the time of the attribution does not reveal the time of the conversion."</em></li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManager.cpp#L616">PrivateClickMeasurementManager.cpp:616–622</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManager.cpp#L647">:647–653</a> — <code>randomlyBetweenFifteenAndThirtyMinutes()</code> staggers overdue attribution reports by 15–30 minutes to eliminate traffic bursts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>The <code>adattributiond</code> daemon architecture: persistent system-wide coordination</h2>
+      <p>Because iOS aggressively suspends and terminates background applications, an in-process timer inside Safari or its helper processes cannot survive for 24 to 48 hours. To solve this, Apple engineered a dedicated standalone system daemon named <strong><code>adattributiond</code></strong> (installed at <code>/System/Library/Frameworks/WebKit.framework/Daemons/adattributiond</code> and managed by <code>launchd</code> under the label <code>com.apple.webkit.adattributiond</code>).</p>
+      <p>Instead of storing ad clicks and conversions in Safari's container or WebKit's Networking process memory, WebKit offloads persistent PCM records to <code>adattributiond</code> over Mach IPC via the service name <code>com.apple.webkit.adattributiond.service</code>. The daemon maintains a centralized, device-wide SQLite database located at <code>/private/var/mobile/Library/com.apple.webkit.adattributiond/Version1/pcm.db</code>. This database persists unattributed clicks (<code>UnattributedPrivateClickMeasurement</code>), attributed conversions (<code>AttributedPrivateClickMeasurement</code>), and observed registrable domains across system reboots and application lifecycles.</p>
+      <p>Access to this daemon is strictly protected by Apple's code-signing infrastructure. In <code>DaemonUtilities.mm</code>, the daemon's listener explicitly verifies that any connecting XPC peer possesses the Apple-private entitlement <code>com.apple.private.webkit.adattributiond</code>. While Apple's build script grants this entitlement to Apple's system <code>com.apple.WebKit.Networking</code> binary, third-party browser extensions created under BrowserEngineKit (specifically <code>com.apple.developer.web-browser-engine.networking</code>) do not receive it.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>In <code>WebsiteDataStoreConfiguration.cpp</code>, WebKit initializes <code>m_pcmMachServiceName = "com.apple.webkit.adattributiond.service"</code> for all persistent data stores on iOS and visionOS.</li>
+            <li>WebKit's <code>NetworkSession</code> creates a <code>PCM::ManagerProxy</code>, which connects over Mach IPC to <code>adattributiond</code> using a custom 19-message binary protocol (<code>PCM::MessageType</code>).</li>
+            <li>The system daemon runs under a dedicated, hardened Seatbelt profile (<code>com.apple.WebKit.adattributiond.sb.in</code>) with direct preferences mode (<code>_CFPrefsSetDirectModeEnabled(YES)</code>) and exclusive read/write access to its system-wide SQLite directory.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party browser cannot connect to <code>com.apple.webkit.adattributiond.service</code>. Any connection attempt from an unentitled process is immediately cancelled by the daemon's listener in <code>DaemonUtilities.mm</code>.</li>
+            <li><code>com.apple.private.webkit.adattributiond</code> is an Apple-internal entitlement not granted to third-party developers under any BrowserEngineKit entitlement profile.</li>
+            <li>The third-party browser cannot access the shared system SQLite directory (<code>/private/var/mobile/Library/com.apple.webkit.adattributiond</code>) due to iOS app sandboxing, and must instead manage attribution state exclusively inside its own private container.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Daemon/DaemonUtilities.mm#L47">DaemonUtilities.mm:47–53</a> — Mach service listener validates that connecting peers possess <code>com.apple.private.webkit.adattributiond</code>; unentitled peers are rejected with <code>xpc_connection_cancel</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L632">process-entitlements.sh:632</a> — grants <code>com.apple.private.webkit.adattributiond</code> to Apple's iOS Networking process.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in#L79">com.apple.WebKit.adattributiond.sb.in:79–80</a> — grants read/write access to <code>/private/var/mobile/Library/com.apple.webkit.adattributiond</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/bb4992df17f569dfd94e267bf0fdb833e4196894">bb4992df17f5 (2021-10-05)</a> "Add an entitlement check to only allow AdAttributionDaemon to be connected to by the network process".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../services.html#service-adattributiond">Services analyzer › adattributiond</a> — 54 capability rows, SQLite persistence paths, and sandbox isolation profile.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=adattributiond">Entitlements explorer › com.apple.private.webkit.adattributiond</a> — Apple-private parity dossier for the daemon connection gate.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Background execution and the <code>xpc_activity</code> gap: waking when the browser is closed</h2>
+      <p>The core capability gap is not storing the attribution data—it is waking up 24 to 48 hours later to send the report when the browser application is no longer running.</p>
+      <p>Apple solves this by registering <code>adattributiond</code> as a system-level background activity with <code>launchd</code>. The daemon's launch property list (<code>com.apple.webkit.adattributiond.plist</code>) registers a repeating 24-hour XPC activity event named <code>com.apple.webkit.adattributiond.activity</code> with criteria: <code>Interval = 86400</code>, <code>GracePeriod = 3600</code>, <code>Priority = Maintenance</code>, <code>AllowBattery = true</code>, and <code>RequireNetworkConnectivity = true</code>. In <code>PCMDaemonEntryPoint.mm</code>, the daemon registers an activity handler using <code>xpc_activity_register()</code>. When iOS determines that network connectivity is available and the device is idle, <code>launchd</code> automatically spawns or wakes <code>adattributiond</code> in the background, executing <code>PCM::doDailyActivityInManager()</code> and firing all due attribution requests.</p>
+      <p>BrowserEngineKit provides no equivalent background execution facility for third-party engines. BrowserEngineKit defines exactly three extension process types: <code>BEWebContentProcess</code> (rendering), <code>BEGPUProcess</code> (media/graphics), and <code>BENetworkingProcess</code> (network I/O). None of these extension types can register persistent <code>xpc_activity</code> handlers, nor can they run as background system daemons. When a user closes or swipes away a third-party browser, iOS suspends and quickly terminates all three extension processes.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>adattributiond</code> is a system launch daemon with <code>ProcessType = Adaptive</code>, <code>EnablePressuredExit = true</code>, and <code>EnableTransactions = true</code>.</li>
+            <li>The daemon registers a 24-hour maintenance activity via <code>xpc_activity_register</code> with a randomized initial delay. iOS wakes the daemon independently of Safari.</li>
+            <li>When woken, <code>doDailyActivityInManager()</code> queries <code>pcm.db</code> for any attribution records whose earliest send time has passed, transmits the reports over HTTPS, and clears the sent attributions.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party browsers are restricted to public background APIs: <code>BGTaskScheduler</code> (specifically <code>BGAppRefreshTask</code> and <code>BGProcessingTask</code>).</li>
+            <li>Public background tasks are strictly opportunistic: iOS determines when (and whether) to execute them based on user engagement frequency, battery level, and charging status. If a user rarely opens the alternative browser, iOS deprioritizes or completely suppresses its background execution.</li>
+            <li>Furthermore, background tasks have strict runtime budgets (typically 30 seconds for app refreshes). If the browser cannot secure background runtime within the 24–48 hour window, reports are delayed until the next interactive launch, or lost entirely if the app is eventually uninstalled.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/com.apple.webkit.adattributiond.plist#L17">com.apple.webkit.adattributiond.plist:17–37</a> — declares the <code>com.apple.webkit.adattributiond.activity</code> <code>xpc_activity</code> launch event with a 24-hour interval and maintenance priority.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm#L76">PCMDaemonEntryPoint.mm:76–107</a> — <code>registerScheduledActivityHandler()</code> configures XPC activity criteria and triggers <code>PCM::doDailyActivityInManager()</code> on wake.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManager.cpp#L624">PrivateClickMeasurementManager.cpp:624–669</a> — <code>firePendingAttributionRequests()</code> iterates all stored attributions and dispatches due HTTP requests.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=runningboard">Entitlements explorer › runningboard entitlements</a> — overview of background execution entitlements and RunningBoard process lifetime constraints.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler">BGTaskScheduler</a> — public iOS background task scheduling documentation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Privacy transport: Oblivious HTTP &amp; iCloud Private Relay integration</h2>
+      <p>Even if an attribution report is successfully delayed, transmitting it directly from the user's mobile device reveals the user's IP address to the receiving attribution endpoint (<code>/.well-known/private-click-measurement/report-attribution/</code>). An advertising network receiving conversion reports could combine the user's client IP address with the conversion payload to link the user's identity.</p>
+      <p>To eliminate IP-based tracking, WebKit integrates PCM reporting with Apple's Oblivious HTTP / iCloud Private Relay infrastructure. In June 2026, WebKit landed commit <code>f8277ab0a96d</code> (<em>"[PCM] Support proxying PCM requests on iOS"</em>), granting <code>adattributiond</code> direct access to <code>com.apple.networkserviceproxy</code>. When constructing outbound attribution requests in <code>NetworkDataTaskCocoa.mm</code>, WebKit marks non-personally-identifiable requests with <code>request._needsNetworkTrackingPrevention = YES</code> and <code>request._privacyProxyFailClosed = YES</code>. This instructs <code>CFNetwork</code> to blind the user's IP address by routing the conversion report through Apple's privacy proxy relays, failing closed if the proxy is unreachable.</p>
+      <p>To authorize this transport, Apple's signing script provisions <code>adattributiond</code> with three private entitlements: <code>com.apple.private.networkserviceproxy</code>, <code>com.apple.security.exception.mach-lookup.global-name = ["com.apple.networkserviceproxy"]</code>, and <code>com.apple.private.network.socket-delegate</code>. In late June 2026, commit <code>587814c5e938</code> added <code>(remote udp)</code> outbound network permissions to the daemon's sandbox profile, enabling HTTP/3 QUIC transport over Private Relay. None of these privacy proxy entitlements or Mach services are accessible to third-party browsers.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>adattributiond</code> configures an ephemeral, stateless <code>NSURLSession</code> with <code>HTTPCookieAcceptPolicyNever</code>, no cookie storage, and no URL cache.</li>
+            <li>Outbound conversion reports set <code>_needsNetworkTrackingPrevention = YES</code> and <code>_privacyProxyFailClosed = YES</code>, delegating socket accounting to <code>com.apple.mobilesafari</code> and routing traffic through Apple's Oblivious HTTP / Private Relay network.</li>
+            <li>Reports are sent via HTTP/2 or HTTP/3 QUIC without disclosing the client device's real IP address to the advertiser or publisher.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party browser cannot route traffic through <code>com.apple.networkserviceproxy</code>. The Mach service and the underlying entitlements are strictly reserved for Apple system daemons.</li>
+            <li>If a third-party browser sends attribution reports directly over standard HTTPS, the user's IP address is exposed to the destination endpoint, compromising the privacy guarantees of the attribution protocol.</li>
+            <li>To match Safari's privacy posture, a third-party browser vendor must design, deploy, and finance its own multi-hop Oblivious HTTP relay proxy network across global data centers, imposing significant ongoing infrastructure costs.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.mm#L102">NetworkDataTaskCocoa.mm:102–114</a> — <code>setPCMDataCarriedOnRequest()</code> sets <code>_needsNetworkTrackingPrevention = YES</code> and <code>_privacyProxyFailClosed = YES</code> for non-personally-identifiable PCM reports.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/cocoa/PrivateClickMeasurementNetworkLoaderCocoa.mm#L90">PrivateClickMeasurementNetworkLoaderCocoa.mm:90–114</a> — creates the stateless, cookie-less, cache-less <code>NSURLSession</code> singleton configured with Safari bundle identifiers.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L599">process-entitlements.sh:599–606</a> — provisions <code>adattributiond</code> with <code>com.apple.private.networkserviceproxy</code> and <code>com.apple.private.network.socket-delegate</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/f8277ab0a96dc1a24aec6c65284506377a3a64a8">f8277ab0a96d (2026-06-05)</a> "[PCM] Support proxying PCM requests on iOS".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/587814c5e938feb59125ec779481a0e1e10704d3">587814c5e938 (2026-06-23)</a> "[cocoa] Allow udp in adattributiond sandbox" — enables HTTP/3 QUIC proxying.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=networkserviceproxy">Entitlements explorer › networkserviceproxy</a> — examination of private networking proxy entitlements.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Cryptographic parity: RSA-BSSA blind signatures in userland</h2>
+      <p>To prevent fraudulent attribution reports while preserving anonymity, Private Click Measurement incorporates cryptographic unlinkable tokens using RSA Blind Signatures for Anonymous Credentials (RSA-BSSA, standardized in RFC 9474). When an ad click or conversion trigger occurs, the browser contacts the destination server to fetch a public key, blinds a random nonce, obtains a signature from the server, and unblinds it. The resulting secret token proves that the attribution was authorized without allowing the server to link the token to the original user session.</p>
+      <p>Inside WebKit, <code>PrivateClickMeasurementCocoa.mm</code> implements token blinding by soft-linking Apple's private framework <code>CryptoKitPrivate.framework</code>, specifically instantiating <code>RSABSSATokenBlinder</code>, <code>RSABSSATokenWaitingActivation</code>, and <code>RSABSSATokenReady</code>. Under App Store review guidelines, third-party applications are prohibited from linking private frameworks like <code>CryptoKitPrivate</code>.</p>
+      <div class="issue-callout good">
+        <strong>Public cryptographic parity:</strong> Unlike background execution or network proxying, cryptography does not depend on kernel privileges or private Mach services. Because RSA-BSSA is an open mathematical standard (RFC 9474), third-party browser engines (such as Chromium with BoringSSL or Gecko with NSS) already bundle standard cryptographic libraries capable of computing RSA blind signatures in userland. Consequently, fraud prevention token generation represents zero functional capability loss for alternative engines.
+      </div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebKit soft-links private symbols from <code>CryptoKitPrivate.framework</code> via <code>CryptoKitPrivateSoftLink.mm</code>.</li>
+            <li>Calls <code>PAL::allocRSABSSATokenBlinderInstance()</code> to generate blinded tokens and verifies cryptographic signatures against server public keys.</li>
+            <li>The private framework dependency is an internal implementation choice rather than a capability barrier.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party engine cannot link <code>CryptoKitPrivate.framework</code>.</li>
+            <li>However, the engine can execute identical RFC 9474 RSA-BSSA token blinding, signing, and verification using its own bundled cryptographic libraries (e.g. BoringSSL, OpenSSL, or Rust cryptography crates).</li>
+            <li>Full cryptographic parity is achieved entirely in-engine without any system daemon or private entitlement requirements.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/cocoa/PrivateClickMeasurementCocoa.mm#L50">PrivateClickMeasurementCocoa.mm:50–82</a> — invokes <code>PAL::allocRSABSSATokenBlinderInstance()</code> and <code>tokenWaitingActivationWithContent:</code> for unlinkable token calculation.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/cocoa/CryptoKitPrivateSPI.h#L40">CryptoKitPrivateSPI.h:40–68</a> — SPI interface definitions for <code>RSABSSATokenBlinder</code> and associated token containers.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManager.cpp#L128">PrivateClickMeasurementManager.cpp:128–170</a> — orchestrates public key fetching from <code>/.well-known/private-click-measurement/get-token-public-key/</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>WebKit's in-engine fallback: the <code>PrivateClickMeasurementManager</code> SQLite store</h2>
+      <p>An illuminating detail in WebKit's source code is that WebKit still maintains a complete, fully functional, in-process Private Click Measurement implementation: <code>PrivateClickMeasurementManager</code> paired with <code>PrivateClickMeasurementDatabase</code>. The out-of-process daemon is actually an iOS-specific specialization.</p>
+      <p>In <code>NetworkSession.cpp</code>, the helper function <code>managerOrProxy()</code> evaluates how PCM should be initialized. If <code>parameters.pcmMachServiceName</code> is non-empty and the session is not ephemeral, it returns <code>PCM::ManagerProxy::create()</code>, connecting to <code>adattributiond</code>. However, if <code>pcmMachServiceName</code> is empty—which is the default on macOS (where <code>adattributiond</code> is not installed)—or if the session is an ephemeral (Private Browsing) data store, WebKit instantiates <code>PrivateClickMeasurementManager</code> directly inside the <code>NetworkProcess</code>.</p>
+      <p>This in-process manager runs its own SQLite database (or ephemeral memory store) using the exact same schema and timer logic as the daemon. It maintains a <code>RunLoop::Timer</code> (<code>m_firePendingAttributionRequestsTimer</code>) to check for due attributions and execute HTTP reporting. This provides the exact architectural blueprint for how a third-party BrowserEngineKit engine must operate on iOS.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>On iOS and visionOS, persistent data stores configure <code>pcmMachServiceName = "com.apple.webkit.adattributiond.service"</code>, routing all attribution events out-of-process to the system daemon.</li>
+            <li>On macOS and in private browsing sessions, WebKit bypasses the daemon entirely and runs <code>PrivateClickMeasurementManager</code> in-process inside <code>com.apple.WebKit.Networking</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party engine on iOS must adopt the architecture WebKit uses on macOS: host an in-process attribution store and timer manager inside its own <code>BENetworkingProcess</code> or application container.</li>
+            <li>The engine records clicks and conversions to a local SQLite database, sets in-memory timers while running, and inspects the database for overdue reports on every application launch.</li>
+            <li>While functionally identical when the browser is actively used, this in-process approach inevitably exposes the browser to the process suspension and lifecycle limitations described in aspect 3.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkSession.cpp#L117">NetworkSession.cpp:117–130</a> — <code>managerOrProxy()</code> branches: returns <code>PCM::ManagerProxy</code> if <code>pcmMachServiceName</code> is provided, or constructs an in-process <code>PrivateClickMeasurementManager</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebsiteData/WebsiteDataStoreConfiguration.cpp#L81">WebsiteDataStoreConfiguration.cpp:81–83</a> — <code>m_pcmMachServiceName</code> is explicitly gated with <code>#if PLATFORM(IOS) || PLATFORM(VISION)</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementDatabase.cpp#L41">PrivateClickMeasurementDatabase.cpp:41–65</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementDatabase.cpp#L93">:93–101</a> — SQLite schema and database opening for <code>pcm.db</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Confidence is High:</strong> The source code for <code>adattributiond</code>, its launchd plist, the Mach service entitlement gate, the 24–48 hour randomized delay algorithm, and the fail-closed Private Relay transport are all publicly inspectable in the open-source WebKit repository.</li>
+        <li><strong>Entitlement barrier is absolute:</strong> The gate in <code>DaemonUtilities.mm</code> checking for <code>com.apple.private.webkit.adattributiond</code> is hardcoded in WebKit daemon code. Third-party developers cannot acquire this entitlement or communicate with <code>adattributiond.service</code>.</li>
+        <li><strong>Real-world attribution loss:</strong> The extent to which third-party browsers lose conversion reports depends heavily on end-user behaviour. For users who employ a third-party browser as their primary default browser, foreground app opens occur frequently enough that overdue reports will usually fire within several days. However, for secondary browsers or infrequently launched apps, attribution reports may sit in local SQLite storage for weeks or be purged if the user deletes the app before reopening it.</li>
+        <li><strong>Attribution Reporting API (ARA) vs. PCM:</strong> Other modern engines (like Chromium) prioritize the W3C Attribution Reporting API (ARA) rather than WebKit's Private Click Measurement. While ARA supports more complex aggregation keys and flexible report windows, the fundamental iOS background execution problem remains identical: any attribution API requiring multi-day delayed reporting cannot fire reliably on iOS without a system-level background daemon.</li>
+        <li><strong>Sibling gap comparison:</strong> Note that web-to-web ad attribution (PCM / ARA) discussed here is technically distinct from web-to-app install attribution. Web-to-app attribution relies on Apple's native StoreKit / SKAdNetwork daemon (<code>storekitd</code> / <code>adprivacyd</code>), which involves different system frameworks and App Store transaction records (see <a href="web-to-app-attribution.html">Web-to-app attribution</a>).</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, browsers have two viable paths for executing delayed ad-attribution reporting, neither of which leaves alternative engines at a competitive disadvantage compared to the system browser:</p>
+      <ol>
+        <li><strong>Internal browser background scheduling:</strong> Android does not immediately freeze background applications or prohibit them from scheduling future background work. Chrome on Android implements the W3C Attribution Reporting API using internal storage paired with Android's system <code>JobScheduler</code> and <code>WorkManager</code> (via Chromium's <code>BackgroundTaskScheduler</code>). Any third-party browser engine on Android can register identical background jobs with the operating system to wake the browser engine after 24 to 48 hours to dispatch pending attribution reports.</li>
+        <li><strong>System-level Privacy Sandbox Attribution Reporting:</strong> Starting with Android 13, Google introduced the system-level Privacy Sandbox on Android (part of the modular system <code>AdServices</code> package). The OS exposes a public <code>MeasurementManager</code> API that allows both native apps and web browsers to register attribution sources and triggers directly with the Android platform. When using this API, the Android OS manages noise injection, randomized delay windows, and background network delivery at the operating system level, providing an exact functional equivalent to Apple's <code>adattributiond</code> that is equally accessible to all browsers.</li>
+      </ol>
+      <p>Consequently, on Android, alternative browser engines can either schedule their own reliable background delivery or delegate to the OS attribution service. On iOS, third-party engines are barred from the OS daemon and denied reliable background execution triggers.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../services.html#service-adattributiond">Services analyzer › <code>adattributiond</code></a> — in-depth capability analysis, Seatbelt sandbox profile rules, and launchd configuration for the Private Click Measurement daemon.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=runningboard">Entitlements explorer › runningboard entitlements</a> — how private lifecycle entitlements and process assertions govern background execution.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=networkserviceproxy">Entitlements explorer › networkserviceproxy</a> — detailed examination of <code>com.apple.private.networkserviceproxy</code> and privacy proxy routing.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=adattributiond">Entitlements explorer › <code>adattributiond</code></a> — code citations and commit history for private attribution entitlements.</li>
+        <li><a href="web-to-app-attribution.html">Issue › Web-to-app attribution</a> — how web clicks driving native iOS app installations interact with SKAdNetwork and App Store attribution.</li>
+        <li><a href="process-lifecycle.html">Issue › Background execution</a> — how iOS process suspension impacts background file transfers and how <code>BEDownloadMonitor</code> compares.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">&larr; All 13 Capability Gaps</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

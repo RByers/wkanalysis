@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How alternative browser engines on iOS interact with OS-level networking: why custom network stacks bypass Apple's private SPIs but lose iCloud Private Relay, enterprise AppSSO, and socket delegation.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Private Relay, enterprise SSO & proxy integration — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Networking integration
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Private Relay, enterprise SSO & proxy integration</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P3</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Engines use their own network stacks)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Mostly N/A (engines bring their own network stacks)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> Third-party browser engines bring their own user-space network stacks (such as Chromium’s Cronet or Gecko’s Necko), avoiding the hundreds of private CFNetwork SPIs WebKit uses, but they are locked out of OS-level network integrations like iCloud Private Relay, automatic enterprise AppSSO/Kerberos, and kernel-level socket delegation.</p>
+        <p><strong>What this page adds:</strong> Source analysis of WebKit’s Networking process and iOS sandbox reveals that WebKit relies on private system daemons (<code>com.apple.networkserviceproxy</code>, <code>com.apple.ciphermld</code>, <code>com.apple.AppSSO.service-xpc</code>) and privileged socket options (<code>SO_DELEGATED</code>, <code>PRIV_NET_PRIVILEGED_SOCKET_DELEGATE</code>). While custom-stack engines do not need WebKit’s private HTTP/3 or connection pooling SPIs, they face hard capability gaps when integrating with subscriber privacy proxies, enterprise single sign-on, PAC proxy evaluation, and OS cellular data accounting.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">iCloud Private Relay &amp; Apple privacy proxies</a></li>
+        <li><a href="#aspect-2">Oblivious HTTP (CipherML) &amp; relay-backed services</a></li>
+        <li><a href="#aspect-3">Enterprise SSO, Kerberos &amp; AppSSO handoffs</a></li>
+        <li><a href="#aspect-4">Enterprise proxies, PAC/WPAD &amp; Per-App VPN</a></li>
+        <li><a href="#aspect-5">Low-level socket delegation &amp; system attribution (<code>SO_DELEGATED</code>)</a></li>
+        <li><a href="#aspect-6">The custom-stack reality: what is irrelevant vs. what truly bites</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>iCloud Private Relay &amp; Apple privacy proxies</h2>
+      <p>Apple’s iCloud Private Relay provides dual-hop encrypted proxying for iCloud+ subscribers, hiding a user’s IP address, DNS queries, and precise browsing location from both network operators and destination websites. In Safari, Private Relay activates automatically for all web browsing sessions. However, for a BrowserEngineKit browser running its own network stack, this protection silently disappears: web traffic travels directly over the open internet without passing through Private Relay.</p>
+      <p>Technically, WebKit’s Networking process configures Private Relay routing via private properties on <code>NSMutableURLRequest</code> in CFNetwork (Apple’s core networking framework). WebKit sets flags such as <code>_privacyProxyFailClosed</code>, <code>_setPrivacyProxyFailClosedForUnreachableNonMainHosts:</code>, and <code>_setPrivacyProxyStrictFailClosed:</code>, and checks <code>_setProhibitPrivacyProxy:</code> when relaying should be skipped. At the transport layer, CFNetwork cooperates with <code>com.apple.networkserviceproxy</code> (the system daemon that coordinates Apple and partner egress relays) and marks BSD sockets with internal kernel tags such as <code>SO_MARK_KNOWN_TRACKER</code> and <code>SO_MARK_KNOWN_TRACKER_NON_APP_INITIATED</code>. Third-party apps using standard <code>NSURLSession</code> only receive Private Relay coverage for unencrypted HTTP traffic and DNS; Apple does not route third-party HTTPS traffic through Private Relay. Furthermore, because alternative engines open raw BSD sockets directly or use public <code>Network.framework</code> primitives, their custom TLS/QUIC connections cannot invoke <code>networkserviceproxy</code> or opt into Private Relay.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>NetworkDataTaskCocoa::NetworkDataTaskCocoa</code> inspects navigation state and sets <code>_setPrivacyProxyFailClosedForUnreachableNonMainHosts:YES</code>, <code>_setPrivacyProxyStrictFailClosed:YES</code>, or <code>_setPrivacyProxyFailClosed:YES</code> on mutable requests.</li>
+            <li>WebKit’s iOS Networking sandbox allows Mach lookup to <code>com.apple.networkserviceproxy.fetch-token</code> and authorizes socket option names <code>SO_MARK_KNOWN_TRACKER</code> and <code>SO_MARK_KNOWN_TRACKER_NON_APP_INITIATED</code> to steer traffic through Apple’s relay infrastructure.</li>
+            <li>In Private Browsing, advanced privacy protections leverage CFNetwork’s strict fail-closed modes to guarantee that traffic never leaks over unproxied connections if the relay is temporarily unreachable.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>No public path. Apple does not expose any API or entitlement for third-party sockets or network stacks to route through iCloud Private Relay.</li>
+            <li>Third-party engines opening TCP/UDP sockets directly connect to destination web servers without relay hops. Users who pay for iCloud+ and enable Private Relay in iOS Settings will not have their IP masked when browsing with Chrome or Firefox on iOS.</li>
+            <li>If an engine were to fall back to system <code>NSURLSession</code>, Apple’s documented policy still limits third-party app relaying strictly to insecure HTTP and DNS traffic, excluding general HTTPS web browsing.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.mm#L256-L283">NetworkDataTaskCocoa.mm:256–283</a> — sets <code>_setPrivacyProxyFailClosedForUnreachableNonMainHosts:</code>, <code>_setPrivacyProxyStrictFailClosed:</code>, and <code>_setPrivacyProxyFailClosed:</code> on outbound requests.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm#L1695-L1700">NetworkSessionCocoa.mm:1695–1700</a> — sets <code>_prohibitPrivacyProxy</code> and <code>_privacyProxyFailClosedForUnreachableNonMainHosts</code> on WebSocket and resource requests.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/cf/CFNetworkSPI.h#L268-L305">CFNetworkSPI.h:268–305</a> — private CFNetwork declarations for privacy proxy properties on <code>NSURLRequest</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L83-L84">com.apple.WebKit.Networking.sb.in:83–84</a> — allows setting socket options <code>SO_MARK_KNOWN_TRACKER</code> and <code>SO_MARK_KNOWN_TRACKER_NON_APP_INITIATED</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L149-L151">networking-defines.sb:149–151</a> — allows Mach lookup to <code>com.apple.networkserviceproxy.fetch-token</code>.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay/">Prepare Your Network for iCloud Private Relay</a> — Apple developer support confirming Private Relay applies to Safari and insecure app traffic.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Oblivious HTTP (CipherML) &amp; relay-backed services</h2>
+      <p>Modern browser privacy features increasingly rely on Oblivious HTTP (OHTTP) to decouple a client's IP address from sensitive queries, such as Private Click Measurement (PCM) ad conversion attribution, privacy-preserving machine learning, and Safe Browsing URL hash checks. Safari routes these requests through Apple’s system-level privacy gateways without building bespoke relay infrastructure.</p>
+      <p>WebKit accomplishes this via two private Apple components. First, WebKit's Networking process and auxiliary attribution daemon (<code>adattributiond</code>) carry the private entitlement <code>com.apple.private.ciphermld.allow</code>, which permits Mach communication with <code>com.apple.ciphermld</code>—Apple's system daemon for CipherML and Oblivious HTTP operations. Second, <code>adattributiond</code> is granted <code>com.apple.private.networkserviceproxy</code> and an explicit Mach lookup exception for <code>com.apple.networkserviceproxy</code> (introduced in commit <code>f8277ab0a96d</code> to support proxying PCM requests on iOS). A BrowserEngineKit networking extension receives neither entitlement and is sandboxed away from both daemons.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>process-entitlements.sh</code> signs the Networking process with <code>com.apple.private.ciphermld.allow</code> (added in <code>bdbf8bd332f6</code>) and gives <code>adattributiond</code> the <code>com.apple.private.networkserviceproxy</code> entitlement.</li>
+            <li>The Networking sandbox grants Mach lookup access to <code>com.apple.ciphermld</code>, allowing WebKit to dispatch cryptographic OHTTP payloads directly through Apple’s gateway infrastructure.</li>
+            <li>PCM requests in <code>adattributiond</code> configure fail-closed privacy proxy routing via <code>_privacyProxyFailClosed = YES</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Cannot access Apple’s OHTTP daemons. Both <code>com.apple.ciphermld</code> and <code>com.apple.networkserviceproxy</code> require private Apple entitlements and are blocked by the Seatbelt sandbox.</li>
+            <li>Engines must build and run their own external OHTTP infrastructure. For example, if Chromium implements Safe Browsing v5 hash prefixes or Privacy Sandbox conversion measurement via OHTTP on iOS, it must operate its own independent relay proxies, manage public keys, and bear the associated server infrastructure costs.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L637">process-entitlements.sh:637</a> — grants <code>com.apple.private.ciphermld.allow</code> to the iOS Networking process.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L604-L605">process-entitlements.sh:604–605</a> — grants <code>com.apple.private.networkserviceproxy</code> to <code>adattributiond</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L503">networking-defines.sb:503</a> — allows Mach lookup for <code>com.apple.ciphermld</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/bdbf8bd332f62e56e014c765d00e9137e27bb428">bdbf8bd332f6 (2023-04-13)</a> "Add content filter related Mach service to sandbox" — introduces <code>ciphermld</code> access.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/f8277ab0a96dc1a24aec6c65284506377a3a64a8">f8277ab0a96d (2026-06-05)</a> "[PCM] Support proxying PCM requests on iOS" — provisions <code>networkserviceproxy</code> for attribution requests.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&dom=Networking%20%26%20Privacy%20Proxies">Entitlements explorer › Networking (OHTTP) card</a> — details private entitlements for OHTTP daemons.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Enterprise SSO, Kerberos &amp; AppSSO handoffs</h2>
+      <p>In enterprise deployments (corporations, universities, government fleets), users access internal web portals protected by Kerberos, NTLM, or modern identity providers (such as Microsoft Entra ID or Okta). Safari integrates natively with iOS's enterprise Single Sign-On (AppSSO) framework and Kerberos ticket management, allowing users to authenticate seamlessly without repeatedly entering usernames and passwords.</p>
+      <p>Inside WebKit, this is coordinated by a dedicated subsystem: <code>SOAuthorizationCoordinator</code>. When navigating to an enterprise domain, WebKit checks whether the URL can be handled by AppSSO using <code>canPerformAuthorizationWithURL:callerBundleIdentifier:useInternalExtensions:YES</code>. It explicitly calls <code>[NSURLSession _disableAppSSO]</code> to take direct ownership of the negotiation flow, intercepts HTTP 401 challenges, and communicates with <code>com.apple.AppSSO.service-xpc</code> and the system Kerberos ticket cache daemon (<code>com.apple.GSSCred</code>). In contrast, an engine running an independent network stack does not automatically trigger AppSSO extension flows or inherit GSS-API credentials.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>SOAuthorizationCoordinator</code> handles navigation actions, creating <code>NavigationSOAuthorizationSession</code> or <code>RedirectSOAuthorizationSession</code> delegates.</li>
+            <li>Uses private SPI selector <code>canPerformAuthorizationWithURL:...useInternalExtensions:YES</code> to query enterprise SSO extensions configured via MDM profiles.</li>
+            <li>The Networking sandbox profile allows Mach lookup to <code>com.apple.AppSSO.service-xpc</code>, <code>com.apple.GSSCred</code> (GSS-API Kerberos credentials), and <code>com.apple.cfnetwork.AuthBrokerAgent</code>.</li>
+            <li>WebKit’s Networking process holds <code>com.apple.private.accounts.bundleidspoofing</code>, allowing account verification queries to <code>accountsd</code> on behalf of client bundle identities.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Automatic OS SSO does not occur. A custom socket stack (such as Chromium’s <code>HttpAuthHandlerNegotiate</code>) cannot directly interact with <code>com.apple.GSSCred</code> or receive automatic AppSSO handoffs on raw HTTP 401 responses.</li>
+            <li>An engine can theoretically invoke Apple’s public <code>AuthenticationServices</code> API (<code>ASAuthorizationSingleSignOnProvider</code>), but this requires bridging in-flight network requests across process boundaries: halting socket read loops in the networking extension, dispatching an auth request to the UI process, presenting credentials, and replaying the HTTP transaction.</li>
+            <li>Neither Chromium nor Gecko implements this complex bridge on iOS today, resulting in enterprise users experiencing authentication prompts or broken intranet access.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/SOAuthorization/SOAuthorizationCoordinator.mm#L59-L85">SOAuthorizationCoordinator.mm:59–85</a> — initializes AppSSO delegate, calls <code>[NSURLSession _disableAppSSO]</code>, and queries <code>canPerformAuthorizationWithURL:...useInternalExtensions:YES</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L102-L103">networking-defines.sb:102–103</a> — allows Mach lookup for <code>com.apple.AppSSO.service-xpc</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L136">networking-defines.sb:136</a> — allows Mach lookup for <code>com.apple.GSSCred</code> (Kerberos GSS-API).</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L636">process-entitlements.sh:636</a> — grants <code>com.apple.private.accounts.bundleidspoofing</code> to the Networking process.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider">ASAuthorizationSingleSignOnProvider</a> — public Apple documentation for enterprise single sign-on.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Enterprise proxies, PAC/WPAD &amp; Per-App VPN</h2>
+      <p>Enterprise Wi-Fi networks frequently mandate Proxy Auto-Configuration (PAC) scripts, Web Proxy Auto-Discovery (WPAD), or Per-App VPN tunnels to access internal resources. In Safari, CFNetwork transparently manages proxy scripts, evaluates JavaScript PAC rules via system daemons, and steers traffic through designated VPN tunnels without browser application intervention.</p>
+      <p>For alternative engines, handling enterprise proxy configurations presents architectural hurdles. While an engine can query system proxy dictionaries via the public C function <code>CFNetworkCopySystemProxySettings()</code>, evaluating a PAC file requires executing JavaScript inside the engine’s networking process. However, BrowserEngineKit’s networking extension sandbox strictly prohibits JIT compilation (JIT is restricted to rendering extensions with <code>com.apple.developer.web-browser-engine.rendering</code>), forcing PAC evaluation into slow interpreted mode or requiring out-of-process delegation. Furthermore, for enterprise Per-App VPNs, MDM profiles associate VPN tunnels with specific application bundle identifiers; because third-party networking code executes within an extension bundle (e.g., <code>com.google.chrome.ios.NetworkingExtension</code>), MDM profiles configured only for the main browser app may fail to route the extension's network sockets through the VPN tunnel.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>CFNetwork automatically handles PAC fetching, execution, and WPAD via system helper daemons (<code>com.apple.cfnetwork.AuthBrokerAgent</code> and <code>com.apple.cfnetwork.cfnetworkagent</code>).</li>
+            <li>WebKit’s Networking process delegates its sockets to the host application’s identity using <code>SO_DELEGATED</code>, guaranteeing that Per-App VPN routing rules bound to the browser app apply directly to the network connection.</li>
+            <li>Sandboxed access to <code>com.apple.nehelper</code> and <code>com.apple.nesessionmanager</code> coordinates on-demand VPN tunnel activation.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Engines read static proxy IP/port configurations via <code>CFNetworkCopySystemProxySettings()</code>, which works reliably for standard HTTP/HTTPS/SOCKS proxies.</li>
+            <li>PAC execution requires the engine to bring its own JavaScript PAC runner without JIT acceleration, or manually invoke <code>CFNetworkExecuteProxyAutoConfigurationURL</code>.</li>
+            <li>Because third-party networking extensions cannot set <code>SO_DELEGATED</code> (see aspect 5), Per-App VPN tunnels configured in enterprise MDM profiles must explicitly include both the host app bundle ID and the networking extension bundle ID; otherwise, enterprise intranet requests leak outside the VPN tunnel.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/network/cf/DNSResolveQueueCFNet.mm#L59-L74">DNSResolveQueueCFNet.mm:59–74</a> — reads system proxy configuration via <code>CFNetworkCopySystemProxySettings()</code> and <code>CFNetworkCopyProxiesForURL()</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L62-L64">networking-defines.sb:62–64</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L142-L144">:142–144</a> — allows Mach lookup for NetworkExtension daemons <code>com.apple.nesessionmanager</code> and <code>com.apple.nehelper</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L124-L129">networking-defines.sb:124–129</a> — allows Mach lookup for <code>com.apple.cfnetwork.AuthBrokerAgent</code> and <code>com.apple.cfnetwork.cfnetworkagent</code>.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/cfnetwork/cfnetworkcopysystemproxysettings()">CFNetworkCopySystemProxySettings</a> — public CFNetwork documentation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Low-level socket delegation &amp; system attribution (<code>SO_DELEGATED</code>)</h2>
+      <p>On iOS, the operating system tracks network bandwidth, cellular data limits, and battery consumption on a per-application basis, surfaced directly to users in "Settings › Cellular". When an app hosts WebKit, Safari or the host app receives the data and power attribution for page downloads rather than an obscure system helper process. WebKit achieves this through low-level kernel socket delegation.</p>
+      <p>Inside the Darwin kernel (XNU), delegating a BSD socket to another process audit token or PID requires the kernel privilege <code>PRIV_NET_PRIVILEGED_SOCKET_DELEGATE</code>. In WebKit, Apple’s signing script grants the Networking process the private entitlement <code>com.apple.private.network.socket-delegate</code>. WebKit’s Seatbelt sandbox profile specifically gates socket delegation on holding this entitlement: <code>(allow system-privilege (with grant) (require-all (privilege-id PRIV_NET_PRIVILEGED_SOCKET_DELEGATE) (require-entitlement "com.apple.private.network.socket-delegate")))</code>, enabling WebKit to call <code>setsockopt</code> with <code>SO_DELEGATED</code>. A third-party BrowserEngineKit networking extension receives only <code>com.apple.developer.web-browser-engine.networking</code> and cannot obtain the socket-delegation entitlement, meaning all data transfer and battery consumption are charged directly to the extension rather than delegated to the parent browser.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>process-entitlements.sh</code> injects <code>com.apple.private.network.socket-delegate</code> into the iOS Networking process.</li>
+            <li>Seatbelt grants system privilege <code>PRIV_NET_PRIVILEGED_SOCKET_DELEGATE</code>, allowing the process to set socket option <code>SO_DELEGATED</code> on BSD sockets.</li>
+            <li>Cellular data usage, radio wakeups, and battery attribution are accurately billed to the embedding application or Safari tab owner.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party extensions cannot delegate sockets. <code>com.apple.private.network.socket-delegate</code> is an Apple-only entitlement not included in BrowserEngineKit.</li>
+            <li>Kernel calls to <code>setsockopt(..., SO_DELEGATED, ...)</code> fail with <code>EPERM</code>.</li>
+            <li>All network bytes and radio activity are logged under the extension process, confusing users checking cellular data menus in iOS Settings and potentially bypassing per-app cellular toggle restrictions.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L640">process-entitlements.sh:640</a> — injects <code>com.apple.private.network.socket-delegate</code> into the iOS Networking process entitlements.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L82">com.apple.WebKit.Networking.sb.in:82</a> — allows setting socket option <code>SO_DELEGATED</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L119-L122">com.apple.WebKit.Networking.sb.in:119–122</a> — gates system privilege <code>PRIV_NET_PRIVILEGED_SOCKET_DELEGATE</code> on holding <code>com.apple.private.network.socket-delegate</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c01e8de3c16c6d8b3c00ab2dbf958f2e8a4475b7">c01e8de3c16c (2026-09-29)</a> "[iOS] Allow file access to container temp and cache directory in some configurations" — demonstrates recent adjustments to the Networking sandbox for third-party executables (<code>!is-apple-signed-executable</code>).</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=com.apple.private.network.socket-delegate">Entitlements explorer › com.apple.private.network.socket-delegate</a> — full entitlement dossier and parity classification.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>The custom-stack reality: what is irrelevant vs. what truly bites</h2>
+      <p>Analysis of WebKit's source code identifies more than 230 private SPI symbols in CFNetwork and Network.framework used by WebKit’s Networking process. These cover HTTP/3 connection coalescing, connection pool fast lanes (<code>_CFNetworkHTTPConnectionCacheSetLimit</code>), custom protocol schemes, cookie partitioning (<code>_setAllowOnlyPartitionedCookies:</code>), and unified HTTP loaders (<code>nw_settings_get_unified_http_enabled_webkit</code>). For WebKit, these SPIs represent deep technical debt and platform entanglement.</p>
+      <p>However, for third-party browser engines, the vast majority of these private SPIs are completely irrelevant. Production browser engines—Chromium (with Cronet, BoringSSL, and QUICHE) and Gecko (with Necko and NSS)—bring their own complete, battle-tested transport stacks written in user space. They implement their own connection pooling, HTTP/2 multiplexing, HTTP/3/QUIC protocols, TLS handshake validation, and cookie jars directly over standard BSD UDP and TCP sockets. They do not use Apple’s CFNetwork session objects or Network.framework HTTP loaders.</p>
+      <div class="issue-callout note">
+        <strong>The real boundary:</strong> The capability gap between Safari and third-party engines is not about HTTP/3 or WebTransport protocol implementations—it is strictly about <em>operating system boundary services</em> that require daemon cooperation or kernel privileges:
+        <ul>
+          <li><strong>iCloud Private Relay:</strong> Hard capability gap. Third-party sockets cannot route through Apple's privacy relays.</li>
+          <li><strong>Enterprise AppSSO:</strong> Polish and deployment gap. Seamless Kerberos and MDM single sign-on requires complex manual bridges rather than automatic OS interception.</li>
+          <li><strong>Per-App VPN &amp; PAC:</strong> Integration gap. JIT restrictions prevent fast in-process PAC evaluation, and lack of socket delegation complicates MDM VPN profile matching.</li>
+          <li><strong>Socket Delegation:</strong> Accounting gap. Cellular data and power accounting cannot be delegated back to the parent app.</li>
+        </ul>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm#L74-L86">NetworkProcessCocoa.mm:74–86</a> — tunes connection pool limits and fast-lane priorities via <code>_CFNetworkHTTPConnectionCacheSetLimit</code> (irrelevant to custom engines).</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/webtransport/cocoa/NetworkTransportSessionCocoa.mm#L200-L258">NetworkTransportSessionCocoa.mm:200–258</a> — uses private SPI <code>nw_parameters_create_webtransport_http</code> to implement WebTransport (custom engines use their own QUIC/WebTransport libraries).</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/c391d1cfa50f5ac881e67407593f2ce464874686">c391d1cfa50f (2026-01-14)</a> "Allow using new network loader for WebKit generally (non-Safari)" — references private symbol <code>nw_settings_get_unified_http_enabled_webkit</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI explorer › Networking, HTTP/3, WebTransport &amp; Cookies (239 SPIs)</a> — overview of the 239 private networking SPIs used by WebKit.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI explorer › Networking, HTTP/3, WebTransport &amp; Cookies</a> — full inventory of private networking symbols.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Confidence rating: Medium.</strong> WebKit’s reliance on private daemons and socket delegation is verified directly in source, sandbox profiles, and entitlement scripts. However, behavior on actual hardware running third-party engines under enterprise MDM profiles has not been measured directly.</li>
+        <li><strong>Per-App VPN matching on ExtensionKit processes:</strong> In enterprise environments where MDM profiles bind VPN tunnels strictly to the main browser app bundle ID, it remains an open question whether iOS 17.4+ kernels automatically treat child <code>BENetworkingProcess</code> extensions as part of the parent app's VPN scope, or whether administrators must configure both bundle identifiers.</li>
+        <li><strong>Main-page row text recommendation:</strong> The current main-page text states: <em>"Lacks OS-level proxy integrations like iCloud Private Relay or VPN/enterprise proxy handoffs that apply automatically to Safari. (Content filtering and parental controls are covered in their own row below.)"</em> We recommend refining this to clarify that custom stacks avoid CFNetwork SPI debt but lose OS boundary services:
+          <blockquote style="margin: 0.5rem 0; padding-left: 1rem; border-left: 3px solid var(--border-color, #cbd5e1); font-style: italic;">
+            "Engines with their own network stacks bypass Apple's private CFNetwork SPIs, but lose OS-level services requiring system cooperation: iCloud Private Relay does not cover their HTTPS traffic, enterprise AppSSO/Kerberos requires custom bridging rather than automatic OS handoffs, and lack of socket delegation distorts cellular data accounting."
+          </blockquote>
+          The <strong>Priority (P2)</strong> and <strong>Confidence (Medium)</strong> ratings remain well-calibrated.
+        </li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, alternative browser engines also bring their own network stacks (Chromium/Cronet, Gecko/Necko). However, Android’s OS architecture handles network boundary services without giving first-party browsers structural privileges:</p>
+      <ul>
+        <li><strong>No exclusionary system proxy:</strong> Android does not operate a proprietary, first-party-only proxy equivalent to iCloud Private Relay. System VPNs and private DNS (DoT) apply uniformly across all apps at the OS level.</li>
+        <li><strong>UID-based accounting:</strong> Android assigns a unique Linux User ID (UID) to each installed app package. All helper processes and threads spawned by the browser share the same UID, ensuring that cellular data limits, battery usage, and network activity are automatically attributed to the browser without requiring privileged kernel socket delegation.</li>
+        <li><strong>Enterprise VPN routing:</strong> Android’s <code>VpnService</code> routes network traffic by UID. An enterprise per-app VPN configured via Android Enterprise Work Profiles automatically encompasses all sockets opened by the browser app and its subprocesses.</li>
+        <li><strong>System proxy discovery:</strong> Android provides standard public APIs (<code>ConnectivityManager.getDefaultProxy()</code>) that expose host, port, and PAC URLs directly to apps, enabling custom network stacks to easily mirror system proxy settings.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../spi.html#tab=data&feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI explorer › Networking, HTTP/3, WebTransport &amp; Cookies (239 SPIs)</a> — detailed catalog of the 239 private networking SPIs used by WebKit.</li>
+        <li><a href="../entitlements.html?view=explorer&dom=Networking%20%26%20Privacy%20Proxies">Entitlements explorer › Oblivious HTTP (CipherML), Socket Delegation &amp; Parental Controls</a> — thematic analysis of WebKit’s private networking entitlements.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=com.apple.private.network.socket-delegate">Entitlements explorer › com.apple.private.network.socket-delegate</a> — code pointers and parity analysis for privileged socket delegation.</li>
+        <li><a href="content-filters.html">Issue › Content filters on school &amp; work devices</a> — the sibling analysis covering <code>NEFilterSource</code>, Screen Time, and parental control restrictions.</li>
+        <li><a href="process-lifecycle.html">Issue › Background execution: uploads, downloads &amp; tab survival</a> — how iOS process suspension impacts network transfers.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

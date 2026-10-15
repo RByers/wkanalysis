@@ -2,6 +2,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
   "metadata": {
     "title": "WebKit iOS Sandbox Profile Changes",
     "source_repo": "https://github.com/WebKit/WebKit",
+    "github_repo_url": "https://github.com/WebKit/WebKit",
+    "github_blob_base_url": "https://github.com/WebKit/WebKit/blob/main/",
+    "github_commit_base_url": "https://github.com/WebKit/WebKit/commit/",
+    "webkit_head_commit": {
+      "hash": "a018777818d96e2c5afc5e1967f001f5bd621a98",
+      "short_hash": "a018777818d9",
+      "date": "2026-10-02",
+      "subject": "[Flex] A flex item's base size ignores the space available to it when its main size is fit-content https://bugs.webkit.org/show_bug.cgi?id=324669 <rdar://problem/187932371>",
+      "github_url": "https://github.com/WebKit/WebKit/commit/a018777818d96e2c5afc5e1967f001f5bd621a98"
+    },
     "tracked_paths": [
       "Source/WebKit/Resources/SandboxProfiles/ios",
       "Source/WebKit2/Resources/SandboxProfiles/ios",
@@ -11,7 +21,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     "total_commits": 919,
     "min_date": "2014-05-21",
     "max_date": "2026-09-29",
-    "generated_at": "2026-10-04T02:53:00Z"
+    "generated_at": "2026-10-14T20:50:06Z"
   },
   "categories": [
     {
@@ -143,6 +153,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
   "commits": [
     {
       "hash": "c01e8de3c16c6d8b3c00ab2dbf958f2e8a4475b7",
+      "short_hash": "c01e8de3c16c",
       "date": "2026-09-29",
       "timestamp": "2026-09-29T01:44:51-07:00",
       "author": "Per Arne Vollan",
@@ -170,6 +181,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -184,6 +197,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "560dbe3431d957dca1cc168fdab1b0cb3c2d0622",
+      "short_hash": "560dbe3431d9",
       "date": "2026-09-10",
       "timestamp": "2026-09-10T14:12:04-07:00",
       "author": "Per Arne Vollan",
@@ -207,6 +221,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -221,6 +237,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9ad3a6f5714afc4876a3e7d7f8515729ebe5097c",
+      "short_hash": "9ad3a6f5714a",
       "date": "2026-07-31",
       "timestamp": "2026-07-31T06:48:49-07:00",
       "author": "Per Arne Vollan",
@@ -254,6 +271,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.x86.sb.in"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 21,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -268,6 +292,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "64e4e8a7d098e5535b6f07ce2f0efec70fa6395a",
+      "short_hash": "64e4e8a7d098",
       "date": "2026-07-27",
       "timestamp": "2026-07-27T13:51:19-07:00",
       "author": "Aleksei Marchenko",
@@ -291,6 +316,29 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/ModelProcess/ModelProcess.cpp",
+        "Source/WebKit/ModelProcess/ModelProcess.h",
+        "Source/WebKit/ModelProcess/ModelProcessCreationParameters.h",
+        "Source/WebKit/ModelProcess/ModelProcessCreationParameters.serialization.in",
+        "Source/WebKit/ModelProcess/cocoa/ModelProcessCocoa.mm",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/Cocoa/AuxiliaryProcessCocoa.mm",
+        "Source/WebKit/Shared/LogStream.h",
+        "Source/WebKit/Shared/LogStream.mm",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.h",
+        "Source/WebKit/UIProcess/Cocoa/AuxiliaryProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/Model/ModelProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Model/ModelProcessProxy.h",
+        "Source/WebKit/UIProcess/Model/ModelProcessProxy.messages.in",
+        "Source/WebKit/UIProcess/Model/cocoa/ModelProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 21,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -305,6 +353,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3e277d994fe5fa7482b96d1dd87e0e7643803d42",
+      "short_hash": "3e277d994fe5",
       "date": "2026-07-20",
       "timestamp": "2026-07-20T19:24:24-07:00",
       "author": "Chris Dumez",
@@ -335,6 +384,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.x86.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 5,
@@ -349,6 +405,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2353515764da1f3b6ec7f23306d7b2219eda3b7f",
+      "short_hash": "2353515764da",
       "date": "2026-07-18",
       "timestamp": "2026-07-18T02:01:57-07:00",
       "author": "Ronan Turner",
@@ -375,6 +432,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/Cocoa/EnhancedSecurityLinkUtilities.h",
+        "Source/WebKit/Shared/Cocoa/EnhancedSecurityLinkUtilities.mm",
+        "Tools/TestWebKitAPI/Tests/WebKit/WKWebView/EnhancedSecurityPolicies.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 10,
       "lines_deleted": 4,
       "allow_added": 6,
@@ -389,6 +454,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e29a2e04b3671938598e903523af630c9b9e26a9",
+      "short_hash": "e29a2e04b367",
       "date": "2026-07-16",
       "timestamp": "2026-07-16T14:02:41-07:00",
       "author": "Aleksei Marchenko",
@@ -412,6 +478,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -426,6 +494,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e62ea2ac63e0bd6b72e9b4fc584afb5083f6eaae",
+      "short_hash": "e62ea2ac63e0",
       "date": "2026-06-25",
       "timestamp": "2026-06-25T14:30:02-07:00",
       "author": "WebKit Revert Bot",
@@ -449,6 +518,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/Shared/AuxiliaryProcess.cpp",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/Shared/WebsiteDataStoreParameters.h",
+        "Source/WebKit/Shared/WebsiteDataStoreParameters.serialization.in",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.cpp"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -464,6 +544,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "587814c5e938feb59125ec779481a0e1e10704d3",
+      "short_hash": "587814c5e938",
       "date": "2026-06-23",
       "timestamp": "2026-06-23T16:50:42-07:00",
       "author": "Matthew Finkel",
@@ -485,6 +566,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -499,6 +582,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ffef0e720f40297463a11ab6a1c0107da28ff900",
+      "short_hash": "ffef0e720f40",
       "date": "2026-06-17",
       "timestamp": "2026-06-17T09:18:36-07:00",
       "author": "Per Arne Vollan",
@@ -524,6 +608,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 10,
       "lines_deleted": 2,
       "allow_added": 6,
@@ -538,6 +624,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "21b0579b979dc20f62f7f4bf9c07bf0594813bd9",
+      "short_hash": "21b0579b979d",
       "date": "2026-06-11",
       "timestamp": "2026-06-11T06:00:46-07:00",
       "author": "Per Arne Vollan",
@@ -572,6 +659,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 19,
       "lines_deleted": 5,
       "allow_added": 2,
@@ -586,6 +677,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b148037850ecd715eb4295cc1aa2e5e438364a86",
+      "short_hash": "b148037850ec",
       "date": "2026-06-08",
       "timestamp": "2026-06-08T13:36:44-07:00",
       "author": "Per Arne Vollan",
@@ -609,6 +701,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -623,6 +720,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f8277ab0a96dc1a24aec6c65284506377a3a64a8",
+      "short_hash": "f8277ab0a96d",
       "date": "2026-06-05",
       "timestamp": "2026-06-05T15:29:15-07:00",
       "author": "Matthew Finkel",
@@ -649,6 +747,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/NetworkSession.cpp",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManager.cpp",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManager.h",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManagerInterface.cpp",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementManagerInterface.h",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementNetworkLoader.cpp",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/PrivateClickMeasurementNetworkLoader.h",
+        "Source/WebKit/NetworkProcess/PrivateClickMeasurement/cocoa/PrivateClickMeasurementNetworkLoaderCocoa.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -664,6 +776,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9850353d12604f5d42a63301fc99295f72b58253",
+      "short_hash": "9850353d1260",
       "date": "2026-05-18",
       "timestamp": "2026-05-18T09:46:46-07:00",
       "author": "Per Arne Vollan",
@@ -687,6 +800,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -701,6 +820,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "92c015b60ee96a4b0b2b8b2dfed93d3510fd8f0f",
+      "short_hash": "92c015b60ee9",
       "date": "2026-05-01",
       "timestamp": "2026-05-01T19:35:33-07:00",
       "author": "Per Arne Vollan",
@@ -726,6 +846,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 10,
       "allow_added": 0,
@@ -740,6 +862,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eafba7778b635f6fb7d65fe6b421c15a7b564b1a",
+      "short_hash": "eafba7778b63",
       "date": "2026-04-22",
       "timestamp": "2026-04-22T11:25:09-07:00",
       "author": "Per Arne Vollan",
@@ -764,6 +887,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 8,
       "allow_added": 0,
@@ -778,6 +903,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "507789a21582fde6cdc27ea97474f13d2b1e5c77",
+      "short_hash": "507789a21582",
       "date": "2026-04-21",
       "timestamp": "2026-04-21T14:50:55-07:00",
       "author": "Per Arne Vollan",
@@ -806,6 +932,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -820,6 +948,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7f20e13369153a83036ad3e1ccd1f12a6e2f9a08",
+      "short_hash": "7f20e1336915",
       "date": "2026-04-08",
       "timestamp": "2026-04-08T22:50:25-07:00",
       "author": "Per Arne Vollan",
@@ -843,6 +972,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -857,6 +990,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "048baa0d76440569c87cb39642ad1da4a61cc5d6",
+      "short_hash": "048baa0d7644",
       "date": "2026-03-27",
       "timestamp": "2026-03-27T07:12:41-07:00",
       "author": "Per Arne Vollan",
@@ -878,6 +1012,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/Scripts/compile-sandbox.sh",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -892,6 +1033,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "aae6a13f406fe29df1873f31f6f3e801dbf32e26",
+      "short_hash": "aae6a13f406f",
       "date": "2026-02-12",
       "timestamp": "2026-02-12T08:48:07-08:00",
       "author": "Ronan Turner",
@@ -914,6 +1056,33 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.messages.in",
+        "Source/WebKit/NetworkProcess/NetworkProcessCreationParameters.h",
+        "Source/WebKit/NetworkProcess/NetworkProcessCreationParameters.serialization.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/Cocoa/EnhancedSecurityLinkUtilities.h",
+        "Source/WebKit/Shared/Cocoa/EnhancedSecurityLinkUtilities.mm",
+        "Source/WebKit/Shared/EnhancedSecurity.h",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/API/APINavigation.cpp",
+        "Source/WebKit/UIProcess/API/APINavigation.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/EnhancedSecurityTracking.cpp",
+        "Source/WebKit/UIProcess/WebFramePolicyListenerProxy.cpp",
+        "Source/WebKit/UIProcess/WebFramePolicyListenerProxy.h",
+        "Source/WebKit/UIProcess/WebFrameProxy.cpp",
+        "Source/WebKit/UIProcess/WebFrameProxy.h",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/EnhancedSecurityPolicies.mm"
+      ],
+      "total_commit_files_count": 26,
       "lines_added": 8,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -928,6 +1097,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6d548811ab92b03c28994bb2c2684901b960d797",
+      "short_hash": "6d548811ab92",
       "date": "2026-01-29",
       "timestamp": "2026-01-29T21:52:59-08:00",
       "author": "Per Arne Vollan",
@@ -958,6 +1128,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 4,
       "allow_added": 5,
@@ -972,6 +1146,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d456e93c47e74bee118818704c888fa6a3b13164",
+      "short_hash": "d456e93c47e7",
       "date": "2026-01-20",
       "timestamp": "2026-01-20T06:39:20-08:00",
       "author": "Per Arne Vollan",
@@ -995,6 +1170,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -1009,6 +1186,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "65d2aea6856618f6a8f872964b376b16838347e0",
+      "short_hash": "65d2aea68566",
       "date": "2026-01-14",
       "timestamp": "2026-01-14T11:15:54-08:00",
       "author": "Darryl Parkinson",
@@ -1037,6 +1215,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/compile-sandbox.sh",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -1051,6 +1235,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "11357b5ed3e6bfed77d3a4da140f3b93e28ad558",
+      "short_hash": "11357b5ed3e6",
       "date": "2026-01-08",
       "timestamp": "2026-01-08T15:31:03-08:00",
       "author": "Per Arne Vollan",
@@ -1072,6 +1257,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -1086,6 +1275,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3a37229955b9483ec50613dd819c0e67cf525d80",
+      "short_hash": "3a37229955b9",
       "date": "2025-12-16",
       "timestamp": "2025-12-16T16:07:03-08:00",
       "author": "Per Arne Vollan",
@@ -1111,6 +1301,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/common.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/Shared/WebProcessDataStoreParameters.h",
+        "Source/WebKit/Shared/WebProcessDataStoreParameters.serialization.in",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 22,
       "lines_deleted": 1,
       "allow_added": 6,
@@ -1126,6 +1326,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e0e27e741c5112c4e2f80eaa19dc0c3d49bf60ed",
+      "short_hash": "e0e27e741c51",
       "date": "2025-12-10",
       "timestamp": "2025-12-10T09:57:34-08:00",
       "author": "Per Arne Vollan",
@@ -1153,6 +1354,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb"
       ],
+      "code_files": [
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/cocoa/AuditToken.h",
+        "Source/WTF/wtf/cocoa/AuditToken.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 11,
       "lines_deleted": 10,
       "allow_added": 6,
@@ -1167,6 +1377,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4af081a141976e6ffe0ba07b7100b09f76788d6e",
+      "short_hash": "4af081a14197",
       "date": "2025-11-19",
       "timestamp": "2025-11-19T09:20:51-08:00",
       "author": "Jonathan Bedard",
@@ -1193,6 +1404,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb"
       ],
+      "code_files": [
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/cocoa/AuditToken.h",
+        "Source/WTF/wtf/cocoa/AuditToken.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 9,
       "lines_deleted": 10,
       "allow_added": 4,
@@ -1210,6 +1430,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e5e05b88989b3ad4f8a5721b782a8f9a83a390c5",
+      "short_hash": "e5e05b88989b",
       "date": "2025-11-18",
       "timestamp": "2025-11-18T20:24:22-08:00",
       "author": "Per Arne Vollan",
@@ -1236,6 +1457,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb"
       ],
+      "code_files": [
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/cocoa/AuditToken.h",
+        "Source/WTF/wtf/cocoa/AuditToken.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 10,
       "lines_deleted": 9,
       "allow_added": 5,
@@ -1251,6 +1481,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "88cb629c93ac47fc4254ab8752774a91715d9f0b",
+      "short_hash": "88cb629c93ac",
       "date": "2025-11-10",
       "timestamp": "2025-11-10T17:24:02-08:00",
       "author": "Mike Wyrzykowski",
@@ -1272,6 +1503,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -1286,6 +1521,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dffe77ef5865fcf0f5de6f687792a36eb940eadc",
+      "short_hash": "dffe77ef5865",
       "date": "2025-11-10",
       "timestamp": "2025-11-10T14:09:40-08:00",
       "author": "Mike Wyrzykowski",
@@ -1307,6 +1543,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -1321,6 +1561,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "92d20a01822e97f32a96ee5837e5e2f4d468e1a1",
+      "short_hash": "92d20a01822e",
       "date": "2025-10-23",
       "timestamp": "2025-10-23T10:45:17-07:00",
       "author": "Per Arne Vollan",
@@ -1344,6 +1585,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -1358,6 +1601,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "99c780c7ac5fe4a03011778fb12804b583d77fcb",
+      "short_hash": "99c780c7ac5f",
       "date": "2025-10-22",
       "timestamp": "2025-10-22T19:53:03-07:00",
       "author": "Per Arne Vollan",
@@ -1383,6 +1627,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -1397,6 +1643,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d05bf0310a95d82651370a7851b257aa05a8977d",
+      "short_hash": "d05bf0310a95",
       "date": "2025-10-22",
       "timestamp": "2025-10-22T13:33:08-07:00",
       "author": "Per Arne Vollan",
@@ -1436,6 +1683,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 26,
       "lines_deleted": 24,
       "allow_added": 17,
@@ -1450,6 +1699,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4994f537ea366133f3a10985abf3b8ba2e323908",
+      "short_hash": "4994f537ea36",
       "date": "2025-10-15",
       "timestamp": "2025-10-15T17:27:46-07:00",
       "author": "Per Arne Vollan",
@@ -1474,6 +1724,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -1488,6 +1740,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6b5ffb6a2a25216611c0ab417f928921d371578a",
+      "short_hash": "6b5ffb6a2a25",
       "date": "2025-10-14",
       "timestamp": "2025-10-14T06:47:16-07:00",
       "author": "Per Arne Vollan",
@@ -1516,6 +1769,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 3,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -1530,6 +1785,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7395b2831bdc001a3f8604fe77e91998ee8cade0",
+      "short_hash": "7395b2831bdc",
       "date": "2025-10-02",
       "timestamp": "2025-10-02T05:02:27-07:00",
       "author": "Per Arne Vollan",
@@ -1557,6 +1813,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -1571,6 +1829,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bb4d3ee9eae28a671ea11c1eae167f89412a3043",
+      "short_hash": "bb4d3ee9eae2",
       "date": "2025-10-02",
       "timestamp": "2025-10-02T03:47:41-07:00",
       "author": "Darryl Parkinson",
@@ -1599,6 +1858,41 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "LayoutTests/TestExpectations",
+        "LayoutTests/platform/ios/TestExpectations",
+        "LayoutTests/platform/mac-wk2/TestExpectations",
+        "LayoutTests/security/cocoa/check-enhanced-security-disabled-expected.txt",
+        "LayoutTests/security/cocoa/check-enhanced-security-disabled.html",
+        "LayoutTests/security/cocoa/check-enhanced-security-enabled-expected.txt",
+        "LayoutTests/security/cocoa/check-enhanced-security-enabled.html",
+        "LayoutTests/security/cocoa/enhanced-security/check-enhanced-security-enabled-expected.txt",
+        "LayoutTests/security/cocoa/enhanced-security/check-enhanced-security-enabled.html",
+        "LayoutTests/security/cocoa/lockdown-mode/check-lockdown-mode-enabled-expected.txt",
+        "LayoutTests/security/cocoa/lockdown-mode/check-lockdown-mode-enabled.html",
+        "Source/WebCore/page/Page.h",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl",
+        "Source/WebKit/Configurations/BaseXPCService.xcconfig",
+        "Source/WebKit/Configurations/WebContentEnhancedSecurityExtension.xcconfig",
+        "Source/WebKit/Configurations/WebContentService.EnhancedSecurity.xcconfig",
+        "Source/WebKit/Configurations/WebContentService.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentExtension-EnhancedSecurity-Info.plist",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivateForTesting.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/Scripts/package-root",
+        "Tools/TestRunnerShared/Scripts/install-extensions-rule.sh",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/EnhancedSecurity.mm"
+      ],
+      "total_commit_files_count": 34,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -1613,6 +1907,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "961367e6a18a022e4dc3f32105df03a5a34221b9",
+      "short_hash": "961367e6a18a",
       "date": "2025-09-27",
       "timestamp": "2025-09-27T06:31:54-07:00",
       "author": "Per Arne Vollan",
@@ -1642,6 +1937,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 14,
       "lines_deleted": 4,
       "allow_added": 7,
@@ -1656,6 +1953,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e0c788b57e1db6001fe923da9370d0c4d2095e02",
+      "short_hash": "e0c788b57e1d",
       "date": "2025-09-08",
       "timestamp": "2025-09-08T10:29:44-07:00",
       "author": "Per Arne Vollan",
@@ -1839,6 +2137,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 10,
       "lines_added": 1057,
       "lines_deleted": 445,
       "allow_added": 401,
@@ -1853,6 +2153,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b37182aef35f38c4e762624a1a57a81e82eec701",
+      "short_hash": "b37182aef35f",
       "date": "2025-09-06",
       "timestamp": "2025-09-06T09:49:13-07:00",
       "author": "Per Arne Vollan",
@@ -1885,6 +2186,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 29,
       "allow_added": 0,
@@ -1899,6 +2202,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "570e26522c2e9299bb74b139d17852384b153462",
+      "short_hash": "570e26522c2e",
       "date": "2025-09-06",
       "timestamp": "2025-09-06T09:47:49-07:00",
       "author": "Per Arne Vollan",
@@ -1948,6 +2252,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 25,
       "lines_deleted": 33,
       "allow_added": 3,
@@ -1962,6 +2268,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fc55b4b5008ca22247637021794fbe055313e85d",
+      "short_hash": "fc55b4b5008c",
       "date": "2025-09-04",
       "timestamp": "2025-09-04T21:42:53-07:00",
       "author": "Per Arne Vollan",
@@ -2027,6 +2334,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 11,
       "lines_deleted": 110,
       "allow_added": 1,
@@ -2041,6 +2352,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f3953af233f97e058ead9b189233ac7ad84662cf",
+      "short_hash": "f3953af233f9",
       "date": "2025-09-02",
       "timestamp": "2025-09-02T13:34:59-07:00",
       "author": "Per Arne Vollan",
@@ -2538,6 +2850,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
         "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1860,
       "lines_deleted": 1843,
       "allow_added": 147,
@@ -2552,6 +2868,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8bf99a30f0cbdb266ae28bc15ed6ff4102ca13f4",
+      "short_hash": "8bf99a30f0cb",
       "date": "2025-08-26",
       "timestamp": "2025-08-26T06:48:47-07:00",
       "author": "Per Arne Vollan",
@@ -2593,6 +2910,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 15,
       "lines_deleted": 42,
       "allow_added": 0,
@@ -2607,6 +2926,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "455e23d65c56af0fcd42a3780d8773df4f1eacd1",
+      "short_hash": "455e23d65c56",
       "date": "2025-08-23",
       "timestamp": "2025-08-23T08:39:43-07:00",
       "author": "Per Arne Vollan",
@@ -2649,6 +2969,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 85,
       "allow_added": 0,
@@ -2663,6 +2985,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d5c48f8a195d06aa3c3f0428f1b10168c8532f82",
+      "short_hash": "d5c48f8a195d",
       "date": "2025-08-19",
       "timestamp": "2025-08-19T08:17:12-07:00",
       "author": "Per Arne Vollan",
@@ -2688,6 +3011,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -2702,6 +3027,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "11a2031c8c6112a0eabcec1e6530b543827903cc",
+      "short_hash": "11a2031c8c61",
       "date": "2025-08-17",
       "timestamp": "2025-08-17T15:52:41-07:00",
       "author": "Per Arne Vollan",
@@ -2739,6 +3065,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/Sandbox/common.sb"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 48,
       "lines_deleted": 45,
       "allow_added": 0,
@@ -2753,6 +3083,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "666daa6403da4f67ab444892f93eb6dc920a114a",
+      "short_hash": "666daa6403da",
       "date": "2025-08-14",
       "timestamp": "2025-08-14T19:13:39-07:00",
       "author": "Per Arne Vollan",
@@ -2780,6 +3111,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -2794,6 +3127,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "89abb63fda5cd9bcd8fb57c7c7e0f83773da1234",
+      "short_hash": "89abb63fda5c",
       "date": "2025-08-07",
       "timestamp": "2025-08-07T15:54:25-07:00",
       "author": "Per Arne Vollan",
@@ -2828,6 +3162,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 4,
       "lines_added": 18,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -2842,6 +3178,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dd1c6124ccd3d8f2fccde63b9e0bd15c051ca9b9",
+      "short_hash": "dd1c6124ccd3",
       "date": "2025-08-07",
       "timestamp": "2025-08-07T07:27:20-07:00",
       "author": "Per Arne Vollan",
@@ -2871,6 +3208,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources-output.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Scripts/compile-sandbox.sh",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 73,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -2885,6 +3230,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "433160c1fc57cbb5c554d2735c46c1333b8b3d54",
+      "short_hash": "433160c1fc57",
       "date": "2025-08-06",
       "timestamp": "2025-08-06T16:42:49-07:00",
       "author": "Commit Queue",
@@ -2906,6 +3252,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "com.apple.WebKit.WebContent.sb.in"
       ],
       "files": [],
+      "code_files": [
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Scripts/compile-sandbox.sh",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 3,
       "lines_deleted": 73,
       "allow_added": 3,
@@ -2920,6 +3272,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e10954862c71cfd1b35d0e661ae4b2c6bdc736b7",
+      "short_hash": "e10954862c71",
       "date": "2025-08-06",
       "timestamp": "2025-08-06T13:37:05-07:00",
       "author": "Per Arne Vollan",
@@ -2949,6 +3302,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Scripts/compile-sandbox.sh",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 73,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -2963,6 +3322,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1667e4506835aebe1431586c46888b3139db6e58",
+      "short_hash": "1667e4506835",
       "date": "2025-08-05",
       "timestamp": "2025-08-05T18:46:33-07:00",
       "author": "Ben Nham",
@@ -2986,6 +3346,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/cocoa/GPUProcessCocoa.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/Cocoa/AuxiliaryProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -3000,6 +3367,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4cba69f38794d4cd5f78954710cf3d4c12506e2e",
+      "short_hash": "4cba69f38794",
       "date": "2025-07-18",
       "timestamp": "2025-07-18T01:33:37-07:00",
       "author": "Per Arne Vollan",
@@ -3025,6 +3393,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 5,
       "lines_deleted": 2,
       "allow_added": 4,
@@ -3039,6 +3411,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1805e85f08391887a54578eafa3e354e01e81bb9",
+      "short_hash": "1805e85f0839",
       "date": "2025-07-08",
       "timestamp": "2025-07-08T21:26:30-07:00",
       "author": "Brady Eidson",
@@ -3062,6 +3435,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -3076,6 +3451,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a65571e1a1c7fd0f5cb6042d5491cf4e38459732",
+      "short_hash": "a65571e1a1c7",
       "date": "2025-06-17",
       "timestamp": "2025-06-17T07:18:01-07:00",
       "author": "Anne van Kesteren",
@@ -3097,6 +3473,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WTF/wtf/spi/darwin/ReasonSPI.h"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -3110,6 +3493,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "33cc299a31691189fa4f32b17a23bb22ca2cbcaf",
+      "short_hash": "33cc299a3169",
       "date": "2025-06-13",
       "timestamp": "2025-06-13T16:48:31-07:00",
       "author": "Per Arne Vollan",
@@ -3138,6 +3522,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -3152,6 +3538,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "66e7f7b2c531ac544c7a4934a7f02a4d1722fec5",
+      "short_hash": "66e7f7b2c531",
       "date": "2025-06-10",
       "timestamp": "2025-06-10T14:15:17-07:00",
       "author": "Per Arne Vollan",
@@ -3181,6 +3568,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -3195,6 +3584,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ba762580c098651d310c39ae81d070fa61c5ab3b",
+      "short_hash": "ba762580c098",
       "date": "2025-06-05",
       "timestamp": "2025-06-05T20:57:45-07:00",
       "author": "Per Arne Vollan",
@@ -3228,6 +3618,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/Sandbox/common.sb"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 6,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -3242,6 +3636,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7a08ca5a5b61205bf6ee77551b21ec5bc8ca4945",
+      "short_hash": "7a08ca5a5b61",
       "date": "2025-05-24",
       "timestamp": "2025-05-24T10:41:38-07:00",
       "author": "Per Arne Vollan",
@@ -3270,6 +3665,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Sandbox/common.sb",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -3284,6 +3685,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fa536eacdec3de0d961d8b366743ffa9997c94b2",
+      "short_hash": "fa536eacdec3",
       "date": "2025-05-23",
       "timestamp": "2025-05-23T15:40:27-07:00",
       "author": "Per Arne Vollan",
@@ -3305,6 +3707,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -3319,6 +3723,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f1f264edcff84a596de14759c04b5657b65f5f99",
+      "short_hash": "f1f264edcff8",
       "date": "2025-05-22",
       "timestamp": "2025-05-22T14:48:03-07:00",
       "author": "Per Arne Vollan",
@@ -3351,6 +3756,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/GPUProcess/cocoa/GPUProcessCocoa.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 26,
       "lines_deleted": 22,
       "allow_added": 9,
@@ -3365,6 +3777,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d5f0d37ecb9e28e0b3e778b9f764cc1cde74a626",
+      "short_hash": "d5f0d37ecb9e",
       "date": "2025-05-17",
       "timestamp": "2025-05-17T12:36:43-07:00",
       "author": "Per Arne Vollan",
@@ -3388,6 +3801,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -3402,6 +3817,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3578a0f4e7f375a0ad1fde0b7ccc867e84c5d6a6",
+      "short_hash": "3578a0f4e7f3",
       "date": "2025-05-11",
       "timestamp": "2025-05-11T17:05:28-07:00",
       "author": "Per Arne Vollan",
@@ -3426,6 +3842,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/common.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -3440,6 +3858,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b70d6c650e4aa56688cfa2ffe395a85508c5fe28",
+      "short_hash": "b70d6c650e4a",
       "date": "2025-05-08",
       "timestamp": "2025-05-08T19:45:34-07:00",
       "author": "Per Arne Vollan",
@@ -3468,6 +3887,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 28,
       "allow_added": 0,
@@ -3482,6 +3903,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3fc813262ecd55ef014cb531d6aa9b6f3e421cc5",
+      "short_hash": "3fc813262ecd",
       "date": "2025-05-05",
       "timestamp": "2025-05-05T16:44:53-07:00",
       "author": "Commit Queue",
@@ -3503,6 +3925,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -3517,6 +3941,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b6745e93ce858566d08aca85535374a91935c081",
+      "short_hash": "b6745e93ce85",
       "date": "2025-05-03",
       "timestamp": "2025-05-03T19:24:01-07:00",
       "author": "Per Arne Vollan",
@@ -3538,6 +3963,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -3552,6 +3979,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "669d40a1468bb5a916324ee5e956448072ae2d8a",
+      "short_hash": "669d40a1468b",
       "date": "2025-04-29",
       "timestamp": "2025-04-29T11:33:32-07:00",
       "author": "Alex Christensen",
@@ -3575,6 +4003,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -3589,6 +4019,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08924757fa7b84fb02db3a5c68bbcdfcfbb785aa",
+      "short_hash": "08924757fa7b",
       "date": "2025-04-21",
       "timestamp": "2025-04-21T08:58:36-07:00",
       "author": "Per Arne Vollan",
@@ -3610,6 +4041,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -3624,6 +4057,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "98e95cfbaec432dd1c49a356096b4409e564927c",
+      "short_hash": "98e95cfbaec4",
       "date": "2025-04-21",
       "timestamp": "2025-04-21T08:48:41-07:00",
       "author": "Per Arne Vollan",
@@ -3645,6 +4079,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -3659,6 +4095,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "20e6698edf478e045292cb46fcc9ac102dd7003a",
+      "short_hash": "20e6698edf47",
       "date": "2025-04-13",
       "timestamp": "2025-04-13T13:10:17-07:00",
       "author": "Dewei Zhu",
@@ -3684,6 +4121,32 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/CMakeLists.txt",
+        "Source/JavaScriptCore/JavaScriptCore.xcodeproj/project.pbxproj",
+        "Source/JavaScriptCore/Sources.txt",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/tools/LLVMProfiling.cpp",
+        "Source/JavaScriptCore/tools/LLVMProfiling.h",
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/CMakeLists.txt",
+        "Source/WTF/wtf/LLVMProfilingUtils.h",
+        "Source/WebCore/CMakeLists.txt",
+        "Source/WebCore/Sources.txt",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/bindings/js/ScriptController.cpp",
+        "Source/WebCore/platform/LLVMProfiling.cpp",
+        "Source/WebCore/platform/LLVMProfiling.h",
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/Shared/AuxiliaryProcess.cpp",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/Cocoa/WebKit2InitializeCocoa.mm",
+        "Source/WebKit/Shared/LLVMProfiling.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 24,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -3698,6 +4161,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f70dd95e4ec150d09e493b3197847715e19bf77e",
+      "short_hash": "f70dd95e4ec1",
       "date": "2025-04-11",
       "timestamp": "2025-04-11T06:58:25-07:00",
       "author": "Jon Butler",
@@ -3734,6 +4198,29 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/PlatformMac.cmake",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/platform/cocoa/AGXCompilerService.cpp",
+        "Source/WebCore/platform/cocoa/AGXCompilerService.h",
+        "Source/WebCore/testing/Internals.mm",
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.h",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.serialization.in",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.serialization.in",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewPrivateForTestingIOS.h",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewTestingIOS.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKit/AGXCompilerService.mm"
+      ],
+      "total_commit_files_count": 22,
       "lines_added": 0,
       "lines_deleted": 42,
       "allow_added": 0,
@@ -3747,6 +4234,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6331494c5778fa80e3f5aeb29d1af06dfb817e1b",
+      "short_hash": "6331494c5778",
       "date": "2025-04-09",
       "timestamp": "2025-04-09T14:04:37-07:00",
       "author": "Per Arne Vollan",
@@ -3773,6 +4261,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -3787,6 +4277,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d648842ac44117f04746cf780945fcafd5984a62",
+      "short_hash": "d648842ac441",
       "date": "2025-04-02",
       "timestamp": "2025-04-02T09:45:00-07:00",
       "author": "Per Arne Vollan",
@@ -3810,6 +4301,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -3824,6 +4317,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eaf5bf90eb889877327d57322195344d87e33dd5",
+      "short_hash": "eaf5bf90eb88",
       "date": "2025-03-31",
       "timestamp": "2025-03-31T18:57:42-07:00",
       "author": "Per Arne Vollan",
@@ -3847,6 +4341,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -3861,6 +4357,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2de31526a6b56e3f0147301e3deb80f5f65fb6d3",
+      "short_hash": "2de31526a6b5",
       "date": "2025-03-31",
       "timestamp": "2025-03-31T18:51:17-07:00",
       "author": "Per Arne Vollan",
@@ -3884,6 +4381,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -3898,6 +4397,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dbdf1ca4d873ca32c9670928bd5cd64e4555d1ce",
+      "short_hash": "dbdf1ca4d873",
       "date": "2025-03-27",
       "timestamp": "2025-03-27T18:09:39-07:00",
       "author": "Ada Chan",
@@ -3929,6 +4429,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -3943,6 +4445,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8a86d36549600357932de61fa6c76c3ec5fad1f4",
+      "short_hash": "8a86d3654960",
       "date": "2025-03-19",
       "timestamp": "2025-03-19T20:47:42-07:00",
       "author": "Per Arne Vollan",
@@ -3969,6 +4472,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -3983,6 +4488,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b18ed44e40c9cacbeaf445ccec207cb9ad448ee1",
+      "short_hash": "b18ed44e40c9",
       "date": "2025-03-19",
       "timestamp": "2025-03-19T10:03:17-07:00",
       "author": "Per Arne Vollan",
@@ -4008,6 +4514,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -4022,6 +4530,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bb3021f1e795da60722ac796e301a7396d4af431",
+      "short_hash": "bb3021f1e795",
       "date": "2025-03-13",
       "timestamp": "2025-03-13T20:37:59-07:00",
       "author": "Per Arne Vollan",
@@ -4048,6 +4557,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -4062,6 +4573,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c0d97c4b4a89ec6a6cadd0a6252d6ccf6b5eff50",
+      "short_hash": "c0d97c4b4a89",
       "date": "2025-03-13",
       "timestamp": "2025-03-13T11:05:13-07:00",
       "author": "Ada Chan",
@@ -4087,6 +4599,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Model/cocoa/ModelProcessProxyCocoa.mm"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 12,
       "allow_added": 0,
@@ -4101,6 +4617,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e84dd27520eb5b27d65457a0f79bd1e6262939be",
+      "short_hash": "e84dd27520eb",
       "date": "2025-03-05",
       "timestamp": "2025-03-05T05:20:30-08:00",
       "author": "Per Arne Vollan",
@@ -4127,6 +4644,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -4141,6 +4660,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e724d72983d8fae45e288be3aa090c271bbb1152",
+      "short_hash": "e724d72983d8",
       "date": "2025-02-28",
       "timestamp": "2025-02-28T11:47:37-08:00",
       "author": "Per Arne Vollan",
@@ -4166,6 +4686,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 7,
       "allow_added": 8,
@@ -4180,6 +4702,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1df6694bbfe90695a38d97e59bcf7718b798d962",
+      "short_hash": "1df6694bbfe9",
       "date": "2025-02-27",
       "timestamp": "2025-02-27T13:53:08-08:00",
       "author": "Per Arne Vollan",
@@ -4201,6 +4724,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -4215,6 +4740,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e43770f7a208a7ca9b3adf4f718013e7600f9366",
+      "short_hash": "e43770f7a208",
       "date": "2025-02-26",
       "timestamp": "2025-02-26T14:36:04-08:00",
       "author": "Per Arne Vollan",
@@ -4236,6 +4762,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -4250,6 +4778,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ba71e94a565d5a141a20faae9b4f157472ba4169",
+      "short_hash": "ba71e94a565d",
       "date": "2025-02-26",
       "timestamp": "2025-02-26T09:43:51-08:00",
       "author": "Per Arne Vollan",
@@ -4273,6 +4802,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -4287,6 +4818,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4f42fe5e5547b236d8fe75718d45d32fb27de5e6",
+      "short_hash": "4f42fe5e5547",
       "date": "2025-02-26",
       "timestamp": "2025-02-26T09:41:34-08:00",
       "author": "Per Arne Vollan",
@@ -4308,6 +4840,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -4322,6 +4856,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4c6223ced622acfc758bddcfa46b71ac45e5c9eb",
+      "short_hash": "4c6223ced622",
       "date": "2025-02-22",
       "timestamp": "2025-02-22T09:25:45-08:00",
       "author": "Per Arne Vollan",
@@ -4348,6 +4883,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -4362,6 +4899,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "647aeaeed0cbcd4394f3466b6a0a30a7b4643b4a",
+      "short_hash": "647aeaeed0cb",
       "date": "2025-02-21",
       "timestamp": "2025-02-21T20:27:01-08:00",
       "author": "Per Arne Vollan",
@@ -4390,6 +4928,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -4404,6 +4944,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1a89b0ea31ad6545c498b3f4c3502cf33de444ee",
+      "short_hash": "1a89b0ea31ad",
       "date": "2025-02-08",
       "timestamp": "2025-02-08T08:00:15-08:00",
       "author": "Per Arne Vollan",
@@ -4429,6 +4970,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 12,
       "lines_deleted": 3,
       "allow_added": 9,
@@ -4443,6 +4986,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "75272ebbd647409bd954f5036fa0116156b4fc6e",
+      "short_hash": "75272ebbd647",
       "date": "2025-02-07",
       "timestamp": "2025-02-07T14:43:57-08:00",
       "author": "Per Arne Vollan",
@@ -4464,6 +5008,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -4478,6 +5024,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a5ad1dd790d499fd4f90019c7459144bccee1f21",
+      "short_hash": "a5ad1dd790d4",
       "date": "2025-02-07",
       "timestamp": "2025-02-07T08:24:42-08:00",
       "author": "Per Arne Vollan",
@@ -4505,6 +5052,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 20,
       "lines_deleted": 19,
       "allow_added": 4,
@@ -4519,6 +5068,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ccddb471e6bb1d02e18bbbe0f28837a379f96332",
+      "short_hash": "ccddb471e6bb",
       "date": "2025-02-07",
       "timestamp": "2025-02-07T07:20:20-08:00",
       "author": "Per Arne Vollan",
@@ -4549,6 +5099,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 81,
       "lines_deleted": 84,
       "allow_added": 6,
@@ -4563,6 +5115,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a34553ab54ea021fef6eae2a45d6675f0cffc427",
+      "short_hash": "a34553ab54ea",
       "date": "2025-02-01",
       "timestamp": "2025-02-01T15:35:06-08:00",
       "author": "Per Arne Vollan",
@@ -4595,6 +5148,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 19,
       "lines_deleted": 19,
       "allow_added": 2,
@@ -4609,6 +5164,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "aeb86cf09019c075eaa07bbe4236be71c831fa08",
+      "short_hash": "aeb86cf09019",
       "date": "2025-02-01",
       "timestamp": "2025-02-01T12:00:19-08:00",
       "author": "Per Arne Vollan",
@@ -4634,6 +5190,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -4648,6 +5206,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "daafddbe82345cb19c1ac8f81e6f2ebb136154c6",
+      "short_hash": "daafddbe8234",
       "date": "2025-01-30",
       "timestamp": "2025-01-30T12:09:39-08:00",
       "author": "Per Arne Vollan",
@@ -4673,6 +5232,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -4687,6 +5248,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e",
+      "short_hash": "8746ea87f06c",
       "date": "2025-01-28",
       "timestamp": "2025-01-28T06:48:49-08:00",
       "author": "Ada Chan",
@@ -4716,6 +5278,26 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/GPUService.xcconfig",
+        "Source/WebKit/GPUProcess/GPUProcess.h",
+        "Source/WebKit/GPUProcess/GPUProcess.messages.in",
+        "Source/WebKit/GPUProcess/cocoa/GPUProcessCocoa.mm",
+        "Source/WebKit/ModelProcess/ModelProcess.cpp",
+        "Source/WebKit/ModelProcess/ModelProcess.h",
+        "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
+        "Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.h",
+        "Source/WebKit/UIProcess/Model/ModelProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Model/ModelProcessProxy.h",
+        "Source/WebKit/UIProcess/Model/ModelProcessProxy.messages.in",
+        "Source/WebKit/UIProcess/Model/cocoa/ModelProcessProxyCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 19,
       "lines_added": 8,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -4730,6 +5312,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7ca99e37fbcf80d073dfede40e80e5677de96952",
+      "short_hash": "7ca99e37fbcf",
       "date": "2025-01-23",
       "timestamp": "2025-01-23T10:08:13-08:00",
       "author": "Aleksei Marchenko",
@@ -4756,6 +5339,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -4770,6 +5355,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c94b781ebf228be329d2ed062a6a68f6bd969f79",
+      "short_hash": "c94b781ebf22",
       "date": "2025-01-16",
       "timestamp": "2025-01-16T10:00:40-08:00",
       "author": "Ada Chan",
@@ -4791,6 +5377,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -4805,6 +5393,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d853f70a64ac5696c3b102a20fa02802ee3394bb",
+      "short_hash": "d853f70a64ac",
       "date": "2025-01-03",
       "timestamp": "2025-01-03T16:50:02-08:00",
       "author": "Per Arne Vollan",
@@ -4828,6 +5417,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Scripts/webkit/messages.py",
+        "Source/WebKit/Shared/AdditionalFonts.h",
+        "Source/WebKit/Shared/AdditionalFonts.serialization.in",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/ios/WebProcessProxyIOS.mm",
+        "Source/WebKit/UIProcess/mac/WebProcessProxyMac.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -4842,6 +5450,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a443055848fd199a509bfb778e40094d32822c53",
+      "short_hash": "a443055848fd",
       "date": "2024-12-11",
       "timestamp": "2024-12-11T05:56:19-08:00",
       "author": "Per Arne Vollan",
@@ -4863,6 +5472,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WebCore/CMakeLists.txt",
+        "Source/WebCore/DerivedSources-input.xcfilelist",
+        "Source/WebCore/DerivedSources-output.xcfilelist",
+        "Source/WebCore/DerivedSources.make",
+        "Source/WebCore/Headers.cmake",
+        "Source/WebCore/Scripts/generate-log-declarations.py",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/html/HTMLMediaElement.cpp",
+        "Source/WebCore/html/HTMLVideoElement.cpp",
+        "Source/WebCore/loader/DocumentLoader.cpp",
+        "Source/WebCore/loader/FrameLoader.cpp",
+        "Source/WebCore/loader/ProgressTracker.cpp",
+        "Source/WebCore/loader/ResourceLoader.cpp",
+        "Source/WebCore/loader/SubresourceLoader.cpp",
+        "Source/WebCore/platform/LogClient.h",
+        "Source/WebCore/platform/LogMessages.in",
+        "Source/WebCore/platform/Logging.cpp",
+        "Source/WebCore/platform/Logging.h",
+        "Source/WebCore/platform/audio/PlatformMediaSessionManager.cpp",
+        "Source/WebCore/platform/audio/cocoa/MediaSessionManagerCocoa.mm",
+        "Source/WebKit/CMakeLists.txt",
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources-output.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Platform/LogClient.cpp",
+        "Source/WebKit/Platform/LogClient.h",
+        "Source/WebKit/Platform/LogMessages.in",
+        "Source/WebKit/Platform/Logging.h",
+        "Source/WebKit/Platform/Sources.txt",
+        "Source/WebKit/Scripts/generate-derived-log-sources.py",
+        "Source/WebKit/Scripts/generate-message-receiver.py",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/c/mac/WKWebArchiveResource.cpp",
+        "Source/WebKit/Shared/APIWebArchiveResource.h",
+        "Source/WebKit/Shared/APIWebArchiveResource.mm",
+        "Source/WebKit/Shared/LogStream.cpp",
+        "Source/WebKit/Shared/LogStream.h",
+        "Source/WebKit/Shared/WTFArgumentCoders.serialization.in",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm"
+      ],
+      "total_commit_files_count": 51,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -4877,6 +5529,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "de6d4bb270d254a64c8edc8919e6777dceb85a9f",
+      "short_hash": "de6d4bb270d2",
       "date": "2024-12-10",
       "timestamp": "2024-12-10T22:03:17-08:00",
       "author": "Per Arne Vollan",
@@ -4921,6 +5574,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 27,
       "allow_added": 0,
@@ -4935,6 +5592,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e23094197e0f1642b80b3ff115d85578f2b4a7d6",
+      "short_hash": "e23094197e0f",
       "date": "2024-10-18",
       "timestamp": "2024-10-18T07:56:18-07:00",
       "author": "Per Arne Vollan",
@@ -4961,6 +5619,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -4975,6 +5637,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ae7074a3be6a0262c860324cc001553c4fde9a56",
+      "short_hash": "ae7074a3be6a",
       "date": "2024-10-16",
       "timestamp": "2024-10-16T07:56:15-07:00",
       "author": "Ada Chan",
@@ -5000,6 +5663,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -5014,6 +5679,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "91b92c5880c3c83c7b00fb23bee9a350b331248d",
+      "short_hash": "91b92c5880c3",
       "date": "2024-10-07",
       "timestamp": "2024-10-07T11:40:15-07:00",
       "author": "Per Arne Vollan",
@@ -5040,6 +5706,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 6,
       "lines_deleted": 5,
       "allow_added": 1,
@@ -5054,6 +5727,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "46fb4cbdc01ce7d086bdaf5b4b0ef81a34fb1f3e",
+      "short_hash": "46fb4cbdc01c",
       "date": "2024-09-27",
       "timestamp": "2024-09-27T03:37:04-07:00",
       "author": "Per Arne Vollan",
@@ -5083,6 +5757,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 10,
       "lines_deleted": 7,
       "allow_added": 2,
@@ -5097,6 +5777,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a644f359c7cdbeb9fb2b4d0b1cdf678af2bf3a5d",
+      "short_hash": "a644f359c7cd",
       "date": "2024-09-27",
       "timestamp": "2024-09-27T01:17:13-07:00",
       "author": "Per Arne Vollan",
@@ -5123,6 +5804,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 3,
       "lines_deleted": 12,
       "allow_added": 1,
@@ -5137,6 +5825,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "60973b36d99f78bb173e73b0c2b0dfbd9bd51463",
+      "short_hash": "60973b36d99f",
       "date": "2024-09-11",
       "timestamp": "2024-09-11T17:53:54-07:00",
       "author": "Ben Nham",
@@ -5160,6 +5849,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -5174,6 +5867,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "77532e760a8b528addf86f4e1a73416e4dad0272",
+      "short_hash": "77532e760a8b",
       "date": "2024-09-10",
       "timestamp": "2024-09-10T13:19:51-07:00",
       "author": "Ben Nham",
@@ -5199,6 +5893,21 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/spi/cocoa/CoreServicesSPI.h",
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/webpushd/PushClientConnection.h",
+        "Source/WebKit/webpushd/PushClientConnection.mm",
+        "Source/WebKit/webpushd/PushService.h",
+        "Source/WebKit/webpushd/PushService.mm",
+        "Source/WebKit/webpushd/WebClipCache.h",
+        "Source/WebKit/webpushd/WebClipCache.mm",
+        "Source/WebKit/webpushd/WebPushDaemon.h",
+        "Source/WebKit/webpushd/WebPushDaemon.mm",
+        "Source/WebKit/webpushd/WebPushDaemonMain.mm"
+      ],
+      "total_commit_files_count": 13,
       "lines_added": 5,
       "lines_deleted": 10,
       "allow_added": 2,
@@ -5213,6 +5922,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5548011945e1a4ab98fd5981c8400adb9aab7aa2",
+      "short_hash": "5548011945e1",
       "date": "2024-08-15",
       "timestamp": "2024-08-15T15:21:28-07:00",
       "author": "Mark Lam",
@@ -5239,6 +5949,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/Threading.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 7,
       "lines_deleted": 4,
       "allow_added": 4,
@@ -5253,6 +5968,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5f2a2afa9207ac4f567654e640d5edae3059c984",
+      "short_hash": "5f2a2afa9207",
       "date": "2024-08-14",
       "timestamp": "2024-08-14T15:06:26-07:00",
       "author": "Ben Nham",
@@ -5278,6 +5994,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/Modules/push-api/PushDatabase.cpp",
+        "Source/WebCore/Modules/push-api/PushDatabase.h",
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/webpushd/PushService.h",
+        "Source/WebKit/webpushd/PushService.mm",
+        "Tools/TestWebKitAPI/Tests/WebCore/PushDatabase.cpp"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 11,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -5292,6 +6017,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2737b157251428966201cfa5b69890f0e75a95a5",
+      "short_hash": "2737b1572514",
       "date": "2024-08-14",
       "timestamp": "2024-08-14T12:10:03-07:00",
       "author": "Mark Lam",
@@ -5326,6 +6052,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.mac.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.relocatable.mac.sb.in",
+        "Source/bmalloc/bmalloc/TZoneHeapManager.cpp",
+        "Source/bmalloc/bmalloc/TZoneHeapManager.h"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 13,
       "lines_deleted": 6,
       "allow_added": 7,
@@ -5340,6 +6076,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4dadd40c1215d91e9ed4692d982a505ac3fa79f0",
+      "short_hash": "4dadd40c1215",
       "date": "2024-08-13",
       "timestamp": "2024-08-13T14:18:02-07:00",
       "author": "Per Arne Vollan",
@@ -5367,6 +6104,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -5381,6 +6123,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2670267de6530f153bd41f8b668007402c0d45af",
+      "short_hash": "2670267de653",
       "date": "2024-08-09",
       "timestamp": "2024-08-09T07:56:15-07:00",
       "author": "Per Arne Vollan",
@@ -5407,6 +6150,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -5420,6 +6165,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c9c593aab62e8afdbbc714677a087029754184ed",
+      "short_hash": "c9c593aab62e",
       "date": "2024-08-08",
       "timestamp": "2024-08-08T23:48:09-07:00",
       "author": "Ben Nham",
@@ -5445,6 +6191,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/Notifications/Cocoa/WebPushDaemonConnectionCocoa.mm",
+        "Source/WebKit/Platform/spi/ios/RunningBoardServicesSPI.h",
+        "Source/WebKit/Shared/WebPushDaemonConnectionConfiguration.h",
+        "Source/WebKit/Shared/WebPushDaemonConnectionConfiguration.serialization.in",
+        "Source/WebKit/UIProcess/API/Cocoa/_WKWebsiteDataStoreConfiguration.h",
+        "Source/WebKit/UIProcess/API/Cocoa/_WKWebsiteDataStoreConfiguration.mm",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStoreConfiguration.cpp",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStoreConfiguration.h",
+        "Source/WebKit/webpushd/PushClientConnection.h",
+        "Source/WebKit/webpushd/PushClientConnection.messages.in",
+        "Source/WebKit/webpushd/PushClientConnection.mm",
+        "Source/WebKit/webpushd/WebPushDaemon.h",
+        "Source/WebKit/webpushd/WebPushDaemon.mm",
+        "Source/WebKit/webpushd/WebPushDaemonMain.mm",
+        "Source/WebKit/webpushd/webpushtool/WebPushToolConnection.mm",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/WebPushDaemon.mm"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -5459,6 +6224,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4433278ba6e8807bab110a7ebf65b27e74351bc5",
+      "short_hash": "4433278ba6e8",
       "date": "2024-08-02",
       "timestamp": "2024-08-02T14:14:55-07:00",
       "author": "Brady Eidson",
@@ -5484,6 +6250,40 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.messages.in",
+        "Source/WebKit/NetworkProcess/Notifications/NetworkNotificationManager.cpp",
+        "Source/WebKit/NetworkProcess/Notifications/NetworkNotificationManager.h",
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Notifications/NotificationManagerMessageHandler.h",
+        "Source/WebKit/Shared/Notifications/NotificationManagerMessageHandler.messages.in",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebsiteDataStore.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebsiteDataStorePrivate.h",
+        "Source/WebKit/UIProcess/Notifications/ServiceWorkerNotificationHandler.h",
+        "Source/WebKit/UIProcess/Notifications/WebNotificationManagerMessageHandler.h",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.cpp",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.h",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/webpushd/PushClientConnection.h",
+        "Source/WebKit/webpushd/PushClientConnection.messages.in",
+        "Source/WebKit/webpushd/PushClientConnection.mm",
+        "Source/WebKit/webpushd/WebPushDaemon.h",
+        "Source/WebKit/webpushd/WebPushDaemon.mm",
+        "Source/WebKit/webpushd/_WKMockUserNotificationCenter.h",
+        "Source/WebKit/webpushd/_WKMockUserNotificationCenter.mm",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.mac.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.relocatable.mac.sb.in",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/WebPushDaemon.mm",
+        "WebKitLibraries/SDKs/iphoneos17.0-additions.sdk/System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices.tbd",
+        "WebKitLibraries/SDKs/iphoneos18.0-additions.sdk/System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices.tbd",
+        "WebKitLibraries/SDKs/iphonesimulator17.0-additions.sdk/System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices.tbd",
+        "WebKitLibraries/SDKs/iphonesimulator18.0-additions.sdk/System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices.tbd"
+      ],
+      "total_commit_files_count": 32,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -5498,6 +6298,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "98772ff02e032b0f8c3d73d89755c2bbddb746c7",
+      "short_hash": "98772ff02e03",
       "date": "2024-08-01",
       "timestamp": "2024-08-01T15:21:30-07:00",
       "author": "Karl Hsu",
@@ -5527,6 +6328,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 16,
       "lines_deleted": 1,
       "allow_added": 7,
@@ -5541,6 +6346,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9d08f2e924fa8aacf079af47286772d3498f61c0",
+      "short_hash": "9d08f2e924fa",
       "date": "2024-07-22",
       "timestamp": "2024-07-22T07:28:31-07:00",
       "author": "Brady Eidson",
@@ -5567,6 +6373,27 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/en.lproj/Localizable.strings",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/NetworkProcess/Notifications/NetworkNotificationManager.cpp",
+        "Source/WebKit/NetworkProcess/Notifications/NetworkNotificationManager.h",
+        "Source/WebKit/NetworkProcess/ServiceWorker/WebSWServerConnection.cpp",
+        "Source/WebKit/NetworkProcess/ServiceWorker/WebSWServerConnection.h",
+        "Source/WebKit/NetworkProcess/ServiceWorker/WebSWServerConnection.messages.in",
+        "Source/WebKit/Platform/spi/Cocoa/UserNotificationsSPI.h",
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/WebPreferences.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/Storage/WebSWClientConnection.cpp",
+        "Source/WebKit/webpushd/PushClientConnection.h",
+        "Source/WebKit/webpushd/PushClientConnection.messages.in",
+        "Source/WebKit/webpushd/PushClientConnection.mm",
+        "Source/WebKit/webpushd/WebPushDaemon.h",
+        "Source/WebKit/webpushd/WebPushDaemon.mm"
+      ],
+      "total_commit_files_count": 19,
       "lines_added": 8,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -5581,6 +6408,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3b1e349c8e579c0a0af3a21bb2267322bf3f6ff8",
+      "short_hash": "3b1e349c8e57",
       "date": "2024-07-15",
       "timestamp": "2024-07-15T13:28:29-07:00",
       "author": "Brent Fulgham",
@@ -5604,6 +6432,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -5618,6 +6448,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b069ece7b5e303fcd1010fadb197164a855f64a8",
+      "short_hash": "b069ece7b5e3",
       "date": "2024-07-12",
       "timestamp": "2024-07-12T15:25:50-07:00",
       "author": "Brent Fulgham",
@@ -5647,6 +6478,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 1,
       "allow_added": 5,
@@ -5661,6 +6494,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "746fa2c96a997d39da48e7886281c81c36ca04b3",
+      "short_hash": "746fa2c96a99",
       "date": "2024-07-09",
       "timestamp": "2024-07-09T17:08:17-07:00",
       "author": "Brent Fulgham",
@@ -5684,6 +6518,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -5698,6 +6536,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3527478500efa6b800efe95a1ac69cd88dff33e9",
+      "short_hash": "3527478500ef",
       "date": "2024-07-08",
       "timestamp": "2024-07-08T09:59:04-07:00",
       "author": "Per Arne Vollan",
@@ -5728,6 +6567,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 21,
       "lines_deleted": 0,
       "allow_added": 8,
@@ -5742,6 +6583,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4d1e35ac20d1c8b810e350882984c3e2429b34ee",
+      "short_hash": "4d1e35ac20d1",
       "date": "2024-06-28",
       "timestamp": "2024-06-28T09:59:16-07:00",
       "author": "Ben Nham",
@@ -5834,6 +6676,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Resources/cocoa/NotificationAllowList/EmbeddedForwardedNotifications.def",
+        "Source/WebKit/Resources/cocoa/NotificationAllowList/ForwardedNotifications.def",
+        "Source/WebKit/Resources/cocoa/NotificationAllowList/MacForwardedNotifications.def",
+        "Source/WebKit/Resources/cocoa/NotificationAllowList/NonForwardedNotifications.def",
+        "Source/WebKit/Resources/cocoa/NotificationAllowList/NotificationAllowLists.xcfilelist",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 7,
       "lines_deleted": 95,
       "allow_added": 0,
@@ -5848,6 +6704,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b35a3a5d21193edf78d8c645f02045f8d3af039a",
+      "short_hash": "b35a3a5d2119",
       "date": "2024-06-27",
       "timestamp": "2024-06-27T11:27:58-07:00",
       "author": "Per Arne Vollan",
@@ -5883,6 +6740,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 19,
       "lines_deleted": 0,
       "allow_added": 19,
@@ -5897,6 +6760,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "424ff8a1af4283b120b36f2c7f08ead6a88f031c",
+      "short_hash": "424ff8a1af42",
       "date": "2024-06-18",
       "timestamp": "2024-06-18T19:22:57-07:00",
       "author": "Per Arne Vollan",
@@ -5922,6 +6786,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -5936,6 +6802,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ff37df0fa9111768cccac40ec5bc6e96dd1190db",
+      "short_hash": "ff37df0fa911",
       "date": "2024-06-17",
       "timestamp": "2024-06-17T21:11:04-07:00",
       "author": "Per Arne Vollan",
@@ -5962,6 +6829,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 10,
       "lines_deleted": 0,
       "allow_added": 10,
@@ -5976,6 +6849,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b88e00d67608d5087314f9ff357d6aafb4873e81",
+      "short_hash": "b88e00d67608",
       "date": "2024-06-05",
       "timestamp": "2024-06-05T13:36:51-07:00",
       "author": "Per Arne Vollan",
@@ -6004,6 +6878,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 5,
@@ -6018,6 +6898,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "957ddb2b94a123946d5ef1e6420bcbcceca2f53c",
+      "short_hash": "957ddb2b94a1",
       "date": "2024-05-30",
       "timestamp": "2024-05-30T15:53:17-07:00",
       "author": "Ben Nham",
@@ -6066,6 +6947,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 31,
       "lines_deleted": 12,
       "allow_added": 13,
@@ -6080,6 +6967,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2a8d5d0ba6a64bf7e655deb0152cae1e9c3c8c6a",
+      "short_hash": "2a8d5d0ba6a6",
       "date": "2024-05-22",
       "timestamp": "2024-05-22T10:29:07-07:00",
       "author": "Per Arne Vollan",
@@ -6103,6 +6991,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -6117,6 +7007,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7b532a0ce52dd1d8e8169e2440bc27ab874daea1",
+      "short_hash": "7b532a0ce52d",
       "date": "2024-05-21",
       "timestamp": "2024-05-21T21:10:50-07:00",
       "author": "Per Arne Vollan",
@@ -6141,6 +7032,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -6155,6 +7052,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "36888e039c376302a14aac068d42734ea75fdf85",
+      "short_hash": "36888e039c37",
       "date": "2024-05-21",
       "timestamp": "2024-05-21T13:46:30-07:00",
       "author": "Commit Queue",
@@ -6179,6 +7077,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -6193,6 +7097,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "15eafe817db29471f3f4ce2a16181401aed40770",
+      "short_hash": "15eafe817db2",
       "date": "2024-05-21",
       "timestamp": "2024-05-21T12:18:08-07:00",
       "author": "Brent Fulgham",
@@ -6220,6 +7125,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -6234,6 +7143,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "00575a1a4740a524567833f23e451e4a74be366e",
+      "short_hash": "00575a1a4740",
       "date": "2024-05-21",
       "timestamp": "2024-05-21T11:03:49-07:00",
       "author": "Per Arne Vollan",
@@ -6258,6 +7168,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -6272,6 +7188,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1cdc97a2984017032373945a683eeb29f418f004",
+      "short_hash": "1cdc97a29840",
       "date": "2024-05-14",
       "timestamp": "2024-05-14T17:30:21-07:00",
       "author": "Per Arne Vollan",
@@ -6296,6 +7213,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -6310,6 +7233,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "952fe24a4e277f9b4ceeaf69b60937d541c2cfa0",
+      "short_hash": "952fe24a4e27",
       "date": "2024-05-14",
       "timestamp": "2024-05-14T13:46:35-07:00",
       "author": "Ben Nham",
@@ -6335,6 +7259,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -6349,6 +7279,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a4aaefc013b9dd0ae1a3cb62734e5f24ec2a7da1",
+      "short_hash": "a4aaefc013b9",
       "date": "2024-05-09",
       "timestamp": "2024-05-09T13:28:44-07:00",
       "author": "Per Arne Vollan",
@@ -6372,6 +7303,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -6386,6 +7319,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2a0d601bd768e29f46a571c905d7132ae3f2a41e",
+      "short_hash": "2a0d601bd768",
       "date": "2024-05-08",
       "timestamp": "2024-05-08T07:39:45-07:00",
       "author": "Per Arne Vollan",
@@ -6411,6 +7345,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -6425,6 +7365,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0c5c561cbd1e3ed66c4c55f791ac3710ffd7a551",
+      "short_hash": "0c5c561cbd1e",
       "date": "2024-05-02",
       "timestamp": "2024-05-02T07:38:57-07:00",
       "author": "Per Arne Vollan",
@@ -6451,6 +7392,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -6465,6 +7412,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "362c47aa678d4a720ce0a5b0dd9b01b3b86529bb",
+      "short_hash": "362c47aa678d",
       "date": "2024-05-01",
       "timestamp": "2024-05-01T16:38:27-07:00",
       "author": "Per Arne Vollan",
@@ -6488,6 +7436,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -6502,6 +7455,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7a6fd55b43d76cbfeacf8a55c39005c081bd03f2",
+      "short_hash": "7a6fd55b43d7",
       "date": "2024-04-25",
       "timestamp": "2024-04-25T11:18:41-07:00",
       "author": "Keith Miller",
@@ -6528,6 +7482,31 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.h",
+        "Source/JavaScriptCore/runtime/VM.cpp",
+        "Source/JavaScriptCore/runtime/VMEntryScope.cpp",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/tools/JSDollarVM.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/wtf/CryptographicallyRandomNumber.cpp",
+        "Source/WTF/wtf/CryptographicallyRandomNumber.h",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/Threading.cpp",
+        "Source/WTF/wtf/WTFConfig.cpp",
+        "Source/WTF/wtf/WTFConfig.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/GPUProcess/EntryPoint/Cocoa/XPCService/GPUServiceEntryPoint.mm",
+        "Tools/DumpRenderTree/mac/DumpRenderTree.mm",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 23,
       "lines_added": 2,
       "lines_deleted": 19,
       "allow_added": 0,
@@ -6542,6 +7521,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5ca7d6c795619fb7baf3d28ecaffcef5e6b69f69",
+      "short_hash": "5ca7d6c79561",
       "date": "2024-04-23",
       "timestamp": "2024-04-23T17:44:16-07:00",
       "author": "Keith Miller",
@@ -6568,6 +7548,31 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.h",
+        "Source/JavaScriptCore/runtime/VM.cpp",
+        "Source/JavaScriptCore/runtime/VMEntryScope.cpp",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/tools/JSDollarVM.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/wtf/CryptographicallyRandomNumber.cpp",
+        "Source/WTF/wtf/CryptographicallyRandomNumber.h",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/Threading.cpp",
+        "Source/WTF/wtf/WTFConfig.cpp",
+        "Source/WTF/wtf/WTFConfig.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/GPUProcess/EntryPoint/Cocoa/XPCService/GPUServiceEntryPoint.mm",
+        "Tools/DumpRenderTree/mac/DumpRenderTree.mm",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 23,
       "lines_added": 19,
       "lines_deleted": 2,
       "allow_added": 4,
@@ -6582,6 +7587,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6eefd2796ca6a2b650c4d0caed20137bbdb91bbd",
+      "short_hash": "6eefd2796ca6",
       "date": "2024-04-23",
       "timestamp": "2024-04-23T00:42:30-07:00",
       "author": "Ben Nham",
@@ -6605,6 +7611,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/spi/ios/MobileKeyBagSPI.h",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/webpushd/PushService.mm",
+        "WebKitLibraries/SDKs/iphoneos17.0-additions.sdk/System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag.tbd"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -6619,6 +7634,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "568ff7623f7a79a2fefbf96f9c840a3f7ea4e096",
+      "short_hash": "568ff7623f7a",
       "date": "2024-04-19",
       "timestamp": "2024-04-19T14:48:58-07:00",
       "author": "Per Arne Vollan",
@@ -6649,6 +7665,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 14,
       "lines_deleted": 8,
       "allow_added": 3,
@@ -6663,6 +7681,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ba07b609dde3d292264be5576a7daa415475eaf2",
+      "short_hash": "ba07b609dde3",
       "date": "2024-04-17",
       "timestamp": "2024-04-17T20:12:59-07:00",
       "author": "Keith Miller",
@@ -6689,6 +7708,29 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.h",
+        "Source/JavaScriptCore/runtime/VM.cpp",
+        "Source/JavaScriptCore/runtime/VMEntryScope.cpp",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/tools/JSDollarVM.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/Threading.cpp",
+        "Source/WTF/wtf/WTFConfig.cpp",
+        "Source/WTF/wtf/WTFConfig.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/GPUProcess/EntryPoint/Cocoa/XPCService/GPUServiceEntryPoint.mm",
+        "Tools/DumpRenderTree/mac/DumpRenderTree.mm",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 21,
       "lines_added": 2,
       "lines_deleted": 19,
       "allow_added": 0,
@@ -6703,6 +7745,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1c34b5da48ce14f7eb25862ae093a7f2f78d99b6",
+      "short_hash": "1c34b5da48ce",
       "date": "2024-04-11",
       "timestamp": "2024-04-11T10:11:03-07:00",
       "author": "Per Arne Vollan",
@@ -6732,6 +7775,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Sandbox/common.sb",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 15,
       "lines_deleted": 18,
       "allow_added": 3,
@@ -6746,6 +7796,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eb9db9d4c5a2c74ead9656d6abe429b26cecb4f7",
+      "short_hash": "eb9db9d4c5a2",
       "date": "2024-04-08",
       "timestamp": "2024-04-08T12:11:06-07:00",
       "author": "Justin Michaud",
@@ -6772,6 +7823,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.h",
+        "Source/JavaScriptCore/runtime/VM.cpp",
+        "Source/JavaScriptCore/runtime/VMEntryScope.cpp",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/tools/JSDollarVM.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/Threading.cpp",
+        "Source/WTF/wtf/WTFConfig.cpp",
+        "Source/WTF/wtf/WTFConfig.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/GPUProcess/EntryPoint/Cocoa/XPCService/GPUServiceEntryPoint.mm",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 19,
       "lines_deleted": 2,
       "allow_added": 4,
@@ -6788,6 +7861,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b3eceeb22f58375c3ae39ccdc376335e417881fe",
+      "short_hash": "b3eceeb22f58",
       "date": "2024-04-05",
       "timestamp": "2024-04-05T14:55:20-07:00",
       "author": "Keith Miller",
@@ -6814,6 +7888,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.cpp",
+        "Source/JavaScriptCore/runtime/JSCConfig.h",
+        "Source/JavaScriptCore/runtime/VM.cpp",
+        "Source/JavaScriptCore/runtime/VMEntryScope.cpp",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/tools/JSDollarVM.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/Threading.cpp",
+        "Source/WTF/wtf/WTFConfig.cpp",
+        "Source/WTF/wtf/WTFConfig.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/GPUProcess/EntryPoint/Cocoa/XPCService/GPUServiceEntryPoint.mm",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 2,
       "lines_deleted": 19,
       "allow_added": 0,
@@ -6828,6 +7924,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6fca68b815503bfa21b26bd165b7ebbe2203b878",
+      "short_hash": "6fca68b81550",
       "date": "2024-04-05",
       "timestamp": "2024-04-05T13:01:15-07:00",
       "author": "Commit Queue",
@@ -6858,6 +7955,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Sandbox/common.sb",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 18,
       "lines_deleted": 13,
       "allow_added": 4,
@@ -6872,6 +7976,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9167490750e5180cf2ec4b9e1ba82881b6979da4",
+      "short_hash": "9167490750e5",
       "date": "2024-04-05",
       "timestamp": "2024-04-05T09:44:27-07:00",
       "author": "Per Arne Vollan",
@@ -6897,6 +8002,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/cocoa/Entitlements.h",
+        "Source/WTF/wtf/cocoa/Entitlements.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Tools/MobileMiniBrowser/Configurations/MobileMiniBrowser.xcconfig",
+        "Tools/MobileMiniBrowser/MobileMiniBrowser.xcodeproj/project.pbxproj",
+        "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 7,
       "lines_deleted": 5,
       "allow_added": 2,
@@ -6911,6 +8027,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "01a6cf5f9913b9794742ea236abf2c4369a6d794",
+      "short_hash": "01a6cf5f9913",
       "date": "2024-04-04",
       "timestamp": "2024-04-04T14:32:42-07:00",
       "author": "Per Arne Vollan",
@@ -6941,6 +8058,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Sandbox/common.sb",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 13,
       "lines_deleted": 18,
       "allow_added": 4,
@@ -6955,6 +8079,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c13924352606e452a28e14bfeda40f51c63d1da7",
+      "short_hash": "c13924352606",
       "date": "2024-03-30",
       "timestamp": "2024-03-30T18:13:45-07:00",
       "author": "Per Arne Vollan",
@@ -6978,6 +8103,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.cpp"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 2,
@@ -6992,6 +8123,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "feb8e650fa1b21f2ca158b7fa058e65520537508",
+      "short_hash": "feb8e650fa1b",
       "date": "2024-03-27",
       "timestamp": "2024-03-27T14:54:03-07:00",
       "author": "Per Arne Vollan",
@@ -7016,6 +8148,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -7030,6 +8164,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5ff65f34a9274b7535a0bcc521bc550c271c34f1",
+      "short_hash": "5ff65f34a927",
       "date": "2024-03-27",
       "timestamp": "2024-03-27T11:38:42-07:00",
       "author": "Per Arne Vollan",
@@ -7051,6 +8186,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -7065,6 +8202,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d03ff2b610bca99b7a8160d654e35297218ff64a",
+      "short_hash": "d03ff2b610bc",
       "date": "2024-03-26",
       "timestamp": "2024-03-26T00:18:23-07:00",
       "author": "Sihui Liu",
@@ -7086,6 +8224,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -7100,6 +8240,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8998f07ee8d646398d95f3193b0d46aca3e86ec9",
+      "short_hash": "8998f07ee8d6",
       "date": "2024-03-25",
       "timestamp": "2024-03-25T14:24:38-07:00",
       "author": "Sihui Liu",
@@ -7121,6 +8262,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -7135,6 +8278,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "66f743ca6ca6bdbf5241994991b09c8aba0c1c06",
+      "short_hash": "66f743ca6ca6",
       "date": "2024-03-22",
       "timestamp": "2024-03-22T16:49:19-07:00",
       "author": "Keith Miller",
@@ -7162,6 +8306,26 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/MachineContext.h",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformJSCOnly.cmake",
+        "Source/WTF/wtf/PlatformMac.cmake",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/PlatformRegisters.h",
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 18,
       "lines_added": 23,
       "lines_deleted": 4,
       "allow_added": 6,
@@ -7176,6 +8340,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "011d1756442496ee2611940a14667883d93dd9db",
+      "short_hash": "011d17564424",
       "date": "2024-03-21",
       "timestamp": "2024-03-21T08:59:16-07:00",
       "author": "Per Arne Vollan",
@@ -7212,6 +8377,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/common.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 4,
       "lines_added": 36,
       "lines_deleted": 110,
       "allow_added": 0,
@@ -7226,6 +8393,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6c9fb3193d9dbf320747d07b485d275b4adf8f2d",
+      "short_hash": "6c9fb3193d9d",
       "date": "2024-03-18",
       "timestamp": "2024-03-18T14:55:39-07:00",
       "author": "Commit Queue",
@@ -7251,6 +8419,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/MachineContext.h",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformJSCOnly.cmake",
+        "Source/WTF/wtf/PlatformMac.cmake",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/PlatformRegisters.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 4,
       "lines_deleted": 19,
       "allow_added": 0,
@@ -7266,6 +8453,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9bdabedf3aab2b9b2b562d6f1978aacec147f747",
+      "short_hash": "9bdabedf3aab",
       "date": "2024-03-15",
       "timestamp": "2024-03-15T14:07:43-07:00",
       "author": "Brandon Kayes",
@@ -7291,6 +8479,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/MachineContext.h",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformJSCOnly.cmake",
+        "Source/WTF/wtf/PlatformMac.cmake",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/PlatformRegisters.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 19,
       "lines_deleted": 4,
       "allow_added": 5,
@@ -7305,6 +8512,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9854e2932ee221bed4a8260dbc9ec7b0d87189ed",
+      "short_hash": "9854e2932ee2",
       "date": "2024-03-14",
       "timestamp": "2024-03-14T10:22:08-07:00",
       "author": "Commit Queue",
@@ -7330,6 +8538,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/MachineContext.h",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformJSCOnly.cmake",
+        "Source/WTF/wtf/PlatformMac.cmake",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/PlatformRegisters.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 1,
       "lines_deleted": 10,
       "allow_added": 0,
@@ -7344,6 +8571,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "079bd31e378144ae39bc940d07cfb8da5814f527",
+      "short_hash": "079bd31e3781",
       "date": "2024-03-14",
       "timestamp": "2024-03-14T06:39:17-07:00",
       "author": "Brandon Kayes",
@@ -7369,6 +8597,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/jsc.cpp",
+        "Source/JavaScriptCore/runtime/InitializeThreading.cpp",
+        "Source/JavaScriptCore/runtime/MachineContext.h",
+        "Source/JavaScriptCore/runtime/VMTraps.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.cpp",
+        "Source/JavaScriptCore/wasm/WasmFaultSignalHandler.h",
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformJSCOnly.cmake",
+        "Source/WTF/wtf/PlatformMac.cmake",
+        "Source/WTF/wtf/PlatformRegisters.cpp",
+        "Source/WTF/wtf/PlatformRegisters.h",
+        "Source/WTF/wtf/threads/Signals.cpp",
+        "Source/WTF/wtf/threads/Signals.h",
+        "Source/WTF/wtf/win/SignalsWin.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WTF/Signals.cpp"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 10,
       "lines_deleted": 1,
       "allow_added": 4,
@@ -7383,6 +8630,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1ca2cd7cc3255c93766ce7bb031fb865430d0f48",
+      "short_hash": "1ca2cd7cc325",
       "date": "2024-03-06",
       "timestamp": "2024-03-06T16:40:09-08:00",
       "author": "Sihui Liu",
@@ -7409,6 +8657,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -7423,6 +8675,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8a4b871eeecd5ca8e2001f76f417c739209a8c4f",
+      "short_hash": "8a4b871eeecd",
       "date": "2024-03-05",
       "timestamp": "2024-03-05T20:35:35-08:00",
       "author": "Eddy Wong",
@@ -7460,6 +8713,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/ModelProcess/cocoa/ModelProcessModelPlayerProxy.h",
+        "Source/WebKit/ModelProcess/cocoa/ModelProcessModelPlayerProxy.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 22,
       "lines_deleted": 0,
       "allow_added": 15,
@@ -7474,6 +8733,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6d656fea34525be70ea1ec7b3d45e23067021957",
+      "short_hash": "6d656fea3452",
       "date": "2024-03-04",
       "timestamp": "2024-03-04T21:55:33-08:00",
       "author": "Per Arne Vollan",
@@ -7499,6 +8759,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -7513,6 +8775,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "82ec503cf1f024b0296579d5869881b9c26a804a",
+      "short_hash": "82ec503cf1f0",
       "date": "2024-02-29",
       "timestamp": "2024-02-29T14:48:03-08:00",
       "author": "Per Arne Vollan",
@@ -7538,6 +8801,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -7552,6 +8817,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "11061972c7486a8ddd132affabbc3396aa2ca961",
+      "short_hash": "11061972c748",
       "date": "2024-02-28",
       "timestamp": "2024-02-28T09:35:09-08:00",
       "author": "Eddy Wong",
@@ -7577,6 +8843,44 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/Modules/model-element/HTMLModelElement.cpp",
+        "Source/WebCore/Modules/model-element/HTMLModelElement.h",
+        "Source/WebCore/Modules/model-element/ModelPlayer.h",
+        "Source/WebCore/Modules/model-element/ModelPlayerClient.h",
+        "Source/WebCore/Modules/model-element/dummy/DummyModelPlayer.cpp",
+        "Source/WebCore/Modules/model-element/dummy/DummyModelPlayer.h",
+        "Source/WebCore/Modules/model-element/scenekit/SceneKitModelPlayer.h",
+        "Source/WebCore/Modules/model-element/scenekit/SceneKitModelPlayer.mm",
+        "Source/WebCore/platform/graphics/GraphicsLayer.h",
+        "Source/WebCore/platform/graphics/ca/GraphicsLayerCA.cpp",
+        "Source/WebCore/platform/graphics/ca/GraphicsLayerCA.h",
+        "Source/WebCore/rendering/RenderLayerBacking.cpp",
+        "Source/WebKit/CMakeLists.txt",
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/ModelProcess/ModelProcessModelPlayerManagerProxy.cpp",
+        "Source/WebKit/ModelProcess/cocoa/ModelProcessModelPlayerProxy.h",
+        "Source/WebKit/ModelProcess/cocoa/ModelProcessModelPlayerProxy.messages.in",
+        "Source/WebKit/ModelProcess/cocoa/ModelProcessModelPlayerProxy.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Sources.txt",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/Model/ARKitInlinePreviewModelPlayer.h",
+        "Source/WebKit/WebProcess/Model/ARKitInlinePreviewModelPlayer.mm",
+        "Source/WebKit/WebProcess/Model/ModelProcessModelPlayer.cpp",
+        "Source/WebKit/WebProcess/Model/ModelProcessModelPlayer.h",
+        "Source/WebKit/WebProcess/Model/ModelProcessModelPlayer.messages.in",
+        "Source/WebKit/WebProcess/Model/ModelProcessModelPlayerManager.cpp",
+        "Source/WebKit/WebProcess/WebPage/RemoteLayerTree/GraphicsLayerCARemote.h",
+        "Source/WebKit/WebProcess/WebPage/RemoteLayerTree/GraphicsLayerCARemote.mm",
+        "Source/WebKit/WebProcess/WebPage/RemoteLayerTree/PlatformCALayerRemote.h",
+        "Source/WebKit/WebProcess/WebPage/RemoteLayerTree/PlatformCALayerRemote.mm",
+        "Source/WebKit/WebProcess/WebPage/RemoteLayerTree/PlatformCALayerRemoteCustom.h",
+        "Source/WebKit/WebProcess/WebPage/RemoteLayerTree/PlatformCALayerRemoteCustom.mm"
+      ],
+      "total_commit_files_count": 36,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -7591,6 +8895,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1f0b1256ce864aee7b8d7142c8177f1671c8c83f",
+      "short_hash": "1f0b1256ce86",
       "date": "2024-02-26",
       "timestamp": "2024-02-26T13:08:01-08:00",
       "author": "Per Arne Vollan",
@@ -7634,6 +8939,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 29,
       "lines_deleted": 0,
       "allow_added": 27,
@@ -7648,6 +8962,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f69700615f80a2004045273778ac68f58f4a717a",
+      "short_hash": "f69700615f80",
       "date": "2024-02-26",
       "timestamp": "2024-02-26T10:37:30-08:00",
       "author": "Brent Fulgham",
@@ -7669,6 +8984,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -7683,6 +9002,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4abab8a63ae6ed247f3c65f75a88ac47528a9ce7",
+      "short_hash": "4abab8a63ae6",
       "date": "2024-02-20",
       "timestamp": "2024-02-20T10:40:21-08:00",
       "author": "Andy Estes",
@@ -7709,6 +9029,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WTF/wtf/PlatformEnable.h",
+        "Source/WebKit/Platform/ios/PlaybackSessionInterfaceLMK.mm",
+        "Source/WebKit/Platform/ios/VideoPresentationInterfaceLMK.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebKitSwift/LinearMediaKit/WKSLinearMediaPlayer.h",
+        "Source/WebKit/WebKitSwift/LinearMediaKit/WKSLinearMediaTypes.h"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -7723,6 +9053,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a6459b0e0e04a0965f572be159915930a2abe7fa",
+      "short_hash": "a6459b0e0e04",
       "date": "2024-02-17",
       "timestamp": "2024-02-17T21:31:42-08:00",
       "author": "Per Arne Vollan",
@@ -7748,6 +9079,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -7762,6 +9095,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "16db5d84a8b68fa9bd90a8c89c22e39a424cd882",
+      "short_hash": "16db5d84a8b6",
       "date": "2024-02-17",
       "timestamp": "2024-02-17T12:49:49-08:00",
       "author": "Per Arne Vollan",
@@ -7787,6 +9121,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/spi/cocoa/NotifySPI.h",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/Cocoa/AuxiliaryProcessCocoa.mm",
+        "Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 9,
       "lines_deleted": 7,
       "allow_added": 1,
@@ -7801,6 +9144,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0f7a4c9df827d1b1d91d73d2b9908ed75390f59d",
+      "short_hash": "0f7a4c9df827",
       "date": "2024-02-17",
       "timestamp": "2024-02-17T12:45:50-08:00",
       "author": "Per Arne Vollan",
@@ -7826,6 +9170,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.cpp"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 12,
       "lines_deleted": 1,
       "allow_added": 6,
@@ -7840,6 +9190,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4c41ca668ae286837aa75be14f091232419d9858",
+      "short_hash": "4c41ca668ae2",
       "date": "2024-02-16",
       "timestamp": "2024-02-16T21:52:40-08:00",
       "author": "Andy Estes",
@@ -7865,6 +9216,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/cocoa/MediaToolboxSoftLink.cpp",
+        "Source/WebCore/PAL/pal/cocoa/MediaToolboxSoftLink.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/MediaToolboxSPI.h",
+        "Source/WebCore/platform/graphics/avfoundation/objc/MediaPlayerPrivateAVFoundationObjC.h",
+        "Source/WebCore/platform/graphics/avfoundation/objc/MediaPlayerPrivateAVFoundationObjC.mm",
+        "Source/WebKit/Platform/ios/PlaybackSessionInterfaceLMK.mm",
+        "Source/WebKit/Platform/ios/VideoPresentationInterfaceLMK.mm",
+        "Source/WebKit/WebKitSwift/LinearMediaKit/LinearMediaPlayer.swift"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -7879,6 +9241,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4361f06c43a3de574be79e14f2738867bf15988d",
+      "short_hash": "4361f06c43a3",
       "date": "2024-02-16",
       "timestamp": "2024-02-16T15:42:56-08:00",
       "author": "Per Arne Vollan",
@@ -7902,6 +9265,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -7916,6 +9283,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1bb8edba4e0599756154508f5f43e863e77be692",
+      "short_hash": "1bb8edba4e05",
       "date": "2024-02-13",
       "timestamp": "2024-02-13T10:03:41-08:00",
       "author": "Per Arne Vollan",
@@ -7939,6 +9307,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -7953,6 +9328,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "73946828b41b9d2d1cb13e062ed95c4ba85affa6",
+      "short_hash": "73946828b41b",
       "date": "2024-02-09",
       "timestamp": "2024-02-09T19:57:22-08:00",
       "author": "Eddy Wong",
@@ -7976,6 +9352,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Model.sb.in"
       ],
+      "code_files": [
+        ".gitignore",
+        "Source/WebKit/Configurations/ModelService.xcconfig",
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources-output.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/ModelProcess/EntryPoint/Cocoa/XPCService/ModelService/Info-embedded.plist",
+        "Source/WebKit/Scripts/compile-sandbox.sh",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/RemoteLayerTree/ios/RemoteLayerTreeHostIOS.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/Model/ModelProcessModelPlayer.mm"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 24,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -7990,6 +9380,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5c63203091ea414579044a1db90290114de95815",
+      "short_hash": "5c63203091ea",
       "date": "2024-02-01",
       "timestamp": "2024-02-01T16:08:47-08:00",
       "author": "Per Arne Vollan",
@@ -8011,6 +9402,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -8025,6 +9418,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6f399c42909b07a4da0c6c0d6baab1b578dd610e",
+      "short_hash": "6f399c42909b",
       "date": "2024-01-28",
       "timestamp": "2024-01-28T22:45:28-08:00",
       "author": "Youenn Fablet",
@@ -8048,6 +9442,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "LayoutTests/TestExpectations",
+        "LayoutTests/fast/dom/dom-window-property-gc-after-frame-detach-expected.txt",
+        "LayoutTests/fast/dom/dom-window-property-gc-after-frame-detach.html",
+        "LayoutTests/fast/dom/event-handler-attributes.html",
+        "LayoutTests/fast/events/destroyed-atomic-string.html",
+        "LayoutTests/fast/events/dispatchEvent-crash-expected.txt",
+        "LayoutTests/fast/events/dispatchEvent-crash.html",
+        "LayoutTests/fast/loader/window-properties-restored-from-page-cache-expected.txt",
+        "LayoutTests/fast/loader/window-properties-restored-from-page-cache.html",
+        "LayoutTests/http/tests/appcache/404-manifest-expected.txt",
+        "LayoutTests/http/tests/appcache/404-manifest.html",
+        "LayoutTests/http/tests/appcache/404-resource-expected.txt",
+        "LayoutTests/http/tests/appcache/404-resource-with-slow-main-resource-expected.txt",
+        "LayoutTests/http/tests/appcache/404-resource-with-slow-main-resource.py",
+        "LayoutTests/http/tests/appcache/404-resource.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-manifest-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-manifest-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-resource-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-resource-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-manifest-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-manifest-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-resource-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-resource-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onprogress-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onprogress.html",
+        "LayoutTests/http/tests/appcache/access-via-redirect-expected.txt",
+        "LayoutTests/http/tests/appcache/access-via-redirect.py",
+        "LayoutTests/http/tests/appcache/appcache-cookies-expected.txt",
+        "LayoutTests/http/tests/appcache/appcache-cookies.html",
+        "LayoutTests/http/tests/appcache/auth-expected.txt",
+        "LayoutTests/http/tests/appcache/auth.html",
+        "LayoutTests/http/tests/appcache/crash-when-navigating-away-then-back-expected.txt",
+        "LayoutTests/http/tests/appcache/crash-when-navigating-away-then-back.html",
+        "LayoutTests/http/tests/appcache/credential-url-expected.txt",
+        "LayoutTests/http/tests/appcache/credential-url.html",
+        "LayoutTests/http/tests/appcache/cyrillic-uri-expected.txt"
+      ],
+      "total_commit_files_count": 394,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -8062,6 +9499,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7236a11d8499f25785a9a3297461a37eac7da023",
+      "short_hash": "7236a11d8499",
       "date": "2024-01-25",
       "timestamp": "2024-01-25T08:18:48-08:00",
       "author": "Per Arne Vollan",
@@ -8089,6 +9527,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 2,
       "allow_added": 4,
@@ -8103,6 +9543,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "748db086de1ee02706a0c322a4856830baa19b8f",
+      "short_hash": "748db086de1e",
       "date": "2024-01-25",
       "timestamp": "2024-01-25T06:48:36-08:00",
       "author": "Per Arne Vollan",
@@ -8131,6 +9572,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 15,
       "allow_added": 0,
@@ -8145,6 +9588,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "89314de81d9bcf4a5011c3304179351e6c637ccd",
+      "short_hash": "89314de81d9b",
       "date": "2024-01-25",
       "timestamp": "2024-01-25T01:25:49-08:00",
       "author": "Matthew Finkel",
@@ -8168,6 +9612,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -8183,6 +9629,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "67a191ac740b0193fdbba0a43941e6c6bf12454f",
+      "short_hash": "67a191ac740b",
       "date": "2024-01-24",
       "timestamp": "2024-01-24T22:18:26-08:00",
       "author": "Brent Fulgham",
@@ -8206,6 +9653,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -8220,6 +9669,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b5ca19520145efbb2a9ee1c51aa4a0676e390957",
+      "short_hash": "b5ca19520145",
       "date": "2024-01-23",
       "timestamp": "2024-01-23T16:46:18-08:00",
       "author": "Commit Queue",
@@ -8243,6 +9693,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -8257,6 +9709,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cbce58b2e8147a1038aec6c742cbd9bd5676049d",
+      "short_hash": "cbce58b2e814",
       "date": "2024-01-23",
       "timestamp": "2024-01-23T13:01:00-08:00",
       "author": "Per Arne Vollan",
@@ -8280,6 +9733,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -8294,6 +9749,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "79b1fe2bd420eb59d18a36a48d800f267e51c9a5",
+      "short_hash": "79b1fe2bd420",
       "date": "2024-01-22",
       "timestamp": "2024-01-22T08:48:32-08:00",
       "author": "Ben Schwartz",
@@ -8317,6 +9773,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "LayoutTests/TestExpectations",
+        "LayoutTests/fast/dom/dom-window-property-gc-after-frame-detach-expected.txt",
+        "LayoutTests/fast/dom/dom-window-property-gc-after-frame-detach.html",
+        "LayoutTests/fast/dom/event-handler-attributes.html",
+        "LayoutTests/fast/events/destroyed-atomic-string.html",
+        "LayoutTests/fast/events/dispatchEvent-crash-expected.txt",
+        "LayoutTests/fast/events/dispatchEvent-crash.html",
+        "LayoutTests/fast/loader/window-properties-restored-from-page-cache-expected.txt",
+        "LayoutTests/fast/loader/window-properties-restored-from-page-cache.html",
+        "LayoutTests/http/tests/appcache/404-manifest-expected.txt",
+        "LayoutTests/http/tests/appcache/404-manifest.html",
+        "LayoutTests/http/tests/appcache/404-resource-expected.txt",
+        "LayoutTests/http/tests/appcache/404-resource-with-slow-main-resource-expected.txt",
+        "LayoutTests/http/tests/appcache/404-resource-with-slow-main-resource.py",
+        "LayoutTests/http/tests/appcache/404-resource.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-manifest-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-manifest-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-resource-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-resource-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-manifest-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-manifest-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-resource-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-resource-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onprogress-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onprogress.html",
+        "LayoutTests/http/tests/appcache/access-via-redirect-expected.txt",
+        "LayoutTests/http/tests/appcache/access-via-redirect.py",
+        "LayoutTests/http/tests/appcache/appcache-cookies-expected.txt",
+        "LayoutTests/http/tests/appcache/appcache-cookies.html",
+        "LayoutTests/http/tests/appcache/auth-expected.txt",
+        "LayoutTests/http/tests/appcache/auth.html",
+        "LayoutTests/http/tests/appcache/crash-when-navigating-away-then-back-expected.txt",
+        "LayoutTests/http/tests/appcache/crash-when-navigating-away-then-back.html",
+        "LayoutTests/http/tests/appcache/credential-url-expected.txt",
+        "LayoutTests/http/tests/appcache/credential-url.html",
+        "LayoutTests/http/tests/appcache/cyrillic-uri-expected.txt"
+      ],
+      "total_commit_files_count": 394,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -8331,6 +9830,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f2ffb0129de49a3c02f2b513bba61c889394fbab",
+      "short_hash": "f2ffb0129de4",
       "date": "2024-01-22",
       "timestamp": "2024-01-22T06:20:30-08:00",
       "author": "Youenn Fablet",
@@ -8354,6 +9854,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "LayoutTests/TestExpectations",
+        "LayoutTests/fast/dom/dom-window-property-gc-after-frame-detach-expected.txt",
+        "LayoutTests/fast/dom/dom-window-property-gc-after-frame-detach.html",
+        "LayoutTests/fast/dom/event-handler-attributes.html",
+        "LayoutTests/fast/events/destroyed-atomic-string.html",
+        "LayoutTests/fast/events/dispatchEvent-crash-expected.txt",
+        "LayoutTests/fast/events/dispatchEvent-crash.html",
+        "LayoutTests/fast/loader/window-properties-restored-from-page-cache-expected.txt",
+        "LayoutTests/fast/loader/window-properties-restored-from-page-cache.html",
+        "LayoutTests/http/tests/appcache/404-manifest-expected.txt",
+        "LayoutTests/http/tests/appcache/404-manifest.html",
+        "LayoutTests/http/tests/appcache/404-resource-expected.txt",
+        "LayoutTests/http/tests/appcache/404-resource-with-slow-main-resource-expected.txt",
+        "LayoutTests/http/tests/appcache/404-resource-with-slow-main-resource.py",
+        "LayoutTests/http/tests/appcache/404-resource.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-manifest-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-manifest-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-resource-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking-resource-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onchecking.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-manifest-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-manifest-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-resource-404-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading-resource-404.html",
+        "LayoutTests/http/tests/appcache/abort-cache-ondownloading.html",
+        "LayoutTests/http/tests/appcache/abort-cache-onprogress-expected.txt",
+        "LayoutTests/http/tests/appcache/abort-cache-onprogress.html",
+        "LayoutTests/http/tests/appcache/access-via-redirect-expected.txt",
+        "LayoutTests/http/tests/appcache/access-via-redirect.py",
+        "LayoutTests/http/tests/appcache/appcache-cookies-expected.txt",
+        "LayoutTests/http/tests/appcache/appcache-cookies.html",
+        "LayoutTests/http/tests/appcache/auth-expected.txt",
+        "LayoutTests/http/tests/appcache/auth.html",
+        "LayoutTests/http/tests/appcache/crash-when-navigating-away-then-back-expected.txt",
+        "LayoutTests/http/tests/appcache/crash-when-navigating-away-then-back.html",
+        "LayoutTests/http/tests/appcache/credential-url-expected.txt",
+        "LayoutTests/http/tests/appcache/credential-url.html",
+        "LayoutTests/http/tests/appcache/cyrillic-uri-expected.txt"
+      ],
+      "total_commit_files_count": 394,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -8368,6 +9911,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "55aa2421aaaa4a74b998374efe060b7b24de8375",
+      "short_hash": "55aa2421aaaa",
       "date": "2024-01-09",
       "timestamp": "2024-01-09T12:54:44-08:00",
       "author": "Brent Fulgham",
@@ -8393,6 +9937,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -8407,6 +9953,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c9647ae53c5d528fc86cb2a37905683ccb7b0422",
+      "short_hash": "c9647ae53c5d",
       "date": "2023-11-28",
       "timestamp": "2023-11-28T15:07:01-08:00",
       "author": "Brent Fulgham",
@@ -8428,6 +9975,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -8442,6 +9993,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "000a32dcf7453aca0a30ab8047ca659b39743aa0",
+      "short_hash": "000a32dcf745",
       "date": "2023-11-27",
       "timestamp": "2023-11-27T09:31:09-08:00",
       "author": "Per Arne Vollan",
@@ -8465,6 +10017,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -8479,6 +10033,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1f694659d812e607393b546c4f2edea1c54dc490",
+      "short_hash": "1f694659d812",
       "date": "2023-11-20",
       "timestamp": "2023-11-20T11:19:54-08:00",
       "author": "Per Arne Vollan",
@@ -8504,6 +10059,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -8518,6 +10080,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b6b9d3224778d3b05f1419e995070d8afad45d9b",
+      "short_hash": "b6b9d3224778",
       "date": "2023-11-20",
       "timestamp": "2023-11-20T08:40:06-08:00",
       "author": "Commit Queue",
@@ -8543,6 +10106,18 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -8557,6 +10132,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "28a5e6a0092f62c0fd51c34a28a552bf0dea5dbd",
+      "short_hash": "28a5e6a0092f",
       "date": "2023-11-17",
       "timestamp": "2023-11-17T10:30:48-08:00",
       "author": "Per Arne Vollan",
@@ -8582,6 +10158,18 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -8596,6 +10184,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "939c6ac729658a9668db57a46038bf7c9a3269d2",
+      "short_hash": "939c6ac72965",
       "date": "2023-11-14",
       "timestamp": "2023-11-14T15:06:58-08:00",
       "author": "Per Arne Vollan",
@@ -8619,6 +10208,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -8633,6 +10224,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5ea2b907ea9c6f3a58e25f8448265e9c47fffeea",
+      "short_hash": "5ea2b907ea9c",
       "date": "2023-11-13",
       "timestamp": "2023-11-13T14:21:33-08:00",
       "author": "Commit Queue",
@@ -8663,6 +10255,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 16,
       "lines_deleted": 16,
       "allow_added": 3,
@@ -8677,6 +10271,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b627d2e0516ab8e62054fbdb5087f579841fe90b",
+      "short_hash": "b627d2e0516a",
       "date": "2023-11-13",
       "timestamp": "2023-11-13T12:23:12-08:00",
       "author": "Brent Fulgham",
@@ -8707,6 +10302,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 14,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -8721,6 +10322,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "771a8c694575b98ac0dd699b5acbefec0c09cd11",
+      "short_hash": "771a8c694575",
       "date": "2023-11-13",
       "timestamp": "2023-11-13T12:21:40-08:00",
       "author": "Commit Queue",
@@ -8751,6 +10353,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 16,
       "lines_deleted": 16,
       "allow_added": 2,
@@ -8765,6 +10369,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eb8c417ba72934b54fef1e04365d142c790f8a2e",
+      "short_hash": "eb8c417ba729",
       "date": "2023-11-13",
       "timestamp": "2023-11-13T07:24:29-08:00",
       "author": "Per Arne Vollan",
@@ -8795,6 +10400,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 16,
       "lines_deleted": 16,
       "allow_added": 3,
@@ -8809,6 +10416,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5f0070517012bf121ac9be34cc46004c51b75d1e",
+      "short_hash": "5f0070517012",
       "date": "2023-11-06",
       "timestamp": "2023-11-06T16:47:17-08:00",
       "author": "Per Arne Vollan",
@@ -8832,6 +10440,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Shared/Sandbox/iOS/common.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -8846,6 +10456,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c84d6bc150f33fdc9f44f6e53a680dd408e712e1",
+      "short_hash": "c84d6bc150f3",
       "date": "2023-11-06",
       "timestamp": "2023-11-06T14:24:59-08:00",
       "author": "Per Arne Vollan",
@@ -8871,6 +10482,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 11,
       "lines_deleted": 3,
       "allow_added": 4,
@@ -8885,6 +10498,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ed5ad7e9d0c690ccbbb049c934291669fdf9a38c",
+      "short_hash": "ed5ad7e9d0c6",
       "date": "2023-10-19",
       "timestamp": "2023-10-19T17:47:37-07:00",
       "author": "Sihui Liu",
@@ -8910,6 +10524,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -8924,6 +10540,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b4cd98a51d798eb31a9b02dd2bb83aaed206ce0b",
+      "short_hash": "b4cd98a51d79",
       "date": "2023-10-18",
       "timestamp": "2023-10-18T12:15:29-07:00",
       "author": "Per Arne Vollan",
@@ -8947,6 +10564,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -8961,6 +10580,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e22f37251fa61a237f0f6233c9e08924fc9075e0",
+      "short_hash": "e22f37251fa6",
       "date": "2023-10-17",
       "timestamp": "2023-10-17T14:23:04-07:00",
       "author": "Per Arne Vollan",
@@ -8984,6 +10604,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -8998,6 +10620,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fc59e6e527ce4ac3460c40c0bc32bfba0f24e3eb",
+      "short_hash": "fc59e6e527ce",
       "date": "2023-10-13",
       "timestamp": "2023-10-13T10:27:42-07:00",
       "author": "Chris Fleizach",
@@ -9021,6 +10644,42 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/accessibility/AXObjectCache.h",
+        "Source/WebCore/accessibility/ios/AXObjectCacheIOS.mm",
+        "Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.h",
+        "Source/WebCore/accessibility/ios/WebAccessibilityObjectWrapperIOS.mm",
+        "Source/WebCore/loader/EmptyClients.h",
+        "Source/WebCore/page/Chrome.cpp",
+        "Source/WebCore/page/Chrome.h",
+        "Source/WebCore/page/ChromeClient.h",
+        "Source/WebCore/platform/HostWindow.h",
+        "Source/WebKit/Platform/IPC/Connection.cpp",
+        "Source/WebKit/Platform/IPC/Connection.h",
+        "Source/WebKit/Platform/IPC/cocoa/ConnectionCocoa.mm",
+        "Source/WebKit/Platform/IPC/unix/ConnectionUnix.cpp",
+        "Source/WebKit/Platform/IPC/win/ConnectionWin.cpp",
+        "Source/WebKit/Platform/cocoa/CocoaImage.mm",
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/PageClient.h",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/WebPageProxy.messages.in",
+        "Source/WebKit/UIProcess/ios/PageClientImplIOS.h",
+        "Source/WebKit/UIProcess/ios/PageClientImplIOS.mm",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebChromeClient.cpp",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebChromeClient.h",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebChromeClientCocoa.mm",
+        "Source/WebKit/WebProcess/WebCoreSupport/ios/WebChromeClientIOS.mm",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKitLegacy/ios/WebCoreSupport/WebChromeClientIOS.h"
+      ],
+      "total_commit_files_count": 34,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -9035,6 +10694,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9982d3f14c3ba947bb164633635e40b15bdb72fc",
+      "short_hash": "9982d3f14c3b",
       "date": "2023-10-12",
       "timestamp": "2023-10-12T20:36:51-07:00",
       "author": "Per Arne Vollan",
@@ -9056,6 +10716,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Platform/ExtraPrivateSymbolsForTAPI.h",
+        "Source/WebKit/Platform/spi/Cocoa/ExtensionKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/ExtensionEventHandler.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/ExtensionEventHandler.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9070,6 +10752,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "44000a3a3aaf0de7b6a741dc1545e3a44d67410c",
+      "short_hash": "44000a3a3aaf",
       "date": "2023-10-11",
       "timestamp": "2023-10-11T14:19:54-07:00",
       "author": "Per Arne Vollan",
@@ -9093,6 +10776,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Sandbox/common.sb",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 9,
       "lines_deleted": 9,
       "allow_added": 8,
@@ -9107,6 +10797,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d301c09f0878d98c017d62f8589178461a529b7f",
+      "short_hash": "d301c09f0878",
       "date": "2023-10-10",
       "timestamp": "2023-10-10T09:31:08-07:00",
       "author": "Commit Queue",
@@ -9128,6 +10819,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Platform/spi/Cocoa/ExtensionKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9143,6 +10853,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5bc3fe12b810940791724a22c4332bf1fc58bad8",
+      "short_hash": "5bc3fe12b810",
       "date": "2023-10-08",
       "timestamp": "2023-10-08T17:04:19-07:00",
       "author": "Per Arne Vollan",
@@ -9164,6 +10875,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Platform/spi/Cocoa/ExtensionKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9178,6 +10908,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4fd4a7584cbc6d516413d790e314b142121a65f0",
+      "short_hash": "4fd4a7584cbc",
       "date": "2023-10-07",
       "timestamp": "2023-10-07T11:51:22-07:00",
       "author": "Alexey Proskuryakov",
@@ -9199,6 +10930,22 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 14,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9213,6 +10960,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "698b77b55d9bc0ab42b6f6163de772de2512793f",
+      "short_hash": "698b77b55d9b",
       "date": "2023-10-06",
       "timestamp": "2023-10-06T13:17:36-07:00",
       "author": "Per Arne Vollan",
@@ -9234,6 +10982,22 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 14,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9248,6 +11012,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "31afc7601a71310b03c95e628520587b4006cd26",
+      "short_hash": "31afc7601a71",
       "date": "2023-10-06",
       "timestamp": "2023-10-06T10:01:20-07:00",
       "author": "Commit Queue",
@@ -9269,6 +11034,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Platform/spi/Cocoa/ExtensionKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9283,6 +11067,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9590b618193248a44916c41e66a6668cc070e20d",
+      "short_hash": "9590b6181932",
       "date": "2023-10-06",
       "timestamp": "2023-10-06T07:56:29-07:00",
       "author": "Per Arne Vollan",
@@ -9304,6 +11089,25 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseExtension.xcconfig",
+        "Source/WebKit/Platform/spi/Cocoa/ExtensionKitSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.h",
+        "Source/WebKit/Shared/API/Cocoa/WKMain.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtension.entitlements",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.h",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/AuxiliaryProcessExtensionBridge.mm",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.swift",
+        "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.swift",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 17,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -9318,6 +11122,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3bf860bb447c6724570b7f86702b3bad1b5a49f3",
+      "short_hash": "3bf860bb447c",
       "date": "2023-09-29",
       "timestamp": "2023-09-29T15:44:30-07:00",
       "author": "Brent Fulgham",
@@ -9344,6 +11149,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -9358,6 +11167,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ac5c0d67aaf4040d236090f77d11a04bcdff7865",
+      "short_hash": "ac5c0d67aaf4",
       "date": "2023-09-28",
       "timestamp": "2023-09-28T07:54:39-07:00",
       "author": "Per Arne Vollan",
@@ -9382,6 +11192,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/SpeechRecognitionRemoteRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/UIProcess/SpeechRecognitionRemoteRealtimeMediaSourceManager.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.messages.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -9396,6 +11216,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c0dd318f8ee37e5f2c58b40c57a58508c1615f10",
+      "short_hash": "c0dd318f8ee3",
       "date": "2023-09-25",
       "timestamp": "2023-09-25T09:57:58-07:00",
       "author": "Per Arne Vollan",
@@ -9417,6 +11238,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 3,
       "allow_added": 2,
@@ -9431,6 +11254,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d1bbbb8f08252022bb4710482f8c6917c1a60dcf",
+      "short_hash": "d1bbbb8f0825",
       "date": "2023-09-25",
       "timestamp": "2023-09-25T09:24:40-07:00",
       "author": "Per Arne Vollan",
@@ -9458,6 +11282,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 3,
       "allow_added": 4,
@@ -9472,6 +11298,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ba06d5cacb0822a873fdd9298b3fa2e91faf659c",
+      "short_hash": "ba06d5cacb08",
       "date": "2023-09-22",
       "timestamp": "2023-09-22T16:58:32-07:00",
       "author": "Per Arne Vollan",
@@ -9498,6 +11325,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -9512,6 +11341,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fd754ccd63610779ff1a2700274ccf5bb0fcba36",
+      "short_hash": "fd754ccd6361",
       "date": "2023-09-21",
       "timestamp": "2023-09-21T07:57:27-07:00",
       "author": "Per Arne Vollan",
@@ -9537,6 +11367,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 3,
       "allow_added": 2,
@@ -9550,6 +11384,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "de04e0b8deec364c6162d4781f30d658d30b39d2",
+      "short_hash": "de04e0b8deec",
       "date": "2023-09-14",
       "timestamp": "2023-09-14T15:21:00-07:00",
       "author": "Per Arne Vollan",
@@ -9575,6 +11410,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -9589,6 +11426,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "60ee3143f1856512ddd86ff62460d2aa3ee17b5d",
+      "short_hash": "60ee3143f185",
       "date": "2023-09-14",
       "timestamp": "2023-09-14T11:43:14-07:00",
       "author": "Per Arne Vollan",
@@ -9615,6 +11453,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -9629,6 +11469,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2826247972777dec008c4111558f24b930e828fa",
+      "short_hash": "282624797277",
       "date": "2023-09-13",
       "timestamp": "2023-09-13T07:56:28-07:00",
       "author": "Per Arne Vollan",
@@ -9656,6 +11497,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 5,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -9670,6 +11517,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6e45e2b4b6490eb49efe0d1543119213e2ca1216",
+      "short_hash": "6e45e2b4b649",
       "date": "2023-09-12",
       "timestamp": "2023-09-12T14:45:23-07:00",
       "author": "Per Arne Vollan",
@@ -9695,6 +11543,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -9709,6 +11559,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1499ac30c10734ccdebafbb766506ec1023ecf66",
+      "short_hash": "1499ac30c107",
       "date": "2023-09-11",
       "timestamp": "2023-09-11T10:49:17-07:00",
       "author": "Per Arne Vollan",
@@ -9735,6 +11586,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -9749,6 +11602,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6b6c1421f0040599ed283d2636c7373fe411142f",
+      "short_hash": "6b6c1421f004",
       "date": "2023-08-02",
       "timestamp": "2023-08-02T13:00:53-07:00",
       "author": "Alex Christensen",
@@ -9782,6 +11636,45 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WebCore/loader/ContentFilter.cpp",
+        "Source/WebCore/loader/ContentFilter.h",
+        "Source/WebCore/loader/DocumentLoader.cpp",
+        "Source/WebCore/loader/DocumentLoader.h",
+        "Source/WebCore/platform/ContentFilterUnblockHandler.h",
+        "Source/WebCore/platform/cocoa/ContentFilterUnblockHandlerCocoa.mm",
+        "Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.h",
+        "Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.mm",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.messages.in",
+        "Source/WebKit/NetworkProcess/NetworkResourceLoader.cpp",
+        "Source/WebKit/NetworkProcess/NetworkResourceLoader.h",
+        "Source/WebKit/NetworkProcess/ServiceWorker/ServiceWorkerFetchTask.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit/Shared/Cocoa/LoadParametersCocoa.mm",
+        "Source/WebKit/Shared/Cocoa/WebCoreArgumentCodersCocoa.serialization.in",
+        "Source/WebKit/Shared/LoadParameters.h",
+        "Source/WebKit/Shared/WebCoreArgumentCoders.h",
+        "Source/WebKit/Shared/WebCoreArgumentCoders.serialization.in",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/Network/WebMockContentFilterManager.cpp",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.cpp",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.h",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.messages.in",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/ContentFiltering.mm"
+      ],
+      "total_commit_files_count": 38,
       "lines_added": 0,
       "lines_deleted": 16,
       "allow_added": 0,
@@ -9796,6 +11689,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6eb1fe64cbf40ebdc6851a43c1905de78c6a1015",
+      "short_hash": "6eb1fe64cbf4",
       "date": "2023-07-18",
       "timestamp": "2023-07-18T09:34:44-07:00",
       "author": "Per Arne Vollan",
@@ -9817,6 +11711,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 27,
       "lines_deleted": 2,
       "allow_added": 18,
@@ -9831,6 +11729,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2e93e1be4d5073275b68ef0f655e9b3f011996a2",
+      "short_hash": "2e93e1be4d50",
       "date": "2023-07-11",
       "timestamp": "2023-07-11T12:49:43-07:00",
       "author": "Brent Fulgham",
@@ -9852,6 +11751,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -9866,6 +11767,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4916da8b54c7ac35e67ece3aebab5d2d35639cd2",
+      "short_hash": "4916da8b54c7",
       "date": "2023-07-06",
       "timestamp": "2023-07-06T12:57:18-07:00",
       "author": "Commit Queue",
@@ -9892,6 +11794,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -9906,6 +11810,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2a66c0b29e897b7f1863e2fe2a900a04a1e8bff3",
+      "short_hash": "2a66c0b29e89",
       "date": "2023-07-05",
       "timestamp": "2023-07-05T13:36:36-07:00",
       "author": "Commit Queue",
@@ -9932,6 +11837,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -9946,6 +11853,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0d681c005fa8dabc9acbe94dfc5ab7bf45888d5a",
+      "short_hash": "0d681c005fa8",
       "date": "2023-06-23",
       "timestamp": "2023-06-23T09:32:26-07:00",
       "author": "Per Arne Vollan",
@@ -9972,6 +11880,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -9986,6 +11896,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e2a7a06cc1ba1201313d05c6a4598f94cf981a71",
+      "short_hash": "e2a7a06cc1ba",
       "date": "2023-06-13",
       "timestamp": "2023-06-13T09:01:10-07:00",
       "author": "Per Arne Vollan",
@@ -10011,6 +11922,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -10025,6 +11940,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08658287eb3994974f66fcf06df666c57f0168b2",
+      "short_hash": "08658287eb39",
       "date": "2023-06-09",
       "timestamp": "2023-06-09T16:38:40-07:00",
       "author": "Per Arne Vollan",
@@ -10050,6 +11966,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 0,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -10064,6 +11986,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b9744e378fc06cbad26696797692160934266d22",
+      "short_hash": "b9744e378fc0",
       "date": "2023-06-07",
       "timestamp": "2023-06-07T15:44:59-07:00",
       "author": "Tim Horton",
@@ -10085,6 +12008,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/API/JSTypedArray.cpp",
+        "Source/JavaScriptCore/API/tests/testapi.mm",
+        "Source/JavaScriptCore/runtime/ObjectPrototype.cpp",
+        "Source/JavaScriptCore/runtime/ObjectPrototypeInlines.h",
+        "Source/JavaScriptCore/tools/JSDollarVM.cpp",
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WTF/wtf/Platform.h",
+        "Source/WTF/wtf/PlatformEnable.h",
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WTF/wtf/spi/darwin/AbortWithReasonSPI.h",
+        "Source/WebCore/Modules/remoteplayback/RemotePlayback.cpp",
+        "Source/WebCore/PAL/pal/ios/ReplayKitSoftLink.h",
+        "Source/WebCore/PAL/pal/ios/ReplayKitSoftLink.mm",
+        "Source/WebCore/PAL/pal/spi/cocoa/AVKitSPI.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/VisionKitCoreSPI.h",
+        "Source/WebCore/PAL/pal/spi/ios/BarcodeSupportSPI.h",
+        "Source/WebCore/PAL/pal/spi/ios/SystemPreviewSPI.h",
+        "Source/WebCore/html/HTMLMediaElement.cpp",
+        "Source/WebCore/page/Quirks.cpp",
+        "Source/WebCore/page/Quirks.h",
+        "Source/WebCore/page/ScreenOrientationType.h",
+        "Source/WebCore/platform/cocoa/ParentalControlsContentFilter.h",
+        "Source/WebCore/platform/cocoa/ParentalControlsContentFilter.mm",
+        "Source/WebCore/platform/cocoa/SystemBattery.mm",
+        "Source/WebCore/platform/graphics/avfoundation/objc/MediaPlayerPrivateAVFoundationObjC.mm",
+        "Source/WebCore/platform/graphics/cocoa/VP9UtilitiesCocoa.mm",
+        "Source/WebCore/platform/mediarecorder/cocoa/VideoSampleBufferCompressor.mm",
+        "Source/WebCore/platform/mediastream/cocoa/DisplayCaptureSourceCocoa.cpp",
+        "Source/WebCore/platform/mediastream/ios/ReplayKitCaptureSource.h",
+        "Source/WebCore/platform/mediastream/ios/ReplayKitCaptureSource.mm",
+        "Source/WebCore/platform/mediastream/libwebrtc/LibWebRTCProviderCocoa.cpp",
+        "Source/WebCore/platform/mediastream/mac/AVCaptureDeviceManager.mm",
+        "Source/WebCore/platform/mediastream/mac/DisplayCaptureManagerCocoa.cpp",
+        "Source/WebCore/platform/mediastream/mac/RealtimeMediaSourceCenterMac.mm",
+        "Source/WebCore/rendering/RenderThemeIOS.mm",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebKit/GPUProcess/GPUConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm"
+      ],
+      "total_commit_files_count": 81,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -10099,6 +12065,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7584d308c00916c50f2b670f78c283a04e06db8e",
+      "short_hash": "7584d308c009",
       "date": "2023-06-07",
       "timestamp": "2023-06-07T08:10:54-07:00",
       "author": "Wenson Hsieh",
@@ -10126,6 +12093,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "LayoutTests/http/tests/resourceLoadStatistics/omit-document-referrer-nested-third-party-iframe-ephemeral.html",
+        "LayoutTests/http/tests/resourceLoadStatistics/omit-document-referrer-third-party-iframe-ephemeral.html",
+        "LayoutTests/http/tests/resourceLoadStatistics/omit-referrer-for-navigation-ephemeral.html",
+        "Source/WTF/Scripts/Preferences/UnifiedWebPreferences.yaml",
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/Headers.cmake",
+        "Source/WebCore/Modules/async-clipboard/Clipboard.cpp",
+        "Source/WebCore/Modules/async-clipboard/ClipboardItemBindingsDataSource.cpp",
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/PlatformMac.cmake",
+        "Source/WebCore/PAL/pal/cocoa/NetworkConnectionIntegritySoftLink.mm",
+        "Source/WebCore/PAL/pal/cocoa/WebPrivacySoftLink.h",
+        "Source/WebCore/PAL/pal/cocoa/WebPrivacySoftLink.mm",
+        "Source/WebCore/PAL/pal/spi/cf/CFNetworkSPI.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/NetworkConnectionIntegritySPI.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/WebPrivacySPI.h",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/contentextensions/ContentExtensionsBackend.cpp",
+        "Source/WebCore/contentextensions/ContentExtensionsBackend.h",
+        "Source/WebCore/dom/DataTransfer.cpp",
+        "Source/WebCore/dom/Document.cpp",
+        "Source/WebCore/dom/Document.h",
+        "Source/WebCore/editing/Editor.cpp",
+        "Source/WebCore/editing/cocoa/WebContentReaderCocoa.mm",
+        "Source/WebCore/inspector/agents/WebConsoleAgent.cpp",
+        "Source/WebCore/loader/DocumentLoader.cpp",
+        "Source/WebCore/loader/DocumentLoader.h",
+        "Source/WebCore/loader/FrameLoadRequest.h",
+        "Source/WebCore/loader/FrameLoader.cpp",
+        "Source/WebCore/loader/cache/CachedResourceLoader.cpp",
+        "Source/WebCore/page/ChromeClient.h",
+        "Source/WebCore/page/LinkDecorationFilteringData.h",
+        "Source/WebCore/page/LocalDOMWindow.cpp",
+        "Source/WebCore/page/LocalFrame.cpp",
+        "Source/WebCore/page/Page.cpp",
+        "Source/WebCore/page/Page.h",
+        "Source/WebCore/page/Screen.cpp",
+        "Source/WebCore/page/UserContentProvider.cpp",
+        "Source/WebCore/platform/network/AdvancedPrivacyProtections.h",
+        "Source/WebCore/platform/network/ResourceRequestBase.cpp"
+      ],
+      "total_commit_files_count": 143,
       "lines_added": 6,
       "lines_deleted": 2,
       "allow_added": 3,
@@ -10140,6 +12150,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81084d1e70d6177c4e9391b092f6c029f19fb3db",
+      "short_hash": "81084d1e70d6",
       "date": "2023-06-07",
       "timestamp": "2023-06-07T07:22:37-07:00",
       "author": "Per Arne Vollan",
@@ -10161,6 +12172,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -10175,6 +12190,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a646dbce6fc3ef56a50c37406ca50ee19a28920d",
+      "short_hash": "a646dbce6fc3",
       "date": "2023-06-02",
       "timestamp": "2023-06-02T13:59:44-07:00",
       "author": "Per Arne Vollan",
@@ -10201,6 +12217,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -10215,6 +12235,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "46d0ad25749cd8ad27e256840c9b45e9e45e5642",
+      "short_hash": "46d0ad25749c",
       "date": "2023-05-31",
       "timestamp": "2023-05-31T11:11:23-07:00",
       "author": "Per Arne Vollan",
@@ -10241,6 +12262,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 8,
       "allow_added": 1,
@@ -10255,6 +12278,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "de24bc5cd1f37137191cb2ad3c3a279ed22cc979",
+      "short_hash": "de24bc5cd1f3",
       "date": "2023-05-31",
       "timestamp": "2023-05-31T10:04:04-07:00",
       "author": "Per Arne Vollan",
@@ -10278,6 +12302,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -10292,6 +12318,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ceb72f4967f2a6d9ee706fb3153d818047328cf3",
+      "short_hash": "ceb72f4967f2",
       "date": "2023-05-30",
       "timestamp": "2023-05-30T09:30:10-07:00",
       "author": "Per Arne Vollan",
@@ -10317,6 +12344,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -10331,6 +12360,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "58170abf9fe99b3efd8713f41a3ab635ffd23809",
+      "short_hash": "58170abf9fe9",
       "date": "2023-05-25",
       "timestamp": "2023-05-25T09:05:38-07:00",
       "author": "Commit Queue",
@@ -10356,6 +12386,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -10370,6 +12404,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4a7e72df8752c9c45c36de66a55519936da6482a",
+      "short_hash": "4a7e72df8752",
       "date": "2023-05-24",
       "timestamp": "2023-05-24T16:02:28-07:00",
       "author": "Per Arne Vollan",
@@ -10395,6 +12430,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -10409,6 +12448,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "21a4b1c5559f6ddda3f3c4166e5ab33cab2c475d",
+      "short_hash": "21a4b1c5559f",
       "date": "2023-05-22",
       "timestamp": "2023-05-22T16:35:32-07:00",
       "author": "Brent Fulgham",
@@ -10434,6 +12474,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -10448,6 +12490,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0d523edc586116d30a82c28e10b32372dec6824f",
+      "short_hash": "0d523edc5861",
       "date": "2023-05-22",
       "timestamp": "2023-05-22T14:15:13-07:00",
       "author": "Per Arne Vollan",
@@ -10474,6 +12517,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 7,
       "lines_deleted": 5,
       "allow_added": 3,
@@ -10488,6 +12536,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "89cc82d5b08e9a51e582e13390667fd022b8c317",
+      "short_hash": "89cc82d5b08e",
       "date": "2023-05-19",
       "timestamp": "2023-05-19T14:11:50-07:00",
       "author": "Brent Fulgham",
@@ -10509,6 +12558,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 4,
@@ -10523,6 +12576,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6f4210894bd27c3cc0eb22d39299d85372610a7d",
+      "short_hash": "6f4210894bd2",
       "date": "2023-05-19",
       "timestamp": "2023-05-19T08:03:14-07:00",
       "author": "Per Arne Vollan",
@@ -10549,6 +12603,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -10563,6 +12621,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "73e39a42f4e486d92fab029f608b6648c021c49f",
+      "short_hash": "73e39a42f4e4",
       "date": "2023-05-19",
       "timestamp": "2023-05-19T08:01:18-07:00",
       "author": "Per Arne Vollan",
@@ -10584,6 +12643,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -10598,6 +12661,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "66efa46ff030d3c4c5a6149adaafb85c8e617355",
+      "short_hash": "66efa46ff030",
       "date": "2023-05-18",
       "timestamp": "2023-05-18T16:19:37-07:00",
       "author": "Brent Fulgham",
@@ -10623,6 +12687,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -10637,6 +12705,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e30dccea74b7b694f4f8a5d9c03c744789fb2b01",
+      "short_hash": "e30dccea74b7",
       "date": "2023-05-18",
       "timestamp": "2023-05-18T12:50:33-07:00",
       "author": "Per Arne Vollan",
@@ -10663,6 +12732,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -10677,6 +12748,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "933ac09efb9574f9e08407389affd065693d1ac4",
+      "short_hash": "933ac09efb95",
       "date": "2023-05-17",
       "timestamp": "2023-05-17T14:54:32-07:00",
       "author": "Brent Fulgham",
@@ -10712,6 +12784,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.mac.sb.in"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 18,
       "lines_deleted": 4,
       "allow_added": 6,
@@ -10726,6 +12806,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b9bd14b0e43007584183e95c72ece73a54331f8c",
+      "short_hash": "b9bd14b0e430",
       "date": "2023-05-17",
       "timestamp": "2023-05-17T14:12:03-07:00",
       "author": "Per Arne Vollan",
@@ -10749,6 +12830,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 3,
       "allow_added": 5,
@@ -10763,6 +12846,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b53214bb2da89bbd7e581c67ffe369756d1cc0af",
+      "short_hash": "b53214bb2da8",
       "date": "2023-05-16",
       "timestamp": "2023-05-16T21:50:44-07:00",
       "author": "Commit Queue",
@@ -10798,6 +12882,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.mac.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 4,
       "lines_deleted": 18,
       "allow_added": 0,
@@ -10812,6 +12903,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d3c7b8f39ab3b9c551adbaec0bc039834573b9c6",
+      "short_hash": "d3c7b8f39ab3",
       "date": "2023-05-16",
       "timestamp": "2023-05-16T17:19:27-07:00",
       "author": "Brent Fulgham",
@@ -10847,6 +12939,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.mac.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 18,
       "lines_deleted": 4,
       "allow_added": 6,
@@ -10861,6 +12960,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "125fe148640d29ff4cc4000bc952589bdb5adf37",
+      "short_hash": "125fe148640d",
       "date": "2023-05-15",
       "timestamp": "2023-05-15T09:05:27-07:00",
       "author": "Brent Fulgham",
@@ -10886,6 +12986,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -10900,6 +13004,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f18e6f12b40e8626d25fb3afeb453a531f984601",
+      "short_hash": "f18e6f12b40e",
       "date": "2023-05-12",
       "timestamp": "2023-05-12T15:09:56-07:00",
       "author": "Brent Fulgham",
@@ -10925,6 +13030,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -10939,6 +13046,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "032c1c43834945ffb6cb4cad4e374f5d93513ab0",
+      "short_hash": "032c1c438349",
       "date": "2023-05-12",
       "timestamp": "2023-05-12T15:06:15-07:00",
       "author": "Brent Fulgham",
@@ -10965,6 +13073,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -10979,6 +13089,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7ad7c0e42a06b242dbc6b860c153303792e41944",
+      "short_hash": "7ad7c0e42a06",
       "date": "2023-05-12",
       "timestamp": "2023-05-12T14:28:52-07:00",
       "author": "Per Arne Vollan",
@@ -11000,6 +13111,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -11014,6 +13127,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f786ad9070f042cf85904dcbf55ad2f6be7b0522",
+      "short_hash": "f786ad9070f0",
       "date": "2023-05-10",
       "timestamp": "2023-05-10T15:28:31-07:00",
       "author": "Per Arne Vollan",
@@ -11035,6 +13149,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 11,
       "lines_deleted": 1,
       "allow_added": 7,
@@ -11049,6 +13165,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6de3806237c93f2b460208b350513503f0dc64de",
+      "short_hash": "6de3806237c9",
       "date": "2023-05-02",
       "timestamp": "2023-05-02T04:05:16-07:00",
       "author": "Per Arne Vollan",
@@ -11072,6 +13189,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 9,
       "lines_deleted": 1,
       "allow_added": 8,
@@ -11086,6 +13208,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9e4f68885457c1b436d6e9b0879b4988ab979199",
+      "short_hash": "9e4f68885457",
       "date": "2023-05-01",
       "timestamp": "2023-05-01T09:41:59-07:00",
       "author": "Commit Queue",
@@ -11109,6 +13232,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -11123,6 +13251,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0850093da0930446a80fba8b1da47a38d1367c5a",
+      "short_hash": "0850093da093",
       "date": "2023-05-01",
       "timestamp": "2023-05-01T08:19:40-07:00",
       "author": "Per Arne Vollan",
@@ -11146,6 +13275,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 9,
       "lines_deleted": 1,
       "allow_added": 8,
@@ -11160,6 +13294,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bdbf8bd332f62e56e014c765d00e9137e27bb428",
+      "short_hash": "bdbf8bd332f6",
       "date": "2023-04-13",
       "timestamp": "2023-04-13T16:45:41-07:00",
       "author": "Per Arne Vollan",
@@ -11185,6 +13320,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -11199,6 +13339,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1889ba6f53c883cfb7ee92ba2040383d620af027",
+      "short_hash": "1889ba6f53c8",
       "date": "2023-04-13",
       "timestamp": "2023-04-13T08:15:08-07:00",
       "author": "Per Arne Vollan",
@@ -11225,6 +13366,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -11239,6 +13384,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "efc9b181d0ea9ebe35bfd97e51b5e8ec3a91c6e4",
+      "short_hash": "efc9b181d0ea",
       "date": "2023-04-03",
       "timestamp": "2023-04-03T08:56:45-07:00",
       "author": "Per Arne Vollan",
@@ -11276,6 +13422,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 32,
       "lines_deleted": 24,
       "allow_added": 4,
@@ -11290,6 +13440,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eb89f43da063bacbc74a9bd8026dc9a52be6cb75",
+      "short_hash": "eb89f43da063",
       "date": "2023-04-03",
       "timestamp": "2023-04-03T08:23:23-07:00",
       "author": "Per Arne Vollan",
@@ -11311,6 +13462,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -11325,6 +13480,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "266a8576fcc30152677b0932ebd95e439c5685f1",
+      "short_hash": "266a8576fcc3",
       "date": "2023-03-22",
       "timestamp": "2023-03-22T12:08:35-07:00",
       "author": "Per Arne Vollan",
@@ -11386,6 +13542,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/common.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 4,
       "lines_added": 88,
       "lines_deleted": 6,
       "allow_added": 75,
@@ -11400,6 +13558,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "631491c3f80cbd49d14196b4b78c06c1255ea829",
+      "short_hash": "631491c3f80c",
       "date": "2023-03-15",
       "timestamp": "2023-03-15T15:30:28-07:00",
       "author": "Per Arne Vollan",
@@ -11421,6 +13580,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -11435,6 +13596,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3f2941f6314c768cc03d0aea48edca0ed17b5233",
+      "short_hash": "3f2941f6314c",
       "date": "2023-03-15",
       "timestamp": "2023-03-15T15:26:32-07:00",
       "author": "Per Arne Vollan",
@@ -11460,6 +13622,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -11474,6 +13638,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f119b61078b675968386275ec739574afc526230",
+      "short_hash": "f119b61078b6",
       "date": "2023-03-13",
       "timestamp": "2023-03-13T11:24:07-07:00",
       "author": "Per Arne Vollan",
@@ -11495,6 +13660,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 1,
@@ -11509,6 +13676,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1ac2a16977a07d233846982a308fb9328d7b881e",
+      "short_hash": "1ac2a16977a0",
       "date": "2023-03-06",
       "timestamp": "2023-03-06T20:58:54-08:00",
       "author": "Per Arne Vollan",
@@ -11534,6 +13702,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -11548,6 +13718,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ac186a8cd8aeb6525562dd59a3d5ba86a6734aae",
+      "short_hash": "ac186a8cd8ae",
       "date": "2023-03-03",
       "timestamp": "2023-03-03T18:42:37-08:00",
       "author": "Per Arne Vollan",
@@ -11574,6 +13745,18 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/cocoa/OSLogSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.messages.in",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 4,
@@ -11588,6 +13771,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5f8370d754133cdb824d39464235d3eac3b47ad7",
+      "short_hash": "5f8370d75413",
       "date": "2023-03-03",
       "timestamp": "2023-03-03T14:30:01-08:00",
       "author": "Per Arne Vollan",
@@ -11611,6 +13795,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -11625,6 +13813,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "37fd892327546435028bf1648b5a65646f9fbd6b",
+      "short_hash": "37fd89232754",
       "date": "2023-03-03",
       "timestamp": "2023-03-03T13:07:04-08:00",
       "author": "Per Arne Vollan",
@@ -11650,6 +13839,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -11664,6 +13855,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "efb26f8ca95add321a8f17f82dd11e43e0433b2d",
+      "short_hash": "efb26f8ca95a",
       "date": "2023-03-02",
       "timestamp": "2023-03-02T13:56:49-08:00",
       "author": "Per Arne Vollan",
@@ -11685,6 +13877,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -11699,6 +13893,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7dfee516605de84aa94f8fe6b235cf74cf19cf00",
+      "short_hash": "7dfee516605d",
       "date": "2023-03-02",
       "timestamp": "2023-03-02T10:27:06-08:00",
       "author": "Commit Queue",
@@ -11725,6 +13920,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/spi/cocoa/OSLogSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.messages.in",
+        "Source/WebKit/Platform/Logging.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 3,
@@ -11739,6 +13948,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2cf062084175ea94ebfc01afc43709856aa81587",
+      "short_hash": "2cf062084175",
       "date": "2023-03-01",
       "timestamp": "2023-03-01T23:35:47-08:00",
       "author": "Per Arne Vollan",
@@ -11765,6 +13975,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WTF/wtf/spi/cocoa/OSLogSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.messages.in",
+        "Source/WebKit/Platform/Logging.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 4,
@@ -11779,6 +14003,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d31db0a79195f27dfd9da85241bb8374b3fd266b",
+      "short_hash": "d31db0a79195",
       "date": "2023-03-01",
       "timestamp": "2023-03-01T07:20:38-08:00",
       "author": "Per Arne Vollan",
@@ -11808,6 +14033,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 8,
       "lines_deleted": 4,
       "allow_added": 3,
@@ -11822,6 +14051,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "14090b540e86b96f9bc4075fa6f542d502762ec3",
+      "short_hash": "14090b540e86",
       "date": "2023-02-27",
       "timestamp": "2023-02-27T21:28:06-08:00",
       "author": "Commit Queue",
@@ -11846,6 +14076,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 5,
       "allow_added": 1,
@@ -11860,6 +14094,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b00ce10d352eada165c6ceb8e81c20c0239efd5b",
+      "short_hash": "b00ce10d352e",
       "date": "2023-02-27",
       "timestamp": "2023-02-27T20:08:52-08:00",
       "author": "Per Arne Vollan",
@@ -11885,6 +14120,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -11899,6 +14138,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d50594881e1a17689982d7b415e21174f24ea4e6",
+      "short_hash": "d50594881e1a",
       "date": "2023-02-27",
       "timestamp": "2023-02-27T19:10:04-08:00",
       "author": "Per Arne Vollan",
@@ -11923,6 +14163,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -11937,6 +14181,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b2c8b58a720aa418a2ea13c80c138b6664c84a9e",
+      "short_hash": "b2c8b58a720a",
       "date": "2023-02-24",
       "timestamp": "2023-02-24T17:25:26-08:00",
       "author": "Tim Horton",
@@ -11962,6 +14207,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -11976,6 +14223,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "92d5110f56f89b95fc6af3bc6dd228de8fa154cf",
+      "short_hash": "92d5110f56f8",
       "date": "2023-02-17",
       "timestamp": "2023-02-17T20:42:00-08:00",
       "author": "Per Arne Vollan",
@@ -11999,6 +14247,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 38,
       "lines_deleted": 0,
       "allow_added": 36,
@@ -12013,6 +14266,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a7e396a0a6acecc4b6632913e13947fda186eaf9",
+      "short_hash": "a7e396a0a6ac",
       "date": "2023-02-06",
       "timestamp": "2023-02-06T16:10:08-08:00",
       "author": "Chris Dumez",
@@ -12039,6 +14293,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -12053,6 +14309,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9bde2121e40c2ff7a78d47197aa2402a873684ad",
+      "short_hash": "9bde2121e40c",
       "date": "2023-01-31",
       "timestamp": "2023-01-31T18:28:35-08:00",
       "author": "Sihui Liu",
@@ -12078,6 +14335,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -12092,6 +14351,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "da458338d15bd618374e0fe7967803da43c5d386",
+      "short_hash": "da458338d15b",
       "date": "2023-01-30",
       "timestamp": "2023-01-30T16:22:34-08:00",
       "author": "Tim Horton",
@@ -12117,6 +14377,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -12131,6 +14395,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "97b9f04733d1951df9a4592335c9e711ae024ccd",
+      "short_hash": "97b9f04733d1",
       "date": "2023-01-25",
       "timestamp": "2023-01-25T17:09:16-08:00",
       "author": "Per Arne Vollan",
@@ -12152,6 +14417,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -12166,6 +14435,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8017100ed6759f04b06bfbac676a151e0ab9d9de",
+      "short_hash": "8017100ed675",
       "date": "2023-01-24",
       "timestamp": "2023-01-24T15:40:34-08:00",
       "author": "Per Arne Vollan",
@@ -12199,6 +14469,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 12,
       "lines_deleted": 2,
       "allow_added": 9,
@@ -12213,6 +14485,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7e8a23f0c35a867c4fb8c2f9fd7ab41da855d454",
+      "short_hash": "7e8a23f0c35a",
       "date": "2023-01-24",
       "timestamp": "2023-01-24T15:31:55-08:00",
       "author": "Per Arne Vollan",
@@ -12236,6 +14509,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 7,
       "lines_deleted": 3,
       "allow_added": 2,
@@ -12250,6 +14528,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "168a1b2c086176a9d2a4207a42a3815d5e3f73a1",
+      "short_hash": "168a1b2c0861",
       "date": "2023-01-23",
       "timestamp": "2023-01-23T10:36:50-08:00",
       "author": "Per Arne Vollan",
@@ -12276,6 +14555,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -12290,6 +14571,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f8504aca74602bb8976581c31e3294abb2228b07",
+      "short_hash": "f8504aca7460",
       "date": "2023-01-17",
       "timestamp": "2023-01-17T17:52:55-08:00",
       "author": "Ben Nham",
@@ -12316,6 +14598,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 1,
@@ -12330,6 +14614,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "de0e2987d384c5a939f6e3a26e1465c0b07074a7",
+      "short_hash": "de0e2987d384",
       "date": "2023-01-13",
       "timestamp": "2023-01-13T11:26:29-08:00",
       "author": "Per Arne Vollan",
@@ -12351,6 +14636,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 9,
       "lines_deleted": 1,
       "allow_added": 6,
@@ -12365,6 +14652,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d383bbfe618dc70a348ae17f24abc27ec85fef64",
+      "short_hash": "d383bbfe618d",
       "date": "2023-01-12",
       "timestamp": "2023-01-12T15:02:13-08:00",
       "author": "Commit Queue",
@@ -12386,6 +14674,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 22,
       "allow_added": 1,
@@ -12400,6 +14690,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8b0cc0d516bbdf8a4bb8278518915f1c232d6ad6",
+      "short_hash": "8b0cc0d516bb",
       "date": "2023-01-09",
       "timestamp": "2023-01-09T13:31:34-08:00",
       "author": "Per Arne Vollan",
@@ -12433,6 +14724,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 32,
       "lines_deleted": 14,
       "allow_added": 17,
@@ -12447,6 +14740,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2800c1e530768c4ecce425ed2ff67e378730beb3",
+      "short_hash": "2800c1e53076",
       "date": "2023-01-06",
       "timestamp": "2023-01-06T16:33:14-08:00",
       "author": "Brent Fulgham",
@@ -12470,6 +14764,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -12484,6 +14780,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "453b6d54d938b3d8465803f28d25b25d1f52ad66",
+      "short_hash": "453b6d54d938",
       "date": "2023-01-06",
       "timestamp": "2023-01-06T13:52:23-08:00",
       "author": "Per Arne Vollan",
@@ -12510,6 +14807,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -12524,6 +14823,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "40cef5c6bb31e1ba8d1d930003e10f86b7ad597f",
+      "short_hash": "40cef5c6bb31",
       "date": "2023-01-05",
       "timestamp": "2023-01-05T10:37:21-08:00",
       "author": "Per Arne Vollan",
@@ -12550,6 +14850,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/ProvisionalPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -12564,6 +14872,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "34a36c72aeaa47bf2c96a203864218128144db63",
+      "short_hash": "34a36c72aeaa",
       "date": "2023-01-04",
       "timestamp": "2023-01-04T07:57:13-08:00",
       "author": "Per Arne Vollan",
@@ -12591,6 +14900,39 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/WebPageCreationParameters.cpp",
+        "Source/WebKit/Shared/WebPageCreationParameters.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/SpeechRecognitionRemoteRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/UIProcess/UserMediaPermissionRequestManagerProxy.cpp",
+        "Source/WebKit/UIProcess/UserMediaProcessManager.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/MediaStream/MediaDeviceSandboxExtensions.cpp",
+        "Source/WebKit/WebProcess/MediaStream/MediaDeviceSandboxExtensions.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.messages.in",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/WebProcess/glib/WebProcessGLib.cpp",
+        "Source/WebKit/WebProcess/win/WebProcessWin.cpp"
+      ],
+      "total_commit_files_count": 31,
       "lines_added": 9,
       "lines_deleted": 15,
       "allow_added": 3,
@@ -12605,6 +14947,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "088424c3ef5f0da29e868cd21b22ea83127b4f66",
+      "short_hash": "088424c3ef5f",
       "date": "2023-01-03",
       "timestamp": "2023-01-03T13:46:46-08:00",
       "author": "Per Arne Vollan",
@@ -12632,6 +14975,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -12646,6 +14995,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4d4df67e042d75c278bca2f34bf5b99caaa9e533",
+      "short_hash": "4d4df67e042d",
       "date": "2022-12-20",
       "timestamp": "2022-12-20T13:44:01-08:00",
       "author": "Robert Jenner",
@@ -12673,6 +15023,39 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/WebPageCreationParameters.cpp",
+        "Source/WebKit/Shared/WebPageCreationParameters.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/SpeechRecognitionRemoteRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/UIProcess/UserMediaPermissionRequestManagerProxy.cpp",
+        "Source/WebKit/UIProcess/UserMediaProcessManager.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/MediaStream/MediaDeviceSandboxExtensions.cpp",
+        "Source/WebKit/WebProcess/MediaStream/MediaDeviceSandboxExtensions.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.messages.in",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/WebProcess/glib/WebProcessGLib.cpp",
+        "Source/WebKit/WebProcess/win/WebProcessWin.cpp"
+      ],
+      "total_commit_files_count": 31,
       "lines_added": 15,
       "lines_deleted": 9,
       "allow_added": 6,
@@ -12687,6 +15070,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5ab76c736b677f30be2693170b9ce4cee662b1dc",
+      "short_hash": "5ab76c736b67",
       "date": "2022-12-16",
       "timestamp": "2022-12-16T20:18:29-08:00",
       "author": "Ben Nham",
@@ -12751,6 +15135,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.webpushd.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources-output.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 212,
       "lines_deleted": 0,
       "allow_added": 122,
@@ -12765,6 +15157,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "73fc4fd89f837a0eb9ceebdd631f2e66730072b4",
+      "short_hash": "73fc4fd89f83",
       "date": "2022-12-16",
       "timestamp": "2022-12-16T03:26:45-08:00",
       "author": "Per Arne Vollan",
@@ -12792,6 +15185,39 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/WebPageCreationParameters.cpp",
+        "Source/WebKit/Shared/WebPageCreationParameters.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/SpeechRecognitionRemoteRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/UIProcess/UserMediaPermissionRequestManagerProxy.cpp",
+        "Source/WebKit/UIProcess/UserMediaProcessManager.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/MediaStream/MediaDeviceSandboxExtensions.cpp",
+        "Source/WebKit/WebProcess/MediaStream/MediaDeviceSandboxExtensions.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.h",
+        "Source/WebKit/WebProcess/Speech/SpeechRecognitionRealtimeMediaSourceManager.messages.in",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/WebProcess/glib/WebProcessGLib.cpp",
+        "Source/WebKit/WebProcess/win/WebProcessWin.cpp"
+      ],
+      "total_commit_files_count": 31,
       "lines_added": 9,
       "lines_deleted": 15,
       "allow_added": 3,
@@ -12806,6 +15232,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d259da0f78aebd1cd62401c82c57544c0579cfe3",
+      "short_hash": "d259da0f78ae",
       "date": "2022-12-15",
       "timestamp": "2022-12-15T15:34:36-08:00",
       "author": "Brent Fulgham",
@@ -12831,6 +15258,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -12845,6 +15277,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e0227fc7d5f7ad63bff6514bf21f77134eddeb64",
+      "short_hash": "e0227fc7d5f7",
       "date": "2022-12-14",
       "timestamp": "2022-12-14T15:03:21-08:00",
       "author": "Wenson Hsieh",
@@ -12868,6 +15301,24 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/PlatformMac.cmake",
+        "Source/WebCore/PAL/pal/cocoa/NetworkConnectionIntegritySoftLink.h",
+        "Source/WebCore/PAL/pal/cocoa/NetworkConnectionIntegritySoftLink.mm",
+        "Source/WebCore/PAL/pal/spi/cocoa/NetworkConnectionIntegritySPI.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.messages.in",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkConnectionIntegrityHelpers.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkConnectionIntegrityHelpers.mm",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h"
+      ],
+      "total_commit_files_count": 16,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -12882,6 +15333,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6f3c84c00ec6e7e03645b5c46091b76f112bc7a6",
+      "short_hash": "6f3c84c00ec6",
       "date": "2022-12-14",
       "timestamp": "2022-12-14T05:18:29-08:00",
       "author": "Per Arne Vollan",
@@ -12960,6 +15412,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 197,
       "lines_deleted": 159,
       "allow_added": 45,
@@ -12974,6 +15428,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eefb819e8ac6d596ce62a7ff261910642d628ecb",
+      "short_hash": "eefb819e8ac6",
       "date": "2022-12-13",
       "timestamp": "2022-12-13T10:09:05-08:00",
       "author": "Brady Eidson",
@@ -12999,6 +15454,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/webpushtool.xcconfig",
+        "Source/WebKit/webpushd/webpushtool/WebPushToolConnection.mm",
+        "Source/WebKit/webpushd/webpushtool/WebPushToolMain.mm"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -13013,6 +15474,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6cbeaffa801faa58f3054b92e65a4ed8d5071773",
+      "short_hash": "6cbeaffa801f",
       "date": "2022-12-09",
       "timestamp": "2022-12-09T16:10:34-08:00",
       "author": "Brent Fulgham",
@@ -13058,6 +15520,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 26,
       "lines_deleted": 0,
       "allow_added": 22,
@@ -13072,6 +15538,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d98e3ab98589ee250df7e0d9957ea8b96dd2e5fe",
+      "short_hash": "d98e3ab98589",
       "date": "2022-12-09",
       "timestamp": "2022-12-09T15:33:06-08:00",
       "author": "Per Arne Vollan",
@@ -13134,6 +15601,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 55,
       "lines_deleted": 52,
       "allow_added": 7,
@@ -13148,6 +15617,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "129d7629be7ded74ee0c924c96c48c1d0372d61d",
+      "short_hash": "129d7629be7d",
       "date": "2022-12-01",
       "timestamp": "2022-12-01T22:59:54-08:00",
       "author": "Per Arne Vollan",
@@ -13214,6 +15684,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Shared/Sandbox/iOS/common.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/Sandbox/common.sb",
+        "Source/WebKit/Shared/Sandbox/macOS/common.sb",
+        "Source/WebKit/Shared/Sandbox/util.sb",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 11,
       "lines_added": 208,
       "lines_deleted": 207,
       "allow_added": 52,
@@ -13228,6 +15708,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fce449876b1f93570c47abb88317edbb79a7f784",
+      "short_hash": "fce449876b1f",
       "date": "2022-12-01",
       "timestamp": "2022-12-01T00:45:35-08:00",
       "author": "Per Arne Vollan",
@@ -13256,6 +15737,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 28,
       "lines_deleted": 30,
       "allow_added": 0,
@@ -13270,6 +15756,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "747f39e11530ca0ac918e8e45da83fed98f5b5b7",
+      "short_hash": "747f39e11530",
       "date": "2022-11-29",
       "timestamp": "2022-11-29T13:30:20-08:00",
       "author": "Per Arne Vollan",
@@ -13291,6 +15778,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -13305,6 +15794,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9bdbf61c654f5f9bd949e1bd543e9cddfb860d73",
+      "short_hash": "9bdbf61c654f",
       "date": "2022-11-15",
       "timestamp": "2022-11-15T12:19:15-08:00",
       "author": "Per Arne Vollan",
@@ -13334,6 +15824,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -13348,6 +15840,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "15603efbf0b0e74658e6c9d864635f07756d7a88",
+      "short_hash": "15603efbf0b0",
       "date": "2022-11-12",
       "timestamp": "2022-11-12T08:31:26-08:00",
       "author": "Per Arne Vollan",
@@ -13374,6 +15867,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/ProvisionalPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -13388,6 +15889,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "80c001938cda7ea26e901de1f9dfd4e96e55e795",
+      "short_hash": "80c001938cda",
       "date": "2022-11-03",
       "timestamp": "2022-11-03T15:17:02-07:00",
       "author": "Per Arne Vollan",
@@ -13413,6 +15915,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -13427,6 +15931,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8170bc889edd2f6fcd16fae526c1dbe61fe8f7c6",
+      "short_hash": "8170bc889edd",
       "date": "2022-10-22",
       "timestamp": "2022-10-22T10:30:18-07:00",
       "author": "Per Arne Vollan",
@@ -13452,6 +15957,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/spi/cocoa/AVStreamDataParserSPI.h",
+        "Source/WebCore/platform/graphics/avfoundation/objc/SourceBufferParserAVFObjC.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -13466,6 +15976,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d5160fa6b1b8ae5eb46357892784ce9de118acf1",
+      "short_hash": "d5160fa6b1b8",
       "date": "2022-10-21",
       "timestamp": "2022-10-21T09:06:17-07:00",
       "author": "Per Arne Vollan",
@@ -13494,6 +16005,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 11,
       "lines_deleted": 12,
       "allow_added": 4,
@@ -13508,6 +16023,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "18713b70852e4784a3087ddad9306946ca8f9fe2",
+      "short_hash": "18713b70852e",
       "date": "2022-10-17",
       "timestamp": "2022-10-17T20:18:28-07:00",
       "author": "Per Arne Vollan",
@@ -13531,6 +16047,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/Sandbox/macOS/common.sb",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -13545,6 +16069,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "43c46e90c40092e5bcc033ef8be07be56f3401c1",
+      "short_hash": "43c46e90c400",
       "date": "2022-10-12",
       "timestamp": "2022-10-12T18:33:42-07:00",
       "author": "Per Arne Vollan",
@@ -13570,6 +16095,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKit/SyscallUnixSandboxCheck.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -13584,6 +16119,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "92d0f2039e4856abdeb8c7c4d05554d9331e5870",
+      "short_hash": "92d0f2039e48",
       "date": "2022-09-30",
       "timestamp": "2022-09-30T11:40:35-07:00",
       "author": "Per Arne Vollan",
@@ -13605,6 +16141,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -13619,6 +16159,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ede5c50d642c70ed8c7b1648b8de479c4a89366c",
+      "short_hash": "ede5c50d642c",
       "date": "2022-09-26",
       "timestamp": "2022-09-26T12:02:27-07:00",
       "author": "Commit Queue",
@@ -13640,6 +16181,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 22,
       "lines_deleted": 3,
       "allow_added": 18,
@@ -13654,6 +16197,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81eb991e9c7d14d952ad1def08b52a36a83ad358",
+      "short_hash": "81eb991e9c7d",
       "date": "2022-09-21",
       "timestamp": "2022-09-21T14:59:24-07:00",
       "author": "Tim Horton",
@@ -13679,6 +16223,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -13693,6 +16239,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b3e3f3725328eb8317a0c01cdd865f582729b15a",
+      "short_hash": "b3e3f3725328",
       "date": "2022-09-01",
       "timestamp": "2022-09-01T10:13:15-07:00",
       "author": "Youenn Fablet",
@@ -13718,6 +16265,48 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/WebPreferences.yaml",
+        "Source/WTF/Scripts/Preferences/WebPreferencesInternal.yaml",
+        "Source/WebCore/Modules/mediastream/MediaStreamTrack.cpp",
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/spi/ios/SBSStatusBarSPI.h",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/platform/mediastream/MediaStreamTrackPrivate.h",
+        "Source/WebCore/platform/mediastream/RealtimeMediaSource.h",
+        "Source/WebCore/platform/mediastream/ios/MediaCaptureStatusBarManager.h",
+        "Source/WebCore/platform/mediastream/ios/MediaCaptureStatusBarManager.mm",
+        "Source/WebCore/platform/mediastream/mac/CoreAudioCaptureSource.cpp",
+        "Source/WebCore/platform/mediastream/mac/CoreAudioCaptureSource.h",
+        "Source/WebCore/platform/mediastream/mac/CoreAudioSharedUnit.cpp",
+        "Source/WebCore/platform/mediastream/mac/CoreAudioSharedUnit.h",
+        "Source/WebCore/platform/mediastream/mac/RealtimeMediaSourceCenterMac.mm",
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/Platform/spi/ios/LSApplicationWorkspaceSPI.h",
+        "Source/WebKit/Scripts/PreferencesTemplates/WebPreferencesStoreDefaultsMap.cpp.erb",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/WebPreferencesDefaultValues.cpp",
+        "Source/WebKit/Shared/WebPreferencesDefaultValues.h",
+        "Source/WebKit/UIProcess/API/APIUIClient.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKUIDelegatePrivate.h",
+        "Source/WebKit/UIProcess/Cocoa/UIDelegate.h",
+        "Source/WebKit/UIProcess/Cocoa/UIDelegate.mm",
+        "Source/WebKit/UIProcess/Cocoa/UserMediaCaptureManagerProxy.cpp",
+        "Source/WebKit/UIProcess/Cocoa/UserMediaCaptureManagerProxy.h",
+        "Source/WebKit/UIProcess/Cocoa/UserMediaCaptureManagerProxy.messages.in",
+        "Source/WebKit/UIProcess/Cocoa/WebPreferencesCocoa.mm",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.h",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.messages.in",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/cocoa/RemoteRealtimeAudioSource.cpp",
+        "Source/WebKit/WebProcess/cocoa/RemoteRealtimeAudioSource.h"
+      ],
+      "total_commit_files_count": 40,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -13732,6 +16321,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a05ced4f7e9595c86f0b0c14a3aec9fe4fbabfa9",
+      "short_hash": "a05ced4f7e95",
       "date": "2022-08-23",
       "timestamp": "2022-08-23T15:47:30-07:00",
       "author": "Per Arne Vollan",
@@ -13757,6 +16347,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -13771,6 +16363,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "de03c7b052b32b641eacb16fbb3d4d3607cbc1b1",
+      "short_hash": "de03c7b052b3",
       "date": "2022-08-10",
       "timestamp": "2022-08-10T01:00:23-07:00",
       "author": "Per Arne Vollan",
@@ -13797,6 +16390,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -13811,6 +16410,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9c9fd5cc994223715e108248083355f9b0980c0f",
+      "short_hash": "9c9fd5cc9942",
       "date": "2022-08-04",
       "timestamp": "2022-08-04T08:20:51-07:00",
       "author": "Per Arne Vollan",
@@ -13832,6 +16432,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 22,
       "allow_added": 1,
@@ -13846,6 +16448,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e485c13082887ab8c6c36da2d73339396e0ffd49",
+      "short_hash": "e485c1308288",
       "date": "2022-08-02",
       "timestamp": "2022-08-02T12:37:25-07:00",
       "author": "Alex Christensen",
@@ -13871,6 +16474,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -13885,6 +16490,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "db0f03c7d7d72947180c25cbfe41ae8eb5735d82",
+      "short_hash": "db0f03c7d7d7",
       "date": "2022-07-26",
       "timestamp": "2022-07-26T09:16:54-07:00",
       "author": "Per Arne Vollan",
@@ -13906,6 +16512,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -13920,6 +16528,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "73b9c9c738c159611f3dde1c9fe26f282e0fff40",
+      "short_hash": "73b9c9c738c1",
       "date": "2022-07-25",
       "timestamp": "2022-07-25T09:48:08-07:00",
       "author": "Youenn Fablet",
@@ -13946,6 +16555,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 10,
       "lines_deleted": 1,
       "allow_added": 5,
@@ -13960,6 +16573,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e242d3a2d59f8ba0b39a00ff1eb0994c3accb0e6",
+      "short_hash": "e242d3a2d59f",
       "date": "2022-07-21",
       "timestamp": "2022-07-21T13:21:41-07:00",
       "author": "Per Arne Vollan",
@@ -13987,6 +16601,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 0,
       "lines_deleted": 16,
       "allow_added": 0,
@@ -14001,6 +16621,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f90126638a875f1edaef2fe09afca5e0dfe79bb4",
+      "short_hash": "f90126638a87",
       "date": "2022-07-21",
       "timestamp": "2022-07-21T09:31:17-07:00",
       "author": "Per Arne Vollan",
@@ -14028,6 +16649,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -14042,6 +16669,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "73035815bfbbdb8cfca0fcb1e0bdf3587a5f4151",
+      "short_hash": "73035815bfbb",
       "date": "2022-07-13",
       "timestamp": "2022-07-13T11:19:50-07:00",
       "author": "Per Arne Vollan",
@@ -14065,6 +16693,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -14079,6 +16709,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2995d38ba0b304f686bb20d0fbad6925d9c6db2e",
+      "short_hash": "2995d38ba0b3",
       "date": "2022-07-08",
       "timestamp": "2022-07-08T08:54:40-07:00",
       "author": "Per Arne Vollan",
@@ -14102,6 +16733,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -14116,6 +16749,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "10521e725cec28f85fab81e8bc969cc55c58b605",
+      "short_hash": "10521e725cec",
       "date": "2022-07-08",
       "timestamp": "2022-07-08T08:25:54-07:00",
       "author": "Per Arne Vollan",
@@ -14153,6 +16787,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 31,
       "lines_deleted": 36,
       "allow_added": 2,
@@ -14167,6 +16803,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2d764560af22a315f3db72b2dab4e793798b9d5b",
+      "short_hash": "2d764560af22",
       "date": "2022-07-07",
       "timestamp": "2022-07-07T09:38:49-07:00",
       "author": "Per Arne Vollan",
@@ -14201,6 +16838,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 15,
       "lines_deleted": 19,
       "allow_added": 0,
@@ -14215,6 +16854,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6fa5ca069d20067efe5ac94da560d88c8d284cb5",
+      "short_hash": "6fa5ca069d20",
       "date": "2022-07-06",
       "timestamp": "2022-07-06T08:53:26-07:00",
       "author": "Per Arne Vollan",
@@ -14242,6 +16882,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -14256,6 +16898,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "38f539abfe44f28b8a2f338b806a9fe25350df14",
+      "short_hash": "38f539abfe44",
       "date": "2022-07-05",
       "timestamp": "2022-07-05T16:07:06-07:00",
       "author": "Per Arne Vollan",
@@ -14285,6 +16928,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 9,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -14299,6 +16944,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "181f73370c1e5a9f486e9ac766b67a1bfe43f2ce",
+      "short_hash": "181f73370c1e",
       "date": "2022-07-05",
       "timestamp": "2022-07-05T15:48:40-07:00",
       "author": "Per Arne Vollan",
@@ -14324,6 +16970,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 11,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -14338,6 +16986,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "80c2766bbe0906ee3c97fe3107f18087b2671fa9",
+      "short_hash": "80c2766bbe09",
       "date": "2022-06-30",
       "timestamp": "2022-06-30T09:52:15-07:00",
       "author": "Per Arne Vollan",
@@ -14363,6 +17012,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -14377,6 +17032,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8bc5eb48b7cdc9bb38c4dc1232a219fbdba4243d",
+      "short_hash": "8bc5eb48b7cd",
       "date": "2022-06-27",
       "timestamp": "2022-06-27T14:22:57-07:00",
       "author": "Per Arne Vollan",
@@ -14398,6 +17054,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -14411,6 +17072,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "19dadd1e5f72045589f1099660ef1691f9b32fa3",
+      "short_hash": "19dadd1e5f72",
       "date": "2022-06-27",
       "timestamp": "2022-06-27T08:01:47-07:00",
       "author": "Per Arne Vollan",
@@ -14437,6 +17099,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -14450,6 +17114,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "69d738facf292bb8ec46ffee2e77932a41ec3ac9",
+      "short_hash": "69d738facf29",
       "date": "2022-06-23",
       "timestamp": "2022-06-23T00:49:20Z",
       "author": "Matt Woodrow",
@@ -14471,6 +17136,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -14484,6 +17151,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "43784def3654037ac37f1b83b4c62adce61e26eb",
+      "short_hash": "43784def3654",
       "date": "2022-06-21",
       "timestamp": "2022-06-21T23:01:30Z",
       "author": "Per Arne Vollan",
@@ -14510,6 +17178,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -14523,6 +17195,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0a51cee7874970c895c648c0b664b511ecf72ed5",
+      "short_hash": "0a51cee78749",
       "date": "2022-06-17",
       "timestamp": "2022-06-17T21:42:20Z",
       "author": "Per Arne Vollan",
@@ -14551,6 +17224,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -14564,6 +17239,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ac48c0a0b4887d118a322e3e48a9512ab52a99d5",
+      "short_hash": "ac48c0a0b488",
       "date": "2022-06-15",
       "timestamp": "2022-06-15T21:35:30Z",
       "author": "Per Arne Vollan",
@@ -14585,6 +17261,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -14599,6 +17279,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "289bdee0e5665a49dd57c3e8f07c0c584e49d852",
+      "short_hash": "289bdee0e566",
       "date": "2022-06-15",
       "timestamp": "2022-06-15T15:39:17Z",
       "author": "Per Arne Vollan",
@@ -14624,6 +17305,23 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/GPUProcess/GPUProcess.messages.in",
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/Cocoa/AuxiliaryProcessCocoa.mm",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.h",
+        "Source/WebKit/UIProcess/Cocoa/AuxiliaryProcessProcyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 15,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -14638,6 +17336,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cc392f4a8557b14c4c8fd267b303591483c93b0d",
+      "short_hash": "cc392f4a8557",
       "date": "2022-06-03",
       "timestamp": "2022-06-03T21:44:57Z",
       "author": "Per Arne Vollan",
@@ -14661,6 +17360,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -14675,6 +17376,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "864e6c34444ffa102704fc3faf0dd5add606d4a6",
+      "short_hash": "864e6c34444f",
       "date": "2022-06-01",
       "timestamp": "2022-06-01T15:04:44Z",
       "author": "Per Arne Vollan",
@@ -14701,6 +17403,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.h",
+        "Source/WebKit/Shared/AuxiliaryProcess.cpp",
+        "Source/WebKit/Shared/AuxiliaryProcess.h",
+        "Source/WebKit/Shared/ios/AuxiliaryProcessIOS.mm",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.cpp",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.h",
+        "Source/WebKit/UIProcess/Cocoa/GPUProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -14715,6 +17431,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1bebfc49b0933330ad45506218b7f69256717b22",
+      "short_hash": "1bebfc49b093",
       "date": "2022-05-26",
       "timestamp": "2022-05-26T22:34:25Z",
       "author": "Per Arne Vollan",
@@ -14738,6 +17455,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -14752,6 +17471,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6773d7a827491cf96015d61528a934f8c33a0b9c",
+      "short_hash": "6773d7a82749",
       "date": "2022-05-26",
       "timestamp": "2022-05-26T21:31:26Z",
       "author": "Per Arne Vollan",
@@ -14780,6 +17500,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 2,
       "allow_added": 3,
@@ -14794,6 +17516,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f9decae69bc9b30f9f2767a2fe704a154d69ed03",
+      "short_hash": "f9decae69bc9",
       "date": "2022-05-25",
       "timestamp": "2022-05-25T18:55:19Z",
       "author": "Per Arne Vollan",
@@ -14821,6 +17544,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 51,
       "allow_added": 1,
@@ -14835,6 +17560,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "848c5ba8ccfe0bf524e47d90db02c9dcbc94b336",
+      "short_hash": "848c5ba8ccfe",
       "date": "2022-05-18",
       "timestamp": "2022-05-18T21:58:19Z",
       "author": "J Pascoe",
@@ -14941,6 +17667,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "vm.footprint_suspend"
       ],
       "files": [],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/WebPreferencesExperimental.yaml",
+        "Source/WebCore/page/RuntimeEnabledFeatures.h",
+        "Source/WebCore/platform/RuntimeApplicationChecks.cpp",
+        "Source/WebCore/platform/RuntimeApplicationChecks.h",
+        "Source/WebKit/Configurations/WebAuthnService.xcconfig",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Platform/ExtraPrivateSymbolsForTAPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm",
+        "Source/WebKit/Sources.txt",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/API/C/WKPreferences.cpp",
+        "Source/WebKit/UIProcess/API/C/WKPreferencesRefPrivate.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPool.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPoolPrivate.h",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Authenticator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalAuthenticator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalAuthenticator.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.h",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.messages.in",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnService/Info-OSX.plist",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnService/Info-iOS.plist",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnServiceEntryPoint.mm",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.cpp",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.h"
+      ],
+      "total_commit_files_count": 60,
       "lines_added": 1,
       "lines_deleted": 457,
       "allow_added": 1,
@@ -14955,6 +17724,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "387b4778e10fd748f11da71ca84a657db3ef4512",
+      "short_hash": "387b4778e10f",
       "date": "2022-05-18",
       "timestamp": "2022-05-18T15:45:53Z",
       "author": "Per Arne Vollan",
@@ -14979,6 +17749,23 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/PAL/pal/cocoa/DataDetectorsCoreSoftLink.h",
+        "Source/WebCore/PAL/pal/cocoa/DataDetectorsCoreSoftLink.mm",
+        "Source/WebCore/PAL/pal/spi/cocoa/DataDetectorsCoreSPI.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivate.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 15,
       "lines_added": 1,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -14993,6 +17780,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "14f4cbb571ebed0e9095d0866ff4117bdb04a1ad",
+      "short_hash": "14f4cbb571eb",
       "date": "2022-05-11",
       "timestamp": "2022-05-11T17:51:04Z",
       "author": "Per Arne Vollan",
@@ -15016,6 +17804,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 34,
       "allow_added": 0,
@@ -15029,6 +17821,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "262f8c714358334acd3457b101c3dbbe0f520e8b",
+      "short_hash": "262f8c714358",
       "date": "2022-05-05",
       "timestamp": "2022-05-05T18:37:36Z",
       "author": "Alex Christensen",
@@ -15052,6 +17845,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -15066,6 +17861,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7fb56d63e38c6162db6aea9e94fc4311eb0f0b49",
+      "short_hash": "7fb56d63e38c",
       "date": "2022-05-04",
       "timestamp": "2022-05-04T22:03:39Z",
       "author": "Per Arne Vollan",
@@ -15089,6 +17885,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -15102,6 +17900,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d87038365ffb6bb24ec9b0f1e3591f4c4ab900c3",
+      "short_hash": "d87038365ffb",
       "date": "2022-05-03",
       "timestamp": "2022-05-03T18:23:32Z",
       "author": "Per Arne Vollan",
@@ -15125,6 +17924,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 43,
       "allow_added": 0,
@@ -15138,6 +17939,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6451b4e35bb6391a0a56b305e68d3a3759c68d73",
+      "short_hash": "6451b4e35bb6",
       "date": "2022-04-28",
       "timestamp": "2022-04-28T23:31:24Z",
       "author": "Per Arne Vollan",
@@ -15164,6 +17966,26 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm",
+        "Source/WebKit/Shared/Sandbox/SandboxStateVariables.h",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/SpeechRecognitionRemoteRealtimeMediaSourceManager.cpp",
+        "Source/WebKit/UIProcess/UserMediaPermissionRequestManagerProxy.cpp",
+        "Source/WebKit/UIProcess/UserMediaProcessManager.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 18,
       "lines_added": 18,
       "lines_deleted": 26,
       "allow_added": 7,
@@ -15178,6 +18000,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0876fb5eddb864d231fb8b5cca68233da3471885",
+      "short_hash": "0876fb5eddb8",
       "date": "2022-04-22",
       "timestamp": "2022-04-22T23:39:17Z",
       "author": "Commit Queue",
@@ -15288,6 +18111,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/WebPreferencesExperimental.yaml",
+        "Source/WebCore/page/RuntimeEnabledFeatures.h",
+        "Source/WebCore/platform/RuntimeApplicationChecks.cpp",
+        "Source/WebCore/platform/RuntimeApplicationChecks.h",
+        "Source/WebKit/Configurations/WebAuthnService.xcconfig",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Platform/ExtraPrivateSymbolsForTAPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm",
+        "Source/WebKit/Sources.txt",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/API/C/WKPreferences.cpp",
+        "Source/WebKit/UIProcess/API/C/WKPreferencesRefPrivate.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPool.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPoolPrivate.h",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Authenticator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalAuthenticator.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.h",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.messages.in",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnService/Info-OSX.plist",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnService/Info-iOS.plist",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnServiceEntryPoint.mm",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.cpp",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.h",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.messages.in"
+      ],
+      "total_commit_files_count": 59,
       "lines_added": 457,
       "lines_deleted": 0,
       "allow_added": 212,
@@ -15299,6 +18165,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "06829a72816b3507674af7be8a740a4964ae3518",
+      "short_hash": "06829a72816b",
       "date": "2022-04-18",
       "timestamp": "2022-04-18T23:46:31Z",
       "author": "Per Arne Vollan",
@@ -15330,6 +18197,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 8,
       "lines_deleted": 2,
       "allow_added": 6,
@@ -15344,6 +18215,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bcfecce6a11a36a206d2bb761ebd238fa2d2c427",
+      "short_hash": "bcfecce6a11a",
       "date": "2022-04-18",
       "timestamp": "2022-04-18T22:48:20Z",
       "author": "Per Arne Vollan",
@@ -15371,6 +18243,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -15384,6 +18258,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "54983b3b412af635a04d36f48eb2bc2575c18881",
+      "short_hash": "54983b3b412a",
       "date": "2022-04-18",
       "timestamp": "2022-04-18T22:10:41Z",
       "author": "Commit Queue",
@@ -15415,6 +18290,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 8,
       "allow_added": 0,
@@ -15429,6 +18308,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1c969378336b8048a994de33b8c46b4c3392d6ed",
+      "short_hash": "1c969378336b",
       "date": "2022-04-18",
       "timestamp": "2022-04-18T21:35:47Z",
       "author": "Per Arne Vollan",
@@ -15459,6 +18339,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 6,
       "lines_deleted": 6,
       "allow_added": 3,
@@ -15472,6 +18358,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "35f6e07e97335927e3f408ad8a6f43261b24abde",
+      "short_hash": "35f6e07e9733",
       "date": "2022-04-18",
       "timestamp": "2022-04-18T16:46:04Z",
       "author": "Per Arne Vollan",
@@ -15503,6 +18390,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 8,
       "lines_deleted": 2,
       "allow_added": 6,
@@ -15517,6 +18408,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "680e3e9cb7de9df85fa2731328e6873ea16f9adc",
+      "short_hash": "680e3e9cb7de",
       "date": "2022-04-15",
       "timestamp": "2022-04-15T23:26:44Z",
       "author": "Brent Fulgham",
@@ -15544,6 +18436,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKit/webpushd/mac/com.apple.WebKit.webpushd.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 19,
       "lines_deleted": 3,
       "allow_added": 8,
@@ -15558,6 +18457,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6ced3b519689536e6e4d36b9e46e78be9e6f4706",
+      "short_hash": "6ced3b519689",
       "date": "2022-04-14",
       "timestamp": "2022-04-14T19:13:11Z",
       "author": "J Pascoe",
@@ -15664,6 +18564,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "vm.footprint_suspend"
       ],
       "files": [],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/WebPreferencesExperimental.yaml",
+        "Source/WebCore/page/RuntimeEnabledFeatures.h",
+        "Source/WebCore/platform/RuntimeApplicationChecks.cpp",
+        "Source/WebCore/platform/RuntimeApplicationChecks.h",
+        "Source/WebKit/Configurations/WebAuthnService.xcconfig",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Platform/ExtraPrivateSymbolsForTAPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm",
+        "Source/WebKit/Sources.txt",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/API/C/WKPreferences.cpp",
+        "Source/WebKit/UIProcess/API/C/WKPreferencesRefPrivate.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPool.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPoolPrivate.h",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/cocoa/ProcessLauncherCocoa.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Authenticator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalAuthenticator.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.h",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.messages.in",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnService/Info-OSX.plist",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnService/Info-iOS.plist",
+        "Source/WebKit/WebAuthnProcess/EntryPoint/Cocoa/XPCService/WebAuthnServiceEntryPoint.mm",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.cpp",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.h",
+        "Source/WebKit/WebAuthnProcess/WebAuthnConnectionToWebProcess.messages.in"
+      ],
+      "total_commit_files_count": 59,
       "lines_added": 1,
       "lines_deleted": 457,
       "allow_added": 1,
@@ -15678,6 +18621,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1db0b588600568ef1da9ce02d5b18d24a43002cb",
+      "short_hash": "1db0b5886005",
       "date": "2022-04-12",
       "timestamp": "2022-04-12T17:43:53Z",
       "author": "Youenn Fablet",
@@ -15699,6 +18643,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -15713,6 +18661,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2cc161af2d7445bdba97fe5f42daba3a115c9f6a",
+      "short_hash": "2cc161af2d74",
       "date": "2022-04-08",
       "timestamp": "2022-04-08T20:29:38Z",
       "author": "Commit Queue",
@@ -15736,6 +18685,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -15750,6 +18706,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6012d0886cab08d916980c97fb44fbd2061ddea4",
+      "short_hash": "6012d0886cab",
       "date": "2022-04-07",
       "timestamp": "2022-04-07T21:05:05Z",
       "author": "Per Arne Vollan",
@@ -15771,6 +18728,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -15784,6 +18743,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "df136c207e8ce297321a2ca33776c7f8d431c309",
+      "short_hash": "df136c207e8c",
       "date": "2022-04-05",
       "timestamp": "2022-04-05T21:52:00Z",
       "author": "Commit Queue",
@@ -15807,6 +18767,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -15821,6 +18788,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6e426879d0928059689542c73e95cf942a8b55d6",
+      "short_hash": "6e426879d092",
       "date": "2022-03-31",
       "timestamp": "2022-03-31T20:55:12Z",
       "author": "Alex Christensen",
@@ -15849,6 +18817,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 14,
       "lines_deleted": 0,
       "allow_added": 7,
@@ -15863,6 +18833,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0cc20f758f43773bda2fa3b75845b9691870720f",
+      "short_hash": "0cc20f758f43",
       "date": "2022-03-31",
       "timestamp": "2022-03-31T08:40:01Z",
       "author": "Per Arne Vollan",
@@ -15894,6 +18865,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/Scripts/Preferences/WebPreferencesInternal.yaml",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 23,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -15907,6 +18883,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "310b86fe3f006174452feb92d4a9f003891b1560",
+      "short_hash": "310b86fe3f00",
       "date": "2022-03-28",
       "timestamp": "2022-03-28T19:33:54Z",
       "author": "Per Arne Vollan",
@@ -15934,6 +18911,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -15948,6 +18927,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "019c5615f675cb731f4cc5a2c6d81eb283994b7c",
+      "short_hash": "019c5615f675",
       "date": "2022-03-26",
       "timestamp": "2022-03-26T20:30:34Z",
       "author": "David Quesada",
@@ -15977,6 +18957,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -15991,6 +18978,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "65c0305eeac1bc9d7d29ade0427c48064fcf970e",
+      "short_hash": "65c0305eeac1",
       "date": "2022-03-25",
       "timestamp": "2022-03-25T18:39:20Z",
       "author": "Michael Saboff",
@@ -16014,6 +19002,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -16027,6 +19017,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "05130a953dbd04f5a6543641476b20ea9cd4dc2d",
+      "short_hash": "05130a953dbd",
       "date": "2022-03-24",
       "timestamp": "2022-03-24T23:14:15Z",
       "author": "Per Arne Vollan",
@@ -16050,6 +19041,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -16064,6 +19062,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a468df5e78f8d211c4696ed29afeea0e165d31c4",
+      "short_hash": "a468df5e78f8",
       "date": "2022-03-24",
       "timestamp": "2022-03-24T21:39:08Z",
       "author": "Michael Saboff",
@@ -16097,6 +19096,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources-output.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 13,
       "lines_added": 71,
       "lines_deleted": 0,
       "allow_added": 32,
@@ -16110,6 +19120,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4f69690a0415079413d2e32cdd65c79d08aca2c0",
+      "short_hash": "4f69690a0415",
       "date": "2022-03-23",
       "timestamp": "2022-03-23T05:26:13Z",
       "author": "Alex Christensen",
@@ -16135,6 +19146,24 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/html/HTMLAnchorElement.cpp",
+        "Source/WebCore/html/HTMLAnchorElement.h",
+        "Source/WebCore/loader/PrivateClickMeasurement.cpp",
+        "Source/WebCore/loader/PrivateClickMeasurement.h",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/NetworkProcess/NetworkSession.cpp",
+        "Source/WebKit/NetworkProcess/NetworkSession.h",
+        "Source/WebKit/NetworkProcess/cocoa/AppStoreDaemonSPI.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/EventAttribution.mm"
+      ],
+      "total_commit_files_count": 16,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -16149,6 +19178,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "79808fe591b87f4af656ba11e7ed14627860824f",
+      "short_hash": "79808fe591b8",
       "date": "2022-03-22",
       "timestamp": "2022-03-22T17:43:51Z",
       "author": "Per Arne Vollan",
@@ -16172,6 +19202,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.h",
+        "Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.mm",
+        "Source/WebKit/Shared/Cocoa/LoadParametersCocoa.mm",
+        "Source/WebKit/Shared/LoadParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.h",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.messages.in",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.cpp",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.h",
+        "Source/WebKit/WebProcess/Network/WebResourceLoader.messages.in",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -16185,6 +19237,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7e4c6d35f4282c81bee9d42d9362ffeb5ec73875",
+      "short_hash": "7e4c6d35f428",
       "date": "2022-03-21",
       "timestamp": "2022-03-21T19:11:22Z",
       "author": "Per Arne Vollan",
@@ -16210,6 +19263,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -16224,6 +19279,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "897975f4c5348cfa313c4a35d22f674a9536e230",
+      "short_hash": "897975f4c534",
       "date": "2022-03-17",
       "timestamp": "2022-03-17T20:14:28Z",
       "author": "Adam Mazander",
@@ -16258,6 +19314,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 58,
       "lines_deleted": 59,
       "allow_added": 0,
@@ -16271,6 +19329,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "60038f5dd23b3eab705a2c0c6cc15297dab7b5be",
+      "short_hash": "60038f5dd23b",
       "date": "2022-03-09",
       "timestamp": "2022-03-09T02:09:57Z",
       "author": "Alex Christensen",
@@ -16294,6 +19353,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -16308,6 +19369,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f7cb6eaad1c9ded2565cce540beed7164570b2c3",
+      "short_hash": "f7cb6eaad1c9",
       "date": "2022-03-08",
       "timestamp": "2022-03-08T17:15:30Z",
       "author": "Alex Christensen",
@@ -16353,6 +19415,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 44,
       "lines_deleted": 18,
       "allow_added": 22,
@@ -16367,6 +19431,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bfd069b59bc0a911a75c5ffc8c26ceda1c65bf42",
+      "short_hash": "bfd069b59bc0",
       "date": "2022-03-02",
       "timestamp": "2022-03-02T16:45:29Z",
       "author": "Per Arne Vollan",
@@ -16391,6 +19456,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -16404,6 +19471,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8e62b9d7d42655484b8e8e93d3e98650ff067a0c",
+      "short_hash": "8e62b9d7d426",
       "date": "2022-02-28",
       "timestamp": "2022-02-28T19:57:39Z",
       "author": "Alex Christensen",
@@ -16430,6 +19498,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -16443,6 +19513,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6fb43a47692d30303757a5fc8d97847df03dd81b",
+      "short_hash": "6fb43a47692d",
       "date": "2022-02-22",
       "timestamp": "2022-02-22T17:55:54Z",
       "author": "Brent Fulgham",
@@ -16466,6 +19537,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -16480,6 +19555,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "716634adaead460daaa3a90dbd098e99339e4354",
+      "short_hash": "716634adaead",
       "date": "2022-02-22",
       "timestamp": "2022-02-22T04:57:51Z",
       "author": "Alex Christensen",
@@ -16525,6 +19601,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 31,
       "lines_deleted": 0,
       "allow_added": 25,
@@ -16539,6 +19619,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08e650d25e9aa303cbc6451d9ae8c3696284613b",
+      "short_hash": "08e650d25e9a",
       "date": "2022-02-19",
       "timestamp": "2022-02-19T00:52:16Z",
       "author": "Per Arne Vollan",
@@ -16564,6 +19645,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -16577,6 +19660,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "72c3d061041835a4c5cf3964cfb87fb225f0c057",
+      "short_hash": "72c3d0610418",
       "date": "2022-02-19",
       "timestamp": "2022-02-19T00:27:04Z",
       "author": "Per Arne Vollan",
@@ -16641,6 +19725,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebPageCreationParameters.cpp",
+        "Source/WebKit/Shared/WebPageCreationParameters.h",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 25,
       "allow_added": 0,
@@ -16655,6 +19747,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e43bc707a8573ddbf8db2d6ae724da9c91ac9f3e",
+      "short_hash": "e43bc707a857",
       "date": "2022-02-19",
       "timestamp": "2022-02-19T00:18:58Z",
       "author": "Per Arne Vollan",
@@ -16681,6 +19774,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -16695,6 +19790,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "525d6290e7bcc337d8595326bbe8ac4a648ea946",
+      "short_hash": "525d6290e7bc",
       "date": "2022-02-07",
       "timestamp": "2022-02-07T18:44:37Z",
       "author": "Per Arne Vollan",
@@ -16721,6 +19817,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 10,
       "lines_deleted": 11,
       "allow_added": 7,
@@ -16736,6 +19834,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "58d2374e3a29f028761e7d647af8a96b26c081b5",
+      "short_hash": "58d2374e3a29",
       "date": "2022-02-07",
       "timestamp": "2022-02-07T18:20:46Z",
       "author": "Per Arne Vollan",
@@ -16759,6 +19858,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -16773,6 +19877,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "890fe0c39d7a9b29f5184bce5f8ad50798d2a92b",
+      "short_hash": "890fe0c39d7a",
       "date": "2022-02-05",
       "timestamp": "2022-02-05T03:30:56Z",
       "author": "Per Arne Vollan",
@@ -16797,6 +19902,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -16811,6 +19924,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7ddd37b4adb9033ead70433f4d4139f83fae228d",
+      "short_hash": "7ddd37b4adb9",
       "date": "2022-02-04",
       "timestamp": "2022-02-04T22:17:55Z",
       "author": "Per Arne Vollan",
@@ -16847,6 +19961,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 15,
       "allow_added": 0,
@@ -16861,6 +19977,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7052d51843dd15d3481511fd1eff0fa5bd999b29",
+      "short_hash": "7052d51843dd",
       "date": "2022-02-04",
       "timestamp": "2022-02-04T18:58:02Z",
       "author": "Commit Queue",
@@ -16887,6 +20004,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 10,
       "lines_deleted": 9,
       "allow_added": 0,
@@ -16901,6 +20020,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "40a81b059567760ec4802f458396b061150d9043",
+      "short_hash": "40a81b059567",
       "date": "2022-02-04",
       "timestamp": "2022-02-04T18:42:08Z",
       "author": "Commit Queue",
@@ -16937,6 +20057,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 15,
       "lines_deleted": 13,
       "allow_added": 0,
@@ -16951,6 +20073,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f543a254e36e2aa7f9ee3b24e5991506bbd1ce2b",
+      "short_hash": "f543a254e36e",
       "date": "2022-02-04",
       "timestamp": "2022-02-04T18:21:16Z",
       "author": "Per Arne Vollan",
@@ -16987,6 +20110,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 15,
       "allow_added": 0,
@@ -17001,6 +20126,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "970a13e3f2e0c19e4a3461f5e0fa9053ea37b7c1",
+      "short_hash": "970a13e3f2e0",
       "date": "2022-02-04",
       "timestamp": "2022-02-04T18:17:30Z",
       "author": "Per Arne Vollan",
@@ -17024,6 +20150,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -17038,6 +20169,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5dce7a7cf7a5604a892033883e830d62a05857a4",
+      "short_hash": "5dce7a7cf7a5",
       "date": "2022-02-04",
       "timestamp": "2022-02-04T16:05:26Z",
       "author": "Per Arne Vollan",
@@ -17069,6 +20201,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 10,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -17083,6 +20219,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "27873c25d1e7be46b58c32c5d32694d9c0f8f218",
+      "short_hash": "27873c25d1e7",
       "date": "2022-02-03",
       "timestamp": "2022-02-03T21:23:17Z",
       "author": "Per Arne Vollan",
@@ -17110,6 +20247,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -17124,6 +20263,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ad452bf1d14a83c81a686c8ab9f72b3dae19f4a6",
+      "short_hash": "ad452bf1d14a",
       "date": "2022-02-03",
       "timestamp": "2022-02-03T20:50:16Z",
       "author": "Per Arne Vollan",
@@ -17150,6 +20290,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 9,
       "lines_deleted": 10,
       "allow_added": 6,
@@ -17165,6 +20307,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a0d1f22f518d93bcdde31f43843cd580cc4e0eb7",
+      "short_hash": "a0d1f22f518d",
       "date": "2022-02-03",
       "timestamp": "2022-02-03T15:23:40Z",
       "author": "Per Arne Vollan",
@@ -17188,6 +20331,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 3,
       "allow_added": 2,
@@ -17202,6 +20347,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08fcc92a850f68877df78bfd032d206e792d54a2",
+      "short_hash": "08fcc92a850f",
       "date": "2022-02-03",
       "timestamp": "2022-02-03T15:19:27Z",
       "author": "Per Arne Vollan",
@@ -17225,6 +20371,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -17239,6 +20387,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "937bacf4c6d51e403a988aba88b0b2a090fd0260",
+      "short_hash": "937bacf4c6d5",
       "date": "2022-02-03",
       "timestamp": "2022-02-03T15:14:08Z",
       "author": "Per Arne Vollan",
@@ -17263,6 +20412,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -17277,6 +20430,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6b0c73fbeb5f41fc5d3bf381c1f024ee388fb621",
+      "short_hash": "6b0c73fbeb5f",
       "date": "2022-02-02",
       "timestamp": "2022-02-02T17:54:16Z",
       "author": "Per Arne Vollan",
@@ -17298,6 +20452,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -17312,6 +20468,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f4921760fe6e35c41c27b562873630d699245174",
+      "short_hash": "f4921760fe6e",
       "date": "2022-02-01",
       "timestamp": "2022-02-01T01:19:25Z",
       "author": "Brent Fulgham",
@@ -17352,6 +20509,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.adattributiond.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 30,
       "lines_deleted": 12,
       "allow_added": 18,
@@ -17366,6 +20525,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "20966ea8cbfda4cb63ed3f4992122d6d2aaa3db2",
+      "short_hash": "20966ea8cbfd",
       "date": "2022-01-28",
       "timestamp": "2022-01-28T00:42:42Z",
       "author": "Per Arne Vollan",
@@ -17389,6 +20549,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -17402,6 +20566,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9a04086af5e1a2bcfdbece107595405ccbf20e0f",
+      "short_hash": "9a04086af5e1",
       "date": "2022-01-22",
       "timestamp": "2022-01-22T00:21:53Z",
       "author": "Per Arne Vollan",
@@ -17427,6 +20592,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -17441,6 +20608,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ca85bc6ddd1619a93f6ae5b19e98a1f947f36825",
+      "short_hash": "ca85bc6ddd16",
       "date": "2022-01-20",
       "timestamp": "2022-01-20T04:09:15Z",
       "author": "Brent Fulgham",
@@ -17466,6 +20634,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 2,
@@ -17480,6 +20650,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81189c39b8892446733ffa711b863fbb04633309",
+      "short_hash": "81189c39b889",
       "date": "2022-01-13",
       "timestamp": "2022-01-13T21:11:10Z",
       "author": "Per Arne Vollan",
@@ -17503,6 +20674,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -17517,6 +20690,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9ecea1741ebbde7155d655e11cfce6669d4d91cd",
+      "short_hash": "9ecea1741ebb",
       "date": "2022-01-06",
       "timestamp": "2022-01-06T02:09:04Z",
       "author": "Per Arne Vollan",
@@ -17542,6 +20716,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -17556,6 +20732,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "947c6e73a4b8faa3cb932986e1bd320a5bb90af5",
+      "short_hash": "947c6e73a4b8",
       "date": "2022-01-05",
       "timestamp": "2022-01-05T21:36:20Z",
       "author": "Per Arne Vollan",
@@ -17579,6 +20756,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -17593,6 +20772,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3d4aeb0b5625c9d72b1f1fea52d02178f06f206a",
+      "short_hash": "3d4aeb0b5625",
       "date": "2022-01-04",
       "timestamp": "2022-01-04T22:14:05Z",
       "author": "Per Arne Vollan",
@@ -17616,6 +20796,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -17629,6 +20811,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fdc3d8628df392f7309f2ac7be9bbe48c2112b19",
+      "short_hash": "fdc3d8628df3",
       "date": "2021-12-16",
       "timestamp": "2021-12-16T18:57:43Z",
       "author": "Per Arne Vollan",
@@ -17652,6 +20835,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 5,
       "allow_added": 7,
@@ -17666,6 +20851,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "49b280fc04ed9afba8bcc0b47cd54ad7f63ffe3c",
+      "short_hash": "49b280fc04ed",
       "date": "2021-12-15",
       "timestamp": "2021-12-15T20:51:38Z",
       "author": "Per Arne Vollan",
@@ -17689,6 +20875,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -17703,6 +20891,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2c01162fa22bd5a1a91b56e857e754af32c5dd53",
+      "short_hash": "2c01162fa22b",
       "date": "2021-12-15",
       "timestamp": "2021-12-15T10:16:10Z",
       "author": "Per Arne Vollan",
@@ -17726,6 +20915,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -17740,6 +20931,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e5f3ab2a95b4f523587339f29fd605fd41688ad1",
+      "short_hash": "e5f3ab2a95b4",
       "date": "2021-12-13",
       "timestamp": "2021-12-13T21:21:07Z",
       "author": "Per Arne Vollan",
@@ -17765,6 +20957,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -17779,6 +20973,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "189df2ed4d5f18ce65510eb29585f61e1a9ab365",
+      "short_hash": "189df2ed4d5f",
       "date": "2021-12-10",
       "timestamp": "2021-12-10T19:34:01Z",
       "author": "Per Arne Vollan",
@@ -17802,6 +20997,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -17816,6 +21019,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "57911003271ca00778b9d72289a4a6e55e2c0de1",
+      "short_hash": "57911003271c",
       "date": "2021-12-10",
       "timestamp": "2021-12-10T16:33:19Z",
       "author": "Per Arne Vollan",
@@ -17845,6 +21049,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 3,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -17858,6 +21068,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0d86c17ce0406b344a90404e0089b44cbde91139",
+      "short_hash": "0d86c17ce040",
       "date": "2021-12-08",
       "timestamp": "2021-12-08T20:04:20Z",
       "author": "Per Arne Vollan",
@@ -17935,6 +21146,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 19,
       "lines_deleted": 73,
       "allow_added": 2,
@@ -17948,6 +21161,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9a46f3995823fcad80b370746f675edcc7a9dceb",
+      "short_hash": "9a46f3995823",
       "date": "2021-12-07",
       "timestamp": "2021-12-07T07:30:07Z",
       "author": "Per Arne Vollan",
@@ -17973,6 +21187,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -17987,6 +21209,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cde06deafd20ca10368ed3aa0f37dcb0e68d4bc0",
+      "short_hash": "cde06deafd20",
       "date": "2021-12-06",
       "timestamp": "2021-12-06T19:45:31Z",
       "author": "Per Arne Vollan",
@@ -18013,6 +21236,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 21,
       "allow_added": 0,
@@ -18027,6 +21254,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "27356d650709967b5194f487e384cbf7d878b768",
+      "short_hash": "27356d650709",
       "date": "2021-12-03",
       "timestamp": "2021-12-03T01:14:02Z",
       "author": "Per Arne Vollan",
@@ -18264,6 +21492,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 358,
       "lines_deleted": 272,
       "allow_added": 231,
@@ -18278,6 +21510,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1893d9b2e3c64c47f2200f203ad30fded8218e41",
+      "short_hash": "1893d9b2e3c6",
       "date": "2021-12-03",
       "timestamp": "2021-12-03T00:35:11Z",
       "author": "Per Arne Vollan",
@@ -18323,6 +21556,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 39,
       "lines_deleted": 21,
       "allow_added": 23,
@@ -18337,6 +21576,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "db3fac58d58807a872461422d7066efb973a47c8",
+      "short_hash": "db3fac58d588",
       "date": "2021-12-02",
       "timestamp": "2021-12-02T23:48:09Z",
       "author": "Per Arne Vollan",
@@ -18366,6 +21606,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 9,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -18380,6 +21626,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9402e2885710bdcb2217622f468c9ed9355d41f7",
+      "short_hash": "9402e2885710",
       "date": "2021-12-02",
       "timestamp": "2021-12-02T19:19:01Z",
       "author": "Commit Queue",
@@ -18425,6 +21672,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 21,
       "lines_deleted": 39,
       "allow_added": 19,
@@ -18439,6 +21692,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "faa47dc462d9f3e83af5c2a9160ac7edf1231ef4",
+      "short_hash": "faa47dc462d9",
       "date": "2021-12-02",
       "timestamp": "2021-12-02T18:44:46Z",
       "author": "Per Arne Vollan",
@@ -18484,6 +21738,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 39,
       "lines_deleted": 21,
       "allow_added": 23,
@@ -18498,6 +21758,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6695d319842878b7c7675f6c82adca88ae474c95",
+      "short_hash": "6695d3198428",
       "date": "2021-12-02",
       "timestamp": "2021-12-02T16:28:38Z",
       "author": "Per Arne Vollan",
@@ -18528,6 +21789,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 15,
       "lines_deleted": 0,
       "allow_added": 12,
@@ -18541,6 +21804,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "437692f05f209b776d8b69c4d8a77f4d10a7cb83",
+      "short_hash": "437692f05f20",
       "date": "2021-11-29",
       "timestamp": "2021-11-29T23:10:37Z",
       "author": "Per Arne Vollan",
@@ -18581,6 +21845,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 19,
       "lines_deleted": 17,
       "allow_added": 1,
@@ -18595,6 +21861,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d3c86c49ba83fcc7c6f9e7f3f8c1acf223e5d2a9",
+      "short_hash": "d3c86c49ba83",
       "date": "2021-11-18",
       "timestamp": "2021-11-18T23:01:57Z",
       "author": "Per Arne Vollan",
@@ -18652,6 +21919,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 43,
       "lines_deleted": 0,
       "allow_added": 36,
@@ -18666,6 +21938,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cd277deb6b8c2c016322c9b7133a991566b72be8",
+      "short_hash": "cd277deb6b8c",
       "date": "2021-11-18",
       "timestamp": "2021-11-18T20:54:55Z",
       "author": "Per Arne Vollan",
@@ -18687,6 +21960,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -18701,6 +21976,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9e535b322c3bf74c09428a2f04e0f8ba7d5869ee",
+      "short_hash": "9e535b322c3b",
       "date": "2021-11-18",
       "timestamp": "2021-11-18T15:56:37Z",
       "author": "Per Arne Vollan",
@@ -18829,6 +22105,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 95,
       "lines_deleted": 182,
       "allow_added": 13,
@@ -18843,6 +22121,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "53b326bfb4f058a54fdc0b13974dbf786df01b42",
+      "short_hash": "53b326bfb4f0",
       "date": "2021-11-17",
       "timestamp": "2021-11-17T02:00:06Z",
       "author": "Per Arne Vollan",
@@ -18877,6 +22156,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 16,
       "lines_deleted": 13,
       "allow_added": 0,
@@ -18890,6 +22171,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a8b0ae29847724d9674769bdc3b04c425e35273c",
+      "short_hash": "a8b0ae298477",
       "date": "2021-11-16",
       "timestamp": "2021-11-16T22:46:04Z",
       "author": "Per Arne Vollan",
@@ -18911,6 +22193,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -18925,6 +22211,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3fff5624ac8b31f3e5848fee2beef1428ca0ee56",
+      "short_hash": "3fff5624ac8b",
       "date": "2021-11-16",
       "timestamp": "2021-11-16T20:20:46Z",
       "author": "Per Arne Vollan",
@@ -18946,6 +22233,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 11,
       "allow_added": 0,
@@ -18960,6 +22251,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a0165d520f5add4ac246ff8045d9868e98741d8e",
+      "short_hash": "a0165d520f5a",
       "date": "2021-11-13",
       "timestamp": "2021-11-13T16:09:17Z",
       "author": "Per Arne Vollan",
@@ -19018,6 +22310,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 39,
       "lines_deleted": 0,
       "allow_added": 35,
@@ -19032,6 +22326,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0e378d202b7f045022c780d4ef2284d5dcd6e7f4",
+      "short_hash": "0e378d202b7f",
       "date": "2021-11-12",
       "timestamp": "2021-11-12T23:45:58Z",
       "author": "Per Arne Vollan",
@@ -19058,6 +22353,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -19072,6 +22369,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9ab11db026596f111c803db47f19c48037538646",
+      "short_hash": "9ab11db02659",
       "date": "2021-11-12",
       "timestamp": "2021-11-12T16:32:32Z",
       "author": "Per Arne Vollan",
@@ -19105,6 +22403,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 51,
       "allow_added": 0,
@@ -19119,6 +22419,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "182b517663ff819784839c7c00afe65813c9300f",
+      "short_hash": "182b517663ff",
       "date": "2021-11-11",
       "timestamp": "2021-11-11T00:26:20Z",
       "author": "Per Arne Vollan",
@@ -19146,6 +22447,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -19160,6 +22467,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "93d2e7bf275b8f93e94af72150e66450165c1092",
+      "short_hash": "93d2e7bf275b",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T19:04:38Z",
       "author": "Per Arne Vollan",
@@ -19195,6 +22503,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 9,
       "lines_deleted": 116,
       "allow_added": 2,
@@ -19209,6 +22519,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b8f1a767ef37d989ee2349c6cd1be66b901a5e7d",
+      "short_hash": "b8f1a767ef37",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T17:15:29Z",
       "author": "Per Arne Vollan",
@@ -19260,6 +22571,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 35,
       "allow_added": 0,
@@ -19274,6 +22587,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "138dc8c3a997ad527f2825d4bf636879e4400013",
+      "short_hash": "138dc8c3a997",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T17:12:43Z",
       "author": "Per Arne Vollan",
@@ -19299,6 +22613,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -19313,6 +22629,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8855dc419b496652247f583c085ba2eccad6fd25",
+      "short_hash": "8855dc419b49",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T17:09:59Z",
       "author": "Per Arne Vollan",
@@ -19336,6 +22653,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -19350,6 +22669,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8cfbc7941b792a696242e1deb825c0c2f373e06e",
+      "short_hash": "8cfbc7941b79",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T05:14:47Z",
       "author": "Per Arne Vollan",
@@ -19371,6 +22691,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -19385,6 +22707,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9348fabcd89e359a27a73aa8c45f70565260a162",
+      "short_hash": "9348fabcd89e",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T04:59:09Z",
       "author": "Per Arne Vollan",
@@ -19441,6 +22764,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 51,
       "allow_added": 0,
@@ -19455,6 +22780,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0d8e7dae65b36ad26d1946a511235ae3b973c77a",
+      "short_hash": "0d8e7dae65b3",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T01:03:51Z",
       "author": "Per Arne Vollan",
@@ -19484,6 +22810,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 5,
@@ -19498,6 +22826,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "02ceb636b84fb03dfedc170e2381c83ea6695710",
+      "short_hash": "02ceb636b84f",
       "date": "2021-11-10",
       "timestamp": "2021-11-10T00:52:14Z",
       "author": "Per Arne Vollan",
@@ -19534,6 +22863,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 33,
       "allow_added": 0,
@@ -19548,6 +22879,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "69e19953007295527674f73a59c8b01d3c6b2c09",
+      "short_hash": "69e199530072",
       "date": "2021-11-09",
       "timestamp": "2021-11-09T17:51:49Z",
       "author": "Brent Fulgham",
@@ -19573,6 +22905,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -19587,6 +22921,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f7cf235110e9bef07efa09f16c927063a4dba03d",
+      "short_hash": "f7cf235110e9",
       "date": "2021-11-08",
       "timestamp": "2021-11-08T22:48:17Z",
       "author": "Brent Fulgham",
@@ -19612,6 +22947,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -19626,6 +22965,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e2ec54a7da98b88fac6c05d5b062c7f188ddae5f",
+      "short_hash": "e2ec54a7da98",
       "date": "2021-11-08",
       "timestamp": "2021-11-08T18:36:12Z",
       "author": "Per Arne Vollan",
@@ -19662,6 +23002,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 18,
       "lines_deleted": 26,
       "allow_added": 6,
@@ -19676,6 +23027,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "32c3f9234ab684f83aa1b94aff17cc64c25ff163",
+      "short_hash": "32c3f9234ab6",
       "date": "2021-11-04",
       "timestamp": "2021-11-04T16:28:50Z",
       "author": "Brent Fulgham",
@@ -19697,6 +23049,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 15,
       "lines_deleted": 2,
       "allow_added": 7,
@@ -19711,6 +23065,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "82ec46deca0e5f4e9cc21c5c918790f2fa30c70d",
+      "short_hash": "82ec46deca0e",
       "date": "2021-10-26",
       "timestamp": "2021-10-26T14:28:58Z",
       "author": "Per Arne Vollan",
@@ -19738,6 +23093,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 9,
       "lines_deleted": 5,
       "allow_added": 1,
@@ -19752,6 +23109,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5147948b7120696d9d0827e62d78ac517dae1d2f",
+      "short_hash": "5147948b7120",
       "date": "2021-10-22",
       "timestamp": "2021-10-22T18:41:21Z",
       "author": "Per Arne Vollan",
@@ -19778,6 +23136,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -19792,6 +23152,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1d76d6b98ff4aeaec929b69872d7f1a35e102c79",
+      "short_hash": "1d76d6b98ff4",
       "date": "2021-10-19",
       "timestamp": "2021-10-19T21:37:49Z",
       "author": "Commit Queue",
@@ -19813,6 +23174,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/Sandbox/util.sb"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -19827,6 +23192,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "945aab756d9ed25cb7e5165a9fdc88974d8e36ce",
+      "short_hash": "945aab756d9e",
       "date": "2021-10-15",
       "timestamp": "2021-10-15T15:50:31Z",
       "author": "Per Arne Vollan",
@@ -19852,6 +23218,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -19866,6 +23234,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "aba08da57f4bab977ca5b8bfcb98cc8b8c02ccff",
+      "short_hash": "aba08da57f4b",
       "date": "2021-10-13",
       "timestamp": "2021-10-13T19:05:37Z",
       "author": "Per Arne Vollan",
@@ -19905,6 +23274,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 19,
       "lines_deleted": 3,
       "allow_added": 17,
@@ -19919,6 +23292,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "53c69f3b8b8c84f247c055deda1576e2eb401fc7",
+      "short_hash": "53c69f3b8b8c",
       "date": "2021-10-13",
       "timestamp": "2021-10-13T17:00:39Z",
       "author": "Per Arne Vollan",
@@ -19940,6 +23314,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/Sandbox/util.sb"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -19954,6 +23332,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9b2718aee8281557fa2532e6950464c0e8a47d40",
+      "short_hash": "9b2718aee828",
       "date": "2021-10-12",
       "timestamp": "2021-10-12T23:16:41Z",
       "author": "Alex Christensen",
@@ -19971,6 +23350,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "tags": [],
       "rules": [],
       "files": [],
+      "code_files": [
+        "Source/WebKit/Configurations/adattributiond.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/adattributiond.c",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/EventAttribution.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 0,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -19985,6 +23373,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "83cf18fdca72536ac5758bfddc990939e5b42c6c",
+      "short_hash": "83cf18fdca72",
       "date": "2021-10-12",
       "timestamp": "2021-10-12T19:03:13Z",
       "author": "Brent Fulgham",
@@ -20019,6 +23408,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 73,
       "lines_deleted": 36,
       "allow_added": 63,
@@ -20033,6 +23429,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "574fb7ab4a9075f2423347c81b57923c88210a3d",
+      "short_hash": "574fb7ab4a90",
       "date": "2021-10-12",
       "timestamp": "2021-10-12T17:58:08Z",
       "author": "Per Arne Vollan",
@@ -20059,6 +23456,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -20073,6 +23472,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "87d88025bf5a3089e68b4466a12dd1cb2584d557",
+      "short_hash": "87d88025bf5a",
       "date": "2021-10-12",
       "timestamp": "2021-10-12T11:02:40Z",
       "author": "Per Arne Vollan",
@@ -20168,6 +23568,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 108,
       "lines_deleted": 106,
       "allow_added": 2,
@@ -20182,6 +23584,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9b4950f033bfebe54f0b02a3a6bc3ef716d9ce7e",
+      "short_hash": "9b4950f033bf",
       "date": "2021-10-12",
       "timestamp": "2021-10-12T09:48:38Z",
       "author": "Commit Queue",
@@ -20205,6 +23608,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -20219,6 +23626,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "41cd583680ac30e4b51b7a14a3f3efe0845f8026",
+      "short_hash": "41cd583680ac",
       "date": "2021-10-11",
       "timestamp": "2021-10-11T16:04:38Z",
       "author": "Alex Christensen",
@@ -20260,6 +23668,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.AdAttributionDaemon.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/AdAttributionDaemon.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 117,
       "lines_deleted": 0,
       "allow_added": 55,
@@ -20273,6 +23688,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0334ca145418c34dda11716816b7622448c5ca29",
+      "short_hash": "0334ca145418",
       "date": "2021-10-11",
       "timestamp": "2021-10-11T13:48:11Z",
       "author": "Per Arne Vollan",
@@ -20439,6 +23855,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 141,
       "lines_deleted": 141,
       "allow_added": 0,
@@ -20453,6 +23871,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dddebe3c72abaf0856d47477151f3ce3172aaa2d",
+      "short_hash": "dddebe3c72ab",
       "date": "2021-10-11",
       "timestamp": "2021-10-11T11:50:26Z",
       "author": "Per Arne Vollan",
@@ -20476,6 +23895,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -20490,6 +23913,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "703bfef6ec237d7e0fa30ae4dc9106a96311b3e0",
+      "short_hash": "703bfef6ec23",
       "date": "2021-10-11",
       "timestamp": "2021-10-11T08:14:39Z",
       "author": "Per Arne Vollan",
@@ -20513,6 +23937,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 2,
       "allow_added": 3,
@@ -20527,6 +23953,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2d08542502cb47d9297f334b0cbd4e10b2cb5b49",
+      "short_hash": "2d08542502cb",
       "date": "2021-10-01",
       "timestamp": "2021-10-01T17:07:54Z",
       "author": "Per Arne Vollan",
@@ -20553,6 +23980,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -20567,6 +23998,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b8062739b7eea107793543d43cccb05ff7488faf",
+      "short_hash": "b8062739b7ee",
       "date": "2021-09-30",
       "timestamp": "2021-09-30T20:05:55Z",
       "author": "Per Arne Vollan",
@@ -20685,6 +24117,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 98,
       "lines_deleted": 0,
       "allow_added": 95,
@@ -20699,6 +24135,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4413b540331caa104829bbb55366d088ea6368c6",
+      "short_hash": "4413b540331c",
       "date": "2021-09-30",
       "timestamp": "2021-09-30T20:05:31Z",
       "author": "Per Arne Vollan",
@@ -20850,6 +24287,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 131,
       "lines_deleted": 0,
       "allow_added": 128,
@@ -20864,6 +24305,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a6b9a38101983f98bd5a5e2039468060d088b967",
+      "short_hash": "a6b9a3810198",
       "date": "2021-09-29",
       "timestamp": "2021-09-29T20:06:54Z",
       "author": "Per Arne Vollan",
@@ -20898,6 +24340,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 90,
       "lines_deleted": 84,
       "allow_added": 7,
@@ -20912,6 +24358,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "03438bff22ab43d92292ead00d9595b61d11912b",
+      "short_hash": "03438bff22ab",
       "date": "2021-09-29",
       "timestamp": "2021-09-29T00:26:36Z",
       "author": "Brent Fulgham",
@@ -20951,6 +24398,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 76,
       "allow_added": 0,
@@ -20965,6 +24414,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7a89fe6c345e44a811bd84bba77400984935840e",
+      "short_hash": "7a89fe6c345e",
       "date": "2021-09-28",
       "timestamp": "2021-09-28T21:16:29Z",
       "author": "Brent Fulgham",
@@ -20996,6 +24446,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 2,
       "lines_deleted": 17,
       "allow_added": 0,
@@ -21010,6 +24462,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b9f2cf44ea80bb0eecde2fa031a10c3912bf3025",
+      "short_hash": "b9f2cf44ea80",
       "date": "2021-09-28",
       "timestamp": "2021-09-28T19:15:02Z",
       "author": "Brent Fulgham",
@@ -21043,6 +24496,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 21,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -21057,6 +24517,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2bb46c853e77e0b9354f6dddc40c7b434e17e256",
+      "short_hash": "2bb46c853e77",
       "date": "2021-09-28",
       "timestamp": "2021-09-28T18:06:40Z",
       "author": "Per Arne Vollan",
@@ -21085,6 +24546,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/NetworkProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.messages.in",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.h",
+        "Source/WebKit/WebAuthnProcess/WebAuthnProcess.cpp",
+        "Source/WebKit/WebAuthnProcess/WebAuthnProcess.h",
+        "Source/WebKit/WebAuthnProcess/WebAuthnProcess.messages.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in"
+      ],
+      "total_commit_files_count": 13,
       "lines_added": 0,
       "lines_deleted": 13,
       "allow_added": 0,
@@ -21099,6 +24574,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9f8ae29e84fb626930cdc8d0ef4c812d81aed15c",
+      "short_hash": "9f8ae29e84fb",
       "date": "2021-09-28",
       "timestamp": "2021-09-28T18:06:16Z",
       "author": "Per Arne Vollan",
@@ -21132,6 +24608,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 87,
       "lines_deleted": 86,
       "allow_added": 1,
@@ -21146,6 +24626,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fe524f631d1e23997c1db625763d739dd3f7a942",
+      "short_hash": "fe524f631d1e",
       "date": "2021-09-27",
       "timestamp": "2021-09-27T16:35:47Z",
       "author": "Per Arne Vollan",
@@ -21172,6 +24653,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 10,
       "allow_added": 0,
@@ -21186,6 +24669,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "19c51d6074b5d2668dabc8c245daa2f378c924e9",
+      "short_hash": "19c51d6074b5",
       "date": "2021-09-24",
       "timestamp": "2021-09-24T21:43:26Z",
       "author": "Per Arne Vollan",
@@ -21257,6 +24741,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/PluginProcess/mac/com.apple.WebKit.plugin-common.sb.in",
+        "Source/WebKit/Shared/Sandbox/preferences.sb",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 11,
       "lines_added": 26,
       "lines_deleted": 103,
       "allow_added": 24,
@@ -21271,6 +24765,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6686bff35aaa291074e63f1d1524808d8c1085e8",
+      "short_hash": "6686bff35aaa",
       "date": "2021-09-24",
       "timestamp": "2021-09-24T16:42:40Z",
       "author": "Per Arne Vollan",
@@ -21298,6 +24793,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 10,
       "allow_added": 0,
@@ -21312,6 +24809,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ea273d044d5985c42dcbe0846017fc6373b98fe1",
+      "short_hash": "ea273d044d59",
       "date": "2021-09-22",
       "timestamp": "2021-09-22T21:05:52Z",
       "author": "Alex Christensen",
@@ -21337,6 +24835,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/AdAttributionDaemon.xcconfig",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/AdAttributionDaemon.c",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/EventAttribution.mm"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -21350,6 +24856,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3322c532940a820c3945a625a03215a87a19d394",
+      "short_hash": "3322c532940a",
       "date": "2021-09-21",
       "timestamp": "2021-09-21T21:09:30Z",
       "author": "Per Arne Vollan",
@@ -21377,6 +24884,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 10,
       "allow_added": 2,
@@ -21391,6 +24900,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4efb7f319bdc82299998ca6d37e9d03dca9c22e8",
+      "short_hash": "4efb7f319bdc",
       "date": "2021-09-02",
       "timestamp": "2021-09-02T22:44:04Z",
       "author": "Per Arne Vollan",
@@ -21412,6 +24922,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -21425,6 +24937,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "881e8b5f92c314d5de7f5177a7ed98455181721c",
+      "short_hash": "881e8b5f92c3",
       "date": "2021-08-03",
       "timestamp": "2021-08-03T22:52:11Z",
       "author": "Brent Fulgham",
@@ -21452,6 +24965,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -21466,6 +24981,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6ff48b0cc8a0c90642e0215b685cc5aba42b4cde",
+      "short_hash": "6ff48b0cc8a0",
       "date": "2021-08-03",
       "timestamp": "2021-08-03T19:24:39Z",
       "author": "Per Arne Vollan",
@@ -21489,6 +25005,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -21503,6 +25021,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6820a7e81d169ef0e70d2c3563d692b6233641eb",
+      "short_hash": "6820a7e81d16",
       "date": "2021-07-20",
       "timestamp": "2021-07-20T23:37:54Z",
       "author": "Kyle Piddington",
@@ -21526,6 +25045,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 0,
       "allow_added": 6,
@@ -21539,6 +25060,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "85e9ae1c7b3b1ee51a35472734e84a97f15e8817",
+      "short_hash": "85e9ae1c7b3b",
       "date": "2021-07-20",
       "timestamp": "2021-07-20T21:01:53Z",
       "author": "Brent Fulgham",
@@ -21564,6 +25086,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -21578,6 +25104,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cb18053524fe55b69558477bf7d8f6344aeedf69",
+      "short_hash": "cb18053524fe",
       "date": "2021-07-14",
       "timestamp": "2021-07-14T18:06:28Z",
       "author": "Eric Carlson",
@@ -21603,6 +25130,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/ios/SystemStatusSoftLink.h",
+        "Source/WebCore/PAL/pal/ios/SystemStatusSoftLink.mm",
+        "Source/WebCore/en.lproj/Localizable.strings",
+        "Source/WebKit/GPUProcess/GPUConnectionToWebProcess.cpp",
+        "Source/WebKit/GPUProcess/GPUConnectionToWebProcess.h",
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/GPUProcess/GPUProcess.h",
+        "Source/WebKit/GPUProcess/GPUProcess.messages.in",
+        "Source/WebKit/GPUProcess/cocoa/GPUConnectionToWebProcessCocoa.mm",
+        "Source/WebKit/Platform/spi/ios/SystemStatusSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/Cocoa/UserMediaCaptureManagerProxy.cpp",
+        "Source/WebKit/UIProcess/Cocoa/UserMediaCaptureManagerProxy.h",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.h",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -21617,6 +25166,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4b410c8a4c3d02eec6c70b922a9aaeabf1e0470a",
+      "short_hash": "4b410c8a4c3d",
       "date": "2021-07-09",
       "timestamp": "2021-07-09T01:40:25Z",
       "author": "Adam Mazander",
@@ -21640,6 +25190,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -21653,6 +25205,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3c70a3f55d39ebb77d25cb2ae7d691308dc3837b",
+      "short_hash": "3c70a3f55d39",
       "date": "2021-06-24",
       "timestamp": "2021-06-24T16:28:19Z",
       "author": "Brent Fulgham",
@@ -21679,6 +25232,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 14,
       "lines_deleted": 0,
       "allow_added": 6,
@@ -21693,6 +25248,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2b1487f87747c13726e622334b90687d246dc41e",
+      "short_hash": "2b1487f87747",
       "date": "2021-06-17",
       "timestamp": "2021-06-17T20:49:31Z",
       "author": "Ben Nham",
@@ -21718,6 +25274,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WTF/WTF.xcodeproj/project.pbxproj",
+        "Source/WTF/wtf/PlatformGTK.cmake",
+        "Source/WTF/wtf/PlatformJSCOnly.cmake",
+        "Source/WTF/wtf/PlatformPlayStation.cmake",
+        "Source/WTF/wtf/PlatformWPE.cmake",
+        "Source/WTF/wtf/cocoa/CPUTimeCocoa.cpp",
+        "Source/WTF/wtf/posix/CPUTimePOSIX.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -21731,6 +25298,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2248ec0dc60b1b6892833293b925dacd85e96fbf",
+      "short_hash": "2248ec0dc60b",
       "date": "2021-06-16",
       "timestamp": "2021-06-16T20:12:00Z",
       "author": "Brent Fulgham",
@@ -21760,6 +25328,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 8,
       "lines_deleted": 4,
       "allow_added": 4,
@@ -21774,6 +25349,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a705747a1538dbb82ebc30f11d5413e67a0fa758",
+      "short_hash": "a705747a1538",
       "date": "2021-06-15",
       "timestamp": "2021-06-15T18:01:04Z",
       "author": "Brent Fulgham",
@@ -21799,6 +25375,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 24,
       "lines_deleted": 5,
       "allow_added": 12,
@@ -21813,6 +25391,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3a98b79bfce75fd3278ddc05a21f24a0b4dc14ce",
+      "short_hash": "3a98b79bfce7",
       "date": "2021-06-14",
       "timestamp": "2021-06-14T17:19:38Z",
       "author": "Brent Fulgham",
@@ -21931,6 +25510,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 216,
       "lines_deleted": 449,
       "allow_added": 52,
@@ -21945,6 +25526,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1762c8f598b9c2c353b1ccd6085507b2b7a4445d",
+      "short_hash": "1762c8f598b9",
       "date": "2021-06-02",
       "timestamp": "2021-06-02T23:33:20Z",
       "author": "Brent Fulgham",
@@ -21966,6 +25548,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -21980,6 +25566,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "62349a2f100150aa1d37230eb5a6f6bf1fa53053",
+      "short_hash": "62349a2f1001",
       "date": "2021-06-02",
       "timestamp": "2021-06-02T20:34:21Z",
       "author": "Per Arne Vollan",
@@ -22001,6 +25588,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/SandboxProfiles.xcconfig",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -22015,6 +25607,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ce1511cfdc69eae8b19670c4ce436cd7d223c45e",
+      "short_hash": "ce1511cfdc69",
       "date": "2021-06-01",
       "timestamp": "2021-06-01T15:19:38Z",
       "author": "Per Arne Vollan",
@@ -22032,6 +25625,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "tags": [],
       "rules": [],
       "files": [],
+      "code_files": [
+        "Source/WebKit/DerivedSources-input.xcfilelist",
+        "Source/WebKit/DerivedSources-output.xcfilelist",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Scripts/generate-derived-sources.sh",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -22046,6 +25647,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "641ac9e36bc58175e862895c256560939b8ca3c2",
+      "short_hash": "641ac9e36bc5",
       "date": "2021-05-27",
       "timestamp": "2021-05-27T23:07:33Z",
       "author": "Brent Fulgham",
@@ -22069,6 +25671,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -22083,6 +25687,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d4d3c6c7bae0d2d71408ab7f478c56410aeea98e",
+      "short_hash": "d4d3c6c7bae0",
       "date": "2021-05-22",
       "timestamp": "2021-05-22T02:49:16Z",
       "author": "Brent Fulgham",
@@ -22134,6 +25739,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 61,
       "lines_deleted": 6,
       "allow_added": 57,
@@ -22148,6 +25760,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "72afbe2a39cb53bd2dbcf64d04aac5d016d9eddb",
+      "short_hash": "72afbe2a39cb",
       "date": "2021-05-21",
       "timestamp": "2021-05-21T22:33:21Z",
       "author": "Brent Fulgham",
@@ -22169,6 +25782,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -22183,6 +25800,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ccedf24318edb95d6e2afd99192c40bd3cc3c52c",
+      "short_hash": "ccedf24318ed",
       "date": "2021-05-20",
       "timestamp": "2021-05-20T17:00:15Z",
       "author": "Per Arne Vollan",
@@ -22204,6 +25822,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -22218,6 +25838,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "83fb745b0acb560a03fc2f1ea59e250ff562e6a6",
+      "short_hash": "83fb745b0acb",
       "date": "2021-05-13",
       "timestamp": "2021-05-13T01:13:33Z",
       "author": "Brent Fulgham",
@@ -22249,6 +25870,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 12,
       "lines_deleted": 0,
       "allow_added": 12,
@@ -22263,6 +25891,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ef824bbafb174f5a8972e8b1970315565ad36f31",
+      "short_hash": "ef824bbafb17",
       "date": "2021-05-12",
       "timestamp": "2021-05-12T22:59:16Z",
       "author": "Brent Fulgham",
@@ -22294,6 +25923,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -22308,6 +25944,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c63a81d63bac8b1fe9d195fd7cf3a424665d80b0",
+      "short_hash": "c63a81d63bac",
       "date": "2021-05-11",
       "timestamp": "2021-05-11T00:25:26Z",
       "author": "Brent Fulgham",
@@ -22335,6 +25972,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 2,
       "allow_added": 3,
@@ -22349,6 +25990,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2ba746dfd1f2708bac28eedf068b5102a76280c9",
+      "short_hash": "2ba746dfd1f2",
       "date": "2021-05-08",
       "timestamp": "2021-05-08T01:04:02Z",
       "author": "Brent Fulgham",
@@ -22375,6 +26017,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 10,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -22389,6 +26033,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8dcc29e14c18b7e94669260c6cc4b106d92bdcd5",
+      "short_hash": "8dcc29e14c18",
       "date": "2021-05-07",
       "timestamp": "2021-05-07T22:55:19Z",
       "author": "Brent Fulgham",
@@ -22414,6 +26059,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -22428,6 +26075,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "61ce38c9738caba8a9f7d20fe0326330aea24218",
+      "short_hash": "61ce38c9738c",
       "date": "2021-05-07",
       "timestamp": "2021-05-07T02:38:20Z",
       "author": "Brent Fulgham",
@@ -22451,6 +26099,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -22465,6 +26115,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "250c22d6daafbd26f42f630e4767b03cd3b64cb9",
+      "short_hash": "250c22d6daaf",
       "date": "2021-05-05",
       "timestamp": "2021-05-05T23:23:48Z",
       "author": "Per Arne Vollan",
@@ -22486,6 +26137,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -22500,6 +26155,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3c95e14bc7087c43fdf0bdc107c3c3e7aaf62238",
+      "short_hash": "3c95e14bc708",
       "date": "2021-05-05",
       "timestamp": "2021-05-05T18:43:25Z",
       "author": "Brent Fulgham",
@@ -22527,6 +26183,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -22541,6 +26204,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3c09e72e428991f093ee2da15e85fbc21efd58c3",
+      "short_hash": "3c09e72e4289",
       "date": "2021-04-30",
       "timestamp": "2021-04-30T18:39:44Z",
       "author": "Per Arne Vollan",
@@ -22566,6 +26230,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -22580,6 +26248,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3d19fd9a6c8e5030cd26dd27bd98167820388025",
+      "short_hash": "3d19fd9a6c8e",
       "date": "2021-04-29",
       "timestamp": "2021-04-29T23:41:09Z",
       "author": "Brent Fulgham",
@@ -22615,6 +26284,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 4,
       "lines_added": 0,
       "lines_deleted": 72,
       "allow_added": 0,
@@ -22629,6 +26300,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "aa37a1bb696e31d9ccf34b28799cdb290fc6fe15",
+      "short_hash": "aa37a1bb696e",
       "date": "2021-04-29",
       "timestamp": "2021-04-29T18:59:03Z",
       "author": "Brent Fulgham",
@@ -22652,6 +26324,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -22666,6 +26340,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "04321e8a0d3b8095bb3dedfb09df0ebc95ed7b85",
+      "short_hash": "04321e8a0d3b",
       "date": "2021-04-28",
       "timestamp": "2021-04-28T20:07:16Z",
       "author": "Commit Queue",
@@ -22691,6 +26366,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -22705,6 +26384,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cc33e2a2d5a460f3302e9476973f8d51a9574261",
+      "short_hash": "cc33e2a2d5a4",
       "date": "2021-04-28",
       "timestamp": "2021-04-28T17:27:34Z",
       "author": "Brent Fulgham",
@@ -22735,6 +26415,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 23,
       "lines_deleted": 10,
       "allow_added": 4,
@@ -22749,6 +26436,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "04931c4f2d3376527196154c40a6f640ed2d8108",
+      "short_hash": "04931c4f2d33",
       "date": "2021-04-27",
       "timestamp": "2021-04-27T20:37:56Z",
       "author": "Per Arne Vollan",
@@ -22774,6 +26462,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -22788,6 +26480,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c1f7011580872f16d2f7bbd797543e3c1c68ce43",
+      "short_hash": "c1f701158087",
       "date": "2021-04-27",
       "timestamp": "2021-04-27T17:08:25Z",
       "author": "Brent Fulgham",
@@ -22824,6 +26517,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebCore/platform/cocoa/AGXCompilerService.cpp",
+        "Source/WebCore/platform/cocoa/AGXCompilerService.h",
+        "Source/WebKit/GPUProcess/GPUProcess.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.cpp",
+        "Source/WebKit/GPUProcess/GPUProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/GPU/GPUProcessProxy.cpp"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 32,
       "lines_deleted": 7,
       "allow_added": 16,
@@ -22838,6 +26541,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7f90887ac397a429f87ed8f7b6f0544487daad9b",
+      "short_hash": "7f90887ac397",
       "date": "2021-04-26",
       "timestamp": "2021-04-26T14:28:12Z",
       "author": "Per Arne Vollan",
@@ -22859,6 +26563,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 28,
       "lines_deleted": 13,
       "allow_added": 5,
@@ -22872,6 +26578,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "848d492713e974300a5a1effdc48bd370afa011d",
+      "short_hash": "848d492713e9",
       "date": "2021-04-23",
       "timestamp": "2021-04-23T21:38:37Z",
       "author": "Commit Queue",
@@ -22893,6 +26600,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -22907,6 +26616,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fcb313e1476ad1817fd6bf231d5e8fb2e21adf90",
+      "short_hash": "fcb313e1476a",
       "date": "2021-04-23",
       "timestamp": "2021-04-23T20:11:39Z",
       "author": "Brent Fulgham",
@@ -22934,6 +26644,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 12,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -22948,6 +26660,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f90440d64085c1c8c3b0f880e528e526e6fc9391",
+      "short_hash": "f90440d64085",
       "date": "2021-04-23",
       "timestamp": "2021-04-23T00:42:09Z",
       "author": "Brent Fulgham",
@@ -22976,6 +26689,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 3,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -22990,6 +26705,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e035728e98c2ada1e916e1f052b84a1fc95a9631",
+      "short_hash": "e035728e98c2",
       "date": "2021-04-22",
       "timestamp": "2021-04-22T19:19:07Z",
       "author": "Per Arne Vollan",
@@ -23011,6 +26727,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -23025,6 +26743,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "78249d490abc0a41d1a3ae75c90ab5bdb2facdb6",
+      "short_hash": "78249d490abc",
       "date": "2021-04-10",
       "timestamp": "2021-04-10T01:55:26Z",
       "author": "Brent Fulgham",
@@ -23048,6 +26767,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -23062,6 +26783,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3157afe6840856c1b0bde4f9f19606dcf08711db",
+      "short_hash": "3157afe68408",
       "date": "2021-04-09",
       "timestamp": "2021-04-09T16:38:44Z",
       "author": "Brent Fulgham",
@@ -23085,6 +26807,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -23099,6 +26825,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "54c27eb77ff11732c1fd320c417d34a1c5b21f5d",
+      "short_hash": "54c27eb77ff1",
       "date": "2021-04-02",
       "timestamp": "2021-04-02T19:33:16Z",
       "author": "Per Arne Vollan",
@@ -23128,6 +26855,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 90,
       "lines_deleted": 22,
       "allow_added": 54,
@@ -23142,6 +26873,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ad8e54938ae2a8ae47a8aaf433b6b02091758e20",
+      "short_hash": "ad8e54938ae2",
       "date": "2021-04-02",
       "timestamp": "2021-04-02T06:12:48Z",
       "author": "Commit Queue",
@@ -23170,6 +26902,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 78,
       "allow_added": 0,
@@ -23184,6 +26920,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "21fc88b12cac5b536f2e1109b06401989df12fef",
+      "short_hash": "21fc88b12cac",
       "date": "2021-04-01",
       "timestamp": "2021-04-01T22:19:59Z",
       "author": "Per Arne Vollan",
@@ -23212,6 +26949,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 78,
       "lines_deleted": 6,
       "allow_added": 53,
@@ -23226,6 +26967,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "487e85f32584779fc97193fc4c984cfcd596ec23",
+      "short_hash": "487e85f32584",
       "date": "2021-04-01",
       "timestamp": "2021-04-01T17:38:27Z",
       "author": "Per Arne Vollan",
@@ -23292,6 +27034,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 47,
       "lines_deleted": 1,
       "allow_added": 42,
@@ -23306,6 +27053,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "aad2008e04a52fd896075f1f9e34fcc787bf10a4",
+      "short_hash": "aad2008e04a5",
       "date": "2021-04-01",
       "timestamp": "2021-04-01T15:48:11Z",
       "author": "Commit Queue",
@@ -23334,6 +27082,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 7,
       "lines_deleted": 74,
       "allow_added": 0,
@@ -23348,6 +27100,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "61677d17f26b764f73371253d5e77f113c0d3ddf",
+      "short_hash": "61677d17f26b",
       "date": "2021-04-01",
       "timestamp": "2021-04-01T10:07:20Z",
       "author": "Per Arne Vollan",
@@ -23376,6 +27129,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 74,
       "lines_deleted": 7,
       "allow_added": 50,
@@ -23390,6 +27147,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cbd6619309368622cfc7e0c38661f0dc6aab9529",
+      "short_hash": "cbd661930936",
       "date": "2021-03-30",
       "timestamp": "2021-03-30T23:25:08Z",
       "author": "Jiewen Tan",
@@ -23415,6 +27173,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -23429,6 +27189,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "85d515cd28e605d108046fa8676027703309bcdb",
+      "short_hash": "85d515cd28e6",
       "date": "2021-03-26",
       "timestamp": "2021-03-26T19:16:41Z",
       "author": "Commit Queue",
@@ -23450,6 +27211,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -23464,6 +27229,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "71f6a1152f339768a563305e2f6882216feaa1b9",
+      "short_hash": "71f6a1152f33",
       "date": "2021-03-24",
       "timestamp": "2021-03-24T18:24:42Z",
       "author": "Per Arne Vollan",
@@ -23485,6 +27251,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 9,
       "allow_added": 4,
@@ -23499,6 +27269,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2dee25fbcf756a5a9d587b1ea6647d97a33a6492",
+      "short_hash": "2dee25fbcf75",
       "date": "2021-03-24",
       "timestamp": "2021-03-24T14:28:24Z",
       "author": "Per Arne Vollan",
@@ -23520,6 +27291,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -23534,6 +27309,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c4d6497137ab82a1661e72dcfbe8fb8b1aae6ca6",
+      "short_hash": "c4d6497137ab",
       "date": "2021-03-23",
       "timestamp": "2021-03-23T20:37:12Z",
       "author": "Commit Queue",
@@ -23555,6 +27331,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 9,
       "lines_deleted": 6,
       "allow_added": 8,
@@ -23569,6 +27349,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "51ec3207bebe0c4a1c2ba27db6262cb0d43af35b",
+      "short_hash": "51ec3207bebe",
       "date": "2021-03-23",
       "timestamp": "2021-03-23T19:18:49Z",
       "author": "Per Arne Vollan",
@@ -23590,6 +27371,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 9,
       "allow_added": 4,
@@ -23604,6 +27389,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fe9b985c33bce4eebfe9d8b1b29d68ee3c0cf2f0",
+      "short_hash": "fe9b985c33bc",
       "date": "2021-03-22",
       "timestamp": "2021-03-22T20:32:13Z",
       "author": "Per Arne Vollan",
@@ -23630,6 +27416,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -23644,6 +27434,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a39a7670bb96b958a596335dd7d3fa4985958276",
+      "short_hash": "a39a7670bb96",
       "date": "2021-03-15",
       "timestamp": "2021-03-15T21:22:51Z",
       "author": "Per Arne Vollan",
@@ -23681,6 +27472,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 25,
       "lines_deleted": 12,
       "allow_added": 12,
@@ -23695,6 +27490,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "af5bcdb713a6cc0b1d678fa9b2141e95f96898ec",
+      "short_hash": "af5bcdb713a6",
       "date": "2021-03-12",
       "timestamp": "2021-03-12T00:43:27Z",
       "author": "Brent Fulgham",
@@ -23718,6 +27514,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -23732,6 +27532,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4282bef6434d809eaf2dacdc906b13c98e39ab2b",
+      "short_hash": "4282bef6434d",
       "date": "2021-03-11",
       "timestamp": "2021-03-11T20:43:14Z",
       "author": "Per Arne Vollan",
@@ -23757,6 +27558,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -23770,6 +27575,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dde9ee3fdafc558770f29d599823d9781b0a3abf",
+      "short_hash": "dde9ee3fdafc",
       "date": "2021-03-11",
       "timestamp": "2021-03-11T00:00:25Z",
       "author": "Per Arne Vollan",
@@ -23791,6 +27597,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -23804,6 +27612,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1184992b75de7ecb79014a44914a34fe546edca5",
+      "short_hash": "1184992b75de",
       "date": "2021-03-10",
       "timestamp": "2021-03-10T21:07:06Z",
       "author": "Per Arne Vollan",
@@ -23849,6 +27658,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 73,
       "lines_deleted": 11,
       "allow_added": 31,
@@ -23863,6 +27674,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "36caeec07975bd5f47db8ac6b749c2787230a461",
+      "short_hash": "36caeec07975",
       "date": "2021-03-07",
       "timestamp": "2021-03-07T05:35:25Z",
       "author": "Jiewen Tan",
@@ -23900,6 +27712,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 26,
       "lines_deleted": 0,
       "allow_added": 19,
@@ -23914,6 +27728,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "983bccce69455786f0f431c2f013dd6df3bebf8c",
+      "short_hash": "983bccce6945",
       "date": "2021-02-25",
       "timestamp": "2021-02-25T22:09:15Z",
       "author": "Chris Dumez",
@@ -23935,6 +27750,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -23948,6 +27767,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "726336a88577fa0cddd20f4b4c17a94f802ef61d",
+      "short_hash": "726336a88577",
       "date": "2021-02-25",
       "timestamp": "2021-02-25T16:50:54Z",
       "author": "Per Arne Vollan",
@@ -23969,6 +27789,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -23983,6 +27807,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a6d8ac729dfcc4cf67d3e32d2ab11caf7a134155",
+      "short_hash": "a6d8ac729dfc",
       "date": "2021-02-19",
       "timestamp": "2021-02-19T23:24:51Z",
       "author": "Per Arne Vollan",
@@ -24009,6 +27834,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 19,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -24023,6 +27850,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "641ef2253e5c6bad6d749b24647532d4bf70566b",
+      "short_hash": "641ef2253e5c",
       "date": "2021-02-19",
       "timestamp": "2021-02-19T21:04:22Z",
       "author": "Per Arne Vollan",
@@ -24044,6 +27872,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 11,
       "allow_added": 11,
@@ -24057,6 +27887,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "013747ead8ad61526bd8516b0d09d34318dc9dcc",
+      "short_hash": "013747ead8ad",
       "date": "2021-02-19",
       "timestamp": "2021-02-19T19:13:37Z",
       "author": "Per Arne Vollan",
@@ -24082,6 +27913,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 31,
       "lines_deleted": 1,
       "allow_added": 23,
@@ -24096,6 +27931,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "217143b874b3a84095a20753d8bca30f49775283",
+      "short_hash": "217143b874b3",
       "date": "2021-02-19",
       "timestamp": "2021-02-19T02:53:47Z",
       "author": "Per Arne Vollan",
@@ -24125,6 +27961,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 6,
       "lines_deleted": 19,
       "allow_added": 0,
@@ -24139,6 +27979,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3bd6cdb180d94d9fe85b522f7600f1f3a26ef667",
+      "short_hash": "3bd6cdb180d9",
       "date": "2021-02-17",
       "timestamp": "2021-02-17T23:14:39Z",
       "author": "Per Arne Vollan",
@@ -24162,6 +28003,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -24176,6 +28019,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "12cce4e823835b6344153884e3071d73ab778c6e",
+      "short_hash": "12cce4e82383",
       "date": "2021-02-17",
       "timestamp": "2021-02-17T02:42:23Z",
       "author": "Per Arne Vollan",
@@ -24202,6 +28046,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 0,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -24216,6 +28070,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fbe6966334237098c41b895953c67e183a85ff55",
+      "short_hash": "fbe696633423",
       "date": "2021-02-17",
       "timestamp": "2021-02-17T02:33:34Z",
       "author": "Per Arne Vollan",
@@ -24237,6 +28092,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 11,
       "lines_deleted": 11,
       "allow_added": 10,
@@ -24251,6 +28110,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a307e6b7d7a2bae796fc36382e709b3fc8ebccde",
+      "short_hash": "a307e6b7d7a2",
       "date": "2021-02-16",
       "timestamp": "2021-02-16T22:47:58Z",
       "author": "Brent Fulgham",
@@ -24272,6 +28132,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -24286,6 +28150,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0f174897d0d67d4ea1b13d2e2f342dc3334d3987",
+      "short_hash": "0f174897d0d6",
       "date": "2021-02-16",
       "timestamp": "2021-02-16T04:21:55Z",
       "author": "Per Arne Vollan",
@@ -24313,6 +28178,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebAuthnProcess/mac/com.apple.WebKit.WebAuthnProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 8,
       "allow_added": 0,
@@ -24327,6 +28199,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0889c5bc2efae44e25b0e99d610ee9fba1609383",
+      "short_hash": "0889c5bc2efa",
       "date": "2021-02-05",
       "timestamp": "2021-02-05T17:20:38Z",
       "author": "Per Arne Vollan",
@@ -24350,6 +28223,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -24364,6 +28241,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9a5ca0f3b0f62349b042ecbb4c907a822d03a051",
+      "short_hash": "9a5ca0f3b0f6",
       "date": "2021-01-27",
       "timestamp": "2021-01-27T23:58:02Z",
       "author": "Chris Dumez",
@@ -24385,6 +28263,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Platform/SharedMemory.cpp",
+        "Source/WebKit/Platform/SharedMemory.h",
+        "Source/WebKit/Platform/cocoa/SharedMemoryCocoa.cpp",
+        "Source/WebKit/WebProcess/GPU/media/RemoteAudioSourceProviderManager.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -24398,6 +28285,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9d7c85cb4d3520ebd7631da63bc966e790acf3fa",
+      "short_hash": "9d7c85cb4d35",
       "date": "2021-01-27",
       "timestamp": "2021-01-27T20:53:22Z",
       "author": "Brent Fulgham",
@@ -24425,6 +28313,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 4,
       "lines_added": 16,
       "lines_deleted": 8,
       "allow_added": 8,
@@ -24439,6 +28329,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "761bc646c87017312e8d722c88cf697d89e8d19f",
+      "short_hash": "761bc646c870",
       "date": "2021-01-27",
       "timestamp": "2021-01-27T18:07:39Z",
       "author": "Per Arne Vollan",
@@ -24462,6 +28353,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -24476,6 +28369,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "952d15259d12e588fdc6b53348592f6b892ea089",
+      "short_hash": "952d15259d12",
       "date": "2021-01-27",
       "timestamp": "2021-01-27T14:17:42Z",
       "author": "Per Arne Vollan",
@@ -24500,6 +28394,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 7,
       "allow_added": 1,
@@ -24514,6 +28412,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ea530f346eb23e5a7080363e7135d5d8188de237",
+      "short_hash": "ea530f346eb2",
       "date": "2021-01-25",
       "timestamp": "2021-01-25T22:39:36Z",
       "author": "Per Arne Vollan",
@@ -24540,6 +28439,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebPageCreationParameters.cpp",
+        "Source/WebKit/Shared/WebPageCreationParameters.h",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 15,
       "lines_deleted": 3,
       "allow_added": 4,
@@ -24554,6 +28461,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "891535985179626ee817c6ba9ed55ee859cf5bd0",
+      "short_hash": "891535985179",
       "date": "2021-01-25",
       "timestamp": "2021-01-25T22:09:52Z",
       "author": "Per Arne Vollan",
@@ -24577,6 +28485,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -24591,6 +28503,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1cc60526954e3d5d179cedb700990dce29db5151",
+      "short_hash": "1cc60526954e",
       "date": "2021-01-21",
       "timestamp": "2021-01-21T21:39:50Z",
       "author": "Chris Dumez",
@@ -24617,6 +28530,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -24631,6 +28546,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "30fd30a4e57ec03e44fbf02765f993dd0b642854",
+      "short_hash": "30fd30a4e57e",
       "date": "2021-01-08",
       "timestamp": "2021-01-08T07:12:09Z",
       "author": "Per Arne Vollan",
@@ -24660,6 +28576,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -24673,6 +28591,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1503f2cde14b9f5c590ba197a6cacdb836961363",
+      "short_hash": "1503f2cde14b",
       "date": "2021-01-06",
       "timestamp": "2021-01-06T10:37:42Z",
       "author": "Per Arne Vollan",
@@ -24702,6 +28621,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 10,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -24715,6 +28636,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "17b3a289103f803c6b23ba58cbc7d798476b6d4b",
+      "short_hash": "17b3a289103f",
       "date": "2021-01-06",
       "timestamp": "2021-01-06T08:16:58Z",
       "author": "Per Arne Vollan",
@@ -24738,6 +28660,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -24752,6 +28676,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c83ae637d6beb203851cde8a7c4a6f74f721075e",
+      "short_hash": "c83ae637d6be",
       "date": "2020-12-19",
       "timestamp": "2020-12-19T23:55:32Z",
       "author": "Brent Fulgham",
@@ -24777,6 +28702,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -24791,6 +28718,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3ca24ef056099610ec511328b12a4f0fc9905e8c",
+      "short_hash": "3ca24ef05609",
       "date": "2020-12-15",
       "timestamp": "2020-12-15T22:58:16Z",
       "author": "Per Arne Vollan",
@@ -24816,6 +28744,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -24830,6 +28762,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4893058b1b34652a14f8dc744ed9c58cbbc7c655",
+      "short_hash": "4893058b1b34",
       "date": "2020-12-12",
       "timestamp": "2020-12-12T20:49:36Z",
       "author": "Wenson Hsieh",
@@ -24858,6 +28791,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -24871,6 +28808,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "95edb135bd9cf6812252453a27d00d4a07f2e5a2",
+      "short_hash": "95edb135bd9c",
       "date": "2020-12-11",
       "timestamp": "2020-12-11T19:46:49Z",
       "author": "Jiewen Tan",
@@ -24899,6 +28837,23 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Platform/spi/Cocoa/AuthenticationServicesCoreSPI.h",
+        "Source/WebKit/Platform/spi/Cocoa/LocalAuthenticationSPI.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Authenticator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticationServicesCoreSoftLink.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticationServicesCoreSoftLink.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticatorPresenterCoordinator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticatorPresenterCoordinator.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalAuthenticator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalAuthenticator.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalConnection.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/LocalConnection.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/WKASCAuthorizationPresenterDelegate.mm"
+      ],
+      "total_commit_files_count": 15,
       "lines_added": 14,
       "lines_deleted": 0,
       "allow_added": 8,
@@ -24913,6 +28868,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dfb8c3ce600a8e61cd29ea6e1a8c1fe411d4b3c3",
+      "short_hash": "dfb8c3ce600a",
       "date": "2020-12-11",
       "timestamp": "2020-12-11T11:39:54Z",
       "author": "Per Arne Vollan",
@@ -24941,6 +28897,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -24955,6 +28915,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c6a0288a4c1582a6f7d895502fe88750fe9d8a86",
+      "short_hash": "c6a0288a4c15",
       "date": "2020-12-11",
       "timestamp": "2020-12-11T10:11:19Z",
       "author": "Per Arne Vollan",
@@ -24978,6 +28939,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -24992,6 +28955,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4106f871c16a5ade326986d74a67de3ac92d667f",
+      "short_hash": "4106f871c16a",
       "date": "2020-12-11",
       "timestamp": "2020-12-11T09:29:58Z",
       "author": "Commit Queue",
@@ -25013,6 +28977,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -25027,6 +28993,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ebb8faee097cb317fe8d682f7efdd9e5b2d8583a",
+      "short_hash": "ebb8faee097c",
       "date": "2020-12-10",
       "timestamp": "2020-12-10T22:13:52Z",
       "author": "Per Arne Vollan",
@@ -25048,6 +29015,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -25062,6 +29031,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b7caa650991164294e1756caa5a2f3970f6fdd6d",
+      "short_hash": "b7caa6509911",
       "date": "2020-12-10",
       "timestamp": "2020-12-10T08:41:43Z",
       "author": "Jiewen Tan",
@@ -25087,6 +29057,23 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Platform/spi/Cocoa/AuthenticationServicesCoreSPI.h",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.cpp",
+        "Source/WebKit/UIProcess/WebAuthentication/AuthenticatorManager.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticationServicesCoreSoftLink.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticationServicesCoreSoftLink.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticatorPresenterCoordinator.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/AuthenticatorPresenterCoordinator.mm",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/WKASCAuthorizationPresenterDelegate.h",
+        "Source/WebKit/UIProcess/WebAuthentication/Cocoa/WKASCAuthorizationPresenterDelegate.mm",
+        "Source/WebKit/WebAuthnProcess/WebAuthnProcess.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/_WKWebAuthenticationPanel.mm"
+      ],
+      "total_commit_files_count": 15,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -25101,6 +29088,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5d9837cbd2d9c3d4d8564af03d95f45e1c45f214",
+      "short_hash": "5d9837cbd2d9",
       "date": "2020-12-09",
       "timestamp": "2020-12-09T08:58:45Z",
       "author": "Per Arne Vollan",
@@ -25128,6 +29116,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 8,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -25142,6 +29135,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3f8964e916112c134c44598d1d660499b3f718ec",
+      "short_hash": "3f8964e91611",
       "date": "2020-12-07",
       "timestamp": "2020-12-07T21:55:46Z",
       "author": "Brent Fulgham",
@@ -25166,6 +29160,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -25180,6 +29179,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "17ec91d58746da0dcb11510e49e0054d5aa36854",
+      "short_hash": "17ec91d58746",
       "date": "2020-12-02",
       "timestamp": "2020-12-02T19:10:48Z",
       "author": "Brent Fulgham",
@@ -25207,6 +29207,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -25221,6 +29223,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0befbb985a7ab9a7d82ee4efefe41ea556892898",
+      "short_hash": "0befbb985a7a",
       "date": "2020-11-30",
       "timestamp": "2020-11-30T05:36:30Z",
       "author": "Adam Mazander",
@@ -25246,6 +29249,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -25259,6 +29264,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "62687757770b4897a838949c6546bf4a0310ec7f",
+      "short_hash": "62687757770b",
       "date": "2020-11-12",
       "timestamp": "2020-11-12T22:12:21Z",
       "author": "Per Arne Vollan",
@@ -25288,6 +29294,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 21,
       "lines_deleted": 12,
       "allow_added": 7,
@@ -25302,6 +29310,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "74d7a2865419241d8586e57b010ba5482805ff19",
+      "short_hash": "74d7a2865419",
       "date": "2020-11-07",
       "timestamp": "2020-11-07T01:38:35Z",
       "author": "Jiewen Tan",
@@ -25437,6 +29446,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebAuthn.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/WebAuthentication/WebAuthnProcessProxy.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 643,
       "lines_deleted": 0,
       "allow_added": 363,
@@ -25451,6 +29466,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7f818c9f9683d41b877919deaa74a5ed029a4719",
+      "short_hash": "7f818c9f9683",
       "date": "2020-11-05",
       "timestamp": "2020-11-05T17:38:55Z",
       "author": "Brent Fulgham",
@@ -25480,6 +29496,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -25494,6 +29512,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ee80498cb3caca13c30e89752e8cb30f85de941f",
+      "short_hash": "ee80498cb3ca",
       "date": "2020-11-05",
       "timestamp": "2020-11-05T17:36:47Z",
       "author": "Brent Fulgham",
@@ -25521,6 +29540,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -25535,6 +29556,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4d2ad87be8e8720f14b92a50d62b9a858cf4b3d5",
+      "short_hash": "4d2ad87be8e8",
       "date": "2020-10-30",
       "timestamp": "2020-10-30T18:06:27Z",
       "author": "Brent Fulgham",
@@ -25556,6 +29578,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -25570,6 +29596,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0e5778bebea5d561c9b214909463dd6d04f2374d",
+      "short_hash": "0e5778bebea5",
       "date": "2020-10-15",
       "timestamp": "2020-10-15T03:24:20Z",
       "author": "Brent Fulgham",
@@ -25598,6 +29625,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -25612,6 +29641,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "74b1eecd1fc44bace00a5470dda3344c3df91e91",
+      "short_hash": "74b1eecd1fc4",
       "date": "2020-10-05",
       "timestamp": "2020-10-05T14:19:50Z",
       "author": "Per Arne Vollan",
@@ -25641,6 +29671,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 36,
       "lines_deleted": 6,
       "allow_added": 14,
@@ -25655,6 +29692,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d0fa911dbfd73762ef80357aafca6f9bfff1a75e",
+      "short_hash": "d0fa911dbfd7",
       "date": "2020-08-12",
       "timestamp": "2020-08-12T22:49:25Z",
       "author": "Brent Fulgham",
@@ -25678,6 +29716,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -25692,6 +29732,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d54f1f5458e2c083643fa55bf7b7cc8b6f404702",
+      "short_hash": "d54f1f5458e2",
       "date": "2020-08-05",
       "timestamp": "2020-08-05T18:50:31Z",
       "author": "Per Arne Vollan",
@@ -25715,6 +29756,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -25728,6 +29777,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "120815f59a5740c4a4cbc6212673c5ff6f813c55",
+      "short_hash": "120815f59a57",
       "date": "2020-07-31",
       "timestamp": "2020-07-31T14:03:35Z",
       "author": "Per Arne Vollan",
@@ -25754,6 +29804,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/spi/ios/MobileGestaltSPI.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -25767,6 +29825,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a6aa4254d66295ba2b9cd734c52d49384f9754fc",
+      "short_hash": "a6aa4254d662",
       "date": "2020-07-21",
       "timestamp": "2020-07-21T21:33:29Z",
       "author": "Tim Horton",
@@ -25790,6 +29849,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -25804,6 +29865,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "17106dadceedf703202e8199ac2a69ae7028d6bf",
+      "short_hash": "17106dadceed",
       "date": "2020-07-17",
       "timestamp": "2020-07-17T23:06:00Z",
       "author": "Brent Fulgham",
@@ -25830,6 +29892,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -25844,6 +29910,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d217827501be24e1b9760b6e5a9fef2a6dea99c0",
+      "short_hash": "d217827501be",
       "date": "2020-07-15",
       "timestamp": "2020-07-15T22:24:41Z",
       "author": "Per Arne Vollan",
@@ -25865,6 +29932,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -25876,6 +29945,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3ef91d1cf04e6182e8ff2ec5c2eb97da14e9522c",
+      "short_hash": "3ef91d1cf04e",
       "date": "2020-07-15",
       "timestamp": "2020-07-15T01:41:06Z",
       "author": "Per Arne Vollan",
@@ -25897,6 +29967,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 4,
@@ -25911,6 +29983,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3498d3de5605ca2d916c27e9b172eb13e51a13ac",
+      "short_hash": "3498d3de5605",
       "date": "2020-07-09",
       "timestamp": "2020-07-09T18:51:47Z",
       "author": "Brent Fulgham",
@@ -25936,6 +30009,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -25950,6 +30025,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "56cfeed61f215363fdb2cc7a79c46854ef991539",
+      "short_hash": "56cfeed61f21",
       "date": "2020-07-09",
       "timestamp": "2020-07-09T17:06:14Z",
       "author": "Per Arne Vollan",
@@ -25973,6 +30049,33 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/LaunchServicesSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.h",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/LaunchServicesDatabaseXPCConstants.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/XPCEventHandler.h",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.h",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 25,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -25986,6 +30089,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c6439c8824cfcadde8ba39dead9c60cc84d5f6b4",
+      "short_hash": "c6439c8824cf",
       "date": "2020-07-09",
       "timestamp": "2020-07-09T14:02:14Z",
       "author": "Commit Queue",
@@ -26009,6 +30113,33 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/LaunchServicesSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.h",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/LaunchServicesDatabaseXPCConstants.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/XPCEventHandler.h",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.h",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 25,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -26023,6 +30154,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "699cc45b62266db42c9b5cf8742a4582a921d1a5",
+      "short_hash": "699cc45b6226",
       "date": "2020-07-09",
       "timestamp": "2020-07-09T05:24:37Z",
       "author": "Per Arne Vollan",
@@ -26046,6 +30178,33 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/LaunchServicesSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.h",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/LaunchServicesDatabaseXPCConstants.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/XPCEventHandler.h",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.h",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 25,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -26059,6 +30218,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08a98e9b60905c8fafe6e94f95d62d2fca0004bc",
+      "short_hash": "08a98e9b6090",
       "date": "2020-07-08",
       "timestamp": "2020-07-08T23:47:11Z",
       "author": "Commit Queue",
@@ -26082,6 +30242,32 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/spi/cocoa/LaunchServicesSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.h",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/LaunchServicesDatabaseXPCConstants.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/XPCEventHandler.h",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.h",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 24,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -26096,6 +30282,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3b0d4c96799bcc73b6619db873eb409ee5a1763d",
+      "short_hash": "3b0d4c96799b",
       "date": "2020-07-08",
       "timestamp": "2020-07-08T21:13:55Z",
       "author": "Per Arne Vollan",
@@ -26119,6 +30306,32 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/pal/spi/cocoa/LaunchServicesSPI.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.h",
+        "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/Cocoa/LaunchServicesDatabaseXPCConstants.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/XPCEventHandler.h",
+        "Source/WebKit/UIProcess/Launcher/ProcessLauncher.h",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.h",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.h",
+        "Source/WebKit/WebProcess/cocoa/LaunchServicesDatabaseManager.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 24,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -26132,6 +30345,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "21c2cec7daa363b2cb654f0fee22c287f4f0e15b",
+      "short_hash": "21c2cec7daa3",
       "date": "2020-07-01",
       "timestamp": "2020-07-01T21:04:25Z",
       "author": "Brent Fulgham",
@@ -26155,6 +30369,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -26169,6 +30385,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "977fb029b2aa45b1f31539f471bf0b5d450d031d",
+      "short_hash": "977fb029b2aa",
       "date": "2020-06-29",
       "timestamp": "2020-06-29T22:31:15Z",
       "author": "Per Arne Vollan",
@@ -26192,6 +30409,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -26206,6 +30425,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e025e8a5ead63e057367f58c4df2248a044d458a",
+      "short_hash": "e025e8a5ead6",
       "date": "2020-06-29",
       "timestamp": "2020-06-29T22:25:04Z",
       "author": "Per Arne Vollan",
@@ -26229,6 +30449,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -26243,6 +30465,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7af697ce99eb3cbbd1e47922198173a2e0411758",
+      "short_hash": "7af697ce99eb",
       "date": "2020-06-20",
       "timestamp": "2020-06-20T23:35:59Z",
       "author": "Brent Fulgham",
@@ -26268,6 +30491,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -26282,6 +30513,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cc37379a1f56ec80660acef3b6e91e518af26996",
+      "short_hash": "cc37379a1f56",
       "date": "2020-06-20",
       "timestamp": "2020-06-20T01:07:52Z",
       "author": "Ryan Haddad",
@@ -26307,6 +30539,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 0,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -26320,6 +30560,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ff5359766111bc3bbf18f1d112d274a51f9b6b64",
+      "short_hash": "ff5359766111",
       "date": "2020-06-19",
       "timestamp": "2020-06-19T21:12:16Z",
       "author": "Brent Fulgham",
@@ -26345,6 +30586,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -26359,6 +30608,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "890857004b27e60fc5e6bfdd7f94172031cdfeef",
+      "short_hash": "890857004b27",
       "date": "2020-06-10",
       "timestamp": "2020-06-10T21:26:41Z",
       "author": "Brent Fulgham",
@@ -26386,6 +30636,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -26400,6 +30652,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9fc30f1026af25b05a36f7fc0497140bef19ff90",
+      "short_hash": "9fc30f1026af",
       "date": "2020-06-05",
       "timestamp": "2020-06-05T23:56:20Z",
       "author": "Brent Fulgham",
@@ -26423,6 +30676,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -26437,6 +30692,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8f0b9e68091bac4efa689076827680c75798ab55",
+      "short_hash": "8f0b9e68091b",
       "date": "2020-06-05",
       "timestamp": "2020-06-05T19:54:00Z",
       "author": "Brent Fulgham",
@@ -26458,6 +30714,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -26472,6 +30730,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6ef0372e3eee7d851b4f32525b1ca072609ed051",
+      "short_hash": "6ef0372e3eee",
       "date": "2020-06-05",
       "timestamp": "2020-06-05T18:25:12Z",
       "author": "Per Arne Vollan",
@@ -26493,6 +30752,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -26507,6 +30768,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cc85d1ffe71a12934ca8a709792540af1b69138d",
+      "short_hash": "cc85d1ffe71a",
       "date": "2020-06-04",
       "timestamp": "2020-06-04T23:56:16Z",
       "author": "Brent Fulgham",
@@ -26530,6 +30792,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -26544,6 +30810,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "28d9face7261e54d6c166a047df05596df039e92",
+      "short_hash": "28d9face7261",
       "date": "2020-06-04",
       "timestamp": "2020-06-04T21:31:00Z",
       "author": "Brent Fulgham",
@@ -26570,6 +30837,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 10,
       "allow_added": 0,
@@ -26584,6 +30855,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "510716b33181766371d592bbb3a5eff417aa4de3",
+      "short_hash": "510716b33181",
       "date": "2020-06-04",
       "timestamp": "2020-06-04T20:38:29Z",
       "author": "Chris Dumez",
@@ -26607,6 +30879,18 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/ProcessAssertion.h",
+        "Source/WebKit/UIProcess/ProcessThrottler.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/ios/ProcessAssertionIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -26621,6 +30905,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "25140d16710c186674b1f1f98d70b47b4b57398e",
+      "short_hash": "25140d16710c",
       "date": "2020-06-04",
       "timestamp": "2020-06-04T19:45:01Z",
       "author": "Brent Fulgham",
@@ -26650,6 +30935,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 6,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -26664,6 +30957,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bb55c7d55cff6fe993e0201965927bb76e2edaef",
+      "short_hash": "bb55c7d55cff",
       "date": "2020-06-04",
       "timestamp": "2020-06-04T16:51:02Z",
       "author": "Per Arne Vollan",
@@ -26687,6 +30981,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -26701,6 +30997,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "231de7be6726e7edfdf27d0289e5d302415ce349",
+      "short_hash": "231de7be6726",
       "date": "2020-06-03",
       "timestamp": "2020-06-03T18:39:02Z",
       "author": "Brent Fulgham",
@@ -26724,6 +31021,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -26738,6 +31037,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08703f54bdd1bb27d0a1045b8c185c029b672426",
+      "short_hash": "08703f54bdd1",
       "date": "2020-06-01",
       "timestamp": "2020-06-01T22:15:59Z",
       "author": "Brent Fulgham",
@@ -26763,6 +31063,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -26777,6 +31081,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d2ddd8e6af6dceb797e000be47fd192589ae42ef",
+      "short_hash": "d2ddd8e6af6d",
       "date": "2020-05-21",
       "timestamp": "2020-05-21T00:52:35Z",
       "author": "Per Arne Vollan",
@@ -26798,6 +31103,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -26812,6 +31119,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2898b7321c6189c772d88917db643f4ebe8b6111",
+      "short_hash": "2898b7321c61",
       "date": "2020-05-19",
       "timestamp": "2020-05-19T20:20:14Z",
       "author": "Per Arne Vollan",
@@ -26833,6 +31141,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -26847,6 +31157,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "32b5812dd58b857d3b6a8595605befa5f5d316b3",
+      "short_hash": "32b5812dd58b",
       "date": "2020-05-19",
       "timestamp": "2020-05-19T16:21:39Z",
       "author": "Brent Fulgham",
@@ -26877,6 +31188,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -26891,6 +31206,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4640064a9e27e66a48e4900464647a7fd5ff851e",
+      "short_hash": "4640064a9e27",
       "date": "2020-05-14",
       "timestamp": "2020-05-14T16:59:13Z",
       "author": "Per Arne Vollan",
@@ -26914,6 +31230,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 2,
       "allow_added": 6,
@@ -26927,6 +31245,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d8c55e9aae7c0e58c6157e8779abc00353f00093",
+      "short_hash": "d8c55e9aae7c",
       "date": "2020-05-13",
       "timestamp": "2020-05-13T19:16:05Z",
       "author": "Per Arne Vollan",
@@ -26948,6 +31267,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -26961,6 +31282,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dd6569de319ca416a61c05d9c806a4613f2c53ea",
+      "short_hash": "dd6569de319c",
       "date": "2020-05-13",
       "timestamp": "2020-05-13T19:14:17Z",
       "author": "Per Arne Vollan",
@@ -27024,6 +31346,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 45,
       "lines_deleted": 0,
       "allow_added": 41,
@@ -27037,6 +31361,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "050b703598c5da7c72b3eb9f2037d7b0ea850acf",
+      "short_hash": "050b703598c5",
       "date": "2020-05-11",
       "timestamp": "2020-05-11T19:45:37Z",
       "author": "Per Arne Vollan",
@@ -27058,6 +31383,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 1,
@@ -27072,6 +31399,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8765246d751bd24ab3dfa89a0ca8ed7ed3f2bf6b",
+      "short_hash": "8765246d751b",
       "date": "2020-05-10",
       "timestamp": "2020-05-10T01:21:55Z",
       "author": "Commit Queue",
@@ -27093,6 +31421,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -27107,6 +31437,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fa62827bb16921b2e348bd455fd57174d0ed84b3",
+      "short_hash": "fa62827bb169",
       "date": "2020-05-08",
       "timestamp": "2020-05-08T20:43:00Z",
       "author": "Brent Fulgham",
@@ -27134,6 +31465,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 2,
@@ -27148,6 +31483,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "122706559ec8723f203fbb63970d20d209fb0d9e",
+      "short_hash": "122706559ec8",
       "date": "2020-05-08",
       "timestamp": "2020-05-08T16:55:43Z",
       "author": "Per Arne Vollan",
@@ -27169,6 +31505,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -27182,6 +31520,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9b32c7e3b488f6dc32f2ac50f973c1ca2b438be0",
+      "short_hash": "9b32c7e3b488",
       "date": "2020-05-05",
       "timestamp": "2020-05-05T20:50:59Z",
       "author": "Per Arne Vollan",
@@ -27203,6 +31542,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -27214,6 +31555,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "42ad27e2e9773ef7c62bcb3c64515f7c6182bfbf",
+      "short_hash": "42ad27e2e977",
       "date": "2020-05-04",
       "timestamp": "2020-05-04T23:24:16Z",
       "author": "Brent Fulgham",
@@ -27237,6 +31579,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -27251,6 +31597,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d198f8cbcf18ca5e3a5e8476fa2a8e6929476162",
+      "short_hash": "d198f8cbcf18",
       "date": "2020-05-01",
       "timestamp": "2020-05-01T19:09:01Z",
       "author": "Per Arne Vollan",
@@ -27277,6 +31624,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 14,
       "lines_deleted": 10,
       "allow_added": 2,
@@ -27291,6 +31640,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ee02a947ecfa1cebaebaa9a5481f002b3e82a94c",
+      "short_hash": "ee02a947ecfa",
       "date": "2020-05-01",
       "timestamp": "2020-05-01T14:52:01Z",
       "author": "Commit Queue",
@@ -27314,6 +31664,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 52,
       "lines_deleted": 0,
       "allow_added": 44,
@@ -27327,6 +31679,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f6420c1b8a3cdada72c4e74add8f6b9854165b9b",
+      "short_hash": "f6420c1b8a3c",
       "date": "2020-04-29",
       "timestamp": "2020-04-29T22:37:15Z",
       "author": "Per Arne Vollan",
@@ -27350,6 +31703,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 52,
       "allow_added": 0,
@@ -27361,6 +31716,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bbc2f7a7bcd7e10ba92f45dc88498247dd850034",
+      "short_hash": "bbc2f7a7bcd7",
       "date": "2020-04-29",
       "timestamp": "2020-04-29T09:06:59Z",
       "author": "Commit Queue",
@@ -27384,6 +31740,19 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/EntryPoint/Cocoa/XPCService/WebContentService/Info-iOS.plist",
+        "Source/WebKit/WebProcess/EntryPoint/Cocoa/XPCService/WebContentService/InfoPlist.strings",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 11,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -27398,6 +31767,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "844a7c6cf6d6904c1fda4fd36afbb9ca8523c3a9",
+      "short_hash": "844a7c6cf6d6",
       "date": "2020-04-28",
       "timestamp": "2020-04-28T00:29:18Z",
       "author": "Brent Fulgham",
@@ -27421,6 +31791,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -27432,6 +31804,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d20520e0a211539719116fa52e3d1ba64bc6fbc0",
+      "short_hash": "d20520e0a211",
       "date": "2020-04-27",
       "timestamp": "2020-04-27T17:05:09Z",
       "author": "Per Arne Vollan",
@@ -27453,6 +31826,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -27464,6 +31839,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c7d2ab747c75c5ae1cf0b877133608a8f1fa8a0b",
+      "short_hash": "c7d2ab747c75",
       "date": "2020-04-24",
       "timestamp": "2020-04-24T17:02:15Z",
       "author": "Youenn Fablet",
@@ -27487,6 +31863,19 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformHave.h",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/EntryPoint/Cocoa/XPCService/WebContentService/Info-iOS.plist",
+        "Source/WebKit/WebProcess/EntryPoint/Cocoa/XPCService/WebContentService/InfoPlist.strings",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 11,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -27501,6 +31890,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "88d5c848e397ee7a7e895196f38021132861cb18",
+      "short_hash": "88d5c848e397",
       "date": "2020-04-23",
       "timestamp": "2020-04-23T21:34:08Z",
       "author": "Brent Fulgham",
@@ -27526,6 +31916,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -27540,6 +31935,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6006f694b6f90fde8cd68badf23734456889766c",
+      "short_hash": "6006f694b6f9",
       "date": "2020-04-17",
       "timestamp": "2020-04-17T21:29:48Z",
       "author": "Per Arne Vollan",
@@ -27563,6 +31959,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -27576,6 +31974,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "93db9dc2af44d8e4f18f82143ca81773d53f01d1",
+      "short_hash": "93db9dc2af44",
       "date": "2020-04-17",
       "timestamp": "2020-04-17T17:44:57Z",
       "author": "Per Arne Vollan",
@@ -27616,6 +32015,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 24,
       "lines_deleted": 1,
       "allow_added": 17,
@@ -27629,6 +32030,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "305c03f948cbb460901e448fc2fb8b6db4760aac",
+      "short_hash": "305c03f948cb",
       "date": "2020-04-17",
       "timestamp": "2020-04-17T14:40:09Z",
       "author": "Per Arne Vollan",
@@ -27659,6 +32061,29 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/platform/cocoa/AGXCompilerService.cpp",
+        "Source/WebCore/platform/cocoa/AGXCompilerService.h",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl",
+        "Source/WebCore/testing/Internals.mm",
+        "Source/WebKit/Shared/Cocoa/SandboxExtensionCocoa.mm",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewPrivateForTestingIOS.h",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewTestingIOS.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKit/AGXCompilerService.mm"
+      ],
+      "total_commit_files_count": 21,
       "lines_added": 19,
       "lines_deleted": 1,
       "allow_added": 11,
@@ -27672,6 +32097,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "378b1e73be7865a186303dbb2d9edea9eca1f551",
+      "short_hash": "378b1e73be78",
       "date": "2020-04-15",
       "timestamp": "2020-04-15T08:53:39Z",
       "author": "Said Abou-Hallawa",
@@ -27695,6 +32121,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 3,
@@ -27708,6 +32138,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fbf6d450bd0b19c3bf4babc155ea0c5187b4ec3b",
+      "short_hash": "fbf6d450bd0b",
       "date": "2020-04-13",
       "timestamp": "2020-04-13T21:53:33Z",
       "author": "Per Arne Vollan",
@@ -27734,6 +32165,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 9,
       "lines_deleted": 0,
       "allow_added": 9,
@@ -27747,6 +32180,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c41d2c2b6f433cb8517c233a1b463e9361ea6245",
+      "short_hash": "c41d2c2b6f43",
       "date": "2020-04-13",
       "timestamp": "2020-04-13T16:48:28Z",
       "author": "Per Arne Vollan",
@@ -27773,6 +32207,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 53,
       "lines_deleted": 16,
       "allow_added": 14,
@@ -27786,6 +32222,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1d3d74d8806266ac39303af12a865d8b3e2f654b",
+      "short_hash": "1d3d74d88062",
       "date": "2020-04-10",
       "timestamp": "2020-04-10T19:55:18Z",
       "author": "Brent Fulgham",
@@ -27809,6 +32246,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -27823,6 +32264,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3c15cfffd549524bd8e2fc044ba61d08be2d14a2",
+      "short_hash": "3c15cfffd549",
       "date": "2020-04-10",
       "timestamp": "2020-04-10T18:26:53Z",
       "author": "Per Arne Vollan",
@@ -27844,6 +32286,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -27857,6 +32301,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "11e4f6f5186c6a597b437f20db4dfbcd293608a4",
+      "short_hash": "11e4f6f5186c",
       "date": "2020-04-10",
       "timestamp": "2020-04-10T14:23:58Z",
       "author": "Per Arne Vollan",
@@ -27882,6 +32327,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -27895,6 +32342,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d43e8b72099d2ff713cc33ed38b6403b2f9ab298",
+      "short_hash": "d43e8b72099d",
       "date": "2020-04-09",
       "timestamp": "2020-04-09T19:20:53Z",
       "author": "Per Arne Vollan",
@@ -27921,6 +32369,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 37,
       "lines_deleted": 0,
       "allow_added": 35,
@@ -27934,6 +32384,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "637b6855332db85c86e08bd8bb93bc2d083678e6",
+      "short_hash": "637b6855332d",
       "date": "2020-04-08",
       "timestamp": "2020-04-08T02:38:42Z",
       "author": "Per Arne Vollan",
@@ -27959,6 +32410,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -27972,6 +32433,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81202f032efb2a2582d5849ebe2066913aceb1f0",
+      "short_hash": "81202f032efb",
       "date": "2020-04-07",
       "timestamp": "2020-04-07T18:18:36Z",
       "author": "Per Arne Vollan",
@@ -27997,6 +32459,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -28010,6 +32474,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f87154c57a71e2d2cd51cb6850b9d4e2a202984e",
+      "short_hash": "f87154c57a71",
       "date": "2020-04-06",
       "timestamp": "2020-04-06T20:36:58Z",
       "author": "Commit Queue",
@@ -28035,6 +32500,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -28049,6 +32519,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0d563e642095bb1f03275f756053ecca6f49dce1",
+      "short_hash": "0d563e642095",
       "date": "2020-04-06",
       "timestamp": "2020-04-06T20:26:48Z",
       "author": "Per Arne Vollan",
@@ -28070,6 +32541,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28081,6 +32554,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2f42f42ac5f26c0d30612864fb5cee51d7810727",
+      "short_hash": "2f42f42ac5f2",
       "date": "2020-04-06",
       "timestamp": "2020-04-06T16:54:08Z",
       "author": "Per Arne Vollan",
@@ -28106,6 +32580,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -28119,6 +32597,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "49dc1ec0ced33101c15e3f315065a7bd5aee80c6",
+      "short_hash": "49dc1ec0ced3",
       "date": "2020-04-03",
       "timestamp": "2020-04-03T17:43:21Z",
       "author": "Brent Fulgham",
@@ -28142,6 +32621,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28156,6 +32639,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e4a852489dacfc8c782b37a029f7e28b0fe34892",
+      "short_hash": "e4a852489dac",
       "date": "2020-04-03",
       "timestamp": "2020-04-03T17:37:46Z",
       "author": "Per Arne Vollan",
@@ -28181,6 +32665,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -28195,6 +32684,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "844d724198b38f290f70fd142b6dccd677e24e32",
+      "short_hash": "844d724198b3",
       "date": "2020-04-02",
       "timestamp": "2020-04-02T20:41:18Z",
       "author": "Per Arne Vollan",
@@ -28220,6 +32710,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -28234,6 +32726,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2ef35e53f70567c7094389688a593b2046be53ad",
+      "short_hash": "2ef35e53f705",
       "date": "2020-04-02",
       "timestamp": "2020-04-02T20:38:43Z",
       "author": "Brent Fulgham",
@@ -28278,6 +32771,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 12,
       "lines_deleted": 37,
       "allow_added": 1,
@@ -28292,6 +32787,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1eed78510bd61418faa8eae14120d4e27fc7a9d5",
+      "short_hash": "1eed78510bd6",
       "date": "2020-03-31",
       "timestamp": "2020-03-31T17:28:01Z",
       "author": "Per Arne Vollan",
@@ -28315,6 +32811,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -28328,6 +32828,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4eb08d111eb238fc1a6b0910db6d2f098620926a",
+      "short_hash": "4eb08d111eb2",
       "date": "2020-03-26",
       "timestamp": "2020-03-26T20:33:36Z",
       "author": "Brent Fulgham",
@@ -28355,6 +32856,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 8,
       "allow_added": 0,
@@ -28369,6 +32874,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d2230812321e53b2929cabb06617890ff149edaa",
+      "short_hash": "d2230812321e",
       "date": "2020-03-26",
       "timestamp": "2020-03-26T17:47:08Z",
       "author": "Per Arne Vollan",
@@ -28392,6 +32898,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28405,6 +32916,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f79160df846a85fd409fd508c017fe90d958faec",
+      "short_hash": "f79160df846a",
       "date": "2020-03-24",
       "timestamp": "2020-03-24T22:41:13Z",
       "author": "Per Arne Vollan",
@@ -28430,6 +32942,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnable.h",
+        "Source/WTF/wtf/PlatformEnableCocoa.h",
+        "Source/WebKit/UIProcess/Cocoa/PreferenceObserver.h",
+        "Source/WebKit/UIProcess/Cocoa/PreferenceObserver.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/Tests/WebKit/PreferenceChanges.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28444,6 +32967,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4a1bd6d67a5600bff0bb4f5af5e9cc83b41c0ad4",
+      "short_hash": "4a1bd6d67a56",
       "date": "2020-03-24",
       "timestamp": "2020-03-24T17:14:43Z",
       "author": "Per Arne Vollan",
@@ -28467,6 +32991,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -28481,6 +33016,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c7cc069e73b9b8e922294ffa6d4c565f881314ed",
+      "short_hash": "c7cc069e73b9",
       "date": "2020-03-24",
       "timestamp": "2020-03-24T01:31:38Z",
       "author": "Commit Queue",
@@ -28504,6 +33040,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -28518,6 +33065,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "76cfb12deea15ffa741e6d46628fe5d9ba620d38",
+      "short_hash": "76cfb12deea1",
       "date": "2020-03-24",
       "timestamp": "2020-03-24T00:15:23Z",
       "author": "Per Arne Vollan",
@@ -28541,6 +33089,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -28555,6 +33114,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "75ce36b32853fd7ffa00dcd1f8b428f052a2c5d4",
+      "short_hash": "75ce36b32853",
       "date": "2020-03-23",
       "timestamp": "2020-03-23T15:35:42Z",
       "author": "Per Arne Vollan",
@@ -28578,6 +33138,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28591,6 +33156,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0dd10d650bbc07bc5c0850962fbc823cb99114ce",
+      "short_hash": "0dd10d650bbc",
       "date": "2020-03-23",
       "timestamp": "2020-03-23T14:38:22Z",
       "author": "Jacob Uphoff",
@@ -28614,6 +33180,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -28627,6 +33204,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3a7e9669992b8ee910694d7d3cae20c7543dcc7e",
+      "short_hash": "3a7e9669992b",
       "date": "2020-03-21",
       "timestamp": "2020-03-21T01:10:42Z",
       "author": "Per Arne Vollan",
@@ -28650,6 +33228,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -28664,6 +33253,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8d4973d13a3ab046de3cbaf94ad092dfa6dd6832",
+      "short_hash": "8d4973d13a3a",
       "date": "2020-03-21",
       "timestamp": "2020-03-21T00:52:08Z",
       "author": "Per Arne Vollan",
@@ -28724,6 +33314,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 60,
       "lines_deleted": 0,
       "allow_added": 41,
@@ -28738,6 +33330,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4f61a1fcd7b765abaac029188253420e68fb4292",
+      "short_hash": "4f61a1fcd7b7",
       "date": "2020-03-20",
       "timestamp": "2020-03-20T03:05:51Z",
       "author": "Brent Fulgham",
@@ -28761,6 +33354,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28775,6 +33373,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "61c9deaa6e1f655257c59bb9ba520b14686e1893",
+      "short_hash": "61c9deaa6e1f",
       "date": "2020-03-19",
       "timestamp": "2020-03-19T22:44:56Z",
       "author": "Brent Fulgham",
@@ -28803,6 +33402,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -28817,6 +33421,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6380d0dc381399d97cb1c220db5256315db3eb65",
+      "short_hash": "6380d0dc3813",
       "date": "2020-03-19",
       "timestamp": "2020-03-19T21:13:28Z",
       "author": "Per Arne Vollan",
@@ -28840,6 +33445,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -28854,6 +33464,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "75e7b294125e9283b7b73701b46b68896f053a9e",
+      "short_hash": "75e7b294125e",
       "date": "2020-03-19",
       "timestamp": "2020-03-19T17:59:26Z",
       "author": "Per Arne Vollan",
@@ -28875,6 +33486,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 17,
       "lines_deleted": 0,
       "allow_added": 11,
@@ -28889,6 +33502,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5fbde7cef3727eb44cd61e86aeb2c10874812df9",
+      "short_hash": "5fbde7cef372",
       "date": "2020-03-18",
       "timestamp": "2020-03-18T03:12:50Z",
       "author": "Commit Queue",
@@ -28910,6 +33524,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 17,
       "allow_added": 0,
@@ -28924,6 +33540,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4391ff47e4d6aaf3f3307032fa9b33496149c4e3",
+      "short_hash": "4391ff47e4d6",
       "date": "2020-03-17",
       "timestamp": "2020-03-17T16:59:32Z",
       "author": "Per Arne Vollan",
@@ -28949,6 +33566,20 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnable.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Cocoa/PreferenceObserver.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 12,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -28963,6 +33594,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "02f066803d18ceb6214342f2ddac0a0cc965e814",
+      "short_hash": "02f066803d18",
       "date": "2020-03-16",
       "timestamp": "2020-03-16T15:26:05Z",
       "author": "Per Arne Vollan",
@@ -28984,6 +33616,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 17,
       "lines_deleted": 0,
       "allow_added": 11,
@@ -28998,6 +33632,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6bc90a82e1339e2ee21332560154e6567a1f2639",
+      "short_hash": "6bc90a82e133",
       "date": "2020-03-14",
       "timestamp": "2020-03-14T01:43:54Z",
       "author": "Brent Fulgham",
@@ -29021,6 +33656,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -29035,6 +33674,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6834cefe4b274e5e61d43d7833ecc57f6e910646",
+      "short_hash": "6834cefe4b27",
       "date": "2020-03-11",
       "timestamp": "2020-03-11T04:51:25Z",
       "author": "Per Arne Vollan",
@@ -29060,6 +33700,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -29074,6 +33716,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b9a2c433baa2197f70397ef7bf66d1d4472ca08c",
+      "short_hash": "b9a2c433baa2",
       "date": "2020-03-08",
       "timestamp": "2020-03-08T23:52:40Z",
       "author": "Per Arne Vollan",
@@ -29113,6 +33756,27 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformUse.h",
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/spi/cocoa/NSUTTypeRecordSPI.h",
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/platform/cocoa/UTTypeRecordSwizzler.h",
+        "Source/WebCore/platform/cocoa/UTTypeRecordSwizzler.mm",
+        "Source/WebCore/platform/network/mac/UTIUtilities.h",
+        "Source/WebCore/platform/network/mac/UTIUtilities.mm",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl",
+        "Source/WebCore/testing/Internals.mm",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKit/UTIFromTag.mm"
+      ],
+      "total_commit_files_count": 19,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29126,6 +33790,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "da38fa94529e99d8c8b2c60ad9b8a0992b45d578",
+      "short_hash": "da38fa94529e",
       "date": "2020-03-07",
       "timestamp": "2020-03-07T06:58:10Z",
       "author": "Per Arne Vollan",
@@ -29151,6 +33816,33 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnable.h",
+        "Source/WebKit/Platform/spi/Cocoa/AccessibilitySupportSPI.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivate.h",
+        "Source/WebKit/UIProcess/Cocoa/PreferenceObserver.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/ios/WebProcessProxyIOS.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKit/GrantAccessToPreferencesService.mm",
+        "Tools/TestWebKitAPI/Tests/ios/AccessibilityTestsIOS.mm"
+      ],
+      "total_commit_files_count": 25,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -29164,6 +33856,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2da1f0aff3fc31f222757bd6c124a6eac4524348",
+      "short_hash": "2da1f0aff3fc",
       "date": "2020-03-06",
       "timestamp": "2020-03-06T06:16:48Z",
       "author": "Brent Fulgham",
@@ -29189,6 +33882,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -29203,6 +33898,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "256ccfa9a09eb45f3290506d5204419d31f8df69",
+      "short_hash": "256ccfa9a09e",
       "date": "2020-03-05",
       "timestamp": "2020-03-05T19:12:16Z",
       "author": "Brent Fulgham",
@@ -29226,6 +33922,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -29240,6 +33941,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "24a685085cec974c92b525720feefbdded7a149c",
+      "short_hash": "24a685085cec",
       "date": "2020-03-04",
       "timestamp": "2020-03-04T22:03:26Z",
       "author": "Per Arne Vollan",
@@ -29265,6 +33967,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -29278,6 +33984,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5bf0503b74f7b5aa67ede0f330d609182d2af2b7",
+      "short_hash": "5bf0503b74f7",
       "date": "2020-03-04",
       "timestamp": "2020-03-04T21:26:22Z",
       "author": "Per Arne Vollan",
@@ -29316,6 +34023,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/PlatformEnable.h",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29329,6 +34046,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "936d469758efd20d47912afb079041287469a777",
+      "short_hash": "936d469758ef",
       "date": "2020-03-03",
       "timestamp": "2020-03-03T03:11:06Z",
       "author": "Brent Fulgham",
@@ -29354,6 +34072,22 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/NetworkSessionCreationParameters.cpp",
+        "Source/WebKit/NetworkProcess/NetworkSessionCreationParameters.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Scripts/process-entitlements.sh",
+        "Source/WebKit/UIProcess/API/C/WKWebsiteDataStoreRef.cpp",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebsiteDataStore.mm",
+        "Source/WebKit/UIProcess/Cocoa/VersionChecks.h",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebsiteData/Cocoa/WebsiteDataStoreCocoa.mm",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.cpp",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.h"
+      ],
+      "total_commit_files_count": 14,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -29368,6 +34102,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a7e0f2da41cf33c3ad92c2ce050bc0a58d734024",
+      "short_hash": "a7e0f2da41cf",
       "date": "2020-03-03",
       "timestamp": "2020-03-03T01:01:51Z",
       "author": "Per Arne Vollan",
@@ -29391,6 +34126,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -29402,6 +34139,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "093f923c3ff958e0f9ed9c6ed8eb11367a3b15a9",
+      "short_hash": "093f923c3ff9",
       "date": "2020-03-02",
       "timestamp": "2020-03-02T19:57:15Z",
       "author": "Per Arne Vollan",
@@ -29425,6 +34163,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -29438,6 +34181,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6cd64431ebd629e4442ae64f1f928dcae2a413a4",
+      "short_hash": "6cd64431ebd6",
       "date": "2020-02-28",
       "timestamp": "2020-02-28T19:57:50Z",
       "author": "Brent Fulgham",
@@ -29465,6 +34209,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -29479,6 +34225,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5b6f8a3e74d9d56ff6f5994c590644ad7ca60000",
+      "short_hash": "5b6f8a3e74d9",
       "date": "2020-02-28",
       "timestamp": "2020-02-28T19:12:23Z",
       "author": "Brent Fulgham",
@@ -29502,6 +34249,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -29516,6 +34265,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0ca84c074e295167abfb4424c8fb3139ae72234a",
+      "short_hash": "0ca84c074e29",
       "date": "2020-02-28",
       "timestamp": "2020-02-28T03:50:13Z",
       "author": "Brent Fulgham",
@@ -29542,6 +34292,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -29556,6 +34308,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1161f9cb023708cb1cae3a8f53e50478f0e693a9",
+      "short_hash": "1161f9cb0237",
       "date": "2020-02-28",
       "timestamp": "2020-02-28T02:44:40Z",
       "author": "Per Arne Vollan",
@@ -29593,6 +34346,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail.html",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29606,6 +34368,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "afe271bac8c5157ecdd84516c62ebf8efa03bb61",
+      "short_hash": "afe271bac8c5",
       "date": "2020-02-27",
       "timestamp": "2020-02-27T23:39:25Z",
       "author": "Ryan Haddad",
@@ -29643,6 +34406,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail.html",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29656,6 +34428,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "18161db5cf4e136846175096406f4dad978cb217",
+      "short_hash": "18161db5cf4e",
       "date": "2020-02-27",
       "timestamp": "2020-02-27T18:48:36Z",
       "author": "Per Arne Vollan",
@@ -29693,6 +34466,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail.html",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29706,6 +34488,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e3ede7464c7a661f5923102ef23454fe3c5cd12b",
+      "short_hash": "e3ede7464c7a",
       "date": "2020-02-27",
       "timestamp": "2020-02-27T00:47:11Z",
       "author": "Jacob Uphoff",
@@ -29743,6 +34526,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail.html",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29756,6 +34548,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bf7d443976aba0242a539a176c00c577171393e1",
+      "short_hash": "bf7d443976ab",
       "date": "2020-02-26",
       "timestamp": "2020-02-26T21:38:40Z",
       "author": "Per Arne Vollan",
@@ -29793,6 +34586,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail.html",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -29806,6 +34608,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c38bf395f8be27000f0360a09c27b423e0faed15",
+      "short_hash": "c38bf395f8be",
       "date": "2020-02-24",
       "timestamp": "2020-02-24T23:18:59Z",
       "author": "Per Arne Vollan",
@@ -29829,6 +34632,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -29842,6 +34647,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d643ee4aece2ce13492f5547b6f689cc3714b196",
+      "short_hash": "d643ee4aece2",
       "date": "2020-02-21",
       "timestamp": "2020-02-21T22:25:17Z",
       "author": "Brent Fulgham",
@@ -29869,6 +34675,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -29883,6 +34693,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e77c084372df49b9e1f1cf04692f3846c4290273",
+      "short_hash": "e77c084372df",
       "date": "2020-02-21",
       "timestamp": "2020-02-21T19:21:18Z",
       "author": "Per Arne Vollan",
@@ -29911,6 +34722,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -29925,6 +34740,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81d38fb84361cb33fe1ea5575491516323959a0d",
+      "short_hash": "81d38fb84361",
       "date": "2020-02-17",
       "timestamp": "2020-02-17T19:50:16Z",
       "author": "Per Arne Vollan",
@@ -29950,6 +34766,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/spi/cf/CFUtilitiesSPI.h",
+        "Source/WebCore/PAL/pal/spi/cocoa/NSUserDefaultsSPI.h",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl",
+        "Source/WebCore/testing/Internals.mm",
+        "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceMain.mm",
+        "Source/WebKit/UIProcess/Cocoa/PreferenceObserver.h",
+        "Source/WebKit/UIProcess/Cocoa/PreferenceObserver.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKit/PreferenceChanges.mm"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -29963,6 +34801,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0ddc8b77f75a1e63fee95cad155671f273ed5ad5",
+      "short_hash": "0ddc8b77f75a",
       "date": "2020-02-17",
       "timestamp": "2020-02-17T18:29:33Z",
       "author": "Per Arne Vollan",
@@ -29999,6 +34838,24 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/JavaScriptCore/inspector/remote/RemoteInspector.cpp",
+        "Source/JavaScriptCore/inspector/remote/RemoteInspector.h",
+        "Source/JavaScriptCore/inspector/remote/RemoteInspectorConstants.h",
+        "Source/JavaScriptCore/inspector/remote/cocoa/RemoteInspectorCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 16,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -30012,6 +34869,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "544fdc15595de308b081f08d86a69fc52e55523b",
+      "short_hash": "544fdc15595d",
       "date": "2020-02-17",
       "timestamp": "2020-02-17T18:18:40Z",
       "author": "Per Arne Vollan",
@@ -30035,6 +34893,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -30048,6 +34908,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "508ebde377462cd8816d75758e006e1b2da96b8c",
+      "short_hash": "508ebde37746",
       "date": "2020-02-15",
       "timestamp": "2020-02-15T01:20:19Z",
       "author": "Brent Fulgham",
@@ -30121,6 +34982,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 30,
       "lines_deleted": 63,
       "allow_added": 15,
@@ -30135,6 +35004,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7009be3cd7e0fa120475135f40c0613cf6af3214",
+      "short_hash": "7009be3cd7e0",
       "date": "2020-02-12",
       "timestamp": "2020-02-12T21:49:12Z",
       "author": "Brent Fulgham",
@@ -30160,6 +35030,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 15,
       "allow_added": 0,
@@ -30174,6 +35046,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b9083408314b0b12f3b965c3008e81fa852eb4a5",
+      "short_hash": "b9083408314b",
       "date": "2020-02-12",
       "timestamp": "2020-02-12T18:49:42Z",
       "author": "Simon Fraser",
@@ -30199,6 +35072,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -30214,6 +35092,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3b6e880bd41eca609f7aa06118712253c78c70a6",
+      "short_hash": "3b6e880bd41e",
       "date": "2020-02-12",
       "timestamp": "2020-02-12T18:40:04Z",
       "author": "Per Arne Vollan",
@@ -30237,6 +35116,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -30251,6 +35135,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "635781b04a052fedea45d68b119d9ef9e0d129e6",
+      "short_hash": "635781b04a05",
       "date": "2020-02-12",
       "timestamp": "2020-02-12T17:05:11Z",
       "author": "Brent Fulgham",
@@ -30276,6 +35161,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -30290,6 +35179,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b76a5eab8f82424c19008bdcc6935f743c55a846",
+      "short_hash": "b76a5eab8f82",
       "date": "2020-02-12",
       "timestamp": "2020-02-12T00:47:35Z",
       "author": "Brent Fulgham",
@@ -30313,6 +35203,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -30327,6 +35219,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "566a98da248408ca8bea09ea6ae3b5d50c82b0d1",
+      "short_hash": "566a98da2484",
       "date": "2020-02-11",
       "timestamp": "2020-02-11T22:22:23Z",
       "author": "Per Arne Vollan",
@@ -30353,6 +35246,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -30366,6 +35264,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c3c55ea2b07bb74fa6d4e85f5604d374656e27de",
+      "short_hash": "c3c55ea2b07b",
       "date": "2020-02-11",
       "timestamp": "2020-02-11T21:14:44Z",
       "author": "Eric Carlson",
@@ -30393,6 +35292,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/mediastream/media-element-current-time-expected.txt",
+        "LayoutTests/fast/mediastream/media-element-current-time.html"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -30407,6 +35311,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ea43f7673143ab2ff52908be204f3a15f07f24ba",
+      "short_hash": "ea43f7673143",
       "date": "2020-02-05",
       "timestamp": "2020-02-05T21:42:27Z",
       "author": "Brent Fulgham",
@@ -30434,6 +35339,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -30448,6 +35357,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a97b3d1f6d13cd10316ebd3b116179d2ea88fd97",
+      "short_hash": "a97b3d1f6d13",
       "date": "2020-01-31",
       "timestamp": "2020-01-31T17:54:21Z",
       "author": "Brent Fulgham",
@@ -30478,6 +35388,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 10,
       "lines_deleted": 0,
       "allow_added": 6,
@@ -30492,6 +35404,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8b0ebd9b5d832f1319315a80ad970289a882eb61",
+      "short_hash": "8b0ebd9b5d83",
       "date": "2020-01-30",
       "timestamp": "2020-01-30T22:13:23Z",
       "author": "Per Arne Vollan",
@@ -30527,6 +35440,28 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/focus-ring-color-expected.txt",
+        "LayoutTests/fast/sandbox/ios/focus-ring-color.html",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-attachment-element-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-attachment-element.html",
+        "Source/WebCore/rendering/RenderTheme.h",
+        "Source/WebCore/rendering/RenderThemeIOS.h",
+        "Source/WebCore/rendering/RenderThemeIOS.mm",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl",
+        "Source/WebKit/Shared/WebPageCreationParameters.cpp",
+        "Source/WebKit/Shared/WebPageCreationParameters.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 20,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -30541,6 +35476,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c9a98fc8a01cae4e34463ad0139caadce81807db",
+      "short_hash": "c9a98fc8a01c",
       "date": "2020-01-30",
       "timestamp": "2020-01-30T17:09:40Z",
       "author": "Brent Fulgham",
@@ -30568,6 +35504,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -30582,6 +35520,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cd2d0ce3c51620f28add3a4adf30388a50265d39",
+      "short_hash": "cd2d0ce3c516",
       "date": "2020-01-29",
       "timestamp": "2020-01-29T22:39:33Z",
       "author": "Commit Queue",
@@ -30611,6 +35550,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 5,
       "lines_deleted": 1,
       "allow_added": 4,
@@ -30625,6 +35569,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4d7beaec2309912d566278dc4151635a2cbf996d",
+      "short_hash": "4d7beaec2309",
       "date": "2020-01-29",
       "timestamp": "2020-01-29T22:38:35Z",
       "author": "Per Arne Vollan",
@@ -30650,6 +35595,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -30664,6 +35614,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2d819fde5dd5135b1eb731ed6f141009f39ba8f0",
+      "short_hash": "2d819fde5dd5",
       "date": "2020-01-27",
       "timestamp": "2020-01-27T21:50:51Z",
       "author": "Brent Fulgham",
@@ -30693,6 +35644,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 20,
       "allow_added": 0,
@@ -30707,6 +35660,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "595d919aa5d152f1e0bc38c295e255aea98bab4f",
+      "short_hash": "595d919aa5d1",
       "date": "2020-01-24",
       "timestamp": "2020-01-24T15:58:45Z",
       "author": "Brent Fulgham",
@@ -30733,6 +35687,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -30747,6 +35703,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ccdfef0c46d04efe3ab37afc02c64a9a549922d1",
+      "short_hash": "ccdfef0c46d0",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T22:13:53Z",
       "author": "Per Arne Vollan",
@@ -30780,6 +35737,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivate.h",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -30793,6 +35760,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ccf57989ed2abcbd85cbdb468afe855000dc3bb7",
+      "short_hash": "ccf57989ed2a",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T21:14:54Z",
       "author": "Brent Fulgham",
@@ -30822,6 +35790,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 23,
       "allow_added": 0,
@@ -30836,6 +35806,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81ec0d9b4dfb373272678d069d4f8be2934f4e00",
+      "short_hash": "81ec0d9b4dfb",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T19:56:38Z",
       "author": "Ryan Haddad",
@@ -30869,6 +35840,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivate.h",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -30882,6 +35863,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "30f0d6302a488971b055883df07f671dafd0de1a",
+      "short_hash": "30f0d6302a48",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T19:50:05Z",
       "author": "Brent Fulgham",
@@ -30913,6 +35895,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 12,
       "lines_deleted": 6,
       "allow_added": 3,
@@ -30927,6 +35911,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0e905a261b5d5e81f9bc99ac918b86623195ef72",
+      "short_hash": "0e905a261b5d",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T19:09:02Z",
       "author": "Per Arne Vollan",
@@ -30960,6 +35945,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivate.h",
+        "Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -30973,6 +35968,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e4a088e0537c6cacbbbeff5d9897de819373d749",
+      "short_hash": "e4a088e0537c",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T19:05:24Z",
       "author": "Per Arne Vollan",
@@ -31003,6 +35999,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 18,
       "lines_deleted": 0,
       "allow_added": 13,
@@ -31017,6 +36015,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d9b167bcbd6e96c0d24f47a54d70b65426f4c109",
+      "short_hash": "d9b167bcbd6e",
       "date": "2020-01-23",
       "timestamp": "2020-01-23T18:15:30Z",
       "author": "Brent Fulgham",
@@ -31052,6 +36051,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 15,
       "lines_deleted": 13,
       "allow_added": 6,
@@ -31066,6 +36069,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "baf595138d865e61629c1d284340c450c5c07f98",
+      "short_hash": "baf595138d86",
       "date": "2020-01-17",
       "timestamp": "2020-01-17T20:37:41Z",
       "author": "Brent Fulgham",
@@ -31095,6 +36099,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 50,
       "allow_added": 0,
@@ -31109,6 +36115,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6501af18d31b591d1017aa5cc012b005500cdde9",
+      "short_hash": "6501af18d31b",
       "date": "2020-01-17",
       "timestamp": "2020-01-17T03:55:04Z",
       "author": "Brent Fulgham",
@@ -31135,6 +36142,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 15,
       "lines_deleted": 4,
       "allow_added": 3,
@@ -31149,6 +36158,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "372d2732d7df38e4fa1dff5b630534fed6057b4a",
+      "short_hash": "372d2732d7df",
       "date": "2020-01-15",
       "timestamp": "2020-01-15T06:40:19Z",
       "author": "Commit Queue",
@@ -31174,6 +36184,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -31188,6 +36202,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3e18a4880ac24c040c0329f1a6f47b04c26d0461",
+      "short_hash": "3e18a4880ac2",
       "date": "2020-01-15",
       "timestamp": "2020-01-15T01:39:11Z",
       "author": "Brent Fulgham",
@@ -31213,6 +36228,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -31227,6 +36246,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7cd48e14c271945b5861b6584d510483f3c2f8ab",
+      "short_hash": "7cd48e14c271",
       "date": "2020-01-13",
       "timestamp": "2020-01-13T17:39:32Z",
       "author": "Brent Fulgham",
@@ -31252,6 +36272,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -31266,6 +36288,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "837208309018aacf75f8239feb798847e055466a",
+      "short_hash": "837208309018",
       "date": "2020-01-11",
       "timestamp": "2020-01-11T00:45:19Z",
       "author": "Brent Fulgham",
@@ -31293,6 +36316,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -31306,6 +36331,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "592571e19e6f8ad12bc13499b566c9b206ae8840",
+      "short_hash": "592571e19e6f",
       "date": "2020-01-11",
       "timestamp": "2020-01-11T00:21:59Z",
       "author": "Brent Fulgham",
@@ -31335,6 +36361,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -31349,6 +36380,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d75de1c1875176f6b2c85232ed217d98add50b7d",
+      "short_hash": "d75de1c18751",
       "date": "2020-01-11",
       "timestamp": "2020-01-11T00:00:10Z",
       "author": "Brent Fulgham",
@@ -31374,6 +36406,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -31388,6 +36425,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9454950a834b843041030e6b1fa5ad73276dba36",
+      "short_hash": "9454950a834b",
       "date": "2020-01-10",
       "timestamp": "2020-01-10T22:21:43Z",
       "author": "Brent Fulgham",
@@ -31413,6 +36451,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -31427,6 +36470,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "34364dae6aba48e1c532b513b2c472524963afda",
+      "short_hash": "34364dae6aba",
       "date": "2020-01-10",
       "timestamp": "2020-01-10T22:17:17Z",
       "author": "Brent Fulgham",
@@ -31454,6 +36498,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -31468,6 +36517,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "da6aca897852b1a12ae21b517e1541304db03b9e",
+      "short_hash": "da6aca897852",
       "date": "2020-01-10",
       "timestamp": "2020-01-10T21:38:08Z",
       "author": "Brent Fulgham",
@@ -31493,6 +36543,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -31507,6 +36562,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "28b53c8e683bafbba54c133022c6063f0e1ea62c",
+      "short_hash": "28b53c8e683b",
       "date": "2020-01-10",
       "timestamp": "2020-01-10T20:39:31Z",
       "author": "Brent Fulgham",
@@ -31534,6 +36590,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -31548,6 +36609,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9a51502397dd160364087188dd678279d3b8b841",
+      "short_hash": "9a51502397dd",
       "date": "2020-01-10",
       "timestamp": "2020-01-10T18:54:03Z",
       "author": "Brent Fulgham",
@@ -31577,6 +36639,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "LayoutTests/fast/sandbox/mac/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/mac/sandbox-mach-lookup.html",
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 0,
       "lines_deleted": 18,
       "allow_added": 0,
@@ -31591,6 +36662,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "cad90420ecf2868561f03809cf1be2c308839488",
+      "short_hash": "cad90420ecf2",
       "date": "2020-01-09",
       "timestamp": "2020-01-09T23:18:05Z",
       "author": "Brent Fulgham",
@@ -31616,6 +36688,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -31630,6 +36704,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "57b21fd7e7e2143334675aaf278777babe6c5191",
+      "short_hash": "57b21fd7e7e2",
       "date": "2020-01-09",
       "timestamp": "2020-01-09T00:59:14Z",
       "author": "Brent Fulgham",
@@ -31656,6 +36731,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -31670,6 +36750,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9217c581698643696abc5be7d4f170b04fc5bcfc",
+      "short_hash": "9217c5816986",
       "date": "2020-01-08",
       "timestamp": "2020-01-08T19:36:34Z",
       "author": "Brent Fulgham",
@@ -31869,6 +36950,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 535,
       "lines_deleted": 11,
       "allow_added": 346,
@@ -31883,6 +36968,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "96ed34a041e1c3a0b73281e3d477885f84fccf4b",
+      "short_hash": "96ed34a041e1",
       "date": "2020-01-08",
       "timestamp": "2020-01-08T17:13:39Z",
       "author": "Truitt Savell",
@@ -32082,6 +37168,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 9,
       "lines_deleted": 532,
       "allow_added": 1,
@@ -32095,6 +37185,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+      "short_hash": "d4fb8ae72882",
       "date": "2020-01-08",
       "timestamp": "2020-01-08T00:38:10Z",
       "author": "Brent Fulgham",
@@ -32294,6 +37385,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 532,
       "lines_deleted": 9,
       "allow_added": 346,
@@ -32308,6 +37403,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b93071d060defb76f422f634a5bca61ed2ff0b25",
+      "short_hash": "b93071d060de",
       "date": "2020-01-06",
       "timestamp": "2020-01-06T16:03:44Z",
       "author": "Per Arne Vollan",
@@ -32339,6 +37435,22 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-mail.html",
+        "Source/WebCore/platform/RuntimeApplicationChecks.h",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewPrivateForTesting.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Tools/WebKitTestRunner/TestController.cpp",
+        "Tools/WebKitTestRunner/TestController.h",
+        "Tools/WebKitTestRunner/TestOptions.h",
+        "Tools/WebKitTestRunner/cocoa/TestControllerCocoa.mm"
+      ],
+      "total_commit_files_count": 14,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -32352,6 +37464,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "002905d9839d98639916b71afdd053b4b1e549d1",
+      "short_hash": "002905d9839d",
       "date": "2019-12-20",
       "timestamp": "2019-12-20T00:03:59Z",
       "author": "Brent Fulgham",
@@ -32377,6 +37490,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 6,
       "lines_deleted": 5,
       "allow_added": 1,
@@ -32391,6 +37509,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "239163dedbc8ceabad09b07307156d2ea72e99c5",
+      "short_hash": "239163dedbc8",
       "date": "2019-12-19",
       "timestamp": "2019-12-19T23:38:28Z",
       "author": "Brent Fulgham",
@@ -32418,6 +37537,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 14,
       "lines_deleted": 1,
       "allow_added": 9,
@@ -32432,6 +37553,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "81b261910451601f79b62b8950acd8a1a9221c4e",
+      "short_hash": "81b261910451",
       "date": "2019-12-19",
       "timestamp": "2019-12-19T20:00:24Z",
       "author": "Brent Fulgham",
@@ -32457,6 +37579,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/TestExpectations",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "LayoutTests/fast/sandbox/mac/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/mac/sandbox-mach-lookup.html",
+        "LayoutTests/platform/mac-wk2/TestExpectations",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -32471,6 +37603,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4ab3316969a7d7106ee5cb24c573db13c019e26e",
+      "short_hash": "4ab3316969a7",
       "date": "2019-12-19",
       "timestamp": "2019-12-19T19:48:34Z",
       "author": "Brent Fulgham",
@@ -32496,6 +37629,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -32510,6 +37648,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d67f23d35a4ef960b2a24a2eb55fa229530c85ca",
+      "short_hash": "d67f23d35a4e",
       "date": "2019-12-19",
       "timestamp": "2019-12-19T18:33:11Z",
       "author": "Brent Fulgham",
@@ -32535,6 +37674,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -32549,6 +37693,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "80d97af9160cda2a33113dd25aabe414e42bed58",
+      "short_hash": "80d97af9160c",
       "date": "2019-12-19",
       "timestamp": "2019-12-19T17:59:25Z",
       "author": "Brent Fulgham",
@@ -32733,6 +37878,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/GPUProcess/mac/com.apple.WebKit.GPUProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 166,
       "allow_added": 0,
@@ -32747,6 +37896,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "82c332c01301c37c95cf295f540f741e7897f1a3",
+      "short_hash": "82c332c01301",
       "date": "2019-12-18",
       "timestamp": "2019-12-18T18:54:20Z",
       "author": "Brent Fulgham",
@@ -32772,6 +37922,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -32786,6 +37938,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f6acd7b8a7a7b582861bfe0e0c1e5e219f5b08a5",
+      "short_hash": "f6acd7b8a7a7",
       "date": "2019-12-17",
       "timestamp": "2019-12-17T00:02:50Z",
       "author": "Per Arne Vollan",
@@ -32816,6 +37969,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -32829,6 +37989,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c895186ac91e3e3485fc895ebc80a46da2589d00",
+      "short_hash": "c895186ac91e",
       "date": "2019-12-14",
       "timestamp": "2019-12-14T23:20:45Z",
       "author": "Per Arne Vollan",
@@ -32852,6 +38013,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -32865,6 +38031,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bc491ce8fe61b07fc31aff6e7a950ef28accc98d",
+      "short_hash": "bc491ce8fe61",
       "date": "2019-12-13",
       "timestamp": "2019-12-13T19:07:51Z",
       "author": "Per Arne Vollan",
@@ -32888,6 +38055,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "LayoutTests/TestExpectations",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup-expected.txt",
+        "LayoutTests/fast/sandbox/ios/sandbox-mach-lookup.html",
+        "LayoutTests/platform/ios-device-wk2/TestExpectations",
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebCore/testing/Internals.cpp",
+        "Source/WebCore/testing/Internals.h",
+        "Source/WebCore/testing/Internals.idl"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -32902,6 +38080,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0e3142ef0dc1340bcfbee805abd1f4a6c59a96c5",
+      "short_hash": "0e3142ef0dc1",
       "date": "2019-12-13",
       "timestamp": "2019-12-13T16:02:25Z",
       "author": "Per Arne Vollan",
@@ -32933,6 +38112,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 4,
@@ -32946,6 +38127,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3d997649a87b228166edc7b492b493763dc44092",
+      "short_hash": "3d997649a87b",
       "date": "2019-12-13",
       "timestamp": "2019-12-13T00:26:20Z",
       "author": "Per Arne Vollan",
@@ -32975,6 +38157,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 4,
       "allow_added": 3,
@@ -32988,6 +38172,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5546a87ab51187dd0d8f5cea066ae264a6f924f1",
+      "short_hash": "5546a87ab511",
       "date": "2019-12-12",
       "timestamp": "2019-12-12T19:09:12Z",
       "author": "Per Arne Vollan",
@@ -33018,6 +38203,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/platform/cocoa/ParentalControlsContentFilter.h",
+        "Source/WebCore/platform/cocoa/ParentalControlsContentFilter.mm",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/ContentFiltering.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -33031,6 +38227,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f5b413ecadb6d532b7a20598a36f617aa9d1c2f5",
+      "short_hash": "f5b413ecadb6",
       "date": "2019-12-11",
       "timestamp": "2019-12-11T01:35:14Z",
       "author": "Per Arne Vollan",
@@ -33054,6 +38251,23 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/dom/Document.cpp",
+        "Source/WebCore/platform/ios/DeviceMotionClientIOS.h",
+        "Source/WebCore/platform/ios/DeviceMotionClientIOS.mm",
+        "Source/WebCore/platform/ios/DeviceOrientationClientIOS.mm",
+        "Source/WebCore/platform/ios/DeviceOrientationUpdateProvider.h",
+        "Source/WebCore/platform/ios/MotionManagerClient.h",
+        "Source/WebCore/platform/ios/WebCoreMotionManager.h",
+        "Source/WebCore/platform/ios/WebCoreMotionManager.mm",
+        "Source/WebKit/UIProcess/ios/WebDeviceOrientationUpdateProviderProxy.h",
+        "Source/WebKit/UIProcess/ios/WebDeviceOrientationUpdateProviderProxy.messages.in",
+        "Source/WebKit/UIProcess/ios/WebDeviceOrientationUpdateProviderProxy.mm",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebDeviceOrientationUpdateProvider.cpp",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebDeviceOrientationUpdateProvider.h",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebDeviceOrientationUpdateProvider.messages.in"
+      ],
+      "total_commit_files_count": 15,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -33067,6 +38281,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ab03ed22161665a3b9ade698e241e1064d73cd75",
+      "short_hash": "ab03ed221616",
       "date": "2019-12-10",
       "timestamp": "2019-12-10T23:21:41Z",
       "author": "Per Arne Vollan",
@@ -33096,6 +38311,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/WebCore.xcodeproj/project.pbxproj",
+        "Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.h",
+        "Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.mm",
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -33109,6 +38335,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e3d2a07ee6bd98d72f9aa525d4ed905377b48dbb",
+      "short_hash": "e3d2a07ee6bd",
       "date": "2019-12-05",
       "timestamp": "2019-12-05T00:35:35Z",
       "author": "Tim Horton",
@@ -33492,6 +38719,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1144,
       "lines_deleted": 0,
       "allow_added": 719,
@@ -33503,6 +38734,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8b6cff89686edfa60ddc0565182aedb99a3637da",
+      "short_hash": "8b6cff89686e",
       "date": "2019-12-05",
       "timestamp": "2019-12-05T00:07:39Z",
       "author": "Per Arne Vollan",
@@ -33530,6 +38762,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -33543,6 +38782,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "575d4379b9418a73cf922233de506e069faba796",
+      "short_hash": "575d4379b941",
       "date": "2019-12-02",
       "timestamp": "2019-12-02T23:00:24Z",
       "author": "Per Arne Vollan",
@@ -33569,6 +38809,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/UIProcess/UserMediaPermissionRequestManagerProxy.cpp",
+        "Source/WebKit/UIProcess/UserMediaPermissionRequestManagerProxy.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebPage/WebPage.messages.in"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -33583,6 +38831,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3c8e2b2101e6ea05db2c23e0efd97804c0495af7",
+      "short_hash": "3c8e2b2101e6",
       "date": "2019-11-19",
       "timestamp": "2019-11-19T21:00:21Z",
       "author": "Per Arne Vollan",
@@ -33608,6 +38857,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -33622,6 +38873,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a685c54fe54bca1a6f7d371c0486df20af556662",
+      "short_hash": "a685c54fe54b",
       "date": "2019-11-15",
       "timestamp": "2019-11-15T23:38:32Z",
       "author": "Per Arne Vollan",
@@ -33645,6 +38897,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -33659,6 +38913,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "67a050fc575b7ae56d6483f7304428cdd5d4187f",
+      "short_hash": "67a050fc575b",
       "date": "2019-11-15",
       "timestamp": "2019-11-15T21:35:58Z",
       "author": "Per Arne Vollan",
@@ -33682,6 +38937,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -33696,6 +38953,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "25fe299112a74e40d26d9523dc4db20928e6b7fe",
+      "short_hash": "25fe299112a7",
       "date": "2019-11-13",
       "timestamp": "2019-11-13T22:47:24Z",
       "author": "Per Arne Vollan",
@@ -33721,6 +38979,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -33735,6 +38995,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ec4361649d62100b97c00ac4cd2abdfcc8362c68",
+      "short_hash": "ec4361649d62",
       "date": "2019-11-11",
       "timestamp": "2019-11-11T18:38:50Z",
       "author": "Per Arne Vollan",
@@ -33760,6 +39021,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -33774,6 +39037,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c26aa351f8d5b64035c43c380ea8777a16d319a7",
+      "short_hash": "c26aa351f8d5",
       "date": "2019-11-07",
       "timestamp": "2019-11-07T23:20:01Z",
       "author": "Per Arne Vollan",
@@ -33804,6 +39068,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 17,
       "lines_deleted": 4,
       "allow_added": 10,
@@ -33817,6 +39083,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8a5b6c7a730cce89cf2d00452d12e4ecbf02eec0",
+      "short_hash": "8a5b6c7a730c",
       "date": "2019-11-05",
       "timestamp": "2019-11-05T22:05:48Z",
       "author": "Per Arne Vollan",
@@ -33849,6 +39116,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 19,
       "lines_deleted": 13,
       "allow_added": 3,
@@ -33862,6 +39131,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "53db2e44cd6dd02ef34209028e4497d3db579dd6",
+      "short_hash": "53db2e44cd6d",
       "date": "2019-11-01",
       "timestamp": "2019-11-01T20:19:11Z",
       "author": "Per Arne Vollan",
@@ -33888,6 +39158,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -33901,6 +39173,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b3195b0d87c0fa0d2e3c6b4ce948f325f4fdebd4",
+      "short_hash": "b3195b0d87c0",
       "date": "2019-11-01",
       "timestamp": "2019-11-01T00:31:57Z",
       "author": "Per Arne Vollan",
@@ -33929,6 +39202,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 6,
       "allow_added": 3,
@@ -33942,6 +39217,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f9c7f17ac7890cddf445057e755c1229b68222d7",
+      "short_hash": "f9c7f17ac789",
       "date": "2019-10-31",
       "timestamp": "2019-10-31T00:14:44Z",
       "author": "Per Arne Vollan",
@@ -33967,6 +39243,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -33980,6 +39258,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "36c37087a00406ff5646b99099e77232b0ea6a26",
+      "short_hash": "36c37087a004",
       "date": "2019-10-30",
       "timestamp": "2019-10-30T23:33:16Z",
       "author": "Per Arne Vollan",
@@ -34006,6 +39285,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -34019,6 +39300,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a745c89ad4adc8f701908fdc7cc32306a463c311",
+      "short_hash": "a745c89ad4ad",
       "date": "2019-10-29",
       "timestamp": "2019-10-29T21:22:22Z",
       "author": "Brent Fulgham",
@@ -34094,6 +39376,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 183,
       "lines_deleted": 162,
       "allow_added": 22,
@@ -34108,6 +39392,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0bdfa5bc799d6cc246af6d3ef4c75340efb538aa",
+      "short_hash": "0bdfa5bc799d",
       "date": "2019-10-29",
       "timestamp": "2019-10-29T00:21:53Z",
       "author": "Per Arne Vollan",
@@ -34135,6 +39420,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 12,
       "lines_deleted": 4,
       "allow_added": 8,
@@ -34148,6 +39435,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "98893649e8e9f66c5518d7a76aa7932426a01daf",
+      "short_hash": "98893649e8e9",
       "date": "2019-10-26",
       "timestamp": "2019-10-26T00:00:31Z",
       "author": "Per Arne Vollan",
@@ -34177,6 +39465,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 11,
       "lines_deleted": 15,
       "allow_added": 2,
@@ -34190,6 +39480,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e101f6888eb28640774dd3ab8106d7ae3f8c8f46",
+      "short_hash": "e101f6888eb2",
       "date": "2019-10-24",
       "timestamp": "2019-10-24T22:14:01Z",
       "author": "Brent Fulgham",
@@ -34216,6 +39507,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -34230,6 +39523,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "37beb9b2e7d95d622379b7a48a738864bcfa691a",
+      "short_hash": "37beb9b2e7d9",
       "date": "2019-10-24",
       "timestamp": "2019-10-24T21:42:23Z",
       "author": "Brent Fulgham",
@@ -34256,6 +39550,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -34270,6 +39566,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d0a929fde0a3ed0e545434e879c8516d28adcba4",
+      "short_hash": "d0a929fde0a3",
       "date": "2019-10-24",
       "timestamp": "2019-10-24T20:07:25Z",
       "author": "Brent Fulgham",
@@ -34303,6 +39600,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 11,
       "lines_deleted": 0,
       "allow_added": 11,
@@ -34314,6 +39613,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8f2bd20f3c7246b7859ce84a34462a93fb546e24",
+      "short_hash": "8f2bd20f3c72",
       "date": "2019-10-24",
       "timestamp": "2019-10-24T19:12:02Z",
       "author": "Brent Fulgham",
@@ -34381,6 +39681,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 59,
       "allow_added": 0,
@@ -34394,6 +39696,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "007213f8be5abb366cd4b94b753b4787f74bfb4d",
+      "short_hash": "007213f8be5a",
       "date": "2019-10-24",
       "timestamp": "2019-10-24T00:02:25Z",
       "author": "Brent Fulgham",
@@ -34535,6 +39838,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 520,
       "lines_deleted": 1,
       "allow_added": 330,
@@ -34548,6 +39853,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a0ca77c5dc90f16b133e5786b0f1fc1f34e1ee00",
+      "short_hash": "a0ca77c5dc90",
       "date": "2019-10-17",
       "timestamp": "2019-10-17T00:36:52Z",
       "author": "Per Arne Vollan",
@@ -34579,6 +39885,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 10,
       "allow_added": 0,
@@ -34592,6 +39900,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ad5b175c203f17d617d812dd7a70f25448c22c52",
+      "short_hash": "ad5b175c203f",
       "date": "2019-10-16",
       "timestamp": "2019-10-16T23:01:30Z",
       "author": "Per Arne Vollan",
@@ -34617,6 +39926,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 1,
@@ -34630,6 +39941,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c6b7a03834671a8f4905073ac988bb4d9bd799bf",
+      "short_hash": "c6b7a0383467",
       "date": "2019-08-01",
       "timestamp": "2019-08-01T22:29:52Z",
       "author": "Alex Christensen",
@@ -34655,6 +39967,39 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/FileSystem.cpp",
+        "Source/WTF/wtf/FileSystem.h",
+        "Source/WTF/wtf/cocoa/FileSystemCocoa.mm",
+        "Source/WebCore/Modules/fetch/FetchBody.cpp",
+        "Source/WebCore/loader/FormSubmission.cpp",
+        "Source/WebCore/loader/FrameLoader.cpp",
+        "Source/WebCore/loader/ResourceLoader.cpp",
+        "Source/WebCore/page/Chrome.cpp",
+        "Source/WebCore/page/ChromeClient.h",
+        "Source/WebCore/platform/network/FormData.cpp",
+        "Source/WebCore/platform/network/FormData.h",
+        "Source/WebCore/platform/network/cf/FormDataStreamCFNet.cpp",
+        "Source/WebCore/platform/network/mac/BlobDataFileReferenceMac.mm",
+        "Source/WebCore/xml/XMLHttpRequest.cpp",
+        "Source/WebKit/NetworkProcess/NetworkResourceLoadParameters.cpp",
+        "Source/WebKit/Platform/IPC/FormDataReference.h",
+        "Source/WebKit/WebProcess/InjectedBundle/API/APIInjectedBundlePageUIClient.h",
+        "Source/WebKit/WebProcess/InjectedBundle/InjectedBundlePageUIClient.cpp",
+        "Source/WebKit/WebProcess/InjectedBundle/InjectedBundlePageUIClient.h",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebChromeClient.cpp",
+        "Source/WebKit/WebProcess/WebCoreSupport/WebChromeClient.h",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in",
+        "Source/WebKitLegacy/mac/DefaultDelegates/WebDefaultUIDelegate.mm",
+        "Source/WebKitLegacy/mac/WebCoreSupport/WebChromeClient.h",
+        "Source/WebKitLegacy/mac/WebCoreSupport/WebChromeClient.mm",
+        "Source/WebKitLegacy/mac/WebView/WebUIDelegatePrivate.h",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/UploadDirectory.mm",
+        "Tools/TestWebKitAPI/cocoa/TestWKWebView.h",
+        "Tools/TestWebKitAPI/cocoa/TestWKWebView.mm"
+      ],
+      "total_commit_files_count": 31,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -34669,6 +40014,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f512b0f802eb8bbad24fdbe96b78c6849bc8df6b",
+      "short_hash": "f512b0f802eb",
       "date": "2019-07-24",
       "timestamp": "2019-07-24T18:08:31Z",
       "author": "Youenn Fablet",
@@ -34694,6 +40040,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -34708,6 +40056,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a0b7cb8e0697ba2e6d96ae7e770666efbd237634",
+      "short_hash": "a0b7cb8e0697",
       "date": "2019-07-22",
       "timestamp": "2019-07-22T22:02:58Z",
       "author": "Brent Fulgham",
@@ -34733,6 +40082,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebCore/platform/graphics/avfoundation/AudioSourceProviderAVFObjC.mm"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -34747,6 +40100,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "251decf18c35ea148939554c45ccb693f20b7a18",
+      "short_hash": "251decf18c35",
       "date": "2019-07-16",
       "timestamp": "2019-07-16T20:28:30Z",
       "author": "Brent Fulgham",
@@ -34770,6 +40124,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 6,
@@ -34784,6 +40140,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "53aa9df4168eb2214e5c1ffb4acfe0ec30bd14b7",
+      "short_hash": "53aa9df4168e",
       "date": "2019-07-08",
       "timestamp": "2019-07-08T16:51:28Z",
       "author": "Per Arne Vollan",
@@ -34809,6 +40166,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -34823,6 +40182,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "274a6ecd5d237852f1a4da4766ef283dafcb7e92",
+      "short_hash": "274a6ecd5d23",
       "date": "2019-06-29",
       "timestamp": "2019-06-29T05:09:49Z",
       "author": "Brent Fulgham",
@@ -34848,6 +40208,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -34862,6 +40226,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "45cbb5e87afcd60b6a85fcaf4adcfca0532be8db",
+      "short_hash": "45cbb5e87afc",
       "date": "2019-06-24",
       "timestamp": "2019-06-24T03:44:50Z",
       "author": "Dan Bernstein",
@@ -34885,6 +40250,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/Cocoa/ArgumentCodersCocoa.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -34898,6 +40268,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "eb4a79f2295586331a9808f5414b76fc2a02df5f",
+      "short_hash": "eb4a79f22955",
       "date": "2019-06-21",
       "timestamp": "2019-06-21T22:52:52Z",
       "author": "Brent Fulgham",
@@ -34924,6 +40295,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 7,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -34938,6 +40314,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "58fa68eeda961b9399eb745b0310ac5b8b60442e",
+      "short_hash": "58fa68eeda96",
       "date": "2019-06-07",
       "timestamp": "2019-06-07T17:10:35Z",
       "author": "Brent Fulgham",
@@ -34961,6 +40338,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -34976,6 +40355,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "11bb66c0cf9f952d7d31337d739876f8473b4f12",
+      "short_hash": "11bb66c0cf9f",
       "date": "2019-06-07",
       "timestamp": "2019-06-07T00:14:22Z",
       "author": "Commit Queue",
@@ -35002,6 +40382,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 22,
       "lines_deleted": 57,
       "allow_added": 21,
@@ -35016,6 +40398,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "26089548f24fb4bffde32e5e7bda59f0ceafa616",
+      "short_hash": "26089548f24f",
       "date": "2019-06-05",
       "timestamp": "2019-06-05T20:26:14Z",
       "author": "Brent Fulgham",
@@ -35042,6 +40425,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 57,
       "lines_deleted": 22,
       "allow_added": 40,
@@ -35057,6 +40442,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "26376edc1823826eff40a44c60328ac32d2874ff",
+      "short_hash": "26376edc1823",
       "date": "2019-05-31",
       "timestamp": "2019-05-31T20:00:07Z",
       "author": "Tim Horton",
@@ -35084,6 +40470,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/Platform.h",
+        "Source/WebCore/en.lproj/Localizable.strings",
+        "Source/WebKit/Configurations/Network-iOS.entitlements",
+        "Source/WebKit/NetworkProcess/NetworkCORSPreflightChecker.cpp",
+        "Source/WebKit/NetworkProcess/NetworkCORSPreflightChecker.h",
+        "Source/WebKit/NetworkProcess/NetworkDataTask.cpp",
+        "Source/WebKit/NetworkProcess/NetworkDataTask.h",
+        "Source/WebKit/NetworkProcess/NetworkLoad.cpp",
+        "Source/WebKit/NetworkProcess/NetworkLoad.h",
+        "Source/WebKit/NetworkProcess/NetworkLoadParameters.h",
+        "Source/WebKit/NetworkProcess/NetworkResourceLoadParameters.cpp",
+        "Source/WebKit/NetworkProcess/NetworkSessionCreationParameters.cpp",
+        "Source/WebKit/NetworkProcess/NetworkSessionCreationParameters.h",
+        "Source/WebKit/NetworkProcess/PingLoad.cpp",
+        "Source/WebKit/NetworkProcess/PingLoad.h",
+        "Source/WebKit/NetworkProcess/cocoa/DeviceManagementSoftLink.h",
+        "Source/WebKit/NetworkProcess/cocoa/DeviceManagementSoftLink.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.mm",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm",
+        "Source/WebKit/Platform/spi/Cocoa/DeviceManagementSPI.h",
+        "Source/WebKit/Shared/API/APIError.h",
+        "Source/WebKit/Shared/API/c/WKErrorRef.cpp",
+        "Source/WebKit/Shared/API/c/WKErrorRef.h",
+        "Source/WebKit/Shared/WebErrors.cpp",
+        "Source/WebKit/Shared/WebErrors.h",
+        "Source/WebKit/UIProcess/API/APIWebsiteDataStore.cpp",
+        "Source/WebKit/UIProcess/API/Cocoa/WKErrorPrivate.h",
+        "Source/WebKit/UIProcess/API/Cocoa/WKProcessPool.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/WKWebsiteDataStore.mm",
+        "Source/WebKit/UIProcess/API/Cocoa/_WKWebsiteDataStoreConfiguration.h",
+        "Source/WebKit/UIProcess/API/Cocoa/_WKWebsiteDataStoreConfiguration.mm",
+        "Source/WebKit/UIProcess/WebsiteData/Cocoa/WebsiteDataStoreCocoa.mm",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStoreConfiguration.cpp",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStoreConfiguration.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/Network/WebLoaderStrategy.cpp",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/DeviceManagementRestrictions.mm"
+      ],
+      "total_commit_files_count": 43,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -35098,6 +40527,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5e78fed8b4af8de5db126867d427ddc6ffa9c499",
+      "short_hash": "5e78fed8b4af",
       "date": "2019-05-29",
       "timestamp": "2019-05-29T00:34:54Z",
       "author": "Brent Fulgham",
@@ -35123,6 +40553,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35137,6 +40569,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b95e41213d2adbfdd45149b2f4c9adf758c63a29",
+      "short_hash": "b95e41213d2a",
       "date": "2019-05-21",
       "timestamp": "2019-05-21T23:30:48Z",
       "author": "Per Arne Vollan",
@@ -35162,6 +40595,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35176,6 +40613,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f1e787cdcbe019f40c2e39b1bab6aa19ed4ba42e",
+      "short_hash": "f1e787cdcbe0",
       "date": "2019-05-21",
       "timestamp": "2019-05-21T01:09:44Z",
       "author": "Per Arne Vollan",
@@ -35201,6 +40639,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35215,6 +40655,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "69529485157fdb58e70c70343bd51570d30e56c0",
+      "short_hash": "69529485157f",
       "date": "2019-05-20",
       "timestamp": "2019-05-20T17:41:16Z",
       "author": "Zhifei Fang",
@@ -35240,6 +40681,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -35254,6 +40697,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b3b243b5617d6c78b5b66ff760269fca999fa904",
+      "short_hash": "b3b243b5617d",
       "date": "2019-05-13",
       "timestamp": "2019-05-13T21:48:09Z",
       "author": "Per Arne Vollan",
@@ -35279,6 +40723,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35293,6 +40739,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a7062deb7a7f2ba2b1b3d7c2d180868fc56aa3cf",
+      "short_hash": "a7062deb7a7f",
       "date": "2019-05-13",
       "timestamp": "2019-05-13T16:32:21Z",
       "author": "Chris Fleizach",
@@ -35318,6 +40765,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -35331,6 +40780,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "96d721ee670fb14f17f3c1f484d3425b6fd931c9",
+      "short_hash": "96d721ee670f",
       "date": "2019-04-30",
       "timestamp": "2019-04-30T16:40:08Z",
       "author": "Per Arne Vollan",
@@ -35356,6 +40806,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35370,6 +40822,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0fb8ab1618a83f6cc34122da20d86137618ad543",
+      "short_hash": "0fb8ab1618a8",
       "date": "2019-04-10",
       "timestamp": "2019-04-10T22:50:04Z",
       "author": "Per Arne Vollan",
@@ -35393,6 +40846,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 3,
       "allow_added": 4,
@@ -35407,6 +40862,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3348502377b888b8eb85bf4f1f7937ce76f9e7c6",
+      "short_hash": "3348502377b8",
       "date": "2019-04-04",
       "timestamp": "2019-04-04T22:51:24Z",
       "author": "Ryan Haddad",
@@ -35432,6 +40888,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -35445,6 +40905,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "66b070b8d7e078e1346dc35b0891e6e1728e5aff",
+      "short_hash": "66b070b8d7e0",
       "date": "2019-04-04",
       "timestamp": "2019-04-04T19:13:38Z",
       "author": "Per Arne Vollan",
@@ -35470,6 +40931,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -35484,6 +40949,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fa835c6a3e0fbb573c3e4c14619ee7cb15973664",
+      "short_hash": "fa835c6a3e0f",
       "date": "2019-04-02",
       "timestamp": "2019-04-02T22:39:11Z",
       "author": "Per Arne Vollan",
@@ -35507,6 +40973,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -35521,6 +40989,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3bb7499f5ee30bacb4c8d8d2e40c4d044fa76d93",
+      "short_hash": "3bb7499f5ee3",
       "date": "2019-03-27",
       "timestamp": "2019-03-27T23:09:51Z",
       "author": "Andy Estes",
@@ -35550,6 +41019,12 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "vm.footprint_suspend"
       ],
       "files": [],
+      "code_files": [
+        "Source/WebKit/Configurations/BaseTarget.xcconfig",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/Scripts/package-root"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 1,
       "lines_deleted": 47,
       "allow_added": 1,
@@ -35563,6 +41038,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "23fc82d2070cb0a543bdb55139ca7996f980551f",
+      "short_hash": "23fc82d2070c",
       "date": "2019-03-21",
       "timestamp": "2019-03-21T21:16:37Z",
       "author": "Per Arne Vollan",
@@ -35588,6 +41064,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35602,6 +41082,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9033bd91510291828578f458f0baba7feab35193",
+      "short_hash": "9033bd915102",
       "date": "2019-03-21",
       "timestamp": "2019-03-21T00:36:06Z",
       "author": "Jiewen Tan",
@@ -35629,6 +41110,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -35643,6 +41128,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c7ec1b430b3a7916a8b5d141b298564deedc45df",
+      "short_hash": "c7ec1b430b3a",
       "date": "2019-03-20",
       "timestamp": "2019-03-20T19:06:44Z",
       "author": "Per Arne Vollan",
@@ -35666,6 +41152,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -35680,6 +41168,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d63e5f175de8e31a0fe391533195a5ca6c6faada",
+      "short_hash": "d63e5f175de8",
       "date": "2019-03-19",
       "timestamp": "2019-03-19T17:49:21Z",
       "author": "Per Arne Vollan",
@@ -35746,6 +41235,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 103,
       "allow_added": 0,
@@ -35760,6 +41251,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d86f7440bb4aecd40c5544241a04ec6058311178",
+      "short_hash": "d86f7440bb4a",
       "date": "2019-03-16",
       "timestamp": "2019-03-16T05:44:22Z",
       "author": "Per Arne Vollan",
@@ -35786,6 +41278,22 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/Platform.h",
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebKit/Platform/spi/ios/AccessibilitySupportSPI.h",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/mac/SandboxExtensionMac.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/ios/WebProcessProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in"
+      ],
+      "total_commit_files_count": 14,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -35799,6 +41307,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d3ea9f208598c9f6e1d6cc013badc537591e76f5",
+      "short_hash": "d3ea9f208598",
       "date": "2019-03-15",
       "timestamp": "2019-03-15T23:49:17Z",
       "author": "Truitt Savell",
@@ -35825,6 +41334,21 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebKit/Platform/spi/ios/AccessibilitySupportSPI.h",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/mac/SandboxExtensionMac.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/ios/WebProcessProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in"
+      ],
+      "total_commit_files_count": 13,
       "lines_added": 1,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -35838,6 +41362,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "41fd003cde1624c24fafa343bc5fc640e8e69404",
+      "short_hash": "41fd003cde16",
       "date": "2019-03-15",
       "timestamp": "2019-03-15T22:37:24Z",
       "author": "Per Arne Vollan",
@@ -35863,6 +41388,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -35877,6 +41406,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "afd6371cc470d6fceb93885d323895a735669999",
+      "short_hash": "afd6371cc470",
       "date": "2019-03-15",
       "timestamp": "2019-03-15T22:27:10Z",
       "author": "Per Arne Vollan",
@@ -35902,6 +41432,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -35916,6 +41448,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1aae8256fdba1d5613782f8a8ca8c4e1e6808df2",
+      "short_hash": "1aae8256fdba",
       "date": "2019-03-15",
       "timestamp": "2019-03-15T21:30:12Z",
       "author": "Per Arne Vollan",
@@ -35942,6 +41475,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -35956,6 +41493,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d68f44fc194c8413efb7aeb6a87e8187eb2fedca",
+      "short_hash": "d68f44fc194c",
       "date": "2019-03-15",
       "timestamp": "2019-03-15T20:27:24Z",
       "author": "Per Arne Vollan",
@@ -35982,6 +41520,21 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/spi/darwin/SandboxSPI.h",
+        "Source/WebKit/Platform/spi/ios/AccessibilitySupportSPI.h",
+        "Source/WebKit/Shared/SandboxExtension.h",
+        "Source/WebKit/Shared/mac/SandboxExtensionMac.mm",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebProcessProxy.h",
+        "Source/WebKit/UIProcess/ios/WebProcessProxyIOS.mm",
+        "Source/WebKit/WebProcess/WebProcess.cpp",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in"
+      ],
+      "total_commit_files_count": 13,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -35995,6 +41548,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8b17d67f6105505cfcfa6099a5fdf7c594f2eba3",
+      "short_hash": "8b17d67f6105",
       "date": "2019-03-15",
       "timestamp": "2019-03-15T03:17:10Z",
       "author": "Per Arne Vollan",
@@ -36022,6 +41576,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -36036,6 +41592,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5a60aa036c5c5e7327344a87158eca0d5294c5b2",
+      "short_hash": "5a60aa036c5c",
       "date": "2019-03-12",
       "timestamp": "2019-03-12T18:51:13Z",
       "author": "Per Arne Vollan",
@@ -36061,6 +41618,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -36074,6 +41641,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b4f3590e227002e9642459ebc8f6b9008f643567",
+      "short_hash": "b4f3590e2270",
       "date": "2019-03-12",
       "timestamp": "2019-03-12T17:47:32Z",
       "author": "Eric Carlson",
@@ -36099,6 +41667,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -36113,6 +41683,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ed4096aa3ed18f2bb899e7c289e715c30480ab6a",
+      "short_hash": "ed4096aa3ed1",
       "date": "2019-03-12",
       "timestamp": "2019-03-12T05:23:43Z",
       "author": "Commit Queue",
@@ -36138,6 +41709,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 0,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -36152,6 +41733,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8f2025ff8a65516f54d4fd235c04af07365b9061",
+      "short_hash": "8f2025ff8a65",
       "date": "2019-03-11",
       "timestamp": "2019-03-11T22:42:09Z",
       "author": "Andy Estes",
@@ -36178,6 +41760,43 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WTF/wtf/FeatureDefines.h",
+        "Source/WebCore/Modules/applepay/PaymentCoordinatorClient.h",
+        "Source/WebCore/PAL/pal/cocoa/PassKitSoftLink.h",
+        "Source/WebCore/PAL/pal/cocoa/PassKitSoftLink.mm",
+        "Source/WebCore/PAL/pal/spi/cocoa/PassKitSPI.h",
+        "Source/WebCore/page/Settings.yaml",
+        "Source/WebKit/Configurations/Network-iOS.entitlements",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkConnectionToWebProcess.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm",
+        "Source/WebKit/NetworkProcess/ios/NetworkConnectionToWebProcessIOS.mm",
+        "Source/WebKit/Platform/ios/PaymentAuthorizationController.h",
+        "Source/WebKit/Platform/ios/PaymentAuthorizationController.mm",
+        "Source/WebKit/Shared/ApplePay/WebPaymentCoordinatorProxy.cpp",
+        "Source/WebKit/Shared/ApplePay/WebPaymentCoordinatorProxy.h",
+        "Source/WebKit/Shared/ApplePay/WebPaymentCoordinatorProxy.messages.in",
+        "Source/WebKit/Shared/ApplePay/cocoa/WebPaymentCoordinatorProxyCocoa.mm",
+        "Source/WebKit/Shared/ApplePay/ios/WebPaymentCoordinatorProxyIOS.mm",
+        "Source/WebKit/Shared/ApplePay/mac/WebPaymentCoordinatorProxyMac.mm",
+        "Source/WebKit/Shared/WebPreferences.yaml",
+        "Source/WebKit/SourcesCocoa.txt",
+        "Source/WebKit/UIProcess/AuxiliaryProcessProxy.h",
+        "Source/WebKit/UIProcess/Cocoa/WebPageProxyCocoa.mm",
+        "Source/WebKit/UIProcess/WebPageProxy.cpp",
+        "Source/WebKit/UIProcess/WebPageProxy.h",
+        "Source/WebKit/UIProcess/ios/WebPageProxyIOS.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/WebProcess/ApplePay/WebPaymentCoordinator.cpp",
+        "Source/WebKit/WebProcess/ApplePay/WebPaymentCoordinator.h",
+        "Source/WebKit/WebProcess/Network/NetworkProcessConnection.cpp",
+        "Source/WebKit/WebProcess/WebPage/Cocoa/WebPageCocoa.mm",
+        "Source/WebKit/WebProcess/WebPage/WebPage.h",
+        "Source/WebKit/WebProcess/WebProcess.cpp"
+      ],
+      "total_commit_files_count": 35,
       "lines_added": 6,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -36192,6 +41811,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "08000eb9a627d7843e719aaec8e5bcadad8a8c9c",
+      "short_hash": "08000eb9a627",
       "date": "2019-03-11",
       "timestamp": "2019-03-11T22:15:51Z",
       "author": "Per Arne Vollan",
@@ -36217,6 +41837,16 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Platform/spi/ios/UIKitSPI.h",
+        "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/WebProcess/WebProcess.h",
+        "Source/WebKit/WebProcess/WebProcess.messages.in",
+        "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 8,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -36230,6 +41860,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "14f8f38768b5b0ad70134739607ee75d16918d2a",
+      "short_hash": "14f8f38768b5",
       "date": "2019-03-10",
       "timestamp": "2019-03-10T05:28:48Z",
       "author": "Andy Estes",
@@ -36258,6 +41889,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/Network-iOS.entitlements"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -36271,6 +41906,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "11d73c7ce1dd4b2c382a6ffe62d60b13ac2eb6f7",
+      "short_hash": "11d73c7ce1dd",
       "date": "2019-03-07",
       "timestamp": "2019-03-07T17:46:12Z",
       "author": "Per Arne Vollan",
@@ -36301,6 +41937,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 7,
       "lines_deleted": 1,
       "allow_added": 6,
@@ -36315,6 +41953,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "971c73b219e391c9633d5918c7e5652f74e3f6ca",
+      "short_hash": "971c73b219e3",
       "date": "2019-02-26",
       "timestamp": "2019-02-26T22:14:51Z",
       "author": "Per Arne Vollan",
@@ -36340,6 +41979,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -36353,6 +41994,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0f952d4dd7a2a5b69c2a60605d7a397010c945f5",
+      "short_hash": "0f952d4dd7a2",
       "date": "2019-02-22",
       "timestamp": "2019-02-22T20:44:28Z",
       "author": "Per Arne Vollan",
@@ -36379,6 +42021,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -36393,6 +42037,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ac51d0257ea7eabd9bcc7cff548ff2fe602f2aec",
+      "short_hash": "ac51d0257ea7",
       "date": "2019-02-20",
       "timestamp": "2019-02-20T20:27:13Z",
       "author": "Per Arne Vollan",
@@ -36418,6 +42063,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -36432,6 +42079,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7d3ff24bb4e788b794e344bb228884b74211b3a7",
+      "short_hash": "7d3ff24bb4e7",
       "date": "2019-02-14",
       "timestamp": "2019-02-14T18:55:22Z",
       "author": "Per Arne Vollan",
@@ -36468,6 +42116,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 12,
       "lines_deleted": 0,
       "allow_added": 12,
@@ -36481,6 +42131,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5a83f7f455f34ca2c5a4876cb4666bad38c99e9c",
+      "short_hash": "5a83f7f455f3",
       "date": "2019-02-14",
       "timestamp": "2019-02-14T00:03:07Z",
       "author": "Per Arne Vollan",
@@ -36506,6 +42157,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -36520,6 +42173,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "522399558f518366fe5d654c25284480b90925a5",
+      "short_hash": "522399558f51",
       "date": "2019-02-13",
       "timestamp": "2019-02-13T01:32:56Z",
       "author": "Per Arne Vollan",
@@ -36547,6 +42201,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -36561,6 +42217,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3d8b836b2a7b9d86e74ce2bbd1ef8bb7c791218c",
+      "short_hash": "3d8b836b2a7b",
       "date": "2019-01-28",
       "timestamp": "2019-01-28T23:18:03Z",
       "author": "Joseph Pecoraro",
@@ -36587,6 +42244,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -36601,6 +42260,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9dd4fd8c73d4ace89daef7d0cb6dba30bb0725a6",
+      "short_hash": "9dd4fd8c73d4",
       "date": "2019-01-25",
       "timestamp": "2019-01-25T21:40:11Z",
       "author": "Per Arne Vollan",
@@ -36629,6 +42289,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 5,
       "allow_added": 0,
@@ -36642,6 +42304,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7b01c4f82a562715ea5cc485782968687810b46b",
+      "short_hash": "7b01c4f82a56",
       "date": "2019-01-25",
       "timestamp": "2019-01-25T17:58:58Z",
       "author": "Per Arne Vollan",
@@ -36794,6 +42457,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 134,
       "lines_deleted": 0,
       "allow_added": 128,
@@ -36807,6 +42472,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2a4f56244d7a55c755194437b68769efdda95399",
+      "short_hash": "2a4f56244d7a",
       "date": "2019-01-15",
       "timestamp": "2019-01-15T23:13:10Z",
       "author": "Per Arne Vollan",
@@ -36843,6 +42509,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 12,
       "allow_added": 0,
@@ -36857,6 +42525,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3b05a35f7478eaa07584cd446ba9a6e7c6ecfaae",
+      "short_hash": "3b05a35f7478",
       "date": "2019-01-15",
       "timestamp": "2019-01-15T19:34:12Z",
       "author": "Per Arne Vollan",
@@ -36882,6 +42551,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/PluginProcess/mac/com.apple.WebKit.plugin-common.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -36896,6 +42570,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a1600bf5194ed7217d5360d9dd8a53537fb63ada",
+      "short_hash": "a1600bf5194e",
       "date": "2019-01-12",
       "timestamp": "2019-01-12T03:40:11Z",
       "author": "Brent Fulgham",
@@ -36919,6 +42594,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -36933,6 +42610,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "69f226b7e66341674cb8050adfeca7b7e87839ee",
+      "short_hash": "69f226b7e663",
       "date": "2019-01-09",
       "timestamp": "2019-01-09T19:05:59Z",
       "author": "Brent Fulgham",
@@ -36959,6 +42637,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -36973,6 +42653,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3ec86ac7995d82218452a8a1beba399df98fe614",
+      "short_hash": "3ec86ac7995d",
       "date": "2019-01-04",
       "timestamp": "2019-01-04T18:44:59Z",
       "author": "Per Arne Vollan",
@@ -37104,6 +42785,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 110,
       "lines_deleted": 0,
       "allow_added": 108,
@@ -37117,6 +42800,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b57037517b7330c86c3e2e5f0c8d19e8706b4848",
+      "short_hash": "b57037517b73",
       "date": "2019-01-04",
       "timestamp": "2019-01-04T18:29:35Z",
       "author": "Commit Queue",
@@ -37143,6 +42827,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -37157,6 +42843,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "631774da60015e63c111209ceb301093525ece50",
+      "short_hash": "631774da6001",
       "date": "2019-01-04",
       "timestamp": "2019-01-04T16:44:43Z",
       "author": "Brent Fulgham",
@@ -37182,6 +42869,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -37196,6 +42885,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e6016c1a5cb4768f511c687fb853089a2788e3ef",
+      "short_hash": "e6016c1a5cb4",
       "date": "2019-01-04",
       "timestamp": "2019-01-04T01:08:43Z",
       "author": "Brent Fulgham",
@@ -37222,6 +42912,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -37236,6 +42928,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "375db901237f77524d47ace8e5b3a27c91fb9595",
+      "short_hash": "375db901237f",
       "date": "2019-01-02",
       "timestamp": "2019-01-02T23:50:22Z",
       "author": "Brent Fulgham",
@@ -37259,6 +42952,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 6,
@@ -37273,6 +42970,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "29d874561b783dbe9fe4e7469a57c28593ed0715",
+      "short_hash": "29d874561b78",
       "date": "2019-01-02",
       "timestamp": "2019-01-02T21:32:07Z",
       "author": "Brent Fulgham",
@@ -37294,6 +42992,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -37308,6 +43008,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d0cee15ad6592636478e2329b2dba5252521d470",
+      "short_hash": "d0cee15ad659",
       "date": "2018-11-30",
       "timestamp": "2018-11-30T00:38:29Z",
       "author": "David Quesada",
@@ -37333,6 +43034,31 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebCore/PAL/PAL.xcodeproj/project.pbxproj",
+        "Source/WebCore/PAL/pal/spi/cocoa/NSProgressSPI.h",
+        "Source/WebKit/NetworkProcess/Downloads/Download.cpp",
+        "Source/WebKit/NetworkProcess/Downloads/Download.h",
+        "Source/WebKit/NetworkProcess/Downloads/DownloadManager.cpp",
+        "Source/WebKit/NetworkProcess/Downloads/DownloadManager.h",
+        "Source/WebKit/NetworkProcess/Downloads/PendingDownload.cpp",
+        "Source/WebKit/NetworkProcess/Downloads/PendingDownload.h",
+        "Source/WebKit/NetworkProcess/Downloads/cocoa/DownloadCocoa.mm",
+        "Source/WebKit/NetworkProcess/Downloads/cocoa/WKDownloadProgress.h",
+        "Source/WebKit/NetworkProcess/Downloads/cocoa/WKDownloadProgress.mm",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/NetworkProcess.h",
+        "Source/WebKit/NetworkProcess/NetworkProcess.messages.in",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/UIProcess/API/Cocoa/_WKDownload.h",
+        "Source/WebKit/UIProcess/API/Cocoa/_WKDownload.mm",
+        "Source/WebKit/UIProcess/Downloads/DownloadProxy.cpp",
+        "Source/WebKit/UIProcess/Downloads/DownloadProxy.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/TestWebKitAPI.xcodeproj/project.pbxproj",
+        "Tools/TestWebKitAPI/Tests/WebKitCocoa/DownloadProgress.mm"
+      ],
+      "total_commit_files_count": 23,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -37347,6 +43073,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8bec4c511aeeea418f3a18e76f33156d9e8c49c8",
+      "short_hash": "8bec4c511aee",
       "date": "2018-09-27",
       "timestamp": "2018-09-27T21:27:53Z",
       "author": "Brent Fulgham",
@@ -37372,6 +43099,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -37386,6 +43115,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c5214c1e130752124fe15f0b1cbe7e423d3a1f0c",
+      "short_hash": "c5214c1e1307",
       "date": "2018-09-18",
       "timestamp": "2018-09-18T23:17:30Z",
       "author": "Brent Fulgham",
@@ -37409,6 +43139,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -37423,6 +43155,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "7037e520564c26f560b4d370c280b15b870a2fea",
+      "short_hash": "7037e520564c",
       "date": "2018-09-07",
       "timestamp": "2018-09-07T21:29:35Z",
       "author": "Brent Fulgham",
@@ -37446,6 +43179,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -37460,6 +43197,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "98265266feabf22b37a598b3fe6970623f964062",
+      "short_hash": "98265266feab",
       "date": "2018-09-07",
       "timestamp": "2018-09-07T15:38:12Z",
       "author": "Brent Fulgham",
@@ -37487,6 +43225,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Storage.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 3,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -37498,6 +43238,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "84ac211fcaeba996b793fc54d0e273b282f22abe",
+      "short_hash": "84ac211fcaeb",
       "date": "2018-09-07",
       "timestamp": "2018-09-07T12:28:25Z",
       "author": "Brent Fulgham",
@@ -37525,6 +43266,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Storage.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 7,
       "lines_deleted": 7,
       "allow_added": 0,
@@ -37539,6 +43282,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d1906039a64ffd0c34698752b73215691482ae22",
+      "short_hash": "d1906039a64f",
       "date": "2018-07-03",
       "timestamp": "2018-07-03T22:44:54Z",
       "author": "Brent Fulgham",
@@ -37562,6 +43306,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 4,
       "allow_added": 3,
@@ -37576,6 +43322,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "23f0cf24bb1238ff5d5e405c6d880bc5c43c6c49",
+      "short_hash": "23f0cf24bb12",
       "date": "2018-06-25",
       "timestamp": "2018-06-25T23:07:43Z",
       "author": "Brent Fulgham",
@@ -37599,6 +43346,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -37613,6 +43362,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "77e6ae0940681750f689d6e6e0c98109c4cc0d19",
+      "short_hash": "77e6ae094068",
       "date": "2018-06-01",
       "timestamp": "2018-06-01T20:52:48Z",
       "author": "Jiewen Tan",
@@ -37638,6 +43388,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -37649,6 +43401,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5d79ef685a220793e66f7395208241f3bcbefa59",
+      "short_hash": "5d79ef685a22",
       "date": "2018-05-30",
       "timestamp": "2018-05-30T00:47:00Z",
       "author": "Andy Estes",
@@ -37675,6 +43428,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/Network-iOS.entitlements",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.h",
+        "Source/WebKit/NetworkProcess/cocoa/WiFiAssertionHolder.h",
+        "Source/WebKit/NetworkProcess/cocoa/WiFiAssertionHolder.mm",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -37689,6 +43450,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a22ba30b4f41afecfbb250aac628c13515e93c11",
+      "short_hash": "a22ba30b4f41",
       "date": "2018-05-29",
       "timestamp": "2018-05-29T22:59:08Z",
       "author": "Jiewen Tan",
@@ -37715,6 +43477,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/Network-iOS.entitlements",
+        "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
+        "Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm",
+        "Source/WebKit/NetworkProcess/mac/NetworkProcessMac.mm",
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/Shared/mac/SecItemShim.cpp"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 4,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -37729,6 +43500,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d2632b85cb206a88952ed396fcb1bf4f6e0a55e9",
+      "short_hash": "d2632b85cb20",
       "date": "2018-05-23",
       "timestamp": "2018-05-23T02:23:57Z",
       "author": "Brent Fulgham",
@@ -37754,6 +43526,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Storage.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -37768,6 +43542,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b99ff4f0e134eade9b07001e80497b42ac96a8ff",
+      "short_hash": "b99ff4f0e134",
       "date": "2018-05-22",
       "timestamp": "2018-05-22T19:08:51Z",
       "author": "Brent Fulgham",
@@ -37794,6 +43569,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -37808,6 +43587,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f559f2af3268fa5ac56413c0687e8e64b720345f",
+      "short_hash": "f559f2af3268",
       "date": "2018-05-03",
       "timestamp": "2018-05-03T13:46:06Z",
       "author": "Brent Fulgham",
@@ -37833,6 +43613,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -37847,6 +43631,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "af53e414f181233324b90ecf184e2fd3cbff4ce9",
+      "short_hash": "af53e414f181",
       "date": "2018-04-28",
       "timestamp": "2018-04-28T23:10:36Z",
       "author": "Andy Estes",
@@ -37873,6 +43658,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -37887,6 +43674,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "15c4580327dfa7dda1f33cf8b374d2b645cb71eb",
+      "short_hash": "15c4580327df",
       "date": "2018-04-12",
       "timestamp": "2018-04-12T07:55:11Z",
       "author": "Andy Estes",
@@ -37913,6 +43701,18 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit/Configurations/Network-iOS.entitlements",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.h",
+        "Source/WebKit/NetworkProcess/cocoa/NetworkDataTaskCocoa.mm",
+        "Source/WebKit/NetworkProcess/cocoa/WiFiAssertionHolder.cpp",
+        "Source/WebKit/NetworkProcess/cocoa/WiFiAssertionHolder.h",
+        "Source/WebKit/Platform/Logging.h",
+        "Source/WebKit/Platform/spi/ios/MobileWiFiSPI.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj",
+        "Source/WebKit/config.h"
+      ],
+      "total_commit_files_count": 10,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -37927,6 +43727,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "68f375a7c41596850527dc382a01afca2b75ad02",
+      "short_hash": "68f375a7c415",
       "date": "2018-03-20",
       "timestamp": "2018-03-20T15:34:30Z",
       "author": "Brent Fulgham",
@@ -37950,6 +43751,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -37964,6 +43767,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b6a6ea022cc121b0009244315b795bb7eb34ba78",
+      "short_hash": "b6a6ea022cc1",
       "date": "2018-03-02",
       "timestamp": "2018-03-02T16:55:20Z",
       "author": "Brent Fulgham",
@@ -37987,6 +43791,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -38001,6 +43807,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2c5a3ce23f57afb9730a3ab54e76c4d4453f3425",
+      "short_hash": "2c5a3ce23f57",
       "date": "2018-02-28",
       "timestamp": "2018-02-28T17:17:12Z",
       "author": "Brent Fulgham",
@@ -38024,6 +43831,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -38038,6 +43849,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "37fc51fb67e34c4bb2ab2acdba1377159a51e2c2",
+      "short_hash": "37fc51fb67e3",
       "date": "2018-02-13",
       "timestamp": "2018-02-13T16:51:10Z",
       "author": "Brent Fulgham",
@@ -38063,6 +43875,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 17,
       "lines_deleted": 0,
       "allow_added": 14,
@@ -38077,6 +43891,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5082f8f66b8852be5c4b98ce3ec24ff689c0b811",
+      "short_hash": "5082f8f66b88",
       "date": "2018-02-09",
       "timestamp": "2018-02-09T23:56:41Z",
       "author": "Brent Fulgham",
@@ -38102,6 +43917,11 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 8,
       "lines_deleted": 0,
       "allow_added": 4,
@@ -38116,6 +43936,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "283eefaf1547754d52215bf0242380c23cfba6fb",
+      "short_hash": "283eefaf1547",
       "date": "2018-01-31",
       "timestamp": "2018-01-31T23:56:11Z",
       "author": "Brent Fulgham",
@@ -38133,6 +43954,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "tags": [],
       "rules": [],
       "files": [],
+      "code_files": [
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/StorageProcess/mac/com.apple.WebKit.Storage.sb.in",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 5,
       "lines_added": 0,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -38147,6 +43975,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "23d2e6f7adb248cc0d745abcdac19e9080e77305",
+      "short_hash": "23d2e6f7adb2",
       "date": "2018-01-22",
       "timestamp": "2018-01-22T21:01:12Z",
       "author": "Brent Fulgham",
@@ -38172,6 +44001,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -38186,6 +44017,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fb80a985639120f3d19624cf8e49f8690e53baa6",
+      "short_hash": "fb80a9856391",
       "date": "2018-01-22",
       "timestamp": "2018-01-22T19:25:21Z",
       "author": "Brent Fulgham",
@@ -38209,6 +44041,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -38223,6 +44059,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "733a8f6235bd6003aabf7bd07e85f7a52d5da007",
+      "short_hash": "733a8f6235bd",
       "date": "2018-01-18",
       "timestamp": "2018-01-18T17:49:44Z",
       "author": "Brent Fulgham",
@@ -38247,6 +44084,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -38261,6 +44100,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8441c1c0891267841e887add9711e4f95f3a83bb",
+      "short_hash": "8441c1c08912",
       "date": "2018-01-13",
       "timestamp": "2018-01-13T00:28:11Z",
       "author": "Brent Fulgham",
@@ -38295,6 +44135,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 9,
       "lines_deleted": 20,
       "allow_added": 0,
@@ -38309,6 +44151,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "83c86e2e0b74e284236f1fef92265a7061cc67e0",
+      "short_hash": "83c86e2e0b74",
       "date": "2017-12-18",
       "timestamp": "2017-12-18T21:13:41Z",
       "author": "Brent Fulgham",
@@ -38334,6 +44177,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -38348,6 +44195,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "bd3a593eb6cbdd9f47526177542e92b80a619caf",
+      "short_hash": "bd3a593eb6cb",
       "date": "2017-12-13",
       "timestamp": "2017-12-13T19:24:47Z",
       "author": "Brent Fulgham",
@@ -38424,6 +44272,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 13,
       "lines_deleted": 111,
       "allow_added": 1,
@@ -38438,6 +44288,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ea45f4d0aeb0518f208c943f8cc7f5728023241a",
+      "short_hash": "ea45f4d0aeb0",
       "date": "2017-12-12",
       "timestamp": "2017-12-12T21:16:36Z",
       "author": "Brent Fulgham",
@@ -38461,6 +44312,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -38472,6 +44325,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dd07168f9e4a885419c1139f7f9d498c960e8f82",
+      "short_hash": "dd07168f9e4a",
       "date": "2017-12-12",
       "timestamp": "2017-12-12T00:39:37Z",
       "author": "Brent Fulgham",
@@ -38639,6 +44493,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 323,
       "lines_deleted": 461,
       "allow_added": 0,
@@ -38652,6 +44508,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1a48087711cf55810a6ff93daa5daa383f8edab9",
+      "short_hash": "1a48087711cf",
       "date": "2017-12-11",
       "timestamp": "2017-12-11T21:25:51Z",
       "author": "Brent Fulgham",
@@ -38819,6 +44676,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 506,
       "lines_deleted": 2,
       "allow_added": 259,
@@ -38833,6 +44692,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "47ac7990ead5930a7b835e7797092e397ae98621",
+      "short_hash": "47ac7990ead5",
       "date": "2017-09-04",
       "timestamp": "2017-09-04T05:58:15Z",
       "author": "Brent Fulgham",
@@ -38858,6 +44718,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 3,
       "allow_added": 0,
@@ -38872,6 +44734,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "92af7a4dc0095e670f667e66df7359b9c54984ad",
+      "short_hash": "92af7a4dc009",
       "date": "2017-07-29",
       "timestamp": "2017-07-29T00:57:22Z",
       "author": "Commit Queue",
@@ -38889,6 +44752,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "tags": [],
       "rules": [],
       "files": [],
+      "code_files": [
+        "Source/WebKit/CMakeLists.txt",
+        "Source/WebKit/Configurations/DatabaseService.xcconfig",
+        "Source/WebKit/Configurations/Databases-iOS.entitlements",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/DatabaseProcess/DatabaseProcess.cpp",
+        "Source/WebKit/DatabaseProcess/DatabaseProcess.h",
+        "Source/WebKit/DatabaseProcess/DatabaseProcess.messages.in",
+        "Source/WebKit/DatabaseProcess/DatabaseToWebProcessConnection.cpp",
+        "Source/WebKit/DatabaseProcess/DatabaseToWebProcessConnection.h",
+        "Source/WebKit/DatabaseProcess/DatabaseToWebProcessConnection.messages.in",
+        "Source/WebKit/DatabaseProcess/EntryPoint/mac/XPCService/DatabaseService/Info.plist",
+        "Source/WebKit/DatabaseProcess/EntryPoint/mac/XPCService/DatabaseServiceEntryPoint.mm",
+        "Source/WebKit/DatabaseProcess/EntryPoint/unix/DatabaseProcessMain.cpp",
+        "Source/WebKit/DatabaseProcess/IndexedDB/WebIDBConnectionToClient.cpp",
+        "Source/WebKit/DatabaseProcess/IndexedDB/WebIDBConnectionToClient.h",
+        "Source/WebKit/DatabaseProcess/IndexedDB/WebIDBConnectionToClient.messages.in",
+        "Source/WebKit/DatabaseProcess/gtk/DatabaseProcessMainGtk.cpp",
+        "Source/WebKit/DatabaseProcess/ios/DatabaseProcessIOS.mm",
+        "Source/WebKit/DatabaseProcess/mac/DatabaseProcessMac.mm",
+        "Source/WebKit/DatabaseProcess/mac/com.apple.WebKit.Databases.sb.in",
+        "Source/WebKit/DatabaseProcess/unix/DatabaseProcessMainUnix.h",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Platform/ExtraPrivateSymbolsForTAPI.h",
+        "Source/WebKit/PlatformGTK.cmake",
+        "Source/WebKit/PlatformMac.cmake",
+        "Source/WebKit/PlatformWPE.cmake",
+        "Source/WebKit/Shared/Databases/DatabaseProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/Databases/DatabaseProcessCreationParameters.h",
+        "Source/WebKit/StorageProcess/mac/com.apple.WebKit.Storage.sb.in",
+        "Source/WebKit/UIProcess/Databases/DatabaseProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Databases/DatabaseProcessProxy.h",
+        "Source/WebKit/UIProcess/Databases/DatabaseProcessProxy.messages.in",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.cpp",
+        "Source/WebKit/UIProcess/WebContextSupplement.h",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.cpp",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 48,
       "lines_added": 0,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -38904,6 +44810,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "77e9fa289314adb3e4cf68c073e3bd86ebf97dd8",
+      "short_hash": "77e9fa289314",
       "date": "2017-07-27",
       "timestamp": "2017-07-27T23:08:34Z",
       "author": "Brady Eidson",
@@ -38921,6 +44828,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "tags": [],
       "rules": [],
       "files": [],
+      "code_files": [
+        "Source/WebKit/CMakeLists.txt",
+        "Source/WebKit/Configurations/Storage-iOS.entitlements",
+        "Source/WebKit/Configurations/StorageService.xcconfig",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/DerivedSources.make",
+        "Source/WebKit/Platform/ExtraPrivateSymbolsForTAPI.h",
+        "Source/WebKit/PlatformGTK.cmake",
+        "Source/WebKit/PlatformMac.cmake",
+        "Source/WebKit/PlatformWPE.cmake",
+        "Source/WebKit/Shared/Storage/StorageProcessCreationParameters.cpp",
+        "Source/WebKit/Shared/Storage/StorageProcessCreationParameters.h",
+        "Source/WebKit/StorageProcess/EntryPoint/mac/XPCService/StorageService/Info.plist",
+        "Source/WebKit/StorageProcess/EntryPoint/mac/XPCService/StorageServiceEntryPoint.mm",
+        "Source/WebKit/StorageProcess/EntryPoint/unix/StorageProcessMain.cpp",
+        "Source/WebKit/StorageProcess/IndexedDB/WebIDBConnectionToClient.cpp",
+        "Source/WebKit/StorageProcess/IndexedDB/WebIDBConnectionToClient.h",
+        "Source/WebKit/StorageProcess/IndexedDB/WebIDBConnectionToClient.messages.in",
+        "Source/WebKit/StorageProcess/StorageProcess.cpp",
+        "Source/WebKit/StorageProcess/StorageProcess.h",
+        "Source/WebKit/StorageProcess/StorageProcess.messages.in",
+        "Source/WebKit/StorageProcess/StorageToWebProcessConnection.cpp",
+        "Source/WebKit/StorageProcess/StorageToWebProcessConnection.h",
+        "Source/WebKit/StorageProcess/StorageToWebProcessConnection.messages.in",
+        "Source/WebKit/StorageProcess/gtk/StorageProcessMainGtk.cpp",
+        "Source/WebKit/StorageProcess/ios/StorageProcessIOS.mm",
+        "Source/WebKit/StorageProcess/mac/StorageProcessMac.mm",
+        "Source/WebKit/StorageProcess/mac/com.apple.WebKit.Databases.sb.in",
+        "Source/WebKit/StorageProcess/mac/com.apple.WebKit.Storage.sb.in",
+        "Source/WebKit/StorageProcess/unix/StorageProcessMainUnix.h",
+        "Source/WebKit/UIProcess/Launcher/mac/ProcessLauncherMac.mm",
+        "Source/WebKit/UIProcess/Network/NetworkProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Storage/StorageProcessProxy.cpp",
+        "Source/WebKit/UIProcess/Storage/StorageProcessProxy.h",
+        "Source/WebKit/UIProcess/Storage/StorageProcessProxy.messages.in",
+        "Source/WebKit/UIProcess/WebContextSupplement.h",
+        "Source/WebKit/UIProcess/WebProcessPool.cpp",
+        "Source/WebKit/UIProcess/WebProcessPool.h",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.cpp",
+        "Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.h",
+        "Source/WebKit/WebKit.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 48,
       "lines_added": 0,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -38934,6 +44884,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c97acb9d4a8ea781b7c2ab98972849e5ac5602ff",
+      "short_hash": "c97acb9d4a8e",
       "date": "2017-07-14",
       "timestamp": "2017-07-14T02:12:32Z",
       "author": "Matt Hanson",
@@ -38951,6 +44902,49 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "tags": [],
       "rules": [],
       "files": [],
+      "code_files": [
+        "Source/WebKit/CMakeLists.txt",
+        "Source/WebKit/Configurations/All.xcconfig",
+        "Source/WebKit/Configurations/Base.xcconfig",
+        "Source/WebKit/Configurations/BaseTarget.xcconfig",
+        "Source/WebKit/Configurations/BaseXPCService.xcconfig",
+        "Source/WebKit/Configurations/DatabaseService.xcconfig",
+        "Source/WebKit/Configurations/Databases-iOS.entitlements",
+        "Source/WebKit/Configurations/DebugRelease.xcconfig",
+        "Source/WebKit/Configurations/FeatureDefines.xcconfig",
+        "Source/WebKit/Configurations/Network-iOS.entitlements",
+        "Source/WebKit/Configurations/NetworkService.xcconfig",
+        "Source/WebKit/Configurations/PluginProcessShim.xcconfig",
+        "Source/WebKit/Configurations/PluginService.32.xcconfig",
+        "Source/WebKit/Configurations/PluginService.64.xcconfig",
+        "Source/WebKit/Configurations/PluginService.entitlements",
+        "Source/WebKit/Configurations/SandboxProfiles.xcconfig",
+        "Source/WebKit/Configurations/SecItemShim.xcconfig",
+        "Source/WebKit/Configurations/Shim.xcconfig",
+        "Source/WebKit/Configurations/Version.xcconfig",
+        "Source/WebKit/Configurations/WebContent-OSX.entitlements",
+        "Source/WebKit/Configurations/WebContent-iOS.entitlements",
+        "Source/WebKit/Configurations/WebContentService.xcconfig",
+        "Source/WebKit/Configurations/WebKit.xcconfig",
+        "Source/WebKit/Configurations/WebProcessShim.xcconfig",
+        "Source/WebKit/DatabaseProcess/DatabaseProcess.cpp",
+        "Source/WebKit/DatabaseProcess/DatabaseProcess.h",
+        "Source/WebKit/DatabaseProcess/DatabaseProcess.messages.in",
+        "Source/WebKit/DatabaseProcess/DatabaseToWebProcessConnection.cpp",
+        "Source/WebKit/DatabaseProcess/DatabaseToWebProcessConnection.h",
+        "Source/WebKit/DatabaseProcess/DatabaseToWebProcessConnection.messages.in",
+        "Source/WebKit/DatabaseProcess/EntryPoint/mac/XPCService/DatabaseService/Info.plist",
+        "Source/WebKit/DatabaseProcess/EntryPoint/mac/XPCService/DatabaseServiceEntryPoint.mm",
+        "Source/WebKit/DatabaseProcess/EntryPoint/unix/DatabaseProcessMain.cpp",
+        "Source/WebKit/DatabaseProcess/IndexedDB/WebIDBConnectionToClient.cpp",
+        "Source/WebKit/DatabaseProcess/IndexedDB/WebIDBConnectionToClient.h",
+        "Source/WebKit/DatabaseProcess/IndexedDB/WebIDBConnectionToClient.messages.in",
+        "Source/WebKit/DatabaseProcess/gtk/DatabaseProcessMainGtk.cpp",
+        "Source/WebKit/DatabaseProcess/ios/DatabaseProcessIOS.mm",
+        "Source/WebKit/DatabaseProcess/mac/DatabaseProcessMac.mm",
+        "Source/WebKit/DatabaseProcess/mac/com.apple.WebKit.Databases.sb.in"
+      ],
+      "total_commit_files_count": 2918,
       "lines_added": 0,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -38962,6 +44956,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c6b79cbf879ac84663dcae3925d346f08022ffc9",
+      "short_hash": "c6b79cbf879a",
       "date": "2017-06-16",
       "timestamp": "2017-06-16T19:55:41Z",
       "author": "Brent Fulgham",
@@ -38985,6 +44980,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -38999,6 +44998,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "38ce6d5921add774cb9c912a4154209d9af9ba58",
+      "short_hash": "38ce6d5921ad",
       "date": "2017-06-14",
       "timestamp": "2017-06-14T21:06:39Z",
       "author": "Brent Fulgham",
@@ -39024,6 +45024,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -39038,6 +45040,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b0d62adc2ca93dec5d866f288fa38fff72d0805a",
+      "short_hash": "b0d62adc2ca9",
       "date": "2017-06-07",
       "timestamp": "2017-06-07T03:25:12Z",
       "author": "Brent Fulgham",
@@ -39063,6 +45066,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/NetworkProcess/NetworkProcessCreationParameters.cpp",
+        "Source/WebKit2/NetworkProcess/NetworkProcessCreationParameters.h",
+        "Source/WebKit2/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit2/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit2/UIProcess/Cocoa/WebProcessPoolCocoa.mm"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 5,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -39077,6 +45088,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5ca32ca52d269bd83abed02045b5bc412d50c5be",
+      "short_hash": "5ca32ca52d26",
       "date": "2017-05-25",
       "timestamp": "2017-05-25T21:31:57Z",
       "author": "Brent Fulgham",
@@ -39102,6 +45114,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -39116,6 +45130,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "fb66263b282eb4136180bd11f78263d84e13c278",
+      "short_hash": "fb66263b282e",
       "date": "2017-05-23",
       "timestamp": "2017-05-23T16:06:06Z",
       "author": "Brent Fulgham",
@@ -39145,6 +45160,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 9,
       "lines_deleted": 0,
       "allow_added": 5,
@@ -39159,6 +45176,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4e1a54b39c911e76a7f828499147ac3ace6e45aa",
+      "short_hash": "4e1a54b39c91",
       "date": "2017-05-23",
       "timestamp": "2017-05-23T15:57:07Z",
       "author": "Brent Fulgham",
@@ -39186,6 +45204,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 3,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 0,
@@ -39200,6 +45220,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8231357c5ab904433090abf06a8248edcc6858dc",
+      "short_hash": "8231357c5ab9",
       "date": "2017-05-17",
       "timestamp": "2017-05-17T23:40:56Z",
       "author": "Brent Fulgham",
@@ -39225,6 +45246,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -39239,6 +45262,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5b4ca3b50aa56039ce2d91840058d626d29e433a",
+      "short_hash": "5b4ca3b50aa5",
       "date": "2017-05-15",
       "timestamp": "2017-05-15T21:21:58Z",
       "author": "Brent Fulgham",
@@ -39264,6 +45288,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in"
+      ],
+      "total_commit_files_count": 2,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -39278,6 +45306,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "15a80791f0844baad88196d24feda560250ebe1e",
+      "short_hash": "15a80791f084",
       "date": "2017-05-05",
       "timestamp": "2017-05-05T22:23:51Z",
       "author": "Brent Fulgham",
@@ -39306,6 +45335,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/DatabaseProcess/mac/com.apple.WebKit.Databases.sb.in",
+        "Source/WebKit2/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit2/PluginProcess/mac/com.apple.WebKit.plugin-common.sb.in",
+        "Source/WebKit2/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 6,
       "lines_deleted": 3,
       "allow_added": 3,
@@ -39320,6 +45356,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "485e917e79b5945715ae16dc58578e23114c6bf9",
+      "short_hash": "485e917e79b5",
       "date": "2017-04-06",
       "timestamp": "2017-04-06T01:11:28Z",
       "author": "Brent Fulgham",
@@ -39352,6 +45389,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 12,
       "allow_added": 0,
@@ -39366,6 +45405,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "70e58be157615ecae3c4073c845626020ca7f8ae",
+      "short_hash": "70e58be15761",
       "date": "2017-03-10",
       "timestamp": "2017-03-10T20:54:52Z",
       "author": "Brent Fulgham",
@@ -39392,6 +45432,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 4,
       "allow_added": 0,
@@ -39406,6 +45448,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0995386719f6623edc7482c0e61649aeb1dd3bac",
+      "short_hash": "0995386719f6",
       "date": "2017-03-09",
       "timestamp": "2017-03-09T21:42:04Z",
       "author": "Brent Fulgham",
@@ -39435,6 +45478,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 10,
       "lines_deleted": 3,
       "allow_added": 5,
@@ -39449,6 +45494,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "63548aa88b1233d710c08e028872d05d54f94a53",
+      "short_hash": "63548aa88b12",
       "date": "2017-03-07",
       "timestamp": "2017-03-07T22:53:17Z",
       "author": "Brent Fulgham",
@@ -39481,6 +45527,13 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/DatabaseProcess/mac/com.apple.WebKit.Databases.sb.in",
+        "Source/WebKit2/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
+        "Source/WebKit2/PluginProcess/mac/com.apple.WebKit.plugin-common.sb.in",
+        "Source/WebKit2/WebProcess/com.apple.WebProcess.sb.in"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 24,
       "lines_deleted": 0,
       "allow_added": 15,
@@ -39495,6 +45548,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0d238a7b1ecbe2f967dd266b231ecb02d59b6d73",
+      "short_hash": "0d238a7b1ecb",
       "date": "2017-03-04",
       "timestamp": "2017-03-04T00:34:46Z",
       "author": "Brent Fulgham",
@@ -39520,6 +45574,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 2,
@@ -39534,6 +45590,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d0ec6a016eb098dccae2caa0d225dadf48d46543",
+      "short_hash": "d0ec6a016eb0",
       "date": "2017-03-03",
       "timestamp": "2017-03-03T01:02:59Z",
       "author": "Youenn Fablet",
@@ -39559,6 +45616,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 0,
       "allow_added": 5,
@@ -39572,6 +45631,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "3c9fa8fa573f4016c42d05d88c816653789d62f0",
+      "short_hash": "3c9fa8fa573f",
       "date": "2017-02-23",
       "timestamp": "2017-02-23T15:13:16Z",
       "author": "Eric Carlson",
@@ -39610,6 +45670,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 24,
       "lines_deleted": 0,
       "allow_added": 17,
@@ -39623,6 +45685,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c0780f94880ad0ca4ca92f5f3a30bb07bdeff381",
+      "short_hash": "c0780f94880a",
       "date": "2017-02-06",
       "timestamp": "2017-02-06T23:02:51Z",
       "author": "Jer Noble",
@@ -39648,6 +45711,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -39661,6 +45726,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "29a9b302c816a3173499b0f7f92b0f6124aee66b",
+      "short_hash": "29a9b302c816",
       "date": "2016-06-23",
       "timestamp": "2016-06-23T16:56:48Z",
       "author": "Commit Queue",
@@ -39690,6 +45756,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 0,
       "lines_deleted": 6,
       "allow_added": 0,
@@ -39704,6 +45772,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "e66c8e410671acd09565f0a0ce88a8f658e11814",
+      "short_hash": "e66c8e410671",
       "date": "2016-06-23",
       "timestamp": "2016-06-23T04:01:04Z",
       "author": "Brent Fulgham",
@@ -39728,6 +45797,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -39742,6 +45813,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "9d822fd1f40c0f24cd35b603310c7c31afe7f5fc",
+      "short_hash": "9d822fd1f40c",
       "date": "2016-05-19",
       "timestamp": "2016-05-19T22:55:04Z",
       "author": "Brent Fulgham",
@@ -39771,6 +45843,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 6,
       "lines_deleted": 0,
       "allow_added": 6,
@@ -39785,6 +45859,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "b8c2c36688ee48e29dc2bbc0cc68a86723ccb879",
+      "short_hash": "b8c2c36688ee",
       "date": "2016-05-04",
       "timestamp": "2016-05-04T01:04:37Z",
       "author": "Jer Noble",
@@ -39811,6 +45886,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 0,
       "allow_added": 3,
@@ -39825,6 +45902,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "12cd26f74f8782ccdabaf9592314b94dcff920bb",
+      "short_hash": "12cd26f74f87",
       "date": "2016-03-08",
       "timestamp": "2016-03-08T21:44:43Z",
       "author": "Brent Fulgham",
@@ -39850,6 +45928,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -39864,6 +45944,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "0086448ddfe73a95bdecc6aa81ec912a959b0a8c",
+      "short_hash": "0086448ddfe7",
       "date": "2016-01-28",
       "timestamp": "2016-01-28T18:33:22Z",
       "author": "Brent Fulgham",
@@ -39890,6 +45971,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -39904,6 +45987,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "febbcbb6bfad2e08c78381f3e40e946343e3411f",
+      "short_hash": "febbcbb6bfad",
       "date": "2015-11-10",
       "timestamp": "2015-11-10T17:15:05Z",
       "author": "Chris Dumez",
@@ -39927,6 +46011,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -39941,6 +46027,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "6e2890e073e6c0f6c306b3b8bd81d75cc4b48739",
+      "short_hash": "6e2890e073e6",
       "date": "2015-11-02",
       "timestamp": "2015-11-02T23:53:31Z",
       "author": "Brent Fulgham",
@@ -39962,6 +46049,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -39973,6 +46062,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "1915d06b0e10bbfaeb428f1aa210978388fe8bbc",
+      "short_hash": "1915d06b0e10",
       "date": "2015-11-02",
       "timestamp": "2015-11-02T23:30:20Z",
       "author": "Brent Fulgham",
@@ -39994,6 +46084,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 0,
@@ -40005,6 +46097,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a5001b6d799388bac9e1944039f4f2726f62faf0",
+      "short_hash": "a5001b6d7993",
       "date": "2015-11-02",
       "timestamp": "2015-11-02T01:01:28Z",
       "author": "Brent Fulgham",
@@ -40032,6 +46125,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 5,
       "allow_added": 1,
@@ -40046,6 +46141,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c7ecae7f821d611fd8e68f47ff59c78dbaea9ac2",
+      "short_hash": "c7ecae7f821d",
       "date": "2015-09-12",
       "timestamp": "2015-09-12T21:49:59Z",
       "author": "Alexey Proskuryakov",
@@ -40071,6 +46167,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -40085,6 +46183,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a2a630db59ade484c870a2146b0f24575ae7adf3",
+      "short_hash": "a2a630db59ad",
       "date": "2015-05-29",
       "timestamp": "2015-05-29T22:14:10Z",
       "author": "Chris Dumez",
@@ -40110,6 +46209,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 1,
       "allow_added": 3,
@@ -40124,6 +46225,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "2d64c941124579296f0da2b5448b9786a28fd52e",
+      "short_hash": "2d64c9411245",
       "date": "2015-05-28",
       "timestamp": "2015-05-28T00:34:39Z",
       "author": "Anders Carlsson",
@@ -40149,6 +46251,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 0,
       "lines_deleted": 23,
       "allow_added": 0,
@@ -40163,6 +46267,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "4570215d0b72e7af43b24f47875de0d5818366d1",
+      "short_hash": "4570215d0b72",
       "date": "2015-05-21",
       "timestamp": "2015-05-21T03:06:53Z",
       "author": "Chris Dumez",
@@ -40191,6 +46296,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 6,
       "lines_deleted": 2,
       "allow_added": 3,
@@ -40205,6 +46312,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "f068a8984922f9c8a6c478b35484090b83ed1e31",
+      "short_hash": "f068a8984922",
       "date": "2015-04-02",
       "timestamp": "2015-04-02T18:31:39Z",
       "author": "Chris Dumez",
@@ -40231,6 +46339,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 2,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -40245,6 +46355,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "254aa368e522f574c9f558bac7eabe5565fcc81f",
+      "short_hash": "254aa368e522",
       "date": "2014-08-27",
       "timestamp": "2014-08-27T00:19:13Z",
       "author": "Joseph Pecoraro",
@@ -40270,6 +46381,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 8,
       "lines_deleted": 2,
       "allow_added": 0,
@@ -40283,6 +46396,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "65a606625a613fdbf7f5909e8525f5c0d7ffdd31",
+      "short_hash": "65a606625a61",
       "date": "2014-08-05",
       "timestamp": "2014-08-05T16:41:46Z",
       "author": "Oliver Hunt",
@@ -40308,6 +46422,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.cpp",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.h",
+        "Source/WebKit2/UIProcess/WebContext.cpp",
+        "Source/WebKit2/UIProcess/WebContext.h",
+        "Source/WebKit2/UIProcess/mac/WebContextMac.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 22,
       "lines_deleted": 1,
       "allow_added": 6,
@@ -40322,6 +46445,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "878e6cc5c429f3d83e4232e4908369a074a5d441",
+      "short_hash": "878e6cc5c429",
       "date": "2014-08-01",
       "timestamp": "2014-08-01T23:57:12Z",
       "author": "Joseph Pecoraro",
@@ -40347,6 +46471,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 0,
       "allow_added": 1,
@@ -40360,6 +46486,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "af2048d2e9ea17bbe0b3ce44b4cfc21d2caa5f5b",
+      "short_hash": "af2048d2e9ea",
       "date": "2014-07-24",
       "timestamp": "2014-07-24T20:18:06Z",
       "author": "Oliver Hunt",
@@ -40381,6 +46508,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -40395,6 +46524,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "98f874eb6cae0f305c8505be1581ddd78993acbc",
+      "short_hash": "98f874eb6cae",
       "date": "2014-07-23",
       "timestamp": "2014-07-23T21:43:43Z",
       "author": "Oliver Hunt",
@@ -40416,6 +46546,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -40430,6 +46562,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "dead18f35c3aa2a212c84de2c95f201a7a759688",
+      "short_hash": "dead18f35c3a",
       "date": "2014-07-23",
       "timestamp": "2014-07-23T02:37:51Z",
       "author": "Oliver Hunt",
@@ -40453,6 +46586,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 3,
       "allow_added": 1,
@@ -40467,6 +46602,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8f0ef63897351cc439d52e7b8ae8a73ef6f8c0bf",
+      "short_hash": "8f0ef6389735",
       "date": "2014-07-22",
       "timestamp": "2014-07-22T21:32:28Z",
       "author": "Oliver Hunt",
@@ -40494,6 +46630,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 3,
       "lines_deleted": 2,
       "allow_added": 1,
@@ -40508,6 +46646,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "53503f4886c9bfd3a35313bd3c1ebb353334a22c",
+      "short_hash": "53503f4886c9",
       "date": "2014-07-22",
       "timestamp": "2014-07-22T21:25:24Z",
       "author": "Oliver Hunt",
@@ -40538,6 +46677,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 2,
       "lines_added": 2,
       "lines_deleted": 21,
       "allow_added": 1,
@@ -40552,6 +46693,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "adabfd40d1cab03b5a7cb9a0b610bcc4ff3b4414",
+      "short_hash": "adabfd40d1ca",
       "date": "2014-07-22",
       "timestamp": "2014-07-22T00:38:38Z",
       "author": "Oliver Hunt",
@@ -40575,6 +46717,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/UIProcess/mac/WebContextMac.mm"
+      ],
+      "total_commit_files_count": 3,
       "lines_added": 0,
       "lines_deleted": 8,
       "allow_added": 0,
@@ -40589,6 +46735,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d8709c69f72de1b0b8f1f243d08b95946c6d7903",
+      "short_hash": "d8709c69f72d",
       "date": "2014-07-22",
       "timestamp": "2014-07-22T00:10:11Z",
       "author": "Oliver Hunt",
@@ -40623,6 +46770,10 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/Configurations/WebContent-iOS.entitlements"
+      ],
+      "total_commit_files_count": 4,
       "lines_added": 14,
       "lines_deleted": 22,
       "allow_added": 9,
@@ -40638,6 +46789,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "ea5273bf214b8d459c709423f9b7e47c0cb04e3a",
+      "short_hash": "ea5273bf214b",
       "date": "2014-07-15",
       "timestamp": "2014-07-15T20:31:50Z",
       "author": "Oliver Hunt",
@@ -40666,6 +46818,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 2,
       "allow_added": 2,
@@ -40679,6 +46833,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "c6123dbff78ae0172140861e73368e93ce06f8b0",
+      "short_hash": "c6123dbff78a",
       "date": "2014-07-14",
       "timestamp": "2014-07-14T23:13:56Z",
       "author": "Oliver Hunt",
@@ -40702,6 +46857,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 1,
       "lines_deleted": 1,
       "allow_added": 1,
@@ -40715,6 +46872,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "a22a22ec0c522cf28a1ed6218e9122544469d849",
+      "short_hash": "a22a22ec0c52",
       "date": "2014-07-12",
       "timestamp": "2014-07-12T18:33:43Z",
       "author": "Oliver Hunt",
@@ -40740,6 +46898,15 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/Shared/WebProcessCreationParameters.cpp",
+        "Source/WebKit2/Shared/WebProcessCreationParameters.h",
+        "Source/WebKit2/UIProcess/WebContext.cpp",
+        "Source/WebKit2/UIProcess/WebContext.h",
+        "Source/WebKit2/UIProcess/mac/WebContextMac.mm",
+        "Source/WebKit2/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 7,
       "lines_added": 4,
       "lines_deleted": 0,
       "allow_added": 2,
@@ -40753,6 +46920,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "37574aedffaeeff9578812862e1da241d86789a6",
+      "short_hash": "37574aedffae",
       "date": "2014-07-11",
       "timestamp": "2014-07-11T17:15:31Z",
       "author": "Oliver Hunt",
@@ -40790,6 +46958,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 63,
       "lines_deleted": 2,
       "allow_added": 31,
@@ -40803,6 +46973,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d8c6a45194ec4f331db78a4b9cd9b50fb4d9e45e",
+      "short_hash": "d8c6a45194ec",
       "date": "2014-07-10",
       "timestamp": "2014-07-10T23:17:12Z",
       "author": "Oliver Hunt",
@@ -40831,6 +47002,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 5,
       "lines_deleted": 10,
       "allow_added": 5,
@@ -40844,6 +47017,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "8b1205eec3c280b02b89b594af25564e03b56bfe",
+      "short_hash": "8b1205eec3c2",
       "date": "2014-07-02",
       "timestamp": "2014-07-02T22:54:32Z",
       "author": "Oliver Hunt",
@@ -40878,6 +47052,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.cpp",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.h",
+        "Source/WebKit2/Shared/mac/SandboxUtilities.cpp",
+        "Source/WebKit2/Shared/mac/SandboxUtilities.h",
+        "Source/WebKit2/UIProcess/WebContext.cpp",
+        "Source/WebKit2/UIProcess/mac/WebContextMac.mm",
+        "Source/WebKit2/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 42,
       "lines_deleted": 1,
       "allow_added": 20,
@@ -40891,6 +47076,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "73be3da88ceb2cbbdd9754344b224f2a455c6401",
+      "short_hash": "73be3da88ceb",
       "date": "2014-07-02",
       "timestamp": "2014-07-02T01:24:17Z",
       "author": "Commit Queue",
@@ -40925,6 +47111,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.cpp",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.h",
+        "Source/WebKit2/Shared/mac/SandboxUtilities.cpp",
+        "Source/WebKit2/Shared/mac/SandboxUtilities.h",
+        "Source/WebKit2/UIProcess/WebContext.cpp",
+        "Source/WebKit2/UIProcess/mac/WebContextMac.mm",
+        "Source/WebKit2/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 1,
       "lines_deleted": 42,
       "allow_added": 1,
@@ -40939,6 +47136,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "5c6e2977fba41fbd8069edd05d4124aee64627a3",
+      "short_hash": "5c6e2977fba4",
       "date": "2014-06-30",
       "timestamp": "2014-06-30T22:51:39Z",
       "author": "Oliver Hunt",
@@ -40973,6 +47171,17 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/NetworkProcess/cocoa/NetworkProcessCocoa.mm",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.cpp",
+        "Source/WebKit2/Shared/Network/NetworkProcessCreationParameters.h",
+        "Source/WebKit2/Shared/mac/SandboxUtilities.cpp",
+        "Source/WebKit2/Shared/mac/SandboxUtilities.h",
+        "Source/WebKit2/UIProcess/WebContext.cpp",
+        "Source/WebKit2/UIProcess/mac/WebContextMac.mm",
+        "Source/WebKit2/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 42,
       "lines_deleted": 1,
       "allow_added": 20,
@@ -40986,6 +47195,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "16ae9568d772937e47fb9b9a9aed30e2fec18110",
+      "short_hash": "16ae9568d772",
       "date": "2014-06-11",
       "timestamp": "2014-06-11T20:13:37Z",
       "author": "Oliver Hunt",
@@ -41012,6 +47222,8 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Databases.sb"
       ],
+      "code_files": [],
+      "total_commit_files_count": 1,
       "lines_added": 23,
       "lines_deleted": 4,
       "allow_added": 10,
@@ -41025,6 +47237,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d415634dba01f0b247a3f8fd2688b581d4b926ae",
+      "short_hash": "d415634dba01",
       "date": "2014-06-02",
       "timestamp": "2014-06-02T17:22:33Z",
       "author": "Oliver Hunt",
@@ -41056,6 +47269,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb",
         "Source/WebKit2/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/DatabaseProcess/ios/DatabaseProcessIOS.mm",
+        "Source/WebKit2/NetworkProcess/ios/NetworkProcessIOS.mm",
+        "Source/WebKit2/WebKit2.xcodeproj/project.pbxproj",
+        "Source/WebKit2/WebKit2Prefix.h",
+        "Source/WebKit2/WebProcess/cocoa/WebProcessCocoa.mm"
+      ],
+      "total_commit_files_count": 9,
       "lines_added": 85,
       "lines_deleted": 53,
       "allow_added": 10,
@@ -41069,6 +47290,7 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
     },
     {
       "hash": "d808e18927c5ab26cc2decd1bf8ee14d0e48f8e2",
+      "short_hash": "d808e18927c5",
       "date": "2014-05-21",
       "timestamp": "2014-05-21T20:52:21Z",
       "author": "Oliver Hunt",
@@ -41096,6 +47318,14 @@ window.__WKANALYZE_SANDBOX_DATA__ = {
       "files": [
         "Source/WebKit2/DatabaseProcess/ios/com.apple.WebKit.DatabasesIOS.sb"
       ],
+      "code_files": [
+        "Source/WebKit2/Configurations/WebKit.xcconfig",
+        "Source/WebKit2/DatabaseProcess/ios/DatabaseProcessIOS.mm",
+        "Source/WebKit2/Shared/ios/ChildProcessIOS.mm",
+        "Source/WebKit2/Shared/mac/ChildProcessMac.mm",
+        "Source/WebKit2/WebKit2.xcodeproj/project.pbxproj"
+      ],
+      "total_commit_files_count": 6,
       "lines_added": 53,
       "lines_deleted": 0,
       "allow_added": 13,

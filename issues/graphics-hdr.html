@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Why WebKit's multi-process RemoteLayerTree requires private QuartzCore endpoints on iOS, how alternative browser engines differ, and the real state of IOSurface and HDR/EDR." name="description"/>
+<meta content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';" http-equiv="Content-Security-Policy"/>
+<title>Compositor performance &amp; HDR — WebKit source analysis</title>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="../css/styles.css" rel="stylesheet"/>
+<link href="../css/issues.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="app-header">
+<div class="header-inner">
+<div class="brand">
+<div aria-hidden="true" class="brand-icon">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+<path d="M9 12l2 2 4-4"></path>
+</svg>
+</div>
+<div>
+<div class="brand-title-row">
+<a class="header-back-link" href="../index.html" title="Back to main WebKit analysis index">← All Analyses</a>
+<span class="brand-title">WebKit Source Analysis</span>
+<span class="brand-badge">Capability Gap Drill-Down</span>
+<span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">⚠ Analysis is AI-generated and may contain errors</span>
+</div>
+<p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+</div>
+</div>
+<div class="header-actions">
+<a class="btn btn-secondary" href="../index.html#summary-heading">← All 13 Capability Gaps</a>
+<a class="btn btn-secondary" href="#related">Related Analyzers ↓</a>
+</div>
+</div>
+</header>
+<main class="issue-page">
+<nav aria-label="Breadcrumb" class="issue-breadcrumb">
+<a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Compositor performance &amp; HDR</nav>
+<header class="issue-header">
+<p class="issue-kicker">Capability gap</p>
+<h1 class="issue-title">Compositor performance &amp; HDR</h1>
+<div class="issue-meta">
+<span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P3</span></span>
+<span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Architecture-specific impact)</span></span>
+<span class="meta-item"><span class="meta-label">On Android?</span> Yes (engines ship their own compositor)</span>
+</div>
+<div class="issue-summary">
+<p><strong>In one sentence:</strong> Safari coordinates multi-process rendering by hosting a tree of native UIKit views and CoreAnimation layers across process boundaries using private QuartzCore endpoints, whereas alternative browser engines ship their own cross-platform compositors rendering directly to Metal surfaces—making WebKit's private layer-tree endpoints largely irrelevant to them, while leaving subtler gaps in GPU scheduling priorities, memory attribution, and HDR tone mapping.</p>
+<p><strong>What this page adds:</strong> Research into WebKit's source code reveals why the "compositing gap" is heavily architecture-dependent. WebKit's RemoteLayerTree design requires private Apple entitlements (<code>com.apple.QuartzCore.webkit-end-points</code>, <code>secure-mode</code>, <code>webkit-limited-types</code>) and private SPIs (<code>CAContext</code>, <code>CALayerHost</code>, <code>_UIRemoteView</code>) to project its UIKit-based layer hierarchy from WebContent and GPU processes into Safari. In contrast, Chromium and Gecko composite entirely in-engine and present via a standard <code>CAMetalLayer</code> or an <code>IOSurface</code>. Furthermore, BrowserEngineKit grants third-party rendering extensions public hosting primitives (<code>BELayerHierarchy</code>) and task identity tokens for IOSurface memory accounting (closing a major Jetsam vulnerability), while <code>CAMetalLayer</code> supports public Extended Dynamic Range (EDR) on iOS 16+. The remaining genuine losses for alternative engines are the lack of elevated GPU scheduling priority (<code>com.apple.private.allow-explicit-graphics-priority</code>), minor IPC latency when isolating rendering across processes, and calibration differences in dynamic HDR headroom adaptation.</p>
+</div>
+</header>
+<nav aria-label="Contents" class="issue-toc">
+<h2>Aspects covered</h2>
+<ol>
+<li><a href="#aspect-1">WebKit's RemoteLayerTree architecture vs. self-contained compositors</a></li>
+<li><a href="#aspect-2">IOSurface sharing and cross-process Jetsam memory accounting</a></li>
+<li><a href="#aspect-3">Extended Dynamic Range (EDR) and HDR video/canvas output</a></li>
+<li><a href="#aspect-4">Metal, GPU process sandboxing, and scheduling priority</a></li>
+<li><a href="#aspect-5">Display refresh timing (vsync) and screen capture</a></li>
+<li><a href="#aspect-6">Architecture-specific impact: what third-party engines actually lose</a></li>
+<li><a href="#open-questions">Open questions &amp; confidence</a></li>
+<li><a href="#android">Android comparison</a></li>
+<li><a href="#related">Related analysis pages</a></li>
+</ol>
+</nav>
+<section class="issue-section" id="aspect-1">
+<h2><span class="aspect-num">1</span>WebKit's RemoteLayerTree architecture vs. self-contained compositors</h2>
+<p>In a web browser, compositing is the process of taking individual HTML elements, canvas drawings, and decoded video frames, arranging them into layers, and drawing them onto the screen. Most modern engines (such as Chromium's Blink with Viz, or Firefox's Gecko with WebRender) execute all compositing passes inside their own rendering pipeline and paint a single consolidated frame. WebKit on iOS takes a fundamentally different path known as <strong>RemoteLayerTree</strong>: every major DOM compositing layer (scrolling container, video element, CSS 3D transform, or backdrop filter) is mapped directly to a native CoreAnimation <code>CALayer</code> or UIKit <code>UIView</code>.</p>
+<p>Because WebKit isolates web execution in helper processes (the WebContent process and the GPU process), these native layers must be transported across process boundaries and hosted inside Safari's UI process. To accomplish this, WebKit uses private CoreAnimation interfaces: <code>CAContext</code> (via <code>remoteContextWithOptions:</code>) to create out-of-process layer contexts, <code>CALayerHost</code> to render those contexts into Safari's layer tree, and <code>_UIRemoteView</code> (a private UIKit class) to host remote views. Synchronizing layer updates with user gestures requires cross-process fencing using <code>[CAContext createFencePort]</code>. To protect the system compositor daemon (<code>com.apple.CARenderServer</code>) from untrusted WebContent processes, Apple signs its auxiliary processes with three private entitlements: <code>com.apple.QuartzCore.webkit-end-points</code>, <code>com.apple.QuartzCore.webkit-limited-types</code>, and <code>com.apple.QuartzCore.secure-mode</code>.</p>
+<div class="aspect-grid">
+<div class="aspect-card safari">
+<h3>How Safari / WebKit does it</h3>
+<ul>
+<li><code>RemoteLayerTreeHostIOS.mm</code> maps DOM layer types to concrete UIKit views (such as <code>WKCompositingView</code>, <code>WKChildScrollView</code>, <code>WKBackdropView</code>, and <code>WKUIRemoteView</code>).</li>
+<li>For out-of-process media and GPU-rendered content, <code>VideoPresentationManagerProxy.mm</code> and <code>LayerHostingContext.mm</code> instantiate private <code>CAContext</code> and <code>CALayerHost</code> endpoints backed by <code>com.apple.CARenderServer</code>.</li>
+<li>Sandboxed WebContent and GPU processes are authorized to communicate directly with QuartzCore endpoints via <code>com.apple.QuartzCore.webkit-end-points</code>, while <code>webkit-limited-types</code> enforces strict serialization allowlists.</li>
+<li>Layer update transactions across processes are fenced synchronously using Mach send rights generated by <code>[CAContext createFencePort]</code>.</li>
+</ul>
+</div>
+<div class="aspect-card bek">
+<h3>What a BrowserEngineKit browser can do</h3>
+<ul>
+<li>Third-party engines cannot obtain private <code>com.apple.QuartzCore.*</code> entitlements and cannot create arbitrary <code>CAContext</code> or <code>CALayerHost</code> endpoints.</li>
+<li>BrowserEngineKit provides public hosting primitives: <code>BELayerHierarchy</code>, <code>BELayerHierarchyHandle</code>, <code>BELayerHierarchyHostingView</code>, and <code>BELayerHierarchyHostingTransactionCoordinator</code>. WebKit itself adopts these public classes when built with <code>USE(EXTENSIONKIT)</code>.</li>
+<li>Crucially, alternative engines (Chromium and Gecko) do not construct per-DOM-element UIKit layer trees. They composite internally using Metal or Skia into a single top-level layer or offscreen buffer, making WebKit's private layer-tree hosting endpoints unnecessary for their rendering pipelines.</li>
+</ul>
+</div>
+</div>
+<div class="evidence-box">
+<h3>Evidence</h3>
+<ul>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/RemoteLayerTree/ios/RemoteLayerTreeHostIOS.mm#L61">RemoteLayerTreeHostIOS.mm:61–140</a> — instantiates native UIKit views (<code>WKCompositingView</code>, <code>WKUIRemoteView</code>) for remote DOM layers.</li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/cocoa/LayerHostingContext.mm#L50">LayerHostingContext.mm:50–83</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/cocoa/LayerHostingContext.mm#L190">:190–209</a> — handles private <code>CAContext</code> creation, <code>[CAContext createFencePort]</code>, and public <code>BELayerHierarchyHostingTransactionCoordinator</code> fencing.</li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/VideoPresentationManagerProxy.mm#L106">VideoPresentationManagerProxy.mm:106–115</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/VideoPresentationManagerProxy.mm#L934">:934–955</a> — uses <code>CALayerHost</code> on iOS, and switches to <code>BELayerHierarchyHostingView</code> under ExtensionKit.</li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L427">process-entitlements.sh:427–431</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L515">:515–518</a> — grants <code>com.apple.QuartzCore.secure-mode</code>, <code>webkit-end-points</code>, and <code>webkit-limited-types</code> to WebContent and GPU processes.</li>
+<li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/a7595be0ea049bc66b021ca5668225c64055c8b6">a7595be0ea04 (2020-11-03)</a> "Adopt additional QuartzCore entitlement to reduce accessible endpoints".</li>
+<li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=QuartzCore">Entitlements explorer › QuartzCore private entitlements</a> — breakdown of QuartzCore entitlement asymmetries.</li>
+<li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Graphics%2C%20CoreAnimation%2C%20Color%2C%20HDR%20%26%20IOSurface">SPI inventory › Graphics, CoreAnimation, Color, HDR &amp; IOSurface</a> — analysis of 205 private graphics and CoreAnimation SPIs. These include `CGIOSurfaceContextGetBitmapInfo`, `CGShadingCreateConic`, and HDR display headroom SPIs (e.g. `HAVE_SUPPORT_HDR_DISPLAY_APIS` added in `1a76ef7e9b2a` and `ff6f5a8f4007`). When WebKit tried removing `CGShadingCreateConic` in `5e93c4d3d62c`, rendering regressions forced commits `8ad60ae162b2` and `906c6983e08c` to restore them.</li>
+<li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/layerhierarchy">BELayerHierarchy</a> and <a href="https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingview">BELayerHierarchyHostingView</a> — public BrowserEngineKit layer hosting APIs.</li>
+</ul>
+</div>
+</section>
+<section class="issue-section" id="aspect-2">
+<h2><span class="aspect-num">2</span>IOSurface sharing and cross-process Jetsam memory accounting</h2>
+<p>High-performance graphics pipelines (WebGL, WebGPU, and hardware-accelerated video) rely on <strong>IOSurface</strong>: an operating system primitive that represents shared GPU/CPU memory buffers accessible across process boundaries without copying pixels. However, moving graphics rendering into an isolated helper process introduces a critical accounting dilemma: if a background web page consumes hundreds of megabytes of textures, which process does the operating system terminate when memory runs low?</p>
+<p>On iOS, the <strong>Jetsam</strong> memory management subsystem enforces strict per-process memory limits. If an isolated GPU helper process allocates every IOSurface buffer under its own task, Jetsam will terminate the GPU process, crashing all open tabs simultaneously. WebKit avoids this by transferring memory ledger accounting of each IOSurface directly to the WebContent process that requested it. Historically, doing so required the Apple-private entitlement <code>com.apple.private.memory.ownership_transfer</code> and the private system call <code>IOSurfaceSetOwnership</code>.</p>
+<div class="issue-callout good"><strong>Parity in BrowserEngineKit:</strong> While third-party browser engines cannot obtain Apple-private entitlements, Apple introduced a public mechanism for memory ledger attribution. Extensions granted <code>com.apple.developer.web-browser-engine.rendering</code> and <code>com.apple.developer.web-browser-engine.webcontent</code> can create task identity tokens via <code>task_create_identity_token</code> and assign buffer ownership using <code>IOSurfaceSetOwnershipIdentity</code> and <code>-[MTLResource setOwnerWithIdentity:]</code>.</div>
+<div class="aspect-grid">
+<div class="aspect-card safari">
+<h3>How Safari / WebKit does it</h3>
+<ul>
+<li>WebKit signs its GPU process with <code>com.apple.private.memory.ownership_transfer</code> via <code>process-entitlements.sh</code>.</li>
+<li>Client WebProcess instances send their <code>task_id_token_t</code> over IPC to the GPU process upon connection.</li>
+<li>When allocating IOSurfaces for canvas, layer backing stores, or WebGPU swap chains, <code>IOSurface::setOwnershipIdentity</code> invokes <code>IOSurfaceSetOwnershipIdentity(surface, ownerTaskIdToken, kIOSurfaceMemoryLedgerTagGraphics, 0)</code>, reassigning Jetsam attribution to the client tab.</li>
+</ul>
+</div>
+<div class="aspect-card bek">
+<h3>What a BrowserEngineKit browser can do</h3>
+<ul>
+<li>Third-party browser engines obtain functional parity through the public BrowserEngineKit rendering and webcontent process entitlements.</li>
+<li>A third-party rendering extension can receive a Mach task identity token from its web content extension and call <code>IOSurfaceSetOwnershipIdentity</code> and Metal's <code>setOwnerWithIdentity:</code> to transfer texture memory attribution.</li>
+<li>This prevents an alternative browser's GPU rendering service from being prematurely terminated by Jetsam when individual tabs have high memory consumption.</li>
+</ul>
+</div>
+</div>
+<div class="evidence-box">
+<h3>Evidence</h3>
+<ul>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/graphics/cocoa/IOSurface.mm#L949">IOSurface.mm:949–968</a> — implementation of <code>IOSurface::setOwnershipIdentity</code> using <code>task_id_token_t</code> and <code>kIOSurfaceMemoryLedgerTagGraphics</code>.</li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WTF/wtf/spi/cocoa/IOSurfaceSPI.h#L116">IOSurfaceSPI.h:116–133</a> — declarations for <code>IOSurfaceSetOwnershipIdentity</code> and ledger tags, guarded by <code>!HAVE(BROWSER_ENGINE_SUPPORTING_API)</code>.</li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L530">process-entitlements.sh:530</a> — signs <code>com.apple.private.memory.ownership_transfer</code> into the GPU process entitlements.</li>
+<li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/8c4494f5a64198ac5ae1939d145fafcf64c43cce">8c4494f5a641 (2021-02-23)</a> "Prepare for memory ownership transfer in the GPUProcess" — introduces IOSurface ownership reassignment to protect against Jetsam.</li>
+<li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=ownership_transfer">Entitlements explorer › com.apple.private.memory.ownership_transfer</a> — full dossier on ownership transfer and BrowserEngineKit parity.</li>
+</ul>
+</div>
+</section>
+<section class="issue-section" id="aspect-3">
+<h2><span class="aspect-num">3</span>Extended Dynamic Range (EDR) and HDR video/canvas output</h2>
+<p>Modern iOS displays feature High Dynamic Range (HDR) capabilities with peak brightness exceeding standard SDR levels. Apple refers to this dynamic brightness range on iOS and macOS as <strong>Extended Dynamic Range (EDR)</strong>. For web developers, EDR unlocks wide color gamuts (Display P3), high-precision 2D/WebGL canvas contexts (using 16-bit floating point formats), and HDR video playback (HDR10, HLG, and Dolby Vision).</p>
+<p>In WebKit, HDR presentation is deeply integrated across its layer tree. In <code>RemoteLayerBackingStore.mm</code>, WebKit inspects whether an allocated surface has extended dynamic range and toggles <code>[layer setWantsExtendedDynamicRangeContent:YES]</code> and <code>[layer setContentsHeadroom:m_maxRequestedEDRHeadroom]</code> on the backing <code>CALayer</code>. It queries dynamic display headroom using public UIKit APIs (<code>UITraitHDRHeadroomUsageLimit</code>, adopted in August 2025 commit <code>1a76ef7e9b2a</code>) and serializes HDR gain maps (commit <code>ff6f5a8f4007</code>). For alternative engines presenting via Metal, the underlying hardware presentation path is also public: <code>CAMetalLayer</code> exposes <code>wantsExtendedDynamicRangeContent</code>, wide-gamut color spaces, and <code>CAEDRMetadata</code> on iOS 16+. The remaining challenge lies in fine-tuning tone mapping across mixed SDR and HDR web content.</p>
+<div class="aspect-grid">
+<div class="aspect-card safari">
+<h3>How Safari / WebKit does it</h3>
+<ul>
+<li><code>RemoteLayerBackingStore.mm</code> configures <code>setWantsExtendedDynamicRangeContent:</code> and <code>setContentsHeadroom:</code> directly on CoreAnimation layers based on surface format properties.</li>
+<li>Monitors system-wide HDR headroom adaptation using <code>UITraitHDRHeadroomUsageLimit</code> and <code>UIScreen.maximumExtendedDynamicRangeColorComponentValue</code>.</li>
+<li>Decodes and serializes HDR gain maps across IPC using <code>GainMap</code> and <code>ShareableGainMap</code>, rendering wide-gamut images with Metal-compatible pixel buffers.</li>
+<li>Coordinates CoreGraphics tone mapping with private SPIs such as <code>kCGContentEDRStrength</code> to match system brightness curves for surrounding HTML text and UI.</li>
+</ul>
+</div>
+<div class="aspect-card bek">
+<h3>What a BrowserEngineKit browser can do</h3>
+<ul>
+<li>An alternative engine's compositor renders directly into a <code>CAMetalLayer</code>, which publicly supports <code>wantsExtendedDynamicRangeContent</code>, 16-bit float pixel formats (<code>MTLPixelFormatRGBA16Float</code>), and extended color spaces (<code>kCGColorSpaceExtendedLinearSRGB</code>, <code>kCGColorSpaceExtendedLinearDisplayP3</code>) on iOS 16+.</li>
+<li>Can configure HDR metadata on video and canvas layers using public <code>CAEDRMetadata</code> (including HLG, HDR10, and extended linear transfer curves).</li>
+<li>Can query current display headroom from <code>UIScreen</code> and listen to trait headroom notifications.</li>
+<li>Must implement custom tone-mapping shaders to seamlessly balance HDR video/canvas highlights with surrounding SDR web content, as it lacks private CoreGraphics display-list heuristics.</li>
+</ul>
+</div>
+</div>
+<div class="evidence-box">
+<h3>Evidence</h3>
+<ul>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/RemoteLayerTree/RemoteLayerBackingStore.mm#L587">RemoteLayerBackingStore.mm:587–601</a> — sets <code>wantsExtendedDynamicRangeContent</code> and <code>contentsHeadroom</code> on remote layer backing stores.</li>
+<li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/1a76ef7e9b2af3d12aa84871e3eb566cdddedd72">1a76ef7e9b2a (2025-08-29)</a> "Use official HDR-suppression APIs" — adopts public <code>UITraitHDRHeadroomUsageLimit</code> in <code>WKWebViewIOS.mm</code>.</li>
+<li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/ff6f5a8f40079145a1b55600de630a342712db2b">ff6f5a8f4007 (2026-04-30)</a> "[HDR] Introduce GainMap and ShareableGainMap" — introduces cross-process gain-map serialization to the GPU process.</li>
+<li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/quartzcore/cametallayer/wantsextendeddynamicrangecontent">CAMetalLayer.wantsExtendedDynamicRangeContent</a> — public QuartzCore API for HDR Metal presentation.</li>
+<li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/quartzcore/caedrmetadata">CAEDRMetadata</a> — public CoreAnimation metadata configuration for HDR10 and HLG on iOS 16+.</li>
+</ul>
+</div>
+</section>
+<section class="issue-section" id="aspect-4">
+<h2><span class="aspect-num">4</span>Metal, GPU process sandboxing, and scheduling priority</h2>
+<p>Moving graphics execution out of the main browser process protects against security vulnerabilities and stability issues. In both WebKit and modern third-party engines, graphics drawing commands, WebGL pipelines, and WebGPU compute shaders execute within a sandboxed helper process that talks to the GPU via Apple's Metal framework.</p>
+<p>However, WebKit's processes enjoy an important scheduling advantage on iOS. WebKit injects the Apple-private entitlement <code>com.apple.private.allow-explicit-graphics-priority</code> into both its WebContent and GPU processes via <code>process-entitlements.sh</code>. This entitlement allows WebKit to request elevated GPU command queue scheduling priorities, ensuring that critical 120Hz ProMotion animations and user-interactive frame updates are prioritized over background GPU tasks. Third-party rendering extensions operate under standard OS Metal queue priorities without this elevation privilege.</p>
+<div class="issue-callout note"><strong>Apple Neural Engine (ANE) clarify:</strong> While WebKit on macOS holds the private entitlement <code>com.apple.aneuserd.private.allow</code> to access the Apple Neural Engine daemon, on iOS WebKit does not hold this entitlement. WebGPU and machine learning workloads in WebKit on iOS compile to standard Metal shaders and public Metal Performance Shaders.</div>
+<div class="aspect-grid">
+<div class="aspect-card safari">
+<h3>How Safari / WebKit does it</h3>
+<ul>
+<li>Both WebContent and GPU processes are signed with <code>com.apple.private.allow-explicit-graphics-priority</code> on iOS and visionOS.</li>
+<li>Enables WebKit to assign high-priority scheduling tags to interactive rendering passes and compositor commits.</li>
+<li>The GPU process Seatbelt sandbox allows restricted IOKit access to user clients including <code>IOSurfaceRootUserClient</code> and <code>IOSurfaceAcceleratorClient</code>.</li>
+<li>WebGPU executes via the open-source WebGPU framework compiled directly to Apple Metal.</li>
+</ul>
+</div>
+<div class="aspect-card bek">
+<h3>What a BrowserEngineKit browser can do</h3>
+<ul>
+<li>Third-party browser engines utilize the dedicated rendering extension profile (<code>com.apple.developer.web-browser-engine.rendering</code>).</li>
+<li>Rendering extensions have full access to standard Metal device creation, command queues, pipeline state objects, and IOSurface backing stores.</li>
+<li>However, third-party rendering extensions cannot obtain <code>com.apple.private.allow-explicit-graphics-priority</code>, meaning all Metal command buffers execute at default system priority.</li>
+</ul>
+</div>
+</div>
+<div class="evidence-box">
+<h3>Evidence</h3>
+<ul>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L435">process-entitlements.sh:435</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L523">:523</a> — signs <code>com.apple.private.allow-explicit-graphics-priority</code> into iOS WebContent and GPU processes.</li>
+<li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1">13771f185bf4 (2020-02-07)</a> "Build entitlements into GPU Process" — configures graphics scheduling and sandbox entitlements for out-of-process GPU rendering.</li>
+<li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=allow-explicit-graphics-priority">Entitlements explorer › com.apple.private.allow-explicit-graphics-priority</a> — dossier on Apple-exclusive GPU scheduling priority.</li>
+<li><span class="ev-kind">Dataset</span><a href="../sandbox.html#q=IOSurface">Sandbox › IOSurface filtering rules</a> — commit history tracking IOKit user client sandboxing in the GPU process.</li>
+</ul>
+</div>
+</section>
+<section class="issue-section" id="aspect-5">
+<h2><span class="aspect-num">5</span>Display refresh timing (vsync) and screen capture</h2>
+<p>Smooth animation and responsive touch feedback require precise synchronization between the browser's frame production loop and the physical display refresh rate (vsync). On iOS devices equipped with ProMotion displays, the screen refresh rate fluctuates dynamically between 10Hz and 120Hz depending on touch interaction and battery state.</p>
+<p>WebKit drives its frame pacing using the standard public CoreAnimation display link mechanism: <code>CADisplayLink</code>. In <code>RemoteLayerTreeDrawingAreaProxyIOS.mm</code>, WebKit attaches a <code>CADisplayLink</code> to the main run loop, listens for dynamic refresh rate shifts via Key-Value Observing on <code>display.refreshRate</code>, and forwards tick events to its WebContent and GPU processes via <code>DisplayRefreshMonitorIOS.mm</code>. Because <code>CADisplayLink</code> is a standard public API, third-party browser engines achieve complete functional parity for vsync pacing.</p>
+<div class="aspect-grid">
+<div class="aspect-card safari">
+<h3>How Safari / WebKit does it</h3>
+<ul>
+<li><code>RemoteLayerTreeDrawingAreaProxyIOS.mm</code> instantiates <code>CADisplayLink</code> using <code>displayLinkWithTarget:selector:</code> on the main thread.</li>
+<li>Configures <code>preferredFramesPerSecond</code> and <code>preferredFrameRateRange</code> based on power state and page animation activity.</li>
+<li>For screen capture (<code>getDisplayMedia</code>), WebKit relies on private ScreenCaptureKit entitlements on macOS (e.g. <code>com.apple.private.screencapturekit.sharingsession</code>); on iOS, WebKit does not hold screen capture entitlements, as display capture is constrained by platform-level sandbox and privacy restrictions.</li>
+</ul>
+</div>
+<div class="aspect-card bek">
+<h3>What a BrowserEngineKit browser can do</h3>
+<ul>
+<li>Identical display link integration: third-party engines can attach a public <code>CADisplayLink</code> to their main run loop and drive internal frame scheduling with 120Hz ProMotion fidelity.</li>
+<li>Engines with their own compositors (Chromium/Viz, Gecko/WebRender) feed <code>CADisplayLink</code> timestamps directly into their internal scheduler threads.</li>
+<li>Screen capture capabilities on iOS are equally restricted for all browsers; third-party browsers face the same system-level boundaries as Safari.</li>
+</ul>
+</div>
+</div>
+<div class="evidence-box">
+<h3>Evidence</h3>
+<ul>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/RemoteLayerTree/ios/RemoteLayerTreeDrawingAreaProxyIOS.mm#L359">RemoteLayerTreeDrawingAreaProxyIOS.mm:359–378</a> — instantiates <code>CADisplayLink</code> and observes <code>display.refreshRate</code>.</li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/graphics/ios/DisplayRefreshMonitorIOS.mm#L57">DisplayRefreshMonitorIOS.mm:57–70</a> — attaches <code>CADisplayLink</code> to the WebCore run loop.</li>
+<li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/quartzcore/cadisplaylink">CADisplayLink</a> — public Apple documentation for display refresh synchronization.</li>
+</ul>
+</div>
+</section>
+<section class="issue-section" id="aspect-6">
+<h2><span class="aspect-num">6</span>Architecture-specific impact: what third-party engines actually lose</h2>
+<p>When assessing this capability gap, the central technical finding is that the severity of the loss depends entirely on the browser engine's internal architecture. The main-page capability summary notes: <em>"BEK lacks full RemoteLayerTree / IOSurface endpoints for advanced compositing. HDR/EDR video and canvas output may not match Safari."</em> While this is an accurate description of WebKit's private QuartzCore surface, examining alternative engines reveals a very different operational reality.</p>
+<p>WebKit's RemoteLayerTree is deeply coupled to iOS's native UIKit hierarchy. On iOS, WebKit treats HTML scrolling containers as native <code>UIScrollView</code>s, renders text fields as UIKit controls, and projects individual DOM layers through private <code>CAContext</code>/<code>CALayerHost</code> endpoints. An engine attempting to replicate WebKit's exact UIKit-layer architecture would indeed be blocked without private QuartzCore entitlements. However, major alternative engines—namely Chromium (Blink + CC + Viz) and Firefox (Gecko + WebRender)—do not work this way. They implement self-contained, cross-platform compositors that paint directly into a single top-level graphics surface (such as a <code>CAMetalLayer</code> or an <code>IOSurface</code>). For these engines, the absence of per-layer <code>CALayerHost</code> hosting is virtually irrelevant.</p>
+<div class="aspect-grid">
+<div class="aspect-card safari">
+<h3>The WebKit RemoteLayerTree model</h3>
+<ul>
+<li>Requires a complex web of private SPIs and entitlements (<code>CAContext</code>, <code>CALayerHost</code>, <code>com.apple.CARenderServer</code>, <code>webkit-end-points</code>) because each DOM layer is an individual native OS layer.</li>
+<li>Enjoys tight, seamless integration with UIKit scrolling, rubber-banding, text magnifier loupes, and dynamic EDR tone-mapping curves.</li>
+<li>Benefits from private elevated graphics scheduling priority (<code>com.apple.private.allow-explicit-graphics-priority</code>).</li>
+</ul>
+</div>
+<div class="aspect-card bek">
+<h3>The alternative engine compositor model</h3>
+<ul>
+<li>Renders the entire web page in-engine using Metal/Skia/Dawn into a single <code>CAMetalLayer</code> or an <code>IOSurface</code> hosted via <code>BELayerHierarchyHostingView</code>.</li>
+<li>Bypasses the entire RemoteLayerTree gap: does not need <code>CAContext</code>, <code>CALayerHost</code>, or <code>com.apple.CARenderServer</code>.</li>
+<li>Faces real residual challenges: lack of elevated GPU scheduling priority, IPC overhead when coordinating out-of-process rendering extensions, and the burden of manually calibrating HDR/EDR tone mapping without Safari's native CoreGraphics heuristics.</li>
+</ul>
+</div>
+</div>
+<div class="evidence-box">
+<h3>Evidence</h3>
+<ul>
+<li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=QuartzCore">Entitlements explorer › QuartzCore private entitlements</a> — explicitly notes: <em>"the QuartzCore endpoints largely reflect WebKit's specific RemoteLayerTree compositing architecture rather than a functionality an alternative pipeline necessarily requires."</em></li>
+<li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/RemoteLayerTree/ios/RemoteLayerTreeViews.mm#L444">RemoteLayerTreeViews.mm:444–460</a> — demonstrates WebKit's tight coupling to private <code>_UIRemoteView</code>.</li>
+<li><span class="ev-kind">Sibling</span><a href="scrolling-text-input.html">Scrolling &amp; text input issue page</a> — details how WebKit's UIKit-centric layer architecture affects gesture recognition and keyboard handling.</li>
+</ul>
+</div>
+</section>
+<section class="issue-section" id="open-questions">
+<h2>Open questions &amp; confidence</h2>
+<ul>
+<li><strong>Real-world frame latency under BrowserEngineKit:</strong> While <code>BELayerHierarchyHostingView</code> provides functional layer hosting between a rendering extension and the host app, we have not measured the exact frame latency penalty compared to direct in-process <code>CAMetalLayer</code> rendering on 120Hz ProMotion hardware.</li>
+<li><strong>Impact of missing GPU scheduling priority:</strong> Third-party rendering extensions lack <code>com.apple.private.allow-explicit-graphics-priority</code>. The degree to which this results in dropped frames during system-wide thermal throttling or concurrent background GPU tasks remains to be measured empirically.</li>
+<li><strong>HDR tone mapping fidelity:</strong> While <code>CAMetalLayer</code> supports extended linear color spaces and float16 formats, matching Safari's subtle perceptual tone mapping across mixed SDR text and HDR media requires custom shader engineering in third-party engines.</li>
+<li><strong>Main-page row text recommendation:</strong> The main page's current summary (<em>"BEK lacks full RemoteLayerTree / IOSurface endpoints for advanced compositing. HDR/EDR video and canvas output may not match Safari."</em>) places heavy emphasis on WebKit's internal RemoteLayerTree architecture. We recommend refining the text to reflect that alternative engines avoid the RemoteLayerTree gap by using their own compositors, while clarifying that the true residual gaps are missing GPU scheduling priority and nuanced HDR tone-mapping calibration. We recommend maintaining <strong>Priority P2</strong> and <strong>Confidence Medium (Architecture-specific impact)</strong>.</li>
+</ul>
+</section>
+<section class="issue-section" id="android">
+<h2>Android comparison</h2>
+<p>On Android, the concept of forcing a web browser to project its DOM elements into a tree of native OS views does not exist. From the earliest days of Chrome on Android and Firefox for Android, alternative browser engines have shipped their own internal compositors (such as Chromium's Viz and Gecko's WebRender). Android provides public, low-level graphics primitives—namely <code>SurfaceView</code>, <code>TextureView</code>, <code>ANativeWindow</code>, and <code>AHardwareBuffer</code> (the Android counterpart to Apple's IOSurface)—which give engines direct, unencumbered access to hardware presentation queues.</p>
+<p>Furthermore, Android allows apps to configure their own rendering thread scheduling priorities via standard Linux thread affinities and Android's <code>Process.setThreadPriority()</code>, avoiding the private entitlement gating seen with Apple's <code>allow-explicit-graphics-priority</code>. For HDR content, Android provides public color management and wide-gamut surface configurations (e.g. <code>COLOR_MODE_HDR</code> and <code>WIDE_COLOR_GAMUT</code>) directly to apps without platform-exclusive compositor requirements.</p>
+</section>
+<section class="issue-section" id="related">
+<h2>Related analysis pages</h2>
+<ul>
+<li><a href="../spi.html#tab=data&amp;feat=Graphics%2C%20CoreAnimation%2C%20Color%2C%20HDR%20%26%20IOSurface">SPI inventory › Graphics, CoreAnimation, Color, HDR &amp; IOSurface</a> — catalog of 205 private graphics SPIs used by WebKit on iOS.</li>
+<li><a href="../entitlements.html?view=explorer&amp;q=QuartzCore">Entitlements explorer › QuartzCore private entitlements</a> — code pointers and platform distributions for <code>webkit-end-points</code>, <code>secure-mode</code>, and <code>webkit-limited-types</code>.</li>
+<li><a href="../entitlements.html?view=explorer&amp;q=ownership_transfer">Entitlements explorer › <code>com.apple.private.memory.ownership_transfer</code></a> — Jetsam memory accounting and BrowserEngineKit parity.</li>
+<li><a href="../entitlements.html?view=explorer&amp;q=allow-explicit-graphics-priority">Entitlements explorer › <code>com.apple.private.allow-explicit-graphics-priority</code></a> — Apple-private GPU scheduling entitlement.</li>
+<li><a href="scrolling-text-input.html">Issue › Scrolling &amp; text input</a> — analysis of how WebKit's UIKit-centric layer architecture drives gestures and input views.</li>
+<li><a href="media-playback.html">Issue › Media playback, codecs &amp; AirPlay</a> — video presentation layers, FairPlay DRM, and AVKit fullscreen interactions.</li>
+</ul>
+</section>
+<footer class="issue-footer">
+<a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+</main>
+</body>
+</html>

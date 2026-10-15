@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How content filters and parental controls integrate with WebKit on iOS, what BEWebContentFilter solves, and why enterprise MDM filters cannot inspect BrowserEngineKit browser flows.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>School &amp; workplace management: content filters &amp; managed domains — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Content filters on school &amp; work devices
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">School &amp; workplace management: content filters &amp; managed domains</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P2</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Screen Time gap closed on iOS 26.2+; MDM filter gap remains)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Partly (Family Link and managed-device policies target Chrome specifically; no OS-level per-page filter hook for arbitrary engines, so filter apps use VPN/DNS)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> Managed iPads and corporate iPhones rely on content filter apps to inspect individual web pages, display branded block pages, and mediate "ask for access" requests; WebKit feeds these filters via the private <code>NEFilterSource</code> interface to generate <code>NEFilterBrowserFlow</code> events, but BrowserEngineKit provides no way for alternative engines to emit browser flows, leaving filter apps unable to inspect page URLs, display custom block pages, or handle permission requests.</p>
+        <p><strong>What this page adds:</strong> Source analysis demonstrates that iOS web filtering is divided into two distinct systems: Screen Time parental restrictions and Mobile Device Management (MDM) enterprise filters. Screen Time web restrictions have achieved public parity: iOS 26.2 introduced <code>BEWebContentFilter</code>, and WebKit itself adopted it in November 2025 to replace its private <code>WebContentRestrictions</code> SPI. However, enterprise and educational MDM filters rely on NetworkExtension browser flows, which Apple explicitly restricts to WebKit-based browsers. While iOS 26 added <code>NEURLFilter</code> for opt-in threat blocklist checks via private information retrieval, it does not connect to MDM filter apps, leaving third-party engines downgraded to host-only socket inspection.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">Three filtering pipelines in WebKit: MDM, Screen Time, and legacy analysis</a></li>
+        <li><a href="#aspect-2">Enterprise and MDM per-page filtering: <code>NEFilterSource</code> and <code>NEFilterBrowserFlow</code></a></li>
+        <li><a href="#aspect-3">Screen Time web limits: <code>WCRBrowserEngineClient</code> SPI to <code>BEWebContentFilter</code> parity</a></li>
+        <li><a href="#aspect-4">Voluntary URL blocklists: <code>NEURLFilter</code> and what it is not</a></li>
+        <li><a href="#aspect-5">Process architecture: Sandboxing and private entitlements in the Networking process</a></li>
+        <li><a href="#aspect-6">The enterprise and school impact: Socket fallbacks, silent drops, and compliance</a></li>
+                        <li><a href="#aspect-7">What MDM "managed domains" are and the Managed Open-In boundary</a></li>
+        <li><a href="#aspect-8">Clipboard protection: tagging enterprise data via <code>_UIDataOwnerEnterprise</code></a></li>
+        <li><a href="#aspect-9">Suppressing "Save Image" and dictionary Look Up on managed sites</a></li>
+        <li><a href="#aspect-10">Enterprise SSO: relaxing tracking prevention for managed domains</a></li>
+        <li><a href="#aspect-11">Password AutoFill domain association (<code>SafariPasswordAutoFillDomains</code>)</a></li>
+        <li><a href="#aspect-12">What an alternative engine can do: whole-app management vs. per-site granularity</a></li>
+<li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>Three filtering pipelines in WebKit: MDM, Screen Time, and legacy analysis</h2>
+      <p>When an iOS device loads a web page, the browser must coordinate with system safety systems before delivering HTML to the rendering engine. In WebKit, this coordination is handled by a unified C++ pipeline in WebCore called <code>ContentFilter</code>. Rather than treating all content filtering as a single mechanism, WebKit maintains three distinct sub-filters that hook into successive phases of resource loading: pre-flight request evaluation, HTTP header inspection, and progressive response body buffering.</p>
+      <p>The three filtering sub-systems reflect different eras of iOS security architecture:</p>
+      <ul>
+        <li><strong>NetworkExtension Content Filter (<code>NetworkExtensionContentFilter</code>):</strong> Connects to third-party filtering applications installed via school and corporate Mobile Device Management (MDM) profiles. It forwards each page URL, redirect, and data chunk to system daemons via the private <code>NEFilterSource</code> class in NetworkExtension.</li>
+        <li><strong>Screen Time / Parental Controls (<code>ParentalControlsContentFilter</code> / <code>ParentalControlsURLFilter</code>):</strong> Enforces system Screen Time policies ("Limit Adult Websites" or "Allowed Websites Only") configured on child devices. Historically implemented via the private <code>WebContentRestrictions.framework</code>, it evaluates URLs against local parental restrictions and supports requesting remote approval from family organizers.</li>
+        <li><strong>Legacy Web Content Analysis (<code>WebFilterEvaluator</code>):</strong> An older engine from <code>WebContentAnalysis.framework</code> used on macOS and earlier iOS releases. It buffers incremental chunks of page content to detect adult language or imagery before releasing bytes to the parser.</li>
+      </ul>
+      <p>If any active filter signals a block, <code>ContentFilter</code> cancels the main resource load, intercepts the provisional navigation error, and replaces the target document with substitute HTML provided directly by the blocking filter.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>ContentFilter::types()</code> dynamically registers <code>ParentalControlsContentFilter</code> and <code>NetworkExtensionContentFilter</code> as active evaluation filters.</li>
+            <li><code>ContentFilter::create()</code> instantiates the active filters for each navigation. During page loads, <code>continueAfterWillSendRequest()</code>, <code>continueAfterResponseReceived()</code>, and <code>continueAfterDataReceived()</code> stream data to all registered filters in parallel.</li>
+            <li>When blocked, <code>didDecide(State::Blocked)</code> invokes <code>cancelMainResourceLoadForContentFilter()</code>, and <code>handleProvisionalLoadFailure()</code> injects the blocking filter's <code>replacementData()</code> into the document loader as substitute HTML.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines have no access to WebCore's internal <code>ContentFilter</code> pipeline, but they must replicate its exact multi-stage navigation lifecycle to support iOS safety controls.</li>
+            <li>On iOS 26.2 or later, an alternative engine can evaluate Screen Time policies using the public <code>BEWebContentFilter</code> API.</li>
+            <li>However, third-party engines have no public API to feed enterprise MDM filter extensions or receive custom replacement HTML from installed filtering apps.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/ContentFilter.cpp#L60">ContentFilter.cpp:60–71</a> — <code>ContentFilter::types()</code> registers <code>ParentalControlsContentFilter</code> and <code>NetworkExtensionContentFilter</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/ContentFilter.cpp#L375">ContentFilter.cpp:375–382</a> — <code>didDecide(State::Blocked)</code> records the blocking filter, obtains the unblock handler, and cancels the main resource load.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/loader/ContentFilter.cpp#L438">ContentFilter.cpp:438–446</a> — <code>handleProvisionalLoadFailure()</code> retrieves <code>replacementData()</code> from the blocking filter and renders it as substitute data for <code>blockedPageURL()</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Privacy%2C%20Tracking%20Prevention%2C%20Content%20Filtering%20%26%20Safe%20Browsing">SPI explorer › Privacy, Tracking Prevention, Content Filtering &amp; Safe Browsing</a> — catalog of private filtering symbols across WebCore and WebKit.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Enterprise and MDM per-page filtering: <code>NEFilterSource</code> and <code>NEFilterBrowserFlow</code></h2>
+      <p>In school districts and corporate environments, managed devices are configured with third-party content filtering extensions (such as Securly, Lightspeed Systems, Cisco Umbrella, or Jamf). These extensions evaluate web traffic in real time against organizational safety policies. On iOS, the system exposes this capability to filter providers through the <code>NEFilterDataProvider</code> app extension protocol.</p>
+      <p>Inside WebKit, the integration is managed by <code>NetworkExtensionContentFilter</code> using the Apple-private <code>NEFilterSource</code> class from NetworkExtension. For every main-resource navigation, WebKit initializes an <code>NEFilterSource</code> instance tagged with the host application's bundle identifier and process ID. Before sending a network request, WebKit calls <code>[m_neFilterSource willSendRequest:decisionHandler:]</code>. As response headers and body bytes arrive from the network, WebKit sequentially invokes <code>receivedResponse:</code>, <code>receivedData:</code>, and <code>finishedLoadingWithDecisionHandler:</code>.</p>
+      <p>When the filter provider inspects this traffic, the system delivers it as an <code>NEFilterBrowserFlow</code> object. Apple's official documentation defines <code>NEFilterBrowserFlow</code> as: <em>"a flow of network data originating from a WebKit-based browser and examined by a content filter."</em> This class provides the filter extension with high-level HTTP metadata: the complete target URL (including path and query parameters), the HTTP request headers, response headers, and the parent URL that initiated the navigation.</p>
+      <p>If the filter rules that the page violates school or company policy, the extension returns <code>NEFilterSourceStatusBlock</code> along with an HTML payload via <code>NEFilterSourceOptionsPageData</code>. WebKit intercepts this decision, suppresses the original website, and renders the filter app's branded HTML page (typically showing school contact info, policy rationale, and a "Request Access" button). When the user submits an access request, <code>ContentFilterUnblockHandler</code> invokes <code>[neFilterSource remediateWithDecisionHandler:]</code> to initiate administrative remediation.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>NetworkExtensionContentFilter::initialize()</code> creates an <code>NEFilterSource</code> instance on a dedicated serial queue and identifies the source application via <code>setSourceAppIdentifier:</code> and <code>setSourceAppPid:</code>.</li>
+            <li><code>willSendRequest</code>, <code>receivedResponse</code>, and <code>receivedData</code> deliver HTTP details and incremental stream chunks to the system filter daemon via private <code>NEFilterSource</code> methods.</li>
+            <li>If blocked, the filter extension returns custom block page HTML via <code>NEFilterSourceOptionsPageData</code>, which WebKit presents to the user.</li>
+            <li>Users can click "Ask for Access" on the block page; WebKit's <code>ContentFilterUnblockHandler</code> executes <code>[neFilterSource remediateWithDecisionHandler:]</code> to ask the filter extension to grant access.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>No public equivalent exists. <code>NEFilterSource</code> is private SPI restricted by system entitlements and sandbox checks, and BrowserEngineKit provides no interface to emit browser flows.</li>
+            <li>An alternative browser engine cannot generate <code>NEFilterBrowserFlow</code> events. Any traffic emitted by its independent network stack is handled by NetworkExtension only at the raw TCP/UDP socket layer.</li>
+            <li>The engine cannot receive custom block page HTML from installed MDM filter apps and cannot invoke the <code>remediateWithDecisionHandler:</code> unblock workflow.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.mm#L76">NetworkExtensionContentFilter.mm:76–79</a> — allocation of <code>NEFilterSource</code> with <code>setSourceAppIdentifier:</code> and <code>setSourceAppPid:</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.mm#L99">NetworkExtensionContentFilter.mm:99–105</a> — passing <code>NSURLRequest</code> to <code>[m_neFilterSource willSendRequest:decisionHandler:]</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/cocoa/NetworkExtensionContentFilter.mm#L228">NetworkExtensionContentFilter.mm:228–241</a> — unblock handler delegating remediation to <code>[neFilterSource remediateWithDecisionHandler:]</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=NEFilterSource">SPI explorer › NEFilterSource</a> — dossier on <code>NEFilterSource</code> methods and SPI headers.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/networkextension/nefilterbrowserflow">NEFilterBrowserFlow</a> — Apple documentation: <em>"A flow of network data originating from a WebKit-based browser"</em>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Screen Time web limits: <code>WCRBrowserEngineClient</code> SPI to <code>BEWebContentFilter</code> parity</h2>
+      <p>Separate from MDM enterprise tools, iOS includes built-in parental controls under Screen Time. Parents can configure restrictions that restrict Safari to a curated whitelist ("Allowed Websites Only") or automatically block adult content ("Limit Adult Websites"). For years, third-party browser engines could not enforce these system settings because the underlying implementation was encapsulated within Apple's private <code>WebContentRestrictions.framework</code>.</p>
+      <p>In WebCore, Screen Time evaluation was driven by <code>ParentalControlsURLFilter</code>, which dynamically soft-linked the private class <code>WCRBrowserEngineClient</code>. WebKit called <code>[wcrBrowserEngineClient evaluateURL:mainDocumentURL:withCompletion:onCompletionQueue:]</code> to verify whether a URL was permissible. If a child tapped "Add Website" or "Ask for Permission" on a blocked page, WebKit invoked private methods to request parental authorization.</p>
+      <p>Beginning in iOS 26.2, Apple introduced full public parity for Screen Time web content filtering through the BrowserEngineKit framework class <code>BEWebContentFilter</code>. Crucially, WebKit itself shifted to using this public API. In November 2025, WebKit landed commit <a href="https://github.com/WebKit/WebKit/commit/9b9cf889369bb4a99092dba93077ed9486bad855">9b9cf889369b</a> ("Adopt BEWebContentFilter API for content filtering"), adding <code>WebParentalControlsURLFilter</code> in the <code>WebKit::</code> namespace to delegate URL evaluations directly to <code>BEWebContentFilter</code>.</p>
+      <div class="issue-callout good">
+        <strong>Parity achieved for Screen Time:</strong> On iOS 26.2 and later, third-party browser engines using BrowserEngineKit have access to the exact same Screen Time API that WebKit uses. An alternative engine can query <code>[BEWebContentFilter shouldEvaluateURLs]</code>, evaluate outgoing navigations via <code>evaluateURL:completionHandler:</code>, update the user allowlist via <code>allowURL:completionHandler:</code>, and trigger the system parental permission dialog with <code>requestPermissionForURL:referrerURL:presentingView:completionHandler:</code>.
+      </div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>On modern iOS (guarded by <code>HAVE(BROWSERENGINEKIT_WEBCONTENTFILTER)</code>), WebKit instantiates <code>BEWebContentFilter</code> via <code>WebParentalControlsURLFilter::ensureWebContentFilter()</code>.</li>
+            <li>Evaluates navigations via <code>[m_webContentFilter evaluateURL:completionHandler:]</code>, supporting mainframe transitive trust checks.</li>
+            <li>Invokes <code>[filter requestPermissionForURL:referrerURL:presentingView:completionHandler:]</code> to present the native Screen Time authorization prompt over the web view.</li>
+            <li>Falls back to legacy <code>WCRBrowserEngineClient</code> SPI only on platforms lacking the BrowserEngineKit framework.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines have full access to <code>BEWebContentFilter</code> on iOS 26.2+.</li>
+            <li>Engines must check <code>[BEWebContentFilter shouldEvaluateURLs]</code> and gate navigations through <code>evaluateURL:</code> before issuing network requests.</li>
+            <li>Engines can present the system "Ask for Permission" sheet by providing their root <code>UIView</code> to <code>requestPermissionForURL:referrerURL:presentingView:completionHandler:</code>.</li>
+            <li>On iOS versions prior to 26.2, no public API exists to enforce Screen Time web limits in alternative engines.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/9b9cf889369bb4a99092dba93077ed9486bad855">9b9cf889369b (2025-11-19)</a> "Adopt BEWebContentFilter API for content filtering" — introduces <code>WebParentalControlsURLFilter</code> wrapping <code>BEWebContentFilter</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ios/WebParentalControlsURLFilter.mm#L59">WebParentalControlsURLFilter.mm:59–71</a> — <code>ensureWebContentFilter()</code> and <code>[BEWebContentFilter shouldEvaluateURLs]</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ios/WebParentalControlsURLFilter.mm#L95">WebParentalControlsURLFilter.mm:95–114</a> — asynchronous URL evaluation calling <code>evaluateURL:completionHandler:</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ios/WebParentalControlsURLFilter.mm#L149">WebParentalControlsURLFilter.mm:149–195</a> — <code>requestPermissionForURL</code> displaying the native Screen Time prompt on the presenting view.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=WCRBrowserEngineClient">SPI explorer › WCRBrowserEngineClient</a> — documentation of the private predecessor class in <code>WebContentRestrictions.framework</code>.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/browserenginekit/bewebcontentfilter">BEWebContentFilter</a> — public BrowserEngineKit documentation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Voluntary URL blocklists: <code>NEURLFilter</code> and what it is not</h2>
+      <p>In iOS 26, Apple introduced another public class within the NetworkExtension framework: <code>NEURLFilter</code>. Because of its name, developers and enterprise administrators sometimes assume that <code>NEURLFilter</code> bridges the gap between alternative browser engines and system content filtering. In practice, <code>NEURLFilter</code> serves an entirely different purpose: privacy-preserving threat intelligence checks against known malicious domains.</p>
+      <p><code>NEURLFilter</code> is intended for network clients and alternative browsers that implement custom networking stacks rather than Foundation's <code>URLSession</code>. Standard apps using <code>URLSession</code> have their traffic automatically evaluated by system URL filters configured via <code>NEURLFilterManager</code>. For custom engines, <code>NEURLFilter.verdict(for: url)</code> provides an asynchronous function returning a simple boolean verdict (<code>allow</code> or <code>deny</code>).</p>
+      <p>The internal architecture of <code>NEURLFilter</code> is optimized for user privacy rather than enterprise inspection:</p>
+      <ul>
+        <li><strong>On-Device Bloom Filter:</strong> A system extension conforming to <code>NEURLFilterControlProvider</code> supplies local pre-filtering data structures (such as Bloom filters using 32-bit FNV-1a and MurmurHash3 hashes) to evaluate URLs locally without network activity.</li>
+        <li><strong>Private Information Retrieval (PIR):</strong> If a URL matches a filter entry, the system verifies the threat against a remote database using cryptographic Private Information Retrieval over Oblivious HTTP (OHTTP). This prevents the filtering service from discovering which specific URL the user visited or linking the request to the user's IP address.</li>
+      </ul>
+      <div class="issue-callout note">
+        <strong>What NEURLFilter does not do:</strong> <code>NEURLFilter</code> is not connected to the enterprise MDM filtering pipeline (<code>NEFilterDataProvider</code>). It does not notify installed school or enterprise filter apps of page navigations, does not stream request or response bytes to an external filter, cannot receive custom replacement block pages, and cannot handle school-specific unblock or permission requests. Adopting <code>NEURLFilter</code> allows an alternative browser to honor anti-malware and threat lists, but it leaves the MDM filtering gap completely unaddressed.
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/networkextension/neurlfilter">NEURLFilter</a> — public NetworkExtension documentation for voluntary URL filtering.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI explorer › Networking &amp; HTTP/3 problem card</a> — discussion of NetworkExtension boundaries and socket isolation.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;dom=Networking%20%26%20Privacy%20Proxies">Entitlements explorer › Networking &amp; Privacy Proxies</a> — analysis of privacy-preserving network relay architectures on iOS.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Process architecture: Sandboxing and private entitlements in the Networking process</h2>
+      <p>Content filtering in modern WebKit does not occur inside the untrusted WebContent process where JavaScript executes. Instead, it is executed entirely inside WebKit's privileged <strong>NetworkProcess</strong>. This architecture was finalized in August 2023 when WebKit removed the historical compile flag <code>ENABLE_CONTENT_FILTERING_IN_NETWORKING_PROCESS</code> (<a href="https://github.com/WebKit/WebKit/commit/6b6c1421f0040599ed283d2636c7373fe411142f">commit 6b6c1421f004</a>). That commit eliminated Mach sandbox extensions for <code>com.apple.nehelper</code> and <code>com.apple.nesessionmanager.content-filter</code> from the WebContent sandbox profile, ensuring that web pages have no direct path to communicate with content filter daemons.</p>
+      <p>In <code>NetworkResourceLoader::startContentFiltering()</code>, WebKit initializes <code>ContentFilter</code> for every main-resource network load. To communicate with system filtering services, WebKit's iOS NetworkProcess relies on an extensive collection of Seatbelt sandbox rules and private code-signing entitlements:</p>
+      <ul>
+        <li><strong>Seatbelt Mach Service Lookups:</strong> In <code>networking-defines.sb</code>, the NetworkProcess is explicitly granted access to <code>com.apple.nesessionmanager</code> (line 63), <code>com.apple.nehelper</code> (line 142), and <code>com.apple.nesessionmanager.content-filter</code> (line 511). These daemons mediate NetworkExtension filtering sessions.</li>
+        <li><strong>Filter Preference Access:</strong> The sandbox allows reading managed preference files directly: <code>(allow file-read* (literal "/private/var/Managed Preferences/mobile/com.apple.webcontentfilter.plist"))</code> (line 100) and <code>(allow file-read* (prefix "/private/var/db/com.apple.networkextension."))</code> (line 97).</li>
+        <li><strong>Private MobileAsset Entitlements:</strong> To download and read restricted content-filtering rulesets, WebKit's iOS signing script (<code>process-entitlements.sh</code>) grants the NetworkProcess <code>com.apple.private.assets.bypass-asset-types-check</code> and <code>com.apple.private.assets.accessible-asset-types</code> populated with <code>com.apple.MobileAsset.WebContentRestrictions</code>.</li>
+        <li><strong>NetworkExtension Configuration Entitlement:</strong> Access to system network configuration plists is gated by the private entitlement <code>com.apple.private.networkextension.configuration</code>.</li>
+      </ul>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>NetworkResourceLoader::startContentFiltering()</code> manages all filtering inside the <code>NetworkProcess</code>, insulating the WebContent rendering sandbox from filter daemons.</li>
+            <li>The NetworkProcess is pre-granted access to <code>com.apple.nesessionmanager.content-filter</code> and <code>com.apple.nehelper</code> via Seatbelt profiles.</li>
+            <li>Holds private entitlements allowing direct access to <code>com.apple.MobileAsset.WebContentRestrictions</code> asset catalogs and system configuration plists.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines must isolate their network transfer stack within a dedicated network extension process conforming to BrowserEngineKit's sandbox profile.</li>
+            <li>BrowserEngineKit network extensions lack the private MobileAsset bypass entitlements and cannot look up <code>com.apple.nesessionmanager.content-filter</code>.</li>
+            <li>The engine can only communicate with public framework abstractions (such as <code>BEWebContentFilter</code>), leaving lower-level daemon coordination impossible.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkResourceLoader.cpp#L314">NetworkResourceLoader.cpp:314–337</a> — <code>startContentFiltering()</code> initializes <code>ContentFilter</code> in the NetworkProcess.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L62">networking-defines.sb:62–63</a> — <code>allow mach-lookup</code> for <code>com.apple.nesessionmanager</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L141">networking-defines.sb:141–142</a> — <code>allow mach-lookup</code> for <code>com.apple.nehelper</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L511">networking-defines.sb:511</a> — <code>allow mach-lookup</code> for <code>com.apple.nesessionmanager.content-filter</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L667">process-entitlements.sh:667–669</a> — grants <code>bypass-asset-types-check</code> and <code>accessible-asset-types</code> for <code>com.apple.MobileAsset.WebContentRestrictions</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/6b6c1421f0040599ed283d2636c7373fe411142f">6b6c1421f004 (2023-08-02)</a> "Remove ENABLE_CONTENT_FILTERING_IN_NETWORKING_PROCESS" — consolidates content filtering in the network process and removes WebProcess extensions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>The enterprise and school impact: Socket fallbacks, silent drops, and compliance</h2>
+      <p>Because BrowserEngineKit provides no mechanism to emit <code>NEFilterBrowserFlow</code> events, alternative browser engines interact with installed MDM content filters only through the operating system's fallback network path: raw socket flows (<code>NEFilterSocketFlow</code>). In modern web browsing, this architectural distinction creates severe functional breakage for end users and IT administrators.</p>
+      <p>Because virtually all modern web traffic is encrypted using TLS (HTTPS), an <code>NEFilterSocketFlow</code> provides the filter extension with only the low-level destination IP address, port number, and the Server Name Indication (SNI) hostname exchanged during the TLS handshake. The filter extension cannot observe:</p>
+      <ul>
+        <li>The specific URL path or query parameters (e.g. distinguishing a benign search from a prohibited video or article on the same domain).</li>
+        <li>HTTP request headers, cookies, or user-agent strings.</li>
+        <li>The HTTP response headers, MIME types, or response body data.</li>
+      </ul>
+      <p>Furthermore, when an MDM content filter decides to block traffic over an <code>NEFilterSocketFlow</code>, it cannot inject custom HTML. Instead, the operating system forcibly drops or resets the underlying TCP connection. To the student or employee using an alternative browser, the block appears as an uninformative connection failure (such as <code>ERR_CONNECTION_RESET</code> or <code>NSURLErrorCannotConnectToHost</code>) rather than the organization's official block page. Crucially, the user is never provided an "Ask for Access" or "Request Review" option, breaking standard school and workplace policy workflows.</p>
+      <p>For educational institutions governed by student safety mandates and enterprises with compliance logging requirements, an alternative browser that bypasses granular per-page inspection and auditing cannot be certified. Consequently, school and enterprise MDM administrators frequently configure policies that disable or uninstall third-party browser engines, restricting managed devices exclusively to Safari and WebKit-based browsers.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Produces granular <code>NEFilterBrowserFlow</code> events containing full request URLs, headers, and response streams.</li>
+            <li>Displays the organization's custom branded block page with clear explanations and contact details.</li>
+            <li>Supports interactive in-band remediation, allowing users to submit access requests directly to administrators.</li>
+            <li>Satisfies institutional compliance and auditing requirements.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Traffic appears to filter apps only as raw <code>NEFilterSocketFlow</code> connections, revealing only the destination hostname/SNI.</li>
+            <li>Blocking results in a silent TCP connection termination or generic network error rather than a descriptive block page.</li>
+            <li>No remediation or "ask for access" workflow is possible.</li>
+            <li>Institutional compliance mandates often lead IT administrators to disallow alternative browser engines entirely.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/networkextension/nefilterbrowserflow">NEFilterBrowserFlow</a> — documented as the exclusive vehicle for WebKit browser HTTP metadata inspection.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI explorer › Networking &amp; HTTP/3 problem card</a> — analysis of NetworkExtension socket filtering boundaries.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=networkextension.configuration">Entitlements explorer › com.apple.private.networkextension.configuration</a> — entitlement details for system network extension configuration.</li>
+        </ul>
+      </div>
+    </section>
+
+    
+
+
+    <section class="issue-section" id="aspect-7">
+      <h2><span class="aspect-num">7</span>What MDM "managed domains" are and the Managed Open-In boundary</h2>
+      <p>In enterprise deployments, Mobile Device Management (MDM) solutions deploy configuration profiles to enrolled iPhones and iPads. One standard configuration payload is the <strong>Domains payload</strong> (profile type <code>com.apple.domains</code>). In this payload, enterprise IT administrators list specific corporate URLs under <code>WebDomains</code>, email domains under <code>EmailDomains</code>, and password autofill domains under <code>SafariPasswordAutoFillDomains</code>.</p>
+      <p>These domain lists feed directly into iOS's <strong>Managed Open-In</strong> security architecture (controlled by MDM restrictions such as <code>allowOpenFromManagedToUnmanaged</code> and <code>allowOpenFromUnmanagedToManaged</code>). Managed Open-In is designed to prevent data leakage: sensitive enterprise documents and clipboard data cannot be opened or pasted into unmanaged personal applications, such as personal notes, personal email, or public social media apps. In Safari, URLs matching the <code>WebDomains</code> list are treated as enterprise-managed documents, allowing employees to use a single browser for both personal and corporate browsing while iOS dynamically protects corporate data on managed pages.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari relies on iOS's system-level <code>ManagedConfiguration</code> framework and daemon (<code>profiled</code>) to evaluate whether a URL matches the MDM-deployed <code>WebDomains</code> list.</li>
+            <li>Pages whose URLs match <code>WebDomains</code> automatically transition into managed documents, establishing a secure boundary against data exfiltration to personal apps.</li>
+            <li>This per-domain classification allows personal browsing and enterprise browsing to coexist seamlessly within the same Safari application instance.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>No public API exists for a third-party application or browser engine to inspect the system's MDM <code>WebDomains</code> payload.</li>
+            <li>Because <code>ManagedConfiguration</code> is a private system framework, an alternative engine cannot identify whether the active web page is considered managed by enterprise IT.</li>
+            <li>As a result, a third-party browser cannot dynamically establish Managed Open-In boundaries on a per-domain basis during browsing sessions.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/devicemanagement/domains">Domains MDM payload</a> — Apple's official specification for <code>WebDomains</code>, <code>SafariPasswordAutoFillDomains</code>, and <code>EmailDomains</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/21a843f63576c1d0bd77c23f5e1b44218504f509">21a843f63576 (2022-04-14)</a> "[iOS] [WK2] Managed pasteboard should function for all managed domains" — connects domain checks to managed pasteboard handling.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Privacy%2C%20Tracking%20Prevention%2C%20Content%20Filtering%20%26%20Safe%20Browsing">SPI explorer › Privacy, Tracking Prevention, Content Filtering &amp; Safe Browsing</a> — catalog of private ManagedConfiguration symbols in WebKit.</li>
+        </ul>
+      </div>
+    </section>
+<section class="issue-section" id="aspect-8">
+      <h2><span class="aspect-num">8</span>Clipboard protection: tagging enterprise data via <code>_UIDataOwnerEnterprise</code></h2>
+      <p>When an employee copies text, links, or attachments from a webpage, iOS needs to know who "owns" that clipboard data. If the data belongs to an enterprise document, iOS blocks the user from pasting it into unmanaged personal apps. WebKit determines this by consulting the system profile connection on every copy operation.</p>
+      <p>In <code>WKWebViewIOS.mm</code>, the helper method <code>-[WKWebView _effectiveDataOwner:]</code> queries <code>[(MCProfileConnection *)[PAL::getMCProfileConnectionClassSingleton() sharedConnection] isURLManaged:self.URL]</code>. When the client application does not explicitly hardcode a data owner, WebKit returns <code>_UIDataOwnerEnterprise</code> if the URL is managed, and <code>_UIDataOwnerUser</code> otherwise. When copying text or URLs in <code>WKContentViewInteraction.mm</code>, WebKit executes the clipboard write inside a block passed to the private UIKit class method <code>[UIPasteboard _performAsDataOwner:block:]</code>. Furthermore, IPC clipboard operations arriving from sandboxed WebContent processes are checked in <code>WebPasteboardProxyCocoa.mm</code> via <code>determineDataOwner</code> and executed under <code>PlatformPasteboard::performAsDataOwner</code>, ensuring all clipboard updates carry the appropriate enterprise tag.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WKWebView</code> calls <code>-[MCProfileConnection isURLManaged:]</code> on the active URL via soft-linked <code>ManagedConfiguration.framework</code>.</li>
+            <li>Maps the result to <code>_UIDataOwnerEnterprise</code> for enterprise domains, or <code>_UIDataOwnerUser</code> for unmanaged sites.</li>
+            <li>Executes pasteboard operations inside <code>[UIPasteboard _performAsDataOwner:block:]</code>, stamping clipboard entries with the OS enterprise data owner tag.</li>
+            <li>Sandboxed WebContent process copy operations route through <code>WebPasteboardProxy::determineDataOwner</code> in the UIProcess to enforce the same data ownership tag.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines cannot invoke <code>isURLManaged:</code>. The symbol is an Apple-private selector, and calling private frameworks violates App Store review guidelines.</li>
+            <li>Even if an engine knew the domain was managed, <code>+[UIPasteboard _performAsDataOwner:block:]</code> and the <code>_UIDataOwner</code> enumeration are private UIKit SPI. Public <code>UIPasteboard</code> offers no API to set enterprise ownership.</li>
+            <li>All clipboard writes from an unmanaged third-party browser are treated by iOS as unmanaged user data, allowing proprietary corporate text copied in the browser to be pasted into any personal app.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L4283">WKWebViewIOS.mm:4283–4303</a> — <code>-[WKWebView _effectiveDataOwner:]</code> queries <code>[MCProfileConnection isURLManaged:]</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L10266">WKContentViewInteraction.mm:10266–10268</a> — wraps URL copy operations in <code>[UIPasteboard _performAsDataOwner:block:]</code> using <code>_effectiveDataOwner</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/WebPasteboardProxyCocoa.mm#L1000">WebPasteboardProxyCocoa.mm:1000–1018</a> — <code>determineDataOwner</code> retrieves the page's data owner during IPC pasteboard messages.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/ios/PlatformPasteboardIOS.mm#L102">PlatformPasteboardIOS.mm:102–126</a> — bridges <code>WebCore::DataOwnerType</code> to UIKit's <code>_UIDataOwner</code> and calls <code>_performAsDataOwner:block:</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/ios/ManagedConfigurationSPI.h#L70">ManagedConfigurationSPI.h:70–75</a> — declares <code>isURLManaged:</code> on <code>MCProfileConnection</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/92e85e0ddd90ada507c1fd80541785adae91dd46">92e85e0ddd90 (2023-08-14)</a> "[iOS] Avoid leaving the data owner `Undefined` when writing to the pasteboard".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=isURLManaged&amp;sexp=isURLManaged:">SPI explorer › isURLManaged:</a> — private ManagedConfiguration selector dossier.</li>
+        </ul>
+      </div>
+    </section>
+<section class="issue-section" id="aspect-9">
+      <h2><span class="aspect-num">9</span>Suppressing "Save Image" and dictionary Look Up on managed sites</h2>
+      <p>Data exfiltration from corporate portals can happen through media saving as well as text copying. If an employee opens a confidential architectural diagram, financial summary, or whiteboard photo hosted on an internal portal, tapping and holding the image to invoke "Save Image" would write the file into their unmanaged personal Photos library, bypassing corporate data protection.</p>
+      <p>In March 2026, WebKit addressed this vulnerability in <code>WKActionSheetAssistant.mm</code>. In <code>-[WKActionSheetAssistant _canShowSaveImageActionForImageURL:]</code>, WebKit queries <code>[profileConnection isURLManaged:pageURL]</code> and <code>[profileConnection isURLManaged:imageURL]</code>. If either the enclosing web page or the image file URL is managed by MDM, the helper returns <code>NO</code>, and WebKit removes <code>_WKElementActionTypeSaveImage</code> from the contextual action sheet. In addition, in <code>WKContentViewInteraction.mm</code>, WebKit inspects <code>effectiveBoolValueForSetting:MCFeatureDefinitionLookupAllowed</code>. When MDM restricts definition lookups, WebKit disables the contextual dictionary actions <code>_define:</code> and <code>_lookup:</code> to prevent text transmission through system lookup services.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WKActionSheetAssistant</code> checks both the hosting page URL and the image resource URL against <code>-[MCProfileConnection isURLManaged:]</code>.</li>
+            <li>If either URL is managed, the "Save Image" option is hidden from the context menu, preventing corporate images from leaking into the unmanaged photo library.</li>
+            <li>Suppresses system dictionary definitions and Look Up if MDM profile restrictions set <code>MCFeatureDefinitionLookupAllowed</code> to explicit NO.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>A third-party browser implements its own context menu and long-press UI.</li>
+            <li>However, without access to the private <code>isURLManaged:</code> check or the underlying MDM <code>WebDomains</code> list, the engine cannot know whether the active page or image is corporate property.</li>
+            <li>The browser must either allow "Save Image" everywhere (leaving a data leak for managed domains) or disable image saving entirely across all websites via its own enterprise policy.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L623">WKActionSheetAssistant.mm:623–640</a> — <code>_canShowSaveImageActionForImageURL:</code> suppresses Save Image when page or image URL is managed.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKContentViewInteraction.mm#L4935">WKContentViewInteraction.mm:4935–4958</a> — suppresses definition and lookup actions when <code>MCFeatureDefinitionLookupAllowed</code> is restricted.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/919dd36c27d2d5e4825d68c5f6750e993183aa69">919dd36c27d2 (2026-03-20)</a> "Hide _WKElementActionTypeSaveImage for images hosted or displayed on managed domains".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/4d740400d4144fe6e87545be616e449342e8c145">4d740400d414 (2022-03-10)</a> "Combine Lookup and Define" — gates lookup actions on MDM feature setting.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=MCProfileConnection">SPI explorer › MCProfileConnection</a> — soft-linked profile connection class in WebKit.</li>
+        </ul>
+      </div>
+    </section>
+<section class="issue-section" id="aspect-10">
+      <h2><span class="aspect-num">10</span>Enterprise SSO: relaxing tracking prevention for managed domains</h2>
+      <p>Modern enterprise workflows depend heavily on Single Sign-On (SSO) federation across corporate identity providers (such as Microsoft Entra ID, Okta, and Ping Identity) and software-as-a-service portals. These login flows often rely on cross-site redirects, authentication iframes, and third-party cookies across separate domains. Strict privacy defenses like WebKit's Intelligent Tracking Prevention (ITP) would normally partition or block these credentials, breaking corporate authentication.</p>
+      <p>To avoid disrupting enterprise logins, WebKit supports <code>crossSiteTrackingPreventionRelaxedDomains</code>. In <code>WebsiteDataStoreCocoa.mm</code>, WebKit queries <code>-[MCProfileConnection crossSiteTrackingPreventionRelaxedDomains]</code> to obtain up to 10 administrator-specified domains. In <code>WebsiteDataStore.cpp</code>, WebKit switches cookie blocking to <code>ThirdPartyCookieBlockingMode::AllExceptManagedDomains</code> and forwards the domain list to the <code>NetworkProcess</code>. In <code>NetworkStorageSession.cpp</code>, cookie blocking decisions check whether the first-party domain is in the managed set, returning <code>ThirdPartyCookieBlockingDecision::None</code> if matched. Sandboxed child processes access managed preferences via the private sandbox extension entitlement <code>com.apple.security.exception.managed-preference.read-only</code>.</p>
+      <div class="issue-callout note">
+        <strong>Safari entitlement advantage:</strong> In <code>WebsiteDataStoreCocoa.mm</code>, Safari is hardcoded to receive relaxed domain handling automatically (<code>isSafari = WTF::IOSApplication::isMobileSafari()</code>). Any other application embedding <code>WKWebView</code> only receives the exemption if IT administrators explicitly add its bundle identifier to <code>crossSiteTrackingPreventionRelaxedApps</code> (introduced in commit <code>d25dff5c2151</code>). Third-party engines that do not use WebKit cannot read either list.
+      </div>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Queries <code>MCProfileConnection</code> for <code>crossSiteTrackingPreventionRelaxedDomains</code> and <code>crossSiteTrackingPreventionRelaxedApps</code>.</li>
+            <li>Safari automatically qualifies; other WebKit apps qualify only if their bundle ID is listed in the MDM relaxed apps array.</li>
+            <li>Propagates up to 10 managed domains to <code>NetworkStorageSession</code> to exempt enterprise SSO flows from third-party cookie blocking.</li>
+            <li>Sandboxed helper processes hold <code>com.apple.security.exception.managed-preference.read-only</code> in Seatbelt profiles to read managed preference extensions.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Third-party engines cannot invoke <code>crossSiteTrackingPreventionRelaxedDomains</code> because <code>MCProfileConnection</code> is private SPI.</li>
+            <li>Third-party processes cannot obtain the restricted sandbox entitlement <code>com.apple.security.exception.managed-preference.read-only</code>.</li>
+            <li>An alternative browser must implement its own enterprise cookie allowlist policies (such as Chromium's <code>CookiesAllowedForUrls</code> policy), requiring IT administrators to duplicate their configuration rather than relying on standard iOS MDM profiles.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebsiteData/Cocoa/WebsiteDataStoreCocoa.mm#L808">WebsiteDataStoreCocoa.mm:808–867</a> — <code>initializeManagedDomains</code> retrieves relaxed domains and checks <code>isSafari</code> or <code>crossSiteTrackingPreventionRelaxedApps</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebsiteData/WebsiteDataStore.cpp#L2788">WebsiteDataStore.cpp:2788–2810</a> — sets <code>ThirdPartyCookieBlockingMode::AllExceptManagedDomains</code> and propagates domains to ITP.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/NetworkStorageSession.cpp#L176">NetworkStorageSession.cpp:176–178</a> — exempts managed domains from third-party cookie blocking.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L553">networking-defines.sb:553–554</a> — permits <code>managed-preference-read</code> via <code>com.apple.security.exception.managed-preference.read-only</code> extension.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/3a69dcff7becc04c05bd108b7cdd53f69426d056">3a69dcff7bec (2022-10-28)</a> "Ingest managed domains for ResourceLoadStatistics and loosen restrictions for them".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/d25dff5c21517511af1894f7002c26a2db4702fc">d25dff5c2151 (2024-04-04)</a> "Check MDM for administrator-specified bundle IDs to grant access to managed domains".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=managed-preference">Entitlements explorer › com.apple.security.exception.managed-preference.read-only</a> — full entitlement dossier.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=crossSiteTrackingPreventionRelaxedDomains&amp;sexp=crossSiteTrackingPreventionRelaxedDomains">SPI explorer › crossSiteTrackingPreventionRelaxedDomains</a> — private SPI documentation.</li>
+        </ul>
+      </div>
+    </section>
+<section class="issue-section" id="aspect-11">
+      <h2><span class="aspect-num">11</span>Password AutoFill domain association (<code>SafariPasswordAutoFillDomains</code>)</h2>
+      <p>Apple's MDM specification includes another domain-specific configuration key: <code>SafariPasswordAutoFillDomains</code>. When configured in an MDM Domains payload, this property tells iOS which web domains are authorized to autofill passwords saved for managed accounts. This protects employees from entering corporate credentials on spoofed or unmanaged domains.</p>
+      <p>An audit of the WebKit source tree reveals that <strong><code>SafariPasswordAutoFillDomains</code> is not handled inside WebKit</strong>. Neither the string nor any direct parser for the <code>com.apple.domains</code> payload exists in WebKit source code. Instead, Apple handles password autofill domain association entirely in higher-level system frameworks—specifically Mobile Safari, the system Password AutoFill subsystem, and the <code>AuthenticationServices</code> framework. WebKit's role in enterprise management is strictly limited to URL inspection (<code>isURLManaged:</code>) and cookie policy exemptions (<code>crossSiteTrackingPreventionRelaxedDomains</code>) provided by <code>MCProfileConnection</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Safari integrates with the system Keychain and <code>AuthenticationServices</code>, which consume <code>SafariPasswordAutoFillDomains</code> directly from MDM profiles.</li>
+            <li>Managed credentials in the system Keychain are only offered for autofill on designated corporate domains.</li>
+            <li>WebKit itself contains no code for this key; the credential matching occurs at the application and OS level.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Alternative browsers manage their own credential storage engines or connect to public AutoFill extension APIs (<code>ASCredentialProviderViewController</code>).</li>
+            <li>However, third-party engines cannot inspect the MDM <code>SafariPasswordAutoFillDomains</code> array to know which domains IT has designated for corporate credentials.</li>
+            <li>Alternative browsers must maintain their own domain-to-credential matching rules independently of Apple's MDM payload.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/devicemanagement/domains">Domains MDM payload</a> — specifies the <code>SafariPasswordAutoFillDomains</code> array in the official device management schema.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Authentication%2C%20Passkeys%2C%20Enterprise%20SSO%20%26%20Security">SPI explorer › Authentication, Passkeys, Enterprise SSO &amp; Security</a> — overview of authentication symbols in WebKit.</li>
+        </ul>
+      </div>
+    </section>
+<section class="issue-section" id="aspect-12">
+      <h2><span class="aspect-num">12</span>What an alternative engine can do: whole-app management vs. per-site granularity</h2>
+      <p>Third-party browser engines on iOS are not cut off from enterprise management entirely. Apple provides a public, standard enterprise distribution mechanism known as <strong>Managed App Configuration</strong> (AppConfig). When an MDM server installs a managed third-party browser, it pushes a management dictionary that the app can read from <code>NSUserDefaults</code> under the public key <code>com.apple.configuration.managed</code>.</p>
+      <p>Major engines like Chromium take full advantage of this dictionary to enforce rich enterprise policies—such as URL blocklists, managed bookmarks, proxy configurations, authentication policies, and data export restrictions. However, this creates a major architectural divide between Safari and alternative engines:</p>
+      <ul>
+        <li><strong>All-or-nothing container boundary:</strong> A third-party browser is either managed by MDM as an entire application container or not managed at all. If installed as an unmanaged app, none of its data is protected by iOS Managed Open-In. If installed as a managed app, iOS treats <em>all</em> of its data as enterprise data—preventing users from copying text or exporting files even when visiting purely personal websites.</li>
+        <li><strong>No hybrid personal/work browsing:</strong> Safari allows personal browsing and corporate browsing to live side-by-side in the same app, dynamically engaging OS-level pasteboard tagging and image restrictions only when loading URLs matching <code>WebDomains</code>. An alternative browser cannot provide this hybrid experience because it cannot access <code>isURLManaged:</code> or <code>_UIDataOwnerEnterprise</code>.</li>
+        <li><strong>Configuration duplication:</strong> Because third-party engines cannot read the OS <code>Domains</code> payload, IT administrators cannot rely on their existing Apple MDM configuration profiles; they must define and maintain separate browser-specific policy dictionaries.</li>
+      </ul>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Seamlessly bridges OS-level MDM domain policies into active browsing sessions without requiring browser-specific management dictionaries.</li>
+            <li>Enables granular per-tab data boundaries: corporate intranet tabs are treated as enterprise data while personal tabs remain unmanaged user data.</li>
+            <li>Enforces OS-level clipboard quarantine and image saving restrictions automatically.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Reads public Managed App Configuration via <code>[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"com.apple.configuration.managed"]</code> to configure engine-level policies (e.g. Chrome Enterprise policies).</li>
+            <li>Cannot participate in iOS Managed Open-In clipboard tagging or per-domain image restrictions.</li>
+            <li>Subject to a binary container model: either the entire browser is managed (restricting all clipboard and share actions) or the entire browser is unmanaged (providing no OS-enforced exfiltration protection).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/devicemanagement/domains">Domains MDM payload</a> — Apple's central device management payload.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L4283">WKWebViewIOS.mm:4283–4303</a> — <code>_effectiveDataOwner</code> illustrates the per-URL dynamic switching between enterprise and user data owners.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;q=managed-preference">Entitlements explorer › managed-preference</a> — sandbox extensions for system managed preferences.</li>
+        </ul>
+      </div>
+    </section>
+
+<section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Screen Time public parity confirmed:</strong> WebKit's source code unambiguously shows the adoption of <code>BEWebContentFilter</code> in commit <a href="https://github.com/WebKit/WebKit/commit/9b9cf889369bb4a99092dba93077ed9486bad855">9b9cf889369b</a>, replacing the private <code>WCRBrowserEngineClient</code> SPI for iOS builds. This confirms that Screen Time parental controls have achieved functional parity on iOS 26.2 and later.</li>
+        <li><strong>MDM browser flow gap remains unresolved:</strong> We found no evidence in WebKit source or public Apple documentation of any mechanism for BrowserEngineKit browsers to emit <code>NEFilterBrowserFlow</code> events or feed <code>NEFilterDataProvider</code> extensions with per-page URL data.</li>
+        <li><strong>Hardware evaluation needed:</strong> While WebKit's adoption of <code>BEWebContentFilter</code> confirms the API structure, empirical testing on physical MDM-enrolled devices is needed to measure how major enterprise filter vendors (such as Securly or Lightspeed) react when an alternative browser generates high-volume socket flows without accompanying browser flows.</li>
+        <li><strong>Suggested main-page row adjustment:</strong> The main-page summary is accurate in identifying the division between Screen Time and MDM filters. The Confidence rating of <strong>Medium</strong> is appropriate because the Screen Time parity has been verified in source while the third-party filter app behavior relies on API contracts and documentation rather than empirical device testing.</li>
+              <li><strong>Confidence: Medium.</strong> WebKit's implementation of <code>-[MCProfileConnection isURLManaged:]</code>, <code>[UIPasteboard _performAsDataOwner:block:]</code>, and <code>crossSiteTrackingPreventionRelaxedDomains</code> is verified directly in source code. However, our confidence is rated Medium because major browser engines (such as Chrome) often prefer their own multi-platform enterprise policy architectures (such as Chrome Enterprise Core and Google Admin console) over platform-specific MDM profiles.</li>
+        <li><strong>Enterprise trade-offs:</strong> For enterprise IT administrators managing corporate fleets, the lack of per-domain Managed Open-In in alternative engines means they must either deploy the alternative browser as a strictly managed app (sacrificing personal browsing convenience) or rely on network-level conditional access policies (e.g., Microsoft Entra Conditional Access) to restrict corporate intranet access to managed Safari.</li>
+        <li><strong>Absence of public pasteboard tagging API:</strong> Even if Apple were to expose a public API to query whether a domain is managed, third-party apps currently have no public way to invoke <code>_performAsDataOwner:</code> on <code>UIPasteboard</code>. Closing this gap would require both a domain-query API and public data ownership controls on UIKit clipboard classes.</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, the operating system does not provide a universal, per-page content filtering hook for arbitrary browser engines. Parental controls via Google Family Link and managed enterprise policies (Android Enterprise) interact primarily with Google Chrome through dedicated managed app configurations (such as Chrome's <code>URLBlocklist</code> and <code>URLAllowlist</code> policies) or specific Google Play services integration. Third-party content filter applications on Android typically operate by creating a local VPN service (<code>VpnService</code>) or configuring encrypted Private DNS (DoT/DoH) to inspect and filter network traffic. Consequently, both Chrome and third-party engines on Android operate under similar network-level constraints for third-party filtering tools, whereas on iOS, Apple's operating system explicitly differentiates between WebKit browsers (which emit rich <code>NEFilterBrowserFlow</code> data) and non-WebKit engines (which are relegated to raw socket filtering).</p>
+    
+      <p>On Android, enterprise data protection is fundamentally architectural rather than per-URL. Through <strong>Android Enterprise</strong> (formerly Android for Work), Android provides a dedicated <strong>Work Profile</strong> that completely isolates corporate applications, storage, and networking from personal applications at the OS level.</p>
+      <p>Instead of requiring a single browser instance to tag clipboard items on a per-URL basis, Android allows an employee to run two separate instances of the same browser: Personal Chrome and Work Chrome. Data copied inside the Work Profile cannot be pasted into personal apps unless explicitly permitted by MDM policy. Furthermore, Android supports cross-profile intent filters, so tapping an enterprise link inside a personal app can automatically open the link in the Work Profile browser. This delivers robust, OS-enforced enterprise data protection while allowing alternative engines to implement standard enterprise policies without requiring private clipboard tagging APIs.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../spi.html#tab=data&amp;feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI explorer › Networking &amp; HTTP/3 problem card</a> — deep dive into private NetworkExtension interfaces and socket restrictions.</li>
+        <li><a href="../spi.html#tab=data&amp;feat=Privacy%2C%20Tracking%20Prevention%2C%20Content%20Filtering%20%26%20Safe%20Browsing">SPI explorer › Privacy, Tracking Prevention, Content Filtering &amp; Safe Browsing</a> — catalog of the 134 private filtering and tracking prevention symbols.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=WebContentRestrictions">Entitlements explorer › WebContentRestrictions</a> — analysis of private MobileAsset and configuration entitlements.</li>
+        
+        <li><a href="networking.html">Issue › Networking stack limitations</a> — how process isolation and socket sandboxing affect alternative network stacks.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

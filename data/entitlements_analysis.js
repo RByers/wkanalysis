@@ -1,4 +1,13 @@
 window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
+  "metadata": {
+    "generated_at": "2026-10-14T20:58:46Z",
+    "source_repo": "https://github.com/WebKit/WebKit",
+    "github_repo_url": "https://github.com/WebKit/WebKit",
+    "github_blob_base_url": "https://github.com/WebKit/WebKit/blob/main/",
+    "github_commit_base_url": "https://github.com/WebKit/WebKit/commit/",
+    "webkit_head_commit": "a018777818d96e2c5afc5e1967f001f5bd621a98",
+    "total_entitlements": 159
+  },
   "webkit_head": "a018777818d96e2c5afc5e1967f001f5bd621a98",
   "github_repo_url": "https://github.com/WebKit/WebKit",
   "total_entitlements": 159,
@@ -1099,24 +1108,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 514,
-          "description": "Injects application-identifier with PRODUCT_BUNDLE_IDENTIFIER into the GPU process for iOS and visionOS"
+          "role": "Injects application-identifier with PRODUCT_BUNDLE_IDENTIFIER into the GPU process for iOS and visionOS",
+          "description": "Injects application-identifier with PRODUCT_BUNDLE_IDENTIFIER into the GPU process for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L514"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 629,
-          "description": "Injects application-identifier with PRODUCT_BUNDLE_IDENTIFIER into the Networking process for iOS and visionOS"
+          "role": "Injects application-identifier with PRODUCT_BUNDLE_IDENTIFIER into the Networking process for iOS and visionOS",
+          "description": "Injects application-identifier with PRODUCT_BUNDLE_IDENTIFIER into the Networking process for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L629"
         }
       ],
       "key_commits": [
         {
-          "hash": "6743c7dd1c63",
+          "hash": "6743c7dd1c63b9e099157f8887dd4cfe8d92f848",
+          "short_hash": "6743c7dd1c63",
           "date": "2024-09-23",
-          "subject": "[iOS] Add application-identifier entitlement to Networking process"
+          "subject": "[iOS] Add application-identifier entitlement to Networking process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/6743c7dd1c63b9e099157f8887dd4cfe8d92f848"
         },
         {
-          "hash": "87860a904550",
+          "hash": "87860a9045503955d1996eca13501ceb7a864436",
+          "short_hash": "87860a904550",
           "date": "2024-09-06",
-          "subject": "[Cocoa] Support Now Playing presentation suppression"
+          "subject": "[Cocoa] Support Now Playing presentation suppression",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/87860a9045503955d1996eca13501ceb7a864436"
         }
       ],
       "plist_declarations": [],
@@ -1132,7 +1151,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L514"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1145,7 +1165,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L629"
         }
       ],
       "code_checks": [],
@@ -1183,19 +1204,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 611,
-          "description": "Signs `webpushd` with `aps-connection-initiate` on iOS and visionOS."
+          "role": "Signs `webpushd` with `aps-connection-initiate` on iOS and visionOS.",
+          "description": "Signs `webpushd` with `aps-connection-initiate` on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L611"
         },
         {
           "file": "Source/WebKit/webpushd/ApplePushServiceConnection.mm",
           "line": 43,
-          "description": "Implements `APSConnectionDelegate` in `webpushd` to receive push tokens and incoming Web Push messages via `APSConnection`."
+          "role": "Implements `APSConnectionDelegate` in `webpushd` to receive push tokens and incoming Web Push messages via `APSConnection`.",
+          "description": "Implements `APSConnectionDelegate` in `webpushd` to receive push tokens and incoming Web Push messages via `APSConnection`.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/ApplePushServiceConnection.mm#L43"
         }
       ],
       "key_commits": [
         {
-          "hash": "2beff75a4205",
+          "hash": "2beff75a420586c7ae375a3ed2e79acd430cc304",
+          "short_hash": "2beff75a4205",
           "date": "2021-12-07",
-          "subject": "webpushd should run with regular user permissions"
+          "subject": "webpushd should run with regular user permissions",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2beff75a420586c7ae375a3ed2e79acd430cc304"
         }
       ],
       "plist_declarations": [],
@@ -1211,7 +1239,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L611"
         }
       ],
       "code_checks": [],
@@ -1324,24 +1353,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/Cocoa/CoreTelephonyUtilities.mm",
           "line": 60,
-          "description": "Checks SecTaskCopyValueForEntitlement for 'com.apple.CommCenter.fine-grained' containing 'public-cellular-plan' before allowing cellular identifier AutoFill queries"
+          "role": "Checks SecTaskCopyValueForEntitlement for 'com.apple.CommCenter.fine-grained' containing 'public-cellular-plan' before allowing cellular identifier AutoFill queries",
+          "description": "Checks SecTaskCopyValueForEntitlement for 'com.apple.CommCenter.fine-grained' containing 'public-cellular-plan' before allowing cellular identifier AutoFill queries",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/CoreTelephonyUtilities.mm#L60"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 77,
-          "description": "Injects com.apple.CommCenter.fine-grained with value public-cellular-plan into TestWebKitAPI for testing"
+          "role": "Injects com.apple.CommCenter.fine-grained with value public-cellular-plan into TestWebKitAPI for testing",
+          "description": "Injects com.apple.CommCenter.fine-grained with value public-cellular-plan into TestWebKitAPI for testing",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L77"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 78,
+          "role": "Signing script grant in process_ios_family_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_ios_family_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L78"
         }
       ],
       "key_commits": [
         {
-          "hash": "64d46bbaf793",
+          "hash": "64d46bbaf793de4e47e68cda1e36119c3832480f",
+          "short_hash": "64d46bbaf793",
           "date": "2023-10-30",
-          "subject": "[iOS] Add experimental support for EID/IMEI AutoFill in WKWebView"
+          "subject": "[iOS] Add experimental support for EID/IMEI AutoFill in WKWebView",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/64d46bbaf793de4e47e68cda1e36119c3832480f"
         },
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [],
@@ -1357,7 +1403,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L77"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -1370,7 +1417,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L78"
         }
       ],
       "code_checks": [
@@ -1380,7 +1428,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "UIProcess / Host App",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/CoreTelephonyUtilities.mm#L60"
         }
       ],
       "sandbox_checks": [],
@@ -1422,34 +1471,49 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 11,
-          "description": "Enables unchecked pasteboard access for the iOS WebKitTestRunner host app."
+          "role": "Enables unchecked pasteboard access for the iOS WebKitTestRunner host app.",
+          "description": "Enables unchecked pasteboard access for the iOS WebKitTestRunner host app.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L11"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
           "line": 11,
-          "description": "Enables unchecked pasteboard access for the iOS Simulator WebKitTestRunner host app."
+          "role": "Enables unchecked pasteboard access for the iOS Simulator WebKitTestRunner host app.",
+          "description": "Enables unchecked pasteboard access for the iOS Simulator WebKitTestRunner host app.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L11"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 75,
-          "description": "Injects the entitlement into TestWebKitAPI on iOS family platforms during the entitlement processing build step."
+          "role": "Injects the entitlement into TestWebKitAPI on iOS family platforms during the entitlement processing build step.",
+          "description": "Injects the entitlement into TestWebKitAPI on iOS family platforms during the entitlement processing build step.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L75"
         }
       ],
       "key_commits": [
         {
-          "hash": "a292f1eebfa1",
+          "hash": "a292f1eebfa121505d112795de11bc8ba522d661",
+          "short_hash": "a292f1eebfa1",
           "date": "2020-05-20",
-          "subject": "[iOS] Layout tests in editing/pasteboard sporadically crash"
+          "subject": "[iOS] Layout tests in editing/pasteboard sporadically crash",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a292f1eebfa121505d112795de11bc8ba522d661"
         },
         {
-          "hash": "8d65dc712846",
+          "hash": "8d65dc7128464652cb754c957a64c898221d71bf",
+          "short_hash": "8d65dc712846",
           "date": "2024-07-03",
-          "subject": "WKTR installation on iOS devices is not working"
+          "subject": "WKTR installation on iOS devices is not working",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8d65dc7128464652cb754c957a64c898221d71bf"
         },
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [
@@ -1457,13 +1521,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
           "line": 11,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L11"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 11,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L11"
         }
       ],
       "script_declarations": [
@@ -1478,7 +1544,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L75"
         }
       ],
       "code_checks": [],
@@ -1520,29 +1587,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 429,
-          "description": "Adds com.apple.QuartzCore.secure-mode to shared WebContent process entitlements on iOS family platforms"
+          "role": "Adds com.apple.QuartzCore.secure-mode to shared WebContent process entitlements on iOS family platforms",
+          "description": "Adds com.apple.QuartzCore.secure-mode to shared WebContent process entitlements on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L429"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 516,
-          "description": "Adds com.apple.QuartzCore.secure-mode to GPU process entitlements on iOS family platforms"
+          "role": "Adds com.apple.QuartzCore.secure-mode to GPU process entitlements on iOS family platforms",
+          "description": "Adds com.apple.QuartzCore.secure-mode to GPU process entitlements on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L516"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 583,
-          "description": "Adds com.apple.QuartzCore.secure-mode to Model process entitlements on iOS and visionOS"
+          "role": "Adds com.apple.QuartzCore.secure-mode to Model process entitlements on iOS and visionOS",
+          "description": "Adds com.apple.QuartzCore.secure-mode to Model process entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L583"
         }
       ],
       "key_commits": [
         {
-          "hash": "11061972c748",
+          "hash": "11061972c7486a8ddd132affabbc3396aa2ca961",
+          "short_hash": "11061972c748",
           "date": "2024-02-28",
-          "subject": "Model Process CA layer hosting"
+          "subject": "Model Process CA layer hosting",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/11061972c7486a8ddd132affabbc3396aa2ca961"
         },
         {
-          "hash": "13771f185bf4",
+          "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         }
       ],
       "plist_declarations": [],
@@ -1558,7 +1637,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L429"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1571,7 +1651,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L516"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1584,7 +1665,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L583"
         }
       ],
       "code_checks": [],
@@ -1701,39 +1783,77 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 82,
-          "description": "Grants the entitlement to the macOS GPU process"
+          "role": "Grants the entitlement to the macOS GPU process",
+          "description": "Grants the entitlement to the macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L82"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 430,
-          "description": "Grants the entitlement to iOS and visionOS WebContent processes"
+          "role": "Grants the entitlement to iOS and visionOS WebContent processes",
+          "description": "Grants the entitlement to iOS and visionOS WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L430"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 517,
-          "description": "Grants the entitlement to iOS and visionOS GPU processes"
+          "role": "Grants the entitlement to iOS and visionOS GPU processes",
+          "description": "Grants the entitlement to iOS and visionOS GPU processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L517"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 584,
-          "description": "Grants the entitlement to visionOS and iOS Model processes for CA layer hosting"
+          "role": "Grants the entitlement to visionOS and iOS Model processes for CA layer hosting",
+          "description": "Grants the entitlement to visionOS and iOS Model processes for CA layer hosting",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L584"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 242,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L242"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 303,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L303"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 370,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L370"
         }
       ],
       "key_commits": [
         {
-          "hash": "a7595be0ea04",
+          "hash": "a7595be0ea049bc66b021ca5668225c64055c8b6",
+          "short_hash": "a7595be0ea04",
           "date": "2020-11-03",
-          "subject": "[macOS] Adopt additional QuartzCore entitlement to reduce accessible endpoints"
+          "subject": "[macOS] Adopt additional QuartzCore entitlement to reduce accessible endpoints",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a7595be0ea049bc66b021ca5668225c64055c8b6"
         },
         {
-          "hash": "11061972c748",
+          "hash": "11061972c7486a8ddd132affabbc3396aa2ca961",
+          "short_hash": "11061972c748",
           "date": "2024-02-28",
-          "subject": "Model Process CA layer hosting rdar://123273873"
+          "subject": "Model Process CA layer hosting rdar://123273873",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/11061972c7486a8ddd132affabbc3396aa2ca961"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         }
       ],
       "plist_declarations": [],
@@ -1748,7 +1868,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L82"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1760,7 +1881,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L242"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1772,7 +1894,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L303"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1784,7 +1907,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L370"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1797,7 +1921,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L430"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1810,7 +1935,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L517"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1823,7 +1949,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L584"
         }
       ],
       "code_checks": [],
@@ -1940,34 +2067,69 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 62,
-          "description": "Applies com.apple.QuartzCore.webkit-limited-types to the macOS GPU process"
+          "role": "Applies com.apple.QuartzCore.webkit-limited-types to the macOS GPU process",
+          "description": "Applies com.apple.QuartzCore.webkit-limited-types to the macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L62"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 431,
-          "description": "Applies com.apple.QuartzCore.webkit-limited-types to shared iOS and visionOS WebContent processes"
+          "role": "Applies com.apple.QuartzCore.webkit-limited-types to shared iOS and visionOS WebContent processes",
+          "description": "Applies com.apple.QuartzCore.webkit-limited-types to shared iOS and visionOS WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L431"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 518,
-          "description": "Applies com.apple.QuartzCore.webkit-limited-types to iOS and visionOS GPU processes"
+          "role": "Applies com.apple.QuartzCore.webkit-limited-types to iOS and visionOS GPU processes",
+          "description": "Applies com.apple.QuartzCore.webkit-limited-types to iOS and visionOS GPU processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L518"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 585,
-          "description": "Applies com.apple.QuartzCore.webkit-limited-types to iOS and visionOS Model processes for layer hosting"
+          "role": "Applies com.apple.QuartzCore.webkit-limited-types to iOS and visionOS Model processes for layer hosting",
+          "description": "Applies com.apple.QuartzCore.webkit-limited-types to iOS and visionOS Model processes for layer hosting",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L585"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 249,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L249"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 318,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L318"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 373,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L373"
         }
       ],
       "key_commits": [
         {
-          "hash": "11061972c748",
+          "hash": "11061972c7486a8ddd132affabbc3396aa2ca961",
+          "short_hash": "11061972c748",
           "date": "2024-02-28",
-          "subject": "Model Process CA layer hosting rdar://123273873 https://bugs.webkit.org/show_bug.cgi?id=269762"
+          "subject": "Model Process CA layer hosting rdar://123273873 https://bugs.webkit.org/show_bug.cgi?id=269762",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/11061972c7486a8ddd132affabbc3396aa2ca961"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function https://bugs.webkit.org/show_bug.cgi?id=311624 rdar://174220367"
+          "subject": "Move common WebContent entitlements to shared function https://bugs.webkit.org/show_bug.cgi?id=311624 rdar://174220367",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         }
       ],
       "plist_declarations": [],
@@ -1982,7 +2144,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L62"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -1994,7 +2157,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L249"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2006,7 +2170,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L318"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2018,7 +2183,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L373"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2031,7 +2197,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L431"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2044,7 +2211,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L518"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2057,7 +2225,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L585"
         }
       ],
       "code_checks": [],
@@ -2167,19 +2336,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/ApplicationStateTracker.mm",
           "line": 155,
-          "description": "Checks WTF::processHasEntitlement(\"com.apple.UIKit.vends-view-services\"_s) to classify the container as ApplicationType::ViewService"
+          "role": "Checks WTF::processHasEntitlement(\"com.apple.UIKit.vends-view-services\"_s) to classify the container as ApplicationType::ViewService",
+          "description": "Checks WTF::processHasEntitlement(\"com.apple.UIKit.vends-view-services\"_s) to classify the container as ApplicationType::ViewService",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ApplicationStateTracker.mm#L155"
         },
         {
           "file": "Source/WebKit/UIProcess/ApplicationStateTracker.mm",
           "line": 253,
-          "description": "Configures state tracking to observe the service UIViewController with _hostProcessIdentifier instead of UIScene when running inside a ViewService"
+          "role": "Configures state tracking to observe the service UIViewController with _hostProcessIdentifier instead of UIScene when running inside a ViewService",
+          "description": "Configures state tracking to observe the service UIViewController with _hostProcessIdentifier instead of UIScene when running inside a ViewService",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ApplicationStateTracker.mm#L253"
         }
       ],
       "key_commits": [
         {
-          "hash": "dd956d5e7424",
+          "hash": "dd956d5e74249681ddf904e0bbe401f308b65e0f",
+          "short_hash": "dd956d5e7424",
           "date": "2022-06-05",
-          "subject": "Drop operator==() overload for comparing a String to a const char* https://bugs.webkit.org/show_bug.cgi?id=241285"
+          "subject": "Drop operator==() overload for comparing a String to a const char* https://bugs.webkit.org/show_bug.cgi?id=241285",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dd956d5e74249681ddf904e0bbe401f308b65e0f"
         }
       ],
       "plist_declarations": [],
@@ -2192,7 +2368,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ApplicationStateTracker.mm#L155"
         }
       ],
       "sandbox_checks": [],
@@ -2228,19 +2405,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 317,
-          "description": "Adds com.apple.UIKit.view-service-wants-custom-idiom-and-scale to all macCatalyst WebContent process variants."
+          "role": "Adds com.apple.UIKit.view-service-wants-custom-idiom-and-scale to all macCatalyst WebContent process variants.",
+          "description": "Adds com.apple.UIKit.view-service-wants-custom-idiom-and-scale to all macCatalyst WebContent process variants.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L317"
         }
       ],
       "key_commits": [
         {
-          "hash": "ac8d000f597a",
+          "hash": "ac8d000f597afde6a123fc4621060c491ce969e0",
+          "short_hash": "ac8d000f597a",
           "date": "2020-09-09",
-          "subject": "Text copied and pasted from Mac Catalyst apps appears larger than expected"
+          "subject": "Text copied and pasted from Mac Catalyst apps appears larger than expected",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ac8d000f597afde6a123fc4621060c491ce969e0"
         },
         {
-          "hash": "184bfa73c8e9",
+          "hash": "184bfa73c8e9140ad18f6c840377feb9912f67ec",
+          "short_hash": "184bfa73c8e9",
           "date": "2026-04-07",
-          "subject": "Consolidate shared entitlements for the macCatalyst WebContent process variants"
+          "subject": "Consolidate shared entitlements for the macCatalyst WebContent process variants",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/184bfa73c8e9140ad18f6c840377feb9912f67ec"
         }
       ],
       "plist_declarations": [],
@@ -2255,7 +2440,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L317"
         }
       ],
       "code_checks": [],
@@ -2365,19 +2551,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 77,
-          "description": "Adds com.apple.aneuserd.private.allow to the GPU process entitlements on macOS."
+          "role": "Adds com.apple.aneuserd.private.allow to the GPU process entitlements on macOS.",
+          "description": "Adds com.apple.aneuserd.private.allow to the GPU process entitlements on macOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L77"
         }
       ],
       "key_commits": [
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         },
         {
-          "hash": "a782040e52f0",
+          "hash": "a782040e52f01520625c8fc1c36565e3e777eeab",
+          "short_hash": "a782040e52f0",
           "date": "2023-04-27",
-          "subject": "Dynamically extend GPU Process to Apple Camera Client when appropriate"
+          "subject": "Dynamically extend GPU Process to Apple Camera Client when appropriate",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a782040e52f01520625c8fc1c36565e3e777eeab"
         }
       ],
       "plist_declarations": [],
@@ -2392,7 +2586,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L77"
         }
       ],
       "code_checks": [],
@@ -2431,34 +2626,49 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 61,
-          "description": "Adds com.apple.avfoundation.allow-system-wide-context to the macOS GPU process entitlement list when WK_USE_RESTRICTED_ENTITLEMENTS is YES"
+          "role": "Adds com.apple.avfoundation.allow-system-wide-context to the macOS GPU process entitlement list when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "description": "Adds com.apple.avfoundation.allow-system-wide-context to the macOS GPU process entitlement list when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L61"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 248,
-          "description": "Adds com.apple.avfoundation.allow-system-wide-context to macOS WebContent processes in mac_process_webcontent_shared_entitlements()"
+          "role": "Adds com.apple.avfoundation.allow-system-wide-context to macOS WebContent processes in mac_process_webcontent_shared_entitlements()",
+          "description": "Adds com.apple.avfoundation.allow-system-wide-context to macOS WebContent processes in mac_process_webcontent_shared_entitlements()",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L248"
         },
         {
           "file": "Source/WebCore/PAL/pal/avfoundation/OutputContext.h",
           "line": 42,
-          "description": "Declares PAL::OutputContext::sharedAudioPresentationOutputContext() wrapping AVFoundation's AVOutputContext for audio device routing"
+          "role": "Declares PAL::OutputContext::sharedAudioPresentationOutputContext() wrapping AVFoundation's AVOutputContext for audio device routing",
+          "description": "Declares PAL::OutputContext::sharedAudioPresentationOutputContext() wrapping AVFoundation's AVOutputContext for audio device routing",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/avfoundation/OutputContext.h#L42"
         }
       ],
       "key_commits": [
         {
-          "hash": "200008b652ba",
+          "hash": "200008b652bab260f759cd8b822c37d640f87ed5",
+          "short_hash": "200008b652ba",
           "date": "2020-12-04",
-          "subject": "[Cocoa] Adopt AVOutputDevice.allowsHeadTrackedSpatialAudio"
+          "subject": "[Cocoa] Adopt AVOutputDevice.allowsHeadTrackedSpatialAudio",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/200008b652bab260f759cd8b822c37d640f87ed5"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -2473,7 +2683,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L61"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2485,7 +2696,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L248"
         }
       ],
       "code_checks": [],
@@ -2596,14 +2808,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 456,
-          "description": "Adds com.apple.coreaudio.LoadDecodersInProcess to WebContent shared entitlements for iOS and visionOS"
+          "role": "Adds com.apple.coreaudio.LoadDecodersInProcess to WebContent shared entitlements for iOS and visionOS",
+          "description": "Adds com.apple.coreaudio.LoadDecodersInProcess to WebContent shared entitlements for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L456"
         }
       ],
       "key_commits": [
         {
-          "hash": "40b5c0b0cc26",
+          "hash": "40b5c0b0cc2612ee3497f526fcc741cff33e7f16",
+          "short_hash": "40b5c0b0cc26",
           "date": "2024-02-29",
-          "subject": "The WebContent process should decode audio in-process"
+          "subject": "The WebContent process should decode audio in-process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/40b5c0b0cc2612ee3497f526fcc741cff33e7f16"
         }
       ],
       "plist_declarations": [],
@@ -2619,7 +2836,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L456"
         }
       ],
       "code_checks": [],
@@ -2685,39 +2903,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 457,
-          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to shared WebContent entitlements for iOS and visionOS"
+          "role": "Adds com.apple.coreaudio.allow-vorbis-decode to shared WebContent entitlements for iOS and visionOS",
+          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to shared WebContent entitlements for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L457"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 567,
-          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to GPU process entitlements for iOS and visionOS"
+          "role": "Adds com.apple.coreaudio.allow-vorbis-decode to GPU process entitlements for iOS and visionOS",
+          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to GPU process entitlements for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L567"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 67,
-          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to GPU process entitlements on macOS"
+          "role": "Adds com.apple.coreaudio.allow-vorbis-decode to GPU process entitlements on macOS",
+          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to GPU process entitlements on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L67"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 224,
-          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to shared WebContent entitlements on macOS"
+          "role": "Adds com.apple.coreaudio.allow-vorbis-decode to shared WebContent entitlements on macOS",
+          "description": "Adds com.apple.coreaudio.allow-vorbis-decode to shared WebContent entitlements on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L224"
         }
       ],
       "key_commits": [
         {
-          "hash": "853523182260",
+          "hash": "853523182260469deb737511206aafe23a6c6236",
+          "short_hash": "853523182260",
           "date": "2023-10-13",
-          "subject": "Enable Vorbis support on iOS"
+          "subject": "Enable Vorbis support on iOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/853523182260469deb737511206aafe23a6c6236"
         },
         {
-          "hash": "dcbecf457750",
+          "hash": "dcbecf457750185c8d69d4a7eb44d300c4664f63",
+          "short_hash": "dcbecf457750",
           "date": "2021-10-04",
-          "subject": "Vorbis decoder can't be instantiated - follow up on Bug 230742"
+          "subject": "Vorbis decoder can't be instantiated - follow up on Bug 230742",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dcbecf457750185c8d69d4a7eb44d300c4664f63"
         },
         {
-          "hash": "3bbe3921665b",
+          "hash": "3bbe3921665bebadb6d0c819315879acd1367246",
+          "short_hash": "3bbe3921665b",
           "date": "2021-09-28",
-          "subject": "Vorbis decoder can't be instantiated - Remove workaround added in bug 228139"
+          "subject": "Vorbis decoder can't be instantiated - Remove workaround added in bug 228139",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3bbe3921665bebadb6d0c819315879acd1367246"
         }
       ],
       "plist_declarations": [],
@@ -2732,7 +2967,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L67"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2744,7 +2980,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L224"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2757,7 +2994,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L457"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -2770,7 +3008,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L567"
         }
       ],
       "code_checks": [],
@@ -2845,29 +3084,76 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm",
           "line": 873,
-          "description": "Checks for this entitlement or com.apple.developer.web-browser, disabling Service Workers if neither is present and App-Bound Domains are not enforced"
+          "role": "Checks for this entitlement or com.apple.developer.web-browser, disabling Service Workers if neither is present and App-Bound Domains are not enforced",
+          "description": "Checks for this entitlement or com.apple.developer.web-browser, disabling Service Workers if neither is present and App-Bound Domains are not enforced",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm#L873"
         },
         {
           "file": "Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm",
           "line": 82,
-          "description": "Checks whether the host UIProcess has the ServiceWorkers or web-browser entitlement via XPC connection"
+          "role": "Checks whether the host UIProcess has the ServiceWorkers or web-browser entitlement via XPC connection",
+          "description": "Checks whether the host UIProcess has the ServiceWorkers or web-browser entitlement via XPC connection",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm#L82"
         },
         {
           "file": "Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm",
           "line": 724,
-          "description": "Verifies that the parent UIProcess possesses either ServiceWorkers or web-browser entitlement before enabling service worker functionality"
+          "role": "Verifies that the parent UIProcess possesses either ServiceWorkers or web-browser entitlement before enabling service worker functionality",
+          "description": "Verifies that the parent UIProcess possesses either ServiceWorkers or web-browser entitlement before enabling service worker functionality",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm#L724"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 74,
+          "role": "Signing script grant in process_ios_family_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_ios_family_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L74"
+        },
+        {
+          "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
+          "line": 13,
+          "role": "Static .entitlements plist declaration for MobileMiniBrowser (Host App)",
+          "description": "Static .entitlements plist declaration for MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L13"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
+          "line": 9,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L9"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
+          "line": 9,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L9"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements",
+          "line": 7,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements#L7"
         }
       ],
       "key_commits": [
         {
-          "hash": "3a49d90a61b1",
+          "hash": "3a49d90a61b1cfafff26fbf164637e4d5a38bfd3",
+          "short_hash": "3a49d90a61b1",
           "date": "2020-06-25",
-          "subject": "Allow service workers for web browsers"
+          "subject": "Allow service workers for web browsers",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3a49d90a61b1cfafff26fbf164637e4d5a38bfd3"
         },
         {
-          "hash": "ee4aadf8519c",
+          "hash": "ee4aadf8519c5abc63a3323972530463d0dc8092",
+          "short_hash": "ee4aadf8519c",
           "date": "2026-02-06",
-          "subject": "[SaferCPP] Fixed [iOS] UnretainedCallArgsChecker issues in Source/WebKit"
+          "subject": "[SaferCPP] Fixed [iOS] UnretainedCallArgsChecker issues in Source/WebKit",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ee4aadf8519c5abc63a3323972530463d0dc8092"
         }
       ],
       "plist_declarations": [
@@ -2875,25 +3161,29 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 13,
           "value": true,
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L13"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
           "line": 9,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L9"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 9,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L9"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements",
           "line": 7,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements#L7"
         }
       ],
       "script_declarations": [
@@ -2908,7 +3198,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L74"
         }
       ],
       "code_checks": [
@@ -2919,7 +3210,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm#L873"
         },
         {
           "file": "Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm",
@@ -2928,7 +3220,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm#L82"
         },
         {
           "file": "Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm",
@@ -2937,7 +3230,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm#L724"
         }
       ],
       "sandbox_checks": [],
@@ -2976,29 +3270,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 432,
-          "description": "Adds com.apple.developer.coremedia.allow-alternate-video-decoder-selection to iOS and visionOS WebContent shared process entitlements"
+          "role": "Adds com.apple.developer.coremedia.allow-alternate-video-decoder-selection to iOS and visionOS WebContent shared process entitlements",
+          "description": "Adds com.apple.developer.coremedia.allow-alternate-video-decoder-selection to iOS and visionOS WebContent shared process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L432"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 519,
-          "description": "Adds com.apple.developer.coremedia.allow-alternate-video-decoder-selection to iOS and visionOS GPU process entitlements"
+          "role": "Adds com.apple.developer.coremedia.allow-alternate-video-decoder-selection to iOS and visionOS GPU process entitlements",
+          "description": "Adds com.apple.developer.coremedia.allow-alternate-video-decoder-selection to iOS and visionOS GPU process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L519"
         }
       ],
       "key_commits": [
         {
-          "hash": "48c0bbe484cd",
+          "hash": "48c0bbe484cd3a5f76bcee2c4b061616dd25cab0",
+          "short_hash": "48c0bbe484cd",
           "date": "2021-01-17",
-          "subject": "Add CoreMedia aavds entitlement to WebContent and GPU processes https://bugs.webkit.org/show_bug.cgi?id=220238"
+          "subject": "Add CoreMedia aavds entitlement to WebContent and GPU processes https://bugs.webkit.org/show_bug.cgi?id=220238",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/48c0bbe484cd3a5f76bcee2c4b061616dd25cab0"
         },
         {
-          "hash": "586ce1b3e48b",
+          "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases https://bugs.webkit.org/show_bug.cgi?id=233388"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases https://bugs.webkit.org/show_bug.cgi?id=233388",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         },
         {
-          "hash": "2ec4b744e3ae",
+          "hash": "2ec4b744e3ae6b54b4faad3eceb31520990307f4",
+          "short_hash": "2ec4b744e3ae",
           "date": "2022-05-25",
-          "subject": "[iOS] WebContent captive portal XPC service needs entitlement to set sandbox state variables https://bugs.webkit.org/show_bug.cgi?id=240921"
+          "subject": "[iOS] WebContent captive portal XPC service needs entitlement to set sandbox state variables https://bugs.webkit.org/show_bug.cgi?id=240921",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2ec4b744e3ae6b54b4faad3eceb31520990307f4"
         }
       ],
       "plist_declarations": [],
@@ -3014,7 +3321,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L432"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3027,7 +3335,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L519"
         }
       ],
       "code_checks": [],
@@ -3131,34 +3440,63 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 5,
-          "description": "Entitlement plist definition granting JIT compilation privilege to WebContent process extensions"
+          "role": "Entitlement plist definition granting JIT compilation privilege to WebContent process extensions",
+          "description": "Entitlement plist definition granting JIT compilation privilege to WebContent process extensions",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 476,
-          "description": "Signs WebContent processes with com.apple.developer.cs.allow-jit on iOS family platforms"
+          "role": "Signs WebContent processes with com.apple.developer.cs.allow-jit on iOS family platforms",
+          "description": "Signs WebContent processes with com.apple.developer.cs.allow-jit on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L476"
         },
         {
           "file": "Source/JavaScriptCore/jit/ExecutableAllocator.cpp",
           "line": 137,
-          "description": "Runtime check in isJITEnabled() verifying either dynamic-codesigning or com.apple.developer.cs.allow-jit"
+          "role": "Runtime check in isJITEnabled() verifying either dynamic-codesigning or com.apple.developer.cs.allow-jit",
+          "description": "Runtime check in isJITEnabled() verifying either dynamic-codesigning or com.apple.developer.cs.allow-jit",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L137"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 189,
+          "role": "Signing script grant in ios_family_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in ios_family_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L189"
+        },
+        {
+          "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentXPCService.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for WebContent",
+          "description": "Static .entitlements plist declaration for WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentXPCService.entitlements#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "ce585987e8f9",
+          "hash": "ce585987e8f9925db07f95dd06cc7ffa78e7dbfa",
+          "short_hash": "ce585987e8f9",
           "date": "2024-04-05",
-          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS."
+          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ce585987e8f9925db07f95dd06cc7ffa78e7dbfa"
         },
         {
-          "hash": "b1d861f1f579",
+          "hash": "b1d861f1f579588da2b6d8b13ba5aa138a7afc46",
+          "short_hash": "b1d861f1f579",
           "date": "2024-04-01",
-          "subject": "(2) Adopt com.apple.developer.cs.allow-jit entitlement for iOS."
+          "subject": "(2) Adopt com.apple.developer.cs.allow-jit entitlement for iOS.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b1d861f1f579588da2b6d8b13ba5aa138a7afc46"
         },
         {
-          "hash": "dd74d7957b6d",
+          "hash": "dd74d7957b6db44bbb1be9ac7d9684e87975b12d",
+          "short_hash": "dd74d7957b6d",
           "date": "2024-03-09",
-          "subject": "Adopt com.apple.developer.cs.allow-jit entitlement for iOS."
+          "subject": "Adopt com.apple.developer.cs.allow-jit entitlement for iOS.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dd74d7957b6db44bbb1be9ac7d9684e87975b12d"
         }
       ],
       "plist_declarations": [
@@ -3166,13 +3504,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 5,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentXPCService.entitlements",
           "line": 5,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentXPCService.entitlements#L5"
         }
       ],
       "script_declarations": [
@@ -3187,7 +3527,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L476"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3200,7 +3541,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L189"
         }
       ],
       "code_checks": [
@@ -3210,7 +3552,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent / JSC",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L137"
         }
       ],
       "sandbox_checks": [],
@@ -3321,19 +3664,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/WebPreferencesDefaultValues.cpp",
           "line": 189,
-          "description": "Gates `defaultMediaSessionCoordinatorEnabled()` based on whether the process (or WebProcess's parent UIProcess) possesses `com.apple.developer.group-session.urlactivity`."
+          "role": "Gates `defaultMediaSessionCoordinatorEnabled()` based on whether the process (or WebProcess's parent UIProcess) possesses `com.apple.developer.group-session.urlactivity`.",
+          "description": "Gates `defaultMediaSessionCoordinatorEnabled()` based on whether the process (or WebProcess's parent UIProcess) possesses `com.apple.developer.group-session.urlactivity`.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/WebPreferencesDefaultValues.cpp#L189"
         }
       ],
       "key_commits": [
         {
-          "hash": "0c05aaec18f6",
+          "hash": "0c05aaec18f6071f8354acc5e1311a1a50bbcdbf",
+          "short_hash": "0c05aaec18f6",
           "date": "2021-07-27",
-          "subject": "[Cocoa] WebKit is making GroupActivities API calls for all WebKit clients"
+          "subject": "[Cocoa] WebKit is making GroupActivities API calls for all WebKit clients",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/0c05aaec18f6071f8354acc5e1311a1a50bbcdbf"
         },
         {
-          "hash": "a5e0723e6f70",
+          "hash": "a5e0723e6f70e9591f059ae18a024a4c2a26e9ea",
+          "short_hash": "a5e0723e6f70",
           "date": "2021-11-03",
-          "subject": "[macOS] MediaSession coordinator enabled in UIProcess, disabled in WebContent"
+          "subject": "[macOS] MediaSession coordinator enabled in UIProcess, disabled in WebContent",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a5e0723e6f70e9591f059ae18a024a4c2a26e9ea"
         }
       ],
       "plist_declarations": [],
@@ -3347,7 +3698,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/WebPreferencesDefaultValues.cpp#L189"
         }
       ],
       "sandbox_checks": [],
@@ -3398,39 +3750,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 458,
-          "description": "Adds com.apple.developer.hardened-process to shared WebContent process variants on iOS and visionOS"
+          "role": "Adds com.apple.developer.hardened-process to shared WebContent process variants on iOS and visionOS",
+          "description": "Adds com.apple.developer.hardened-process to shared WebContent process variants on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L458"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 84,
-          "description": "Adds com.apple.developer.hardened-process to the GPU process on macOS"
+          "role": "Adds com.apple.developer.hardened-process to the GPU process on macOS",
+          "description": "Adds com.apple.developer.hardened-process to the GPU process on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L84"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 138,
-          "description": "Adds com.apple.developer.hardened-process to the Networking process on macOS"
+          "role": "Adds com.apple.developer.hardened-process to the Networking process on macOS",
+          "description": "Adds com.apple.developer.hardened-process to the Networking process on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L138"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 38,
-          "description": "Adds com.apple.developer.hardened-process to the JavaScriptCore CLI shell (jsc) on macOS"
+          "role": "Adds com.apple.developer.hardened-process to the JavaScriptCore CLI shell (jsc) on macOS",
+          "description": "Adds com.apple.developer.hardened-process to the JavaScriptCore CLI shell (jsc) on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L38"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 234,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L234"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 288,
+          "role": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L288"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 304,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L304"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 375,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L375"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 400,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L400"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 575,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L575"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 590,
+          "role": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "description": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L590"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 622,
+          "role": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L622"
         }
       ],
       "key_commits": [
         {
-          "hash": "a8f1028c8858",
+          "hash": "a8f1028c8858d29b2f7eec817503cf4c05556567",
+          "short_hash": "a8f1028c8858",
           "date": "2025-02-06",
-          "subject": "[iOS] Add `com.apple.developer.hardened-process` entitlement to WebKit child processes"
+          "subject": "[iOS] Add `com.apple.developer.hardened-process` entitlement to WebKit child processes",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a8f1028c8858d29b2f7eec817503cf4c05556567"
         },
         {
-          "hash": "13dae7def0db",
+          "hash": "13dae7def0db6ad2a8199d11a60b1d6a0e5f1804",
+          "short_hash": "13dae7def0db",
           "date": "2025-02-26",
-          "subject": "[JSC] Add com.apple.developer.hardened-process entitlement to JSC shell and testapi on all platforms"
+          "subject": "[JSC] Add com.apple.developer.hardened-process entitlement to JSC shell and testapi on all platforms",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13dae7def0db6ad2a8199d11a60b1d6a0e5f1804"
         },
         {
-          "hash": "bb4d3ee9eae2",
+          "hash": "bb4d3ee9eae28a671ea11c1eae167f89412a3043",
+          "short_hash": "bb4d3ee9eae2",
           "date": "2025-10-02",
-          "subject": "New WebContent process variant for Enhanced Security"
+          "subject": "New WebContent process variant for Enhanced Security",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bb4d3ee9eae28a671ea11c1eae167f89412a3043"
         }
       ],
       "plist_declarations": [],
@@ -3445,7 +3870,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L84"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3457,7 +3883,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L138"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3469,7 +3896,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L234"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3481,7 +3909,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L288"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3493,7 +3922,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L304"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3505,7 +3935,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L375"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3517,7 +3948,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L400"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3530,7 +3962,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L458"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3543,7 +3976,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L575"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3556,7 +3990,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L590"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3569,7 +4004,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L622"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3582,7 +4018,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L670"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3594,7 +4031,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L38"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3606,7 +4044,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L68"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3618,7 +4057,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L85"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3630,7 +4070,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L112"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3642,7 +4083,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L140"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3654,7 +4096,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L166"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3667,7 +4110,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L199"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3680,7 +4124,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L215"
         }
       ],
       "code_checks": [],
@@ -3718,19 +4163,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/WebPreferencesDefaultValues.cpp",
           "line": 266,
-          "description": "defaultDigitalCredentialsEnabled() checks for either com.apple.developer.web-browser or com.apple.developer.identity-document-services.web-presentment-controller to enable digital credentials"
+          "role": "defaultDigitalCredentialsEnabled() checks for either com.apple.developer.web-browser or com.apple.developer.identity-document-services.web-presentment-controller to enable digital credentials",
+          "description": "defaultDigitalCredentialsEnabled() checks for either com.apple.developer.web-browser or com.apple.developer.identity-document-services.web-presentment-controller to enable digital credentials",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/WebPreferencesDefaultValues.cpp#L266"
         }
       ],
       "key_commits": [
         {
-          "hash": "bad163661a0f",
+          "hash": "bad163661a0fd171bcf995e1baa3e67709723581",
+          "short_hash": "bad163661a0f",
           "date": "2025-06-25",
-          "subject": "Digital Credentials: conditionally enable the API based on entitlement"
+          "subject": "Digital Credentials: conditionally enable the API based on entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bad163661a0fd171bcf995e1baa3e67709723581"
         },
         {
-          "hash": "2d4ca326601e",
+          "hash": "2d4ca326601eb0a377673f8200349913aae83c65",
+          "short_hash": "2d4ca326601e",
           "date": "2025-11-23",
-          "subject": "Turn on thread-safe statics everywhere except bmalloc and JSC"
+          "subject": "Turn on thread-safe statics everywhere except bmalloc and JSC",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2d4ca326601eb0a377673f8200349913aae83c65"
         }
       ],
       "plist_declarations": [],
@@ -3743,7 +4196,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/WebPreferencesDefaultValues.cpp#L266"
         }
       ],
       "sandbox_checks": [],
@@ -3794,34 +4248,104 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp",
           "line": 285,
-          "description": "Runtime check verifying if the process has extended virtual addressing before scaling structure heap reservation size"
+          "role": "Runtime check verifying if the process has extended virtual addressing before scaling structure heap reservation size",
+          "description": "Runtime check verifying if the process has extended virtual addressing before scaling structure heap reservation size",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp#L285"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 484,
-          "description": "Adds extended-virtual-addressing entitlement to WebContent process on iOS and visionOS"
+          "role": "Adds extended-virtual-addressing entitlement to WebContent process on iOS and visionOS",
+          "description": "Adds extended-virtual-addressing entitlement to WebContent process on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L484"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 7,
-          "description": "Declares extended-virtual-addressing for the WebContent process extension plist"
+          "role": "Declares extended-virtual-addressing for the WebContent process extension plist",
+          "description": "Declares extended-virtual-addressing for the WebContent process extension plist",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 5,
-          "description": "Declares extended-virtual-addressing for the GPU process extension plist"
+          "role": "Declares extended-virtual-addressing for the GPU process extension plist",
+          "description": "Declares extended-virtual-addressing for the GPU process extension plist",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L5"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 244,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L244"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 314,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L314"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 493,
+          "role": "Signing script grant in ios_family_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in ios_family_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L493"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 507,
+          "role": "Signing script grant in ios_family_process_webcontent_enhancedsecurity_entitlements() for WebContent.EnhancedSecurity",
+          "description": "Signing script grant in ios_family_process_webcontent_enhancedsecurity_entitlements() for WebContent.EnhancedSecurity",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L507"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 578,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L578"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 30,
+          "role": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L30"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 60,
+          "role": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L60"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 83,
+          "role": "Signing script grant in mac_process_mya_entitlements() for mya (JSC)",
+          "description": "Signing script grant in mac_process_mya_entitlements() for mya (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L83"
         }
       ],
       "key_commits": [
         {
           "hash": "cffeaa6ccbf42e8d5ff626cc9806f7eac3c66e6b",
+          "short_hash": "cffeaa6ccbf4",
           "date": "2026-05-29",
-          "subject": "Scale down structure-heap reservation size with physical memory"
+          "subject": "Scale down structure-heap reservation size with physical memory",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/cffeaa6ccbf42e8d5ff626cc9806f7eac3c66e6b"
         },
         {
           "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         }
       ],
       "plist_declarations": [
@@ -3829,25 +4353,29 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 5,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUXPCService.entitlements",
           "line": 5,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUXPCService.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 7,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentXPCService.entitlements",
           "line": 7,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentXPCService.entitlements#L7"
         }
       ],
       "script_declarations": [
@@ -3861,7 +4389,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L244"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3873,7 +4402,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L314"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3886,7 +4416,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L484"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3899,7 +4430,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L493"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3912,7 +4444,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L507"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -3925,7 +4458,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L578"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3937,7 +4471,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L30"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3949,7 +4484,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L60"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3961,7 +4497,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L83"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3973,7 +4510,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L110"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3985,7 +4523,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L144"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -3997,7 +4536,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L164"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -4010,7 +4550,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L198"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -4023,7 +4564,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L214"
         }
       ],
       "code_checks": [
@@ -4035,7 +4577,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "visionOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp#L285"
         }
       ],
       "sandbox_checks": [],
@@ -4146,29 +4689,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 60,
-          "description": "Adds com.apple.developer.videotoolbox.client-sandboxed-decoder to macOS GPU process entitlements"
+          "role": "Adds com.apple.developer.videotoolbox.client-sandboxed-decoder to macOS GPU process entitlements",
+          "description": "Adds com.apple.developer.videotoolbox.client-sandboxed-decoder to macOS GPU process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L60"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 245,
-          "description": "Adds com.apple.developer.videotoolbox.client-sandboxed-decoder to shared macOS WebContent process entitlements"
+          "role": "Adds com.apple.developer.videotoolbox.client-sandboxed-decoder to shared macOS WebContent process entitlements",
+          "description": "Adds com.apple.developer.videotoolbox.client-sandboxed-decoder to shared macOS WebContent process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L245"
         }
       ],
       "key_commits": [
         {
-          "hash": "5b058b050962",
+          "hash": "5b058b050962a3cd0c3ec8a05c4897ce831e1195",
+          "short_hash": "5b058b050962",
           "date": "2020-09-23",
-          "subject": "[macOS] Change name of client decoder entitlement"
+          "subject": "[macOS] Change name of client decoder entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/5b058b050962a3cd0c3ec8a05c4897ce831e1195"
         },
         {
-          "hash": "bac9ef065224",
+          "hash": "bac9ef0652243ffbef23c8f5fdf24700294e2e97",
+          "short_hash": "bac9ef065224",
           "date": "2021-01-11",
-          "subject": "[macOS] Enable the client decoder entitlement for the GPU Process"
+          "subject": "[macOS] Enable the client decoder entitlement for the GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bac9ef0652243ffbef23c8f5fdf24700294e2e97"
         },
         {
-          "hash": "de906ef1749b",
+          "hash": "de906ef1749bda2ef5e892c98414474c0a0a73c4",
+          "short_hash": "de906ef1749b",
           "date": "2025-05-01",
-          "subject": "[macOS] Allow VTDecompressionSession to use VTDecoderXPCService"
+          "subject": "[macOS] Allow VTDecompressionSession to use VTDecoderXPCService",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/de906ef1749bda2ef5e892c98414474c0a0a73c4"
         }
       ],
       "plist_declarations": [],
@@ -4183,7 +4739,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L60"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -4195,7 +4752,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L245"
         }
       ],
       "code_checks": [],
@@ -4319,39 +4877,104 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
           "line": 261,
-          "description": "Checks parent process audit token for com.apple.developer.web-browser to determine full web browser status for App-Bound Domains exemption"
+          "role": "Checks parent process audit token for com.apple.developer.web-browser to determine full web browser status for App-Bound Domains exemption",
+          "description": "Checks parent process audit token for com.apple.developer.web-browser to determine full web browser status for App-Bound Domains exemption",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L261"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm",
           "line": 873,
-          "description": "Enables Service Workers in WKWebView if the host process has either com.apple.developer.web-browser or com.apple.developer.WebKit.ServiceWorkers"
+          "role": "Enables Service Workers in WKWebView if the host process has either com.apple.developer.web-browser or com.apple.developer.WebKit.ServiceWorkers",
+          "description": "Enables Service Workers in WKWebView if the host process has either com.apple.developer.web-browser or com.apple.developer.WebKit.ServiceWorkers",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm#L873"
         },
         {
           "file": "Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm",
           "line": 82,
-          "description": "Verifies that the parent UIProcess connection has com.apple.developer.web-browser or com.apple.developer.WebKit.ServiceWorkers before permitting Service Worker operations"
+          "role": "Verifies that the parent UIProcess connection has com.apple.developer.web-browser or com.apple.developer.WebKit.ServiceWorkers before permitting Service Worker operations",
+          "description": "Verifies that the parent UIProcess connection has com.apple.developer.web-browser or com.apple.developer.WebKit.ServiceWorkers before permitting Service Worker operations",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm#L82"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
           "line": 643,
-          "description": "Requires com.apple.developer.web-browser or com.apple.private.allow-ldm-exempt-webview before allowing Lockdown Mode to be disabled on a webpage"
+          "role": "Requires com.apple.developer.web-browser or com.apple.private.allow-ldm-exempt-webview before allowing Lockdown Mode to be disabled on a webpage",
+          "description": "Requires com.apple.developer.web-browser or com.apple.private.allow-ldm-exempt-webview before allowing Lockdown Mode to be disabled on a webpage",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L643"
         },
         {
           "file": "Source/WebKit/Shared/WebPreferencesDefaultValues.cpp",
           "line": 266,
-          "description": "Checks com.apple.developer.web-browser on the parent process to conditionally enable the Digital Credentials API"
+          "role": "Checks com.apple.developer.web-browser on the parent process to conditionally enable the Digital Credentials API",
+          "description": "Checks com.apple.developer.web-browser on the parent process to conditionally enable the Digital Credentials API",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/WebPreferencesDefaultValues.cpp#L266"
+        },
+        {
+          "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
+          "line": 277,
+          "role": "Runtime entitlement check in UIProcess / Host App (iOS, macOS)",
+          "description": "Runtime entitlement check in UIProcess / Host App (iOS, macOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L277"
+        },
+        {
+          "file": "Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm",
+          "line": 724,
+          "role": "Runtime entitlement check in WebContent (checking UIProcess) (iOS, visionOS)",
+          "description": "Runtime entitlement check in WebContent (checking UIProcess) (iOS, visionOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm#L724"
+        },
+        {
+          "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
+          "line": 536,
+          "role": "Runtime entitlement check in UIProcess / Host App (iOS, visionOS)",
+          "description": "Runtime entitlement check in UIProcess / Host App (iOS, visionOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L536"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 82,
+          "role": "Signing script grant in process_ios_family_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_ios_family_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L82"
+        },
+        {
+          "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for MobileMiniBrowser (Host App)",
+          "description": "Static .entitlements plist declaration for MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L5"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
+          "line": 15,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L15"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
+          "line": 17,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L17"
         }
       ],
       "key_commits": [
         {
-          "hash": "bad163661a0f",
+          "hash": "bad163661a0fd171bcf995e1baa3e67709723581",
+          "short_hash": "bad163661a0f",
           "date": "2025-06-25",
-          "subject": "Digital Credentials: conditionally enable the API based on entitlement"
+          "subject": "Digital Credentials: conditionally enable the API based on entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bad163661a0fd171bcf995e1baa3e67709723581"
         },
         {
-          "hash": "c53d2fe1ee79",
+          "hash": "c53d2fe1ee79dde27fd9140a964b9aacc52379da",
+          "short_hash": "c53d2fe1ee79",
           "date": "2025-09-23",
-          "subject": "Mobile Mini Browser failing to launch through Xcode"
+          "subject": "Mobile Mini Browser failing to launch through Xcode",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c53d2fe1ee79dde27fd9140a964b9aacc52379da"
         }
       ],
       "plist_declarations": [
@@ -4359,19 +4982,22 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 5,
           "value": true,
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L5"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
           "line": 15,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L15"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 17,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L17"
         }
       ],
       "script_declarations": [
@@ -4386,7 +5012,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L82"
         }
       ],
       "code_checks": [
@@ -4397,7 +5024,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L261"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
@@ -4406,7 +5034,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L277"
         },
         {
           "file": "Source/WebKit/Shared/WebPreferencesDefaultValues.cpp",
@@ -4415,7 +5044,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/WebPreferencesDefaultValues.cpp#L266"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm",
@@ -4424,7 +5054,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebView.mm#L873"
         },
         {
           "file": "Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm",
@@ -4433,7 +5064,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/ios/NetworkProcessIOS.mm#L82"
         },
         {
           "file": "Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm",
@@ -4442,7 +5074,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/ios/WebPageIOS.mm#L724"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
@@ -4451,7 +5084,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L536"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
@@ -4460,7 +5094,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L643"
         }
       ],
       "sandbox_checks": [],
@@ -4503,34 +5138,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 7,
-          "description": "Entitlement declared for MobileMiniBrowser host app on iOS"
+          "role": "Entitlement declared for MobileMiniBrowser host app on iOS",
+          "description": "Entitlement declared for MobileMiniBrowser host app on iOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L7"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 19,
-          "description": "Entitlement declared for WebKitTestRunnerApp host harness on iOS devices"
+          "role": "Entitlement declared for WebKitTestRunnerApp host harness on iOS devices",
+          "description": "Entitlement declared for WebKitTestRunnerApp host harness on iOS devices",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L19"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 83,
-          "description": "Signs TestWebKitAPI with host entitlement for iOS and visionOS testing"
+          "role": "Signs TestWebKitAPI with host entitlement for iOS and visionOS testing",
+          "description": "Signs TestWebKitAPI with host entitlement for iOS and visionOS testing",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L83"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
+          "line": 17,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L17"
         }
       ],
       "key_commits": [
         {
-          "hash": "2bc6c250ae10",
+          "hash": "2bc6c250ae104d10775fe6240906378d997313c0",
+          "short_hash": "2bc6c250ae10",
           "date": "2024-06-26",
-          "subject": "Local WebKit builds don't use locally-built WebKit process extensions"
+          "subject": "Local WebKit builds don't use locally-built WebKit process extensions",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2bc6c250ae104d10775fe6240906378d997313c0"
         },
         {
-          "hash": "59868a40fe51",
+          "hash": "59868a40fe5182ee8897c422b27d4c37056943bf",
+          "short_hash": "59868a40fe51",
           "date": "2024-10-18",
-          "subject": "[WebKitTestRunnerApp] Missing entitlements blocking iOS device install."
+          "subject": "[WebKitTestRunnerApp] Missing entitlements blocking iOS device install.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/59868a40fe5182ee8897c422b27d4c37056943bf"
         },
         {
-          "hash": "b84ab3c3dcf1",
+          "hash": "b84ab3c3dcf1e2adaedb89d2501c920fe337290b",
+          "short_hash": "b84ab3c3dcf1",
           "date": "2025-04-24",
-          "subject": "TestWebKitAPI.app fails to launch in iOS Simulator"
+          "subject": "TestWebKitAPI.app fails to launch in iOS Simulator",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b84ab3c3dcf1e2adaedb89d2501c920fe337290b"
         }
       ],
       "plist_declarations": [
@@ -4538,19 +5195,22 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 7,
           "value": true,
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L7"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
           "line": 17,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L17"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 19,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L19"
         }
       ],
       "script_declarations": [
@@ -4565,7 +5225,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L83"
         }
       ],
       "code_checks": [],
@@ -4581,7 +5242,7 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
       "functional_domain": "Process Launching & BrowserEngineKit",
       "short_purpose": "Allows an ExtensionKit extension to run as a browser engine's dedicated out-of-process networking service (BENetworkingProcess) on iOS.",
       "webkit_usage_summary": "WebKit declares this entitlement in `NetworkingProcessExtension.entitlements` for its ExtensionKit-based network extension target on iOS. At runtime, WebKit checks for this entitlement via `WTF::processHasEntitlement()` in `isInWebKitChildProcess()` within `DefaultWebBrowserChecks.mm` to identify whether the executing process is an auxiliary browser child process.",
-      "browserenginekit_implications": "This entitlement is part of Apple's official BrowserEngineKit API granted to authorized third-party browser developers on iOS (e.g., under EU DMA provisions). It allows third-party browsers to launch and manage an isolated `BENetworkingProcess` extension, providing parity with WebKit's out-of-process networking architecture while running in a restricted sandbox separate from web content and UI processes.",
+      "browserenginekit_implications": "This entitlement is part of Apple's official BrowserEngineKit API granted to authorized third-party browser developers on iOS. It allows third-party browsers to launch and manage an isolated `BENetworkingProcess` extension, providing parity with WebKit's out-of-process networking architecture while running in a restricted sandbox separate from web content and UI processes.",
       "canonical_processes": [
         "Networking"
       ],
@@ -4602,24 +5263,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements",
           "line": 5,
-          "description": "Entitlement declaration for the WebKit Networking ExtensionKit auxiliary process"
+          "role": "Entitlement declaration for the WebKit Networking ExtensionKit auxiliary process",
+          "description": "Entitlement declaration for the WebKit Networking ExtensionKit auxiliary process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
           "line": 75,
-          "description": "Runtime check verifying if the current process is an auxiliary child process possessing the networking extension entitlement"
+          "role": "Runtime check verifying if the current process is an auxiliary child process possessing the networking extension entitlement",
+          "description": "Runtime check verifying if the current process is an auxiliary child process possessing the networking extension entitlement",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L75"
         }
       ],
       "key_commits": [
         {
-          "hash": "638c7e3dc408",
+          "hash": "638c7e3dc4085c70eb9e26984f8dd84d101f949c",
+          "short_hash": "638c7e3dc408",
           "date": "2024-02-20",
-          "subject": "Fix layout tests in simulator after https://commits.webkit.org/274822@main"
+          "subject": "Fix layout tests in simulator after https://commits.webkit.org/274822@main",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/638c7e3dc4085c70eb9e26984f8dd84d101f949c"
         },
         {
-          "hash": "2bc6c250ae10",
+          "hash": "2bc6c250ae104d10775fe6240906378d997313c0",
+          "short_hash": "2bc6c250ae10",
           "date": "2024-06-26",
-          "subject": "Local WebKit builds don't use locally-built WebKit process extensions"
+          "subject": "Local WebKit builds don't use locally-built WebKit process extensions",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2bc6c250ae104d10775fe6240906378d997313c0"
         }
       ],
       "plist_declarations": [
@@ -4627,7 +5298,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements",
           "line": 5,
           "value": true,
-          "process": "Networking"
+          "process": "Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements#L5"
         }
       ],
       "script_declarations": [],
@@ -4638,7 +5310,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L75"
         }
       ],
       "sandbox_checks": [],
@@ -4747,34 +5420,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 7,
-          "description": "Entitlement declared for the WebKit GPU process ExtensionKit extension on iOS"
+          "role": "Entitlement declared for the WebKit GPU process ExtensionKit extension on iOS",
+          "description": "Entitlement declared for the WebKit GPU process ExtensionKit extension on iOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L7"
         },
         {
           "file": "Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp",
           "line": 671,
-          "description": "Runtime check validating media environment setup before starting camera capture in a rendering extension process"
+          "role": "Runtime check validating media environment setup before starting camera capture in a rendering extension process",
+          "description": "Runtime check validating media environment setup before starting camera capture in a rendering extension process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp#L671"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
           "line": 76,
-          "description": "Subprocess detection checking for rendering, networking, or webcontent BrowserEngineKit entitlements"
+          "role": "Subprocess detection checking for rendering, networking, or webcontent BrowserEngineKit entitlements",
+          "description": "Subprocess detection checking for rendering, networking, or webcontent BrowserEngineKit entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L76"
+        },
+        {
+          "file": "Source/WebCore/platform/mock/MockRealtimeVideoSource.cpp",
+          "line": 488,
+          "role": "Runtime entitlement check in GPU (iOS)",
+          "description": "Runtime entitlement check in GPU (iOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/mock/MockRealtimeVideoSource.cpp#L488"
         }
       ],
       "key_commits": [
         {
-          "hash": "c46feb491756",
+          "hash": "c46feb49175610e228377933235f5cac40710ba1",
+          "short_hash": "c46feb491756",
           "date": "2025-07-10",
-          "subject": "Move UserMediaCaptureManagerProxy to WebKit/GPUProcess rdar://155411315 https://bugs.webkit.org/show_bug.cgi?id=295627"
+          "subject": "Move UserMediaCaptureManagerProxy to WebKit/GPUProcess rdar://155411315 https://bugs.webkit.org/show_bug.cgi?id=295627",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c46feb49175610e228377933235f5cac40710ba1"
         },
         {
-          "hash": "2bc6c250ae10",
+          "hash": "2bc6c250ae104d10775fe6240906378d997313c0",
+          "short_hash": "2bc6c250ae10",
           "date": "2024-06-26",
-          "subject": "Local WebKit builds don't use locally-built WebKit process extensions https://bugs.webkit.org/show_bug.cgi?id=273550 rdar://125726458"
+          "subject": "Local WebKit builds don't use locally-built WebKit process extensions https://bugs.webkit.org/show_bug.cgi?id=273550 rdar://125726458",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2bc6c250ae104d10775fe6240906378d997313c0"
         },
         {
-          "hash": "2736644fa8bb",
+          "hash": "2736644fa8bbc4d1464cd794c45955efe47e0fa3",
+          "short_hash": "2736644fa8bb",
           "date": "2024-04-11",
-          "subject": "[iOS] REGRESSION (277078@main): 61 mediastream layout tests are constantly failing. https://bugs.webkit.org/show_bug.cgi?id=272551 <rdar://126162943>"
+          "subject": "[iOS] REGRESSION (277078@main): 61 mediastream layout tests are constantly failing. https://bugs.webkit.org/show_bug.cgi?id=272551 <rdar://126162943>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2736644fa8bbc4d1464cd794c45955efe47e0fa3"
         }
       ],
       "plist_declarations": [
@@ -4782,7 +5477,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 7,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L7"
         }
       ],
       "script_declarations": [],
@@ -4793,7 +5489,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/mock/MockRealtimeVideoSource.cpp#L488"
         },
         {
           "file": "Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp",
@@ -4801,7 +5498,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp#L671"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
@@ -4809,7 +5507,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L76"
         }
       ],
       "sandbox_checks": [],
@@ -4929,39 +5628,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 9,
-          "description": "Declares entitlement for the BrowserEngineKit WebContent process extension plist."
+          "role": "Declares entitlement for the BrowserEngineKit WebContent process extension plist.",
+          "description": "Declares entitlement for the BrowserEngineKit WebContent process extension plist.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L9"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 188,
-          "description": "notify_entitlements() adds entitlement to shared WebContent processes on macOS, iOS, and visionOS."
+          "role": "notify_entitlements() adds entitlement to shared WebContent processes on macOS, iOS, and visionOS.",
+          "description": "notify_entitlements() adds entitlement to shared WebContent processes on macOS, iOS, and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L188"
         },
         {
           "file": "Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm",
           "line": 829,
-          "description": "UIProcess verifies WebContent audit token has this entitlement before forwarding Darwin notifications via PostNotification."
+          "role": "UIProcess verifies WebContent audit token has this entitlement before forwarding Darwin notifications via PostNotification.",
+          "description": "UIProcess verifies WebContent audit token has this entitlement before forwarding Darwin notifications via PostNotification.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm#L829"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/common.sb",
           "line": 81,
-          "description": "Defines notify-blocking sandbox filter requiring this entitlement to block notifyd Mach access."
+          "role": "Defines notify-blocking sandbox filter requiring this entitlement to block notifyd Mach access.",
+          "description": "Defines notify-blocking sandbox filter requiring this entitlement to block notifyd Mach access.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/common.sb#L81"
         }
       ],
       "key_commits": [
         {
-          "hash": "c28465076e27",
+          "hash": "c28465076e27a0f7a100dc7ae77c2b3a8c1368a9",
+          "short_hash": "c28465076e27",
           "date": "2024-03-19",
-          "subject": "Restrict access to notifyd only when process has entitlement"
+          "subject": "Restrict access to notifyd only when process has entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c28465076e27a0f7a100dc7ae77c2b3a8c1368a9"
         },
         {
-          "hash": "1c34b5da48ce",
+          "hash": "1c34b5da48ce14f7eb25862ae093a7f2f78d99b6",
+          "short_hash": "1c34b5da48ce",
           "date": "2024-04-11",
-          "subject": "Block notification service in sandbox"
+          "subject": "Block notification service in sandbox",
+          "significance": "Block notification service in sandbox (WebContent sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1c34b5da48ce14f7eb25862ae093a7f2f78d99b6"
         },
         {
-          "hash": "b72eb4d87c98",
+          "hash": "b72eb4d87c98048be3b3258132e6d23586c19998",
+          "short_hash": "b72eb4d87c98",
           "date": "2024-06-17",
-          "subject": "Fix notifyd notification forwarding in the simulator"
+          "subject": "Fix notifyd notification forwarding in the simulator",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b72eb4d87c98048be3b3258132e6d23586c19998"
         }
       ],
       "plist_declarations": [
@@ -4969,7 +5685,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 9,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L9"
         }
       ],
       "script_declarations": [
@@ -4985,7 +5702,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L188"
         }
       ],
       "code_checks": [
@@ -4997,7 +5715,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/WebProcessPoolCocoa.mm#L829"
         }
       ],
       "sandbox_checks": [
@@ -5006,7 +5725,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 81,
           "process": "All Processes",
           "platform": "iOS",
-          "snippet": "(define (notify-blocking) (require-entitlement \"com.apple.developer.web-browser-engine.restrict.notifyd\"))"
+          "snippet": "(define (notify-blocking) (require-entitlement \"com.apple.developer.web-browser-engine.restrict.notifyd\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/common.sb#L81"
         }
       ],
       "related_spis_count": 11,
@@ -5117,29 +5837,48 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 11,
-          "description": "Entitlement declaration for WebKit's WebContent process ExtensionKit extension."
+          "role": "Entitlement declaration for WebKit's WebContent process ExtensionKit extension.",
+          "description": "Entitlement declaration for WebKit's WebContent process ExtensionKit extension.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L11"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
           "line": 77,
-          "description": "Runtime check in isInWebKitChildProcess() verifying whether the process holds the webcontent child process entitlement."
+          "role": "Runtime check in isInWebKitChildProcess() verifying whether the process holds the webcontent child process entitlement.",
+          "description": "Runtime check in isInWebKitChildProcess() verifying whether the process holds the webcontent child process entitlement.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L77"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 190,
-          "description": "Signs the entitlement into jsc CLI tools on iOS 17.4+ to test BrowserEngineKit WebContent behavior."
+          "role": "Signs the entitlement into jsc CLI tools on iOS 17.4+ to test BrowserEngineKit WebContent behavior.",
+          "description": "Signs the entitlement into jsc CLI tools on iOS 17.4+ to test BrowserEngineKit WebContent behavior.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L190"
+        },
+        {
+          "file": "Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements",
+          "line": 9,
+          "role": "Static .entitlements plist declaration for Model",
+          "description": "Static .entitlements plist declaration for Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements#L9"
         }
       ],
       "key_commits": [
         {
-          "hash": "ce585987e8f9",
+          "hash": "ce585987e8f9925db07f95dd06cc7ffa78e7dbfa",
+          "short_hash": "ce585987e8f9",
           "date": "2024-04-05",
-          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS."
+          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ce585987e8f9925db07f95dd06cc7ffa78e7dbfa"
         },
         {
-          "hash": "65e695d98b94",
+          "hash": "65e695d98b9455a898fbb6ae0127b156c0905341",
+          "short_hash": "65e695d98b94",
           "date": "2026-03-26",
-          "subject": "Add webcontent entitlement to ModelService for simulator https://bugs.webkit.org/show_bug.cgi?id=310838 rdar://169643489"
+          "subject": "Add webcontent entitlement to ModelService for simulator https://bugs.webkit.org/show_bug.cgi?id=310838 rdar://169643489",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/65e695d98b9455a898fbb6ae0127b156c0905341"
         }
       ],
       "plist_declarations": [
@@ -5147,13 +5886,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements",
           "line": 9,
           "value": true,
-          "process": "Model"
+          "process": "Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements#L9"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 11,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L11"
         }
       ],
       "script_declarations": [
@@ -5168,7 +5909,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L190"
         }
       ],
       "code_checks": [
@@ -5178,7 +5920,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L77"
         }
       ],
       "sandbox_checks": [],
@@ -5288,24 +6031,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 618,
-          "description": "Signs webpushd with com.apple.frontboard.launchapplications on iOS and visionOS"
+          "role": "Signs webpushd with com.apple.frontboard.launchapplications on iOS and visionOS",
+          "description": "Signs webpushd with com.apple.frontboard.launchapplications on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L618"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemon.mm",
           "line": 672,
-          "description": "Initializes SBSOpenApplicationService and launches the target application with FBSOpenApplicationOptions to deliver web push actions"
+          "role": "Initializes SBSOpenApplicationService and launches the target application with FBSOpenApplicationOptions to deliver web push actions",
+          "description": "Initializes SBSOpenApplicationService and launches the target application with FBSOpenApplicationOptions to deliver web push actions",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L672"
         }
       ],
       "key_commits": [
         {
-          "hash": "a984be0fb37d",
+          "hash": "a984be0fb37d9428c4bdfa7ca7d86755836a44e0",
+          "short_hash": "a984be0fb37d",
           "date": "2024-08-23",
-          "subject": "webpushd app launch improvements rdar://131365223 https://bugs.webkit.org/show_bug.cgi?id=278443"
+          "subject": "webpushd app launch improvements rdar://131365223 https://bugs.webkit.org/show_bug.cgi?id=278443",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a984be0fb37d9428c4bdfa7ca7d86755836a44e0"
         },
         {
-          "hash": "5f64555f4058",
+          "hash": "5f64555f4058965c0e6713df2d174e0e12217b97",
+          "short_hash": "5f64555f4058",
           "date": "2024-08-21",
-          "subject": "webpushd app launch improvements rdar://131365223 https://bugs.webkit.org/show_bug.cgi?id=278443"
+          "subject": "webpushd app launch improvements rdar://131365223 https://bugs.webkit.org/show_bug.cgi?id=278443",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/5f64555f4058965c0e6713df2d174e0e12217b97"
         }
       ],
       "plist_declarations": [],
@@ -5321,7 +6074,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L618"
         }
       ],
       "code_checks": [],
@@ -5432,14 +6186,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 59,
-          "description": "Appends com.apple.hid.manager.user-access-device to TestWebKitAPI entitlements on macOS and macCatalyst under internal restricted entitlements."
+          "role": "Appends com.apple.hid.manager.user-access-device to TestWebKitAPI entitlements on macOS and macCatalyst under internal restricted entitlements.",
+          "description": "Appends com.apple.hid.manager.user-access-device to TestWebKitAPI entitlements on macOS and macCatalyst under internal restricted entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L59"
         }
       ],
       "key_commits": [
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [],
@@ -5455,7 +6214,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L59"
         }
       ],
       "code_checks": [],
@@ -5498,19 +6258,96 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 495,
-          "description": "Adds the com.apple.imageio.allowabletypes array restricting image formats for WebContent.CaptivePortal on iOS and visionOS"
+          "role": "Adds the com.apple.imageio.allowabletypes array restricting image formats for WebContent.CaptivePortal on iOS and visionOS",
+          "description": "Adds the com.apple.imageio.allowabletypes array restricting image formats for WebContent.CaptivePortal on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L495"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 31,
-          "description": "Configures allowable ImageIO UTIs for WebContent.CaptivePortal on macOS"
+          "role": "Configures allowable ImageIO UTIs for WebContent.CaptivePortal on macOS",
+          "description": "Configures allowable ImageIO UTIs for WebContent.CaptivePortal on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L31"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 32,
+          "role": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L32"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 33,
+          "role": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L33"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 34,
+          "role": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L34"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 35,
+          "role": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in mac_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L35"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 352,
+          "role": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L352"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 353,
+          "role": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L353"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 354,
+          "role": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L354"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 355,
+          "role": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L355"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 356,
+          "role": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in maccatalyst_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L356"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 496,
+          "role": "Signing script grant in ios_family_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "description": "Signing script grant in ios_family_process_webcontent_captiveportal_entitlements() for WebContent.CaptivePortal",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L496"
         }
       ],
       "key_commits": [
         {
-          "hash": "586ce1b3e48b",
+          "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases https://bugs.webkit.org/show_bug.cgi?id=233388 <rdar://problem/84481565>"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases https://bugs.webkit.org/show_bug.cgi?id=233388 <rdar://problem/84481565>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         }
       ],
       "plist_declarations": [],
@@ -5525,7 +6362,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L31"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5537,7 +6375,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L32"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5549,7 +6388,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L33"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5561,7 +6401,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L34"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5573,7 +6414,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L35"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5585,7 +6427,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L352"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5597,7 +6440,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L353"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5609,7 +6453,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L354"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5621,7 +6466,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L355"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5633,7 +6479,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent.CaptivePortal",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L356"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5646,7 +6493,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L495"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5659,7 +6507,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L496"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5672,7 +6521,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L497"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5685,7 +6535,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L498"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5698,7 +6549,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L499"
         }
       ],
       "code_checks": [],
@@ -5737,29 +6589,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 74,
-          "description": "Adds com.apple.mediaremote.external-artwork-validation to the GPU process entitlements on macOS."
+          "role": "Adds com.apple.mediaremote.external-artwork-validation to the GPU process entitlements on macOS.",
+          "description": "Adds com.apple.mediaremote.external-artwork-validation to the GPU process entitlements on macOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L74"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 521,
-          "description": "Adds com.apple.mediaremote.external-artwork-validation to the GPU process entitlements on iOS and visionOS."
+          "role": "Adds com.apple.mediaremote.external-artwork-validation to the GPU process entitlements on iOS and visionOS.",
+          "description": "Adds com.apple.mediaremote.external-artwork-validation to the GPU process entitlements on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L521"
         }
       ],
       "key_commits": [
         {
-          "hash": "8f70e6bf626c",
+          "hash": "8f70e6bf626c81bc10c03d25657cb533df32a3c4",
+          "short_hash": "8f70e6bf626c",
           "date": "2022-11-13",
-          "subject": "mediaSession API not showing artwork"
+          "subject": "mediaSession API not showing artwork",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8f70e6bf626c81bc10c03d25657cb533df32a3c4"
         },
         {
-          "hash": "faa11d115c78",
+          "hash": "faa11d115c785b6a35c56f840509c7df5e149351",
+          "short_hash": "faa11d115c78",
           "date": "2023-02-07",
-          "subject": "REGRESSION (Safari 16.1): mediaSession API not showing artwork: part 2"
+          "subject": "REGRESSION (Safari 16.1): mediaSession API not showing artwork: part 2",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/faa11d115c785b6a35c56f840509c7df5e149351"
         },
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -5774,7 +6639,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L74"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5787,7 +6653,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L521"
         }
       ],
       "code_checks": [],
@@ -5900,29 +6767,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 433,
-          "description": "Adds com.apple.mediaremote.set-playback-state entitlement to WebContent process on iOS family platforms"
+          "role": "Adds com.apple.mediaremote.set-playback-state entitlement to WebContent process on iOS family platforms",
+          "description": "Adds com.apple.mediaremote.set-playback-state entitlement to WebContent process on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L433"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 520,
-          "description": "Adds com.apple.mediaremote.set-playback-state entitlement to GPU process on iOS family platforms"
+          "role": "Adds com.apple.mediaremote.set-playback-state entitlement to GPU process on iOS family platforms",
+          "description": "Adds com.apple.mediaremote.set-playback-state entitlement to GPU process on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L520"
         },
         {
           "file": "Source/WebCore/PAL/pal/spi/mac/MediaRemoteSPI.h",
           "line": 137,
-          "description": "Declares private SPI MRMediaRemoteSetNowPlayingApplicationPlaybackStateForOrigin used to set playback state"
+          "role": "Declares private SPI MRMediaRemoteSetNowPlayingApplicationPlaybackStateForOrigin used to set playback state",
+          "description": "Declares private SPI MRMediaRemoteSetNowPlayingApplicationPlaybackStateForOrigin used to set playback state",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/mac/MediaRemoteSPI.h#L137"
         }
       ],
       "key_commits": [
         {
           "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
           "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         }
       ],
       "plist_declarations": [],
@@ -5938,7 +6817,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L433"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -5951,7 +6831,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L520"
         }
       ],
       "code_checks": [],
@@ -6062,19 +6943,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 522,
-          "description": "Signs the GPU process on iOS-family platforms with com.apple.mediaremote.ui-control"
+          "role": "Signs the GPU process on iOS-family platforms with com.apple.mediaremote.ui-control",
+          "description": "Signs the GPU process on iOS-family platforms with com.apple.mediaremote.ui-control",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L522"
         },
         {
           "file": "Source/WebCore/PAL/pal/spi/mac/MediaRemoteSPI.h",
           "line": 153,
-          "description": "Declares private MediaRemote interfaces MRUIControllerProvider and MRNowPlayingActivityUIControllable"
+          "role": "Declares private MediaRemote interfaces MRUIControllerProvider and MRNowPlayingActivityUIControllable",
+          "description": "Declares private MediaRemote interfaces MRUIControllerProvider and MRNowPlayingActivityUIControllable",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/mac/MediaRemoteSPI.h#L153"
         }
       ],
       "key_commits": [
         {
-          "hash": "87860a904550",
+          "hash": "87860a9045503955d1996eca13501ceb7a864436",
+          "short_hash": "87860a904550",
           "date": "2024-09-06",
-          "subject": "[Cocoa] Support Now Playing presentation suppression https://bugs.webkit.org/show_bug.cgi?id=279288 rdar://132115578"
+          "subject": "[Cocoa] Support Now Playing presentation suppression https://bugs.webkit.org/show_bug.cgi?id=279288 rdar://132115578",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/87860a9045503955d1996eca13501ceb7a864436"
         }
       ],
       "plist_declarations": [],
@@ -6090,7 +6978,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L522"
         }
       ],
       "code_checks": [],
@@ -6203,29 +7092,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 634,
-          "description": "Signs the NetworkProcess with com.apple.multitasking.systemappassertions on iOS family platforms."
+          "role": "Signs the NetworkProcess with com.apple.multitasking.systemappassertions on iOS family platforms.",
+          "description": "Signs the NetworkProcess with com.apple.multitasking.systemappassertions on iOS family platforms.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L634"
         },
         {
           "file": "Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp",
           "line": 53,
-          "description": "Checks WTF::processHasEntitlement for com.apple.multitasking.systemappassertions to initialize m_shouldTakeAssertion."
+          "role": "Checks WTF::processHasEntitlement for com.apple.multitasking.systemappassertions to initialize m_shouldTakeAssertion.",
+          "description": "Checks WTF::processHasEntitlement for com.apple.multitasking.systemappassertions to initialize m_shouldTakeAssertion.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp#L53"
         },
         {
           "file": "Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp",
           "line": 94,
-          "description": "Acquires an UnboundedNetworking ProcessAssertion on the UIProcess when downloads are active if entitled."
+          "role": "Acquires an UnboundedNetworking ProcessAssertion on the UIProcess when downloads are active if entitled.",
+          "description": "Acquires an UnboundedNetworking ProcessAssertion on the UIProcess when downloads are active if entitled.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp#L94"
         }
       ],
       "key_commits": [
         {
-          "hash": "27d6db6681de",
+          "hash": "27d6db6681de85026668e8ec8414fd361f219eff",
+          "short_hash": "27d6db6681de",
           "date": "2019-03-08",
-          "subject": "Have the UIProcess take the UnboundedNetworking assertion when downloads are in progress."
+          "subject": "Have the UIProcess take the UnboundedNetworking assertion when downloads are in progress.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/27d6db6681de85026668e8ec8414fd361f219eff"
         },
         {
-          "hash": "f38acd8fe12e",
+          "hash": "f38acd8fe12e6c4d4012939c3533809bd0abb421",
+          "short_hash": "f38acd8fe12e",
           "date": "2019-08-02",
-          "subject": "macCatalyst build fails the first attempt, requires a second build"
+          "subject": "macCatalyst build fails the first attempt, requires a second build",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f38acd8fe12e6c4d4012939c3533809bd0abb421"
         }
       ],
       "plist_declarations": [],
@@ -6241,7 +7142,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L634"
         }
       ],
       "code_checks": [
@@ -6252,7 +7154,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Downloads/DownloadProxyMap.cpp#L53"
         }
       ],
       "sandbox_checks": [],
@@ -6289,19 +7192,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 15,
-          "description": "Entitlement declaration for the WebKitTestRunner internal test harness on macOS"
+          "role": "Entitlement declaration for the WebKitTestRunner internal test harness on macOS",
+          "description": "Entitlement declaration for the WebKitTestRunner internal test harness on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L15"
         },
         {
           "file": "Tools/WebKitTestRunner/cocoa/TestControllerCocoa.mm",
           "line": 663,
-          "description": "TestController::cocoaDNSInitialize configures custom DNS resolver agents and NEPolicySession policies for WPT execution"
+          "role": "TestController::cocoaDNSInitialize configures custom DNS resolver agents and NEPolicySession policies for WPT execution",
+          "description": "TestController::cocoaDNSInitialize configures custom DNS resolver agents and NEPolicySession policies for WPT execution",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/cocoa/TestControllerCocoa.mm#L663"
         }
       ],
       "key_commits": [
         {
-          "hash": "ae5d4ebf2175",
+          "hash": "ae5d4ebf2175309275a974221a1b85ddf55facac",
+          "short_hash": "ae5d4ebf2175",
           "date": "2025-09-16",
-          "subject": "[Cocoa] Add support for overriding DNS resolution for WPT"
+          "subject": "[Cocoa] Add support for overriding DNS resolution for WPT",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ae5d4ebf2175309275a974221a1b85ddf55facac"
         }
       ],
       "plist_declarations": [
@@ -6309,7 +7219,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 15,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L15"
         }
       ],
       "script_declarations": [],
@@ -6353,34 +7264,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 434,
-          "description": "Adds com.apple.pac.shared_region_id set to 'WebContent' for iOS-family WebContent processes"
+          "role": "Adds com.apple.pac.shared_region_id set to 'WebContent' for iOS-family WebContent processes",
+          "description": "Adds com.apple.pac.shared_region_id set to 'WebContent' for iOS-family WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L434"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 589,
-          "description": "Adds com.apple.pac.shared_region_id set to 'WebKitModel' for iOS-family Model processes"
+          "role": "Adds com.apple.pac.shared_region_id set to 'WebKitModel' for iOS-family Model processes",
+          "description": "Adds com.apple.pac.shared_region_id set to 'WebKitModel' for iOS-family Model processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L589"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 246,
-          "description": "Adds com.apple.pac.shared_region_id set to 'WebContent' for macOS WebContent processes"
+          "role": "Adds com.apple.pac.shared_region_id set to 'WebContent' for macOS WebContent processes",
+          "description": "Adds com.apple.pac.shared_region_id set to 'WebContent' for macOS WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L246"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 315,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L315"
         }
       ],
       "key_commits": [
         {
-          "hash": "6c1e67f56f01",
+          "hash": "6c1e67f56f0180b92f9d33eb36d5e92fe0c5e29f",
+          "short_hash": "6c1e67f56f01",
           "date": "2020-07-09",
-          "subject": "[macOS] Adopt the WebKit-specific PAC key and entitlements"
+          "subject": "[macOS] Adopt the WebKit-specific PAC key and entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/6c1e67f56f0180b92f9d33eb36d5e92fe0c5e29f"
         },
         {
-          "hash": "f9d50c1cd187",
+          "hash": "f9d50c1cd1874e0e1c9f39ade66c1883735077cf",
+          "short_hash": "f9d50c1cd187",
           "date": "2025-01-09",
-          "subject": "Adopt PAC entitlement to assign shared region ID for the model process"
+          "subject": "Adopt PAC entitlement to assign shared region ID for the model process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f9d50c1cd1874e0e1c9f39ade66c1883735077cf"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         }
       ],
       "plist_declarations": [],
@@ -6395,7 +7328,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L246"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -6407,7 +7341,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L315"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -6420,7 +7355,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L434"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -6433,7 +7369,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L589"
         }
       ],
       "code_checks": [],
@@ -6471,14 +7408,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 635,
-          "description": "Adds com.apple.payment.all-access to the iOS and visionOS NetworkProcess entitlements"
+          "role": "Adds com.apple.payment.all-access to the iOS and visionOS NetworkProcess entitlements",
+          "description": "Adds com.apple.payment.all-access to the iOS and visionOS NetworkProcess entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L635"
         }
       ],
       "key_commits": [
         {
-          "hash": "8f2025ff8a65",
+          "hash": "8f2025ff8a65516f54d4fd235c04af07365b9061",
+          "short_hash": "8f2025ff8a65",
           "date": "2019-03-11",
-          "subject": "[Apple Pay] Use PKPaymentAuthorizationController to present the Apple Pay UI remotely from the Networking service on iOS"
+          "subject": "[Apple Pay] Use PKPaymentAuthorizationController to present the Apple Pay UI remotely from the Networking service on iOS",
+          "significance": "Use PKPaymentAuthorizationController to present the Apple Pay UI remotely from the Networking service on iOS",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8f2025ff8a65516f54d4fd235c04af07365b9061"
         }
       ],
       "plist_declarations": [],
@@ -6494,7 +7436,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L635"
         }
       ],
       "code_checks": [],
@@ -6605,14 +7548,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 636,
-          "description": "Adds com.apple.private.accounts.bundleidspoofing to the NetworkProcess entitlements on iOS and visionOS"
+          "role": "Adds com.apple.private.accounts.bundleidspoofing to the NetworkProcess entitlements on iOS and visionOS",
+          "description": "Adds com.apple.private.accounts.bundleidspoofing to the NetworkProcess entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L636"
         }
       ],
       "key_commits": [
         {
-          "hash": "f38acd8fe12e",
+          "hash": "f38acd8fe12e6c4d4012939c3533809bd0abb421",
+          "short_hash": "f38acd8fe12e",
           "date": "2019-08-02",
-          "subject": "macCatalyst build fails the first attempt, requires a second build https://bugs.webkit.org/show_bug.cgi?id=200242 <rdar://problem/53678481>"
+          "subject": "macCatalyst build fails the first attempt, requires a second build https://bugs.webkit.org/show_bug.cgi?id=200242 <rdar://problem/53678481>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f38acd8fe12e6c4d4012939c3533809bd0abb421"
         }
       ],
       "plist_declarations": [],
@@ -6628,7 +7576,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L636"
         }
       ],
       "code_checks": [],
@@ -6741,24 +7690,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 435,
-          "description": "Adds com.apple.private.allow-explicit-graphics-priority to WebContent shared process entitlements for iOS and visionOS"
+          "role": "Adds com.apple.private.allow-explicit-graphics-priority to WebContent shared process entitlements for iOS and visionOS",
+          "description": "Adds com.apple.private.allow-explicit-graphics-priority to WebContent shared process entitlements for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L435"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 523,
-          "description": "Adds com.apple.private.allow-explicit-graphics-priority to GPU process entitlements for iOS and visionOS"
+          "role": "Adds com.apple.private.allow-explicit-graphics-priority to GPU process entitlements for iOS and visionOS",
+          "description": "Adds com.apple.private.allow-explicit-graphics-priority to GPU process entitlements for iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L523"
         }
       ],
       "key_commits": [
         {
-          "hash": "13771f185bf4",
+          "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process https://bugs.webkit.org/show_bug.cgi?id=207367 <rdar://problem/59208411>"
+          "subject": "Build entitlements into GPU Process https://bugs.webkit.org/show_bug.cgi?id=207367 <rdar://problem/59208411>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
-          "hash": "586ce1b3e48b",
+          "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases https://bugs.webkit.org/show_bug.cgi?id=233388 <rdar://problem/84481565>"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases https://bugs.webkit.org/show_bug.cgi?id=233388 <rdar://problem/84481565>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         }
       ],
       "plist_declarations": [],
@@ -6774,7 +7733,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L435"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -6787,7 +7747,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L523"
         }
       ],
       "code_checks": [],
@@ -6824,19 +7785,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
           "line": 536,
-          "description": "Entitlement check in _setCaptivePortalModeEnabled: verifying caller has permission to disable captive portal mode"
+          "role": "Entitlement check in _setCaptivePortalModeEnabled: verifying caller has permission to disable captive portal mode",
+          "description": "Entitlement check in _setCaptivePortalModeEnabled: verifying caller has permission to disable captive portal mode",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L536"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
           "line": 643,
-          "description": "Entitlement check in setLockdownModeEnabled: raising an exception if an unauthorized host app attempts to disable Lockdown Mode"
+          "role": "Entitlement check in setLockdownModeEnabled: raising an exception if an unauthorized host app attempts to disable Lockdown Mode",
+          "description": "Entitlement check in setLockdownModeEnabled: raising an exception if an unauthorized host app attempts to disable Lockdown Mode",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L643"
         }
       ],
       "key_commits": [
         {
-          "hash": "ee77044edb54",
+          "hash": "ee77044edb549dc49236ff5a21aea503cd87331a",
+          "short_hash": "ee77044edb54",
           "date": "2024-07-08",
-          "subject": "[Cocoa] Recognize a second entitlement to allow non-Lockdown Mode processes to launch"
+          "subject": "[Cocoa] Recognize a second entitlement to allow non-Lockdown Mode processes to launch",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ee77044edb549dc49236ff5a21aea503cd87331a"
         }
       ],
       "plist_declarations": [],
@@ -6849,7 +7817,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L536"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm",
@@ -6858,7 +7827,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebpagePreferences.mm#L643"
         }
       ],
       "sandbox_checks": [],
@@ -6895,24 +7865,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 648,
-          "description": "Adds com.apple.private.appstored array containing InstallWebAttribution to the iOS and visionOS Network process entitlements"
+          "role": "Adds com.apple.private.appstored array containing InstallWebAttribution to the iOS and visionOS Network process entitlements",
+          "description": "Adds com.apple.private.appstored array containing InstallWebAttribution to the iOS and visionOS Network process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L648"
         },
         {
           "file": "Source/WebKit/NetworkProcess/cocoa/AppStoreDaemonSPI.h",
           "line": 56,
-          "description": "Declares private SPI interfaces for ASDInstallWebAttributionService used to submit install attribution parameters"
+          "role": "Declares private SPI interfaces for ASDInstallWebAttributionService used to submit install attribution parameters",
+          "description": "Declares private SPI interfaces for ASDInstallWebAttributionService used to submit install attribution parameters",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/AppStoreDaemonSPI.h#L56"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 649,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L649"
         }
       ],
       "key_commits": [
         {
-          "hash": "b40525e84793",
+          "hash": "b40525e847936bf95df365170dfbd4a9175e0e9b",
+          "short_hash": "b40525e84793",
           "date": "2023-05-22",
-          "subject": "Adopt ASDInstallWebAttributionService replacing ASDInstallAttribution"
+          "subject": "Adopt ASDInstallWebAttributionService replacing ASDInstallAttribution",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b40525e847936bf95df365170dfbd4a9175e0e9b"
         },
         {
-          "hash": "4f69690a0415",
+          "hash": "4f69690a0415079413d2e32cdd65c79d08aca2c0",
+          "short_hash": "4f69690a0415",
           "date": "2022-03-23",
-          "subject": "Implement PCM to SKAdNetwork bridge"
+          "subject": "Implement PCM to SKAdNetwork bridge",
+          "significance": "Implement PCM to SKAdNetwork bridge (Networking sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f69690a0415079413d2e32cdd65c79d08aca2c0"
         }
       ],
       "plist_declarations": [],
@@ -6928,7 +7915,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L648"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -6941,7 +7929,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L649"
         }
       ],
       "code_checks": [],
@@ -7045,19 +8034,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 275,
-          "description": "Adds com.apple.private.aps-connection-initiate to macOS webpushd entitlements"
+          "role": "Adds com.apple.private.aps-connection-initiate to macOS webpushd entitlements",
+          "description": "Adds com.apple.private.aps-connection-initiate to macOS webpushd entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L275"
         },
         {
           "file": "Source/WebKit/webpushd/ApplePushServiceConnection.mm",
           "line": 50,
-          "description": "Implements APSConnectionDelegate methods in webpushd to handle public push tokens and incoming push messages"
+          "role": "Implements APSConnectionDelegate methods in webpushd to handle public push tokens and incoming push messages",
+          "description": "Implements APSConnectionDelegate methods in webpushd to handle public push tokens and incoming push messages",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/ApplePushServiceConnection.mm#L50"
         }
       ],
       "key_commits": [
         {
-          "hash": "2beff75a4205",
+          "hash": "2beff75a420586c7ae375a3ed2e79acd430cc304",
+          "short_hash": "2beff75a4205",
           "date": "2021-12-07",
-          "subject": "webpushd should run with regular user permissions https://bugs.webkit.org/show_bug.cgi?id=233844"
+          "subject": "webpushd should run with regular user permissions https://bugs.webkit.org/show_bug.cgi?id=233844",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2beff75a420586c7ae375a3ed2e79acd430cc304"
         }
       ],
       "plist_declarations": [],
@@ -7072,7 +8068,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L275"
         }
       ],
       "code_checks": [],
@@ -7184,24 +8181,48 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 118,
-          "description": "Configures com.apple.private.assets.accessible-asset-types array with com.apple.MobileAsset.WebContentRestrictions for the macOS NetworkProcess"
+          "role": "Configures com.apple.private.assets.accessible-asset-types array with com.apple.MobileAsset.WebContentRestrictions for the macOS NetworkProcess",
+          "description": "Configures com.apple.private.assets.accessible-asset-types array with com.apple.MobileAsset.WebContentRestrictions for the macOS NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L118"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 668,
-          "description": "Configures com.apple.private.assets.accessible-asset-types array with com.apple.MobileAsset.WebContentRestrictions for the iOS and visionOS NetworkProcess"
+          "role": "Configures com.apple.private.assets.accessible-asset-types array with com.apple.MobileAsset.WebContentRestrictions for the iOS and visionOS NetworkProcess",
+          "description": "Configures com.apple.private.assets.accessible-asset-types array with com.apple.MobileAsset.WebContentRestrictions for the iOS and visionOS NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L668"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 119,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L119"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 669,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L669"
         }
       ],
       "key_commits": [
         {
-          "hash": "d259da0f78ae",
+          "hash": "d259da0f78aebd1cd62401c82c57544c0579cfe3",
+          "short_hash": "d259da0f78ae",
           "date": "2022-12-15",
-          "subject": "[macOS, iOS] Sandbox: Adopt new MobileAsset endpoints"
+          "subject": "[macOS, iOS] Sandbox: Adopt new MobileAsset endpoints",
+          "significance": "Sandbox: Adopt new MobileAsset endpoints (Networking sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d259da0f78aebd1cd62401c82c57544c0579cfe3"
         },
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -7216,7 +8237,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L118"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7228,7 +8250,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L119"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7241,7 +8264,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L668"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7254,7 +8278,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L669"
         }
       ],
       "code_checks": [],
@@ -7324,24 +8349,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 117,
-          "description": "Adds com.apple.private.assets.bypass-asset-types-check to macOS Network process entitlements"
+          "role": "Adds com.apple.private.assets.bypass-asset-types-check to macOS Network process entitlements",
+          "description": "Adds com.apple.private.assets.bypass-asset-types-check to macOS Network process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L117"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 667,
-          "description": "Adds com.apple.private.assets.bypass-asset-types-check to iOS and visionOS Network process entitlements"
+          "role": "Adds com.apple.private.assets.bypass-asset-types-check to iOS and visionOS Network process entitlements",
+          "description": "Adds com.apple.private.assets.bypass-asset-types-check to iOS and visionOS Network process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L667"
         }
       ],
       "key_commits": [
         {
           "hash": "d259da0f78aebd1cd62401c82c57544c0579cfe3",
+          "short_hash": "d259da0f78ae",
           "date": "2022-12-15",
-          "subject": "[macOS, iOS] Sandbox: Adopt new MobileAsset endpoints"
+          "subject": "[macOS, iOS] Sandbox: Adopt new MobileAsset endpoints",
+          "significance": "Sandbox: Adopt new MobileAsset endpoints (Networking sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d259da0f78aebd1cd62401c82c57544c0579cfe3"
         },
         {
           "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -7356,7 +8391,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L117"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7369,7 +8405,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L667"
         }
       ],
       "code_checks": [],
@@ -7438,14 +8475,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 564,
-          "description": "Adds com.apple.private.attribution.explicitly-assumed-identities array with wildcard identity type to the GPU process entitlements on iOS and visionOS"
+          "role": "Adds com.apple.private.attribution.explicitly-assumed-identities array with wildcard identity type to the GPU process entitlements on iOS and visionOS",
+          "description": "Adds com.apple.private.attribution.explicitly-assumed-identities array with wildcard identity type to the GPU process entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L564"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 565,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L565"
         }
       ],
       "key_commits": [
         {
-          "hash": "cb605074fb29",
+          "hash": "cb605074fb297e1b9788a1d18390ffbd320491be",
+          "short_hash": "cb605074fb29",
           "date": "2021-10-01",
-          "subject": "GPU Process microphone attribution SPI adoption https://bugs.webkit.org/show_bug.cgi?id=231034 <rdar://problem/83732537>"
+          "subject": "GPU Process microphone attribution SPI adoption https://bugs.webkit.org/show_bug.cgi?id=231034 <rdar://problem/83732537>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/cb605074fb297e1b9788a1d18390ffbd320491be"
         }
       ],
       "plist_declarations": [],
@@ -7461,7 +8510,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L564"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7474,7 +8524,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L565"
         }
       ],
       "code_checks": [],
@@ -7511,14 +8562,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm",
           "line": 81,
-          "description": "applicationHasAppLinkEntitlements() checks WTF::processHasEntitlement(\"com.apple.private.canGetAppLinkInfo\"_s) to verify permission to query LSAppLink information"
+          "role": "applicationHasAppLinkEntitlements() checks WTF::processHasEntitlement(\"com.apple.private.canGetAppLinkInfo\"_s) to verify permission to query LSAppLink information",
+          "description": "applicationHasAppLinkEntitlements() checks WTF::processHasEntitlement(\"com.apple.private.canGetAppLinkInfo\"_s) to verify permission to query LSAppLink information",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L81"
         }
       ],
       "key_commits": [
         {
           "hash": "dd956d5e74249681ddf904e0bbe401f308b65e0f",
+          "short_hash": "dd956d5e7424",
           "date": "2022-06-05",
-          "subject": "Drop operator==() overload for comparing a String to a const char*"
+          "subject": "Drop operator==() overload for comparing a String to a const char*",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dd956d5e74249681ddf904e0bbe401f308b65e0f"
         }
       ],
       "plist_declarations": [],
@@ -7531,7 +8587,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L81"
         }
       ],
       "sandbox_checks": [],
@@ -7567,19 +8624,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm",
           "line": 81,
-          "description": "Checks if the host process possesses com.apple.private.canModifyAppLinkPermissions and com.apple.private.canGetAppLinkInfo before offering App Link actions."
+          "role": "Checks if the host process possesses com.apple.private.canModifyAppLinkPermissions and com.apple.private.canGetAppLinkInfo before offering App Link actions.",
+          "description": "Checks if the host process possesses com.apple.private.canModifyAppLinkPermissions and com.apple.private.canGetAppLinkInfo before offering App Link actions.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L81"
         },
         {
           "file": "Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm",
           "line": 503,
-          "description": "Uses applicationHasAppLinkEntitlements() to conditionally append 'Open in Safari' and 'Open in [App]' actions that manipulate LSAppLink.enabled."
+          "role": "Uses applicationHasAppLinkEntitlements() to conditionally append 'Open in Safari' and 'Open in [App]' actions that manipulate LSAppLink.enabled.",
+          "description": "Uses applicationHasAppLinkEntitlements() to conditionally append 'Open in Safari' and 'Open in [App]' actions that manipulate LSAppLink.enabled.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L503"
         }
       ],
       "key_commits": [
         {
-          "hash": "dd956d5e7424",
+          "hash": "dd956d5e74249681ddf904e0bbe401f308b65e0f",
+          "short_hash": "dd956d5e7424",
           "date": "2022-06-05",
-          "subject": "Drop operator==() overload for comparing a String to a const char* https://bugs.webkit.org/show_bug.cgi?id=241285"
+          "subject": "Drop operator==() overload for comparing a String to a const char* https://bugs.webkit.org/show_bug.cgi?id=241285",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dd956d5e74249681ddf904e0bbe401f308b65e0f"
         }
       ],
       "plist_declarations": [],
@@ -7592,7 +8656,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/WKActionSheetAssistant.mm#L81"
         }
       ],
       "sandbox_checks": [],
@@ -7630,24 +8695,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 127,
-          "description": "Adds com.apple.private.ciphermld.allow to the macOS Network process entitlements."
+          "role": "Adds com.apple.private.ciphermld.allow to the macOS Network process entitlements.",
+          "description": "Adds com.apple.private.ciphermld.allow to the macOS Network process entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L127"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 637,
-          "description": "Adds com.apple.private.ciphermld.allow to iOS and visionOS Network process entitlements."
+          "role": "Adds com.apple.private.ciphermld.allow to iOS and visionOS Network process entitlements.",
+          "description": "Adds com.apple.private.ciphermld.allow to iOS and visionOS Network process entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L637"
         }
       ],
       "key_commits": [
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         },
         {
-          "hash": "bdbf8bd332f6",
+          "hash": "bdbf8bd332f62e56e014c765d00e9137e27bb428",
+          "short_hash": "bdbf8bd332f6",
           "date": "2023-04-13",
-          "subject": "Add content filter related Mach service to sandbox"
+          "subject": "Add content filter related Mach service to sandbox",
+          "significance": "Add content filter related Mach service to sandbox (Networking sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bdbf8bd332f62e56e014c765d00e9137e27bb428"
         }
       ],
       "plist_declarations": [],
@@ -7662,7 +8737,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L127"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7675,7 +8751,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L637"
         }
       ],
       "code_checks": [],
@@ -7715,29 +8792,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 553,
-          "description": "Adds the entitlement to the iOS/visionOS GPU process, explicitly excluding GPUExtension"
+          "role": "Adds the entitlement to the iOS/visionOS GPU process, explicitly excluding GPUExtension",
+          "description": "Adds the entitlement to the iOS/visionOS GPU process, explicitly excluding GPUExtension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L553"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 83,
-          "description": "Adds the entitlement to the macOS GPU process"
+          "role": "Adds the entitlement to the macOS GPU process",
+          "description": "Adds the entitlement to the macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L83"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 374,
-          "description": "Adds the entitlement to the macCatalyst GPU process"
+          "role": "Adds the entitlement to the macCatalyst GPU process",
+          "description": "Adds the entitlement to the macCatalyst GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L374"
         }
       ],
       "key_commits": [
         {
-          "hash": "dcf4f5aba692",
+          "hash": "dcf4f5aba6923c6d069e22770dd0141a9d864d6d",
+          "short_hash": "dcf4f5aba692",
           "date": "2023-12-12",
-          "subject": "[Cocoa] Adopt AVSampleBufferAttachContentKey"
+          "subject": "[Cocoa] Adopt AVSampleBufferAttachContentKey",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dcf4f5aba6923c6d069e22770dd0141a9d864d6d"
         },
         {
-          "hash": "4a1e342eb471",
+          "hash": "4a1e342eb47141b4128ab2700e66a8996a9338bc",
+          "short_hash": "4a1e342eb471",
           "date": "2023-12-14",
-          "subject": "[iOS] Enable SampleBufferContentKeySessionSupportEnabled by default"
+          "subject": "[iOS] Enable SampleBufferContentKeySessionSupportEnabled by default",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4a1e342eb47141b4128ab2700e66a8996a9338bc"
         }
       ],
       "plist_declarations": [],
@@ -7752,7 +8841,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L83"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7764,7 +8854,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L374"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7777,7 +8868,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L553"
         }
       ],
       "code_checks": [],
@@ -7848,29 +8940,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 436,
-          "description": "Adds the audio recording entitlement to the shared WebContent process on iOS and visionOS."
+          "role": "Adds the audio recording entitlement to the shared WebContent process on iOS and visionOS.",
+          "description": "Adds the audio recording entitlement to the shared WebContent process on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L436"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 524,
-          "description": "Adds the audio recording entitlement to the GPU process on iOS and visionOS."
+          "role": "Adds the audio recording entitlement to the GPU process on iOS and visionOS.",
+          "description": "Adds the audio recording entitlement to the GPU process on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L524"
         }
       ],
       "key_commits": [
         {
           "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
           "hash": "f38acd8fe12e6c4d4012939c3533809bd0abb421",
+          "short_hash": "f38acd8fe12e",
           "date": "2019-08-02",
-          "subject": "macCatalyst build fails the first attempt, requires a second build"
+          "subject": "macCatalyst build fails the first attempt, requires a second build",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f38acd8fe12e6c4d4012939c3533809bd0abb421"
         },
         {
           "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         }
       ],
       "plist_declarations": [],
@@ -7886,7 +8991,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L436"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -7899,7 +9005,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L524"
         }
       ],
       "code_checks": [],
@@ -7970,24 +9077,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 437,
-          "description": "Adds com.apple.private.coremedia.pidinheritance.allow to WebContent process entitlements on iOS and visionOS."
+          "role": "Adds com.apple.private.coremedia.pidinheritance.allow to WebContent process entitlements on iOS and visionOS.",
+          "description": "Adds com.apple.private.coremedia.pidinheritance.allow to WebContent process entitlements on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L437"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 528,
-          "description": "Adds com.apple.private.coremedia.pidinheritance.allow to GPU process entitlements on iOS and visionOS."
+          "role": "Adds com.apple.private.coremedia.pidinheritance.allow to GPU process entitlements on iOS and visionOS.",
+          "description": "Adds com.apple.private.coremedia.pidinheritance.allow to GPU process entitlements on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L528"
         }
       ],
       "key_commits": [
         {
-          "hash": "13771f185bf4",
+          "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
-          "hash": "f38acd8fe12e",
+          "hash": "f38acd8fe12e6c4d4012939c3533809bd0abb421",
+          "short_hash": "f38acd8fe12e",
           "date": "2019-08-02",
-          "subject": "macCatalyst build fails the first attempt, requires a second build"
+          "subject": "macCatalyst build fails the first attempt, requires a second build",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f38acd8fe12e6c4d4012939c3533809bd0abb421"
         }
       ],
       "plist_declarations": [],
@@ -8003,7 +9120,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L437"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8016,7 +9134,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L528"
         }
       ],
       "code_checks": [],
@@ -8085,19 +9204,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 631,
-          "description": "Grants `com.apple.private.coreservices.canmaplsdatabase` to the NetworkProcess on iOS and visionOS"
+          "role": "Grants `com.apple.private.coreservices.canmaplsdatabase` to the NetworkProcess on iOS and visionOS",
+          "description": "Grants `com.apple.private.coreservices.canmaplsdatabase` to the NetworkProcess on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L631"
         },
         {
           "file": "Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm",
           "line": 50,
-          "description": "Observes Launch Services database changes via `LSDatabaseContext` in the NetworkProcess"
+          "role": "Observes Launch Services database changes via `LSDatabaseContext` in the NetworkProcess",
+          "description": "Observes Launch Services database changes via `LSDatabaseContext` in the NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/LaunchServicesDatabaseObserver.mm#L50"
         }
       ],
       "key_commits": [
         {
-          "hash": "9982d3f14c3b",
+          "hash": "9982d3f14c3ba947bb164633635e40b15bdb72fc",
+          "short_hash": "9982d3f14c3b",
           "date": "2023-10-12",
-          "subject": "Improve launch time of WebKit processes, v2"
+          "subject": "Improve launch time of WebKit processes, v2",
+          "significance": "Improve launch time of WebKit processes, v2 (WebContent sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9982d3f14c3ba947bb164633635e40b15bdb72fc"
         }
       ],
       "plist_declarations": [],
@@ -8113,7 +9239,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L631"
         }
       ],
       "code_checks": [],
@@ -8226,19 +9353,33 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 76,
-          "description": "Signs the mya executable with com.apple.private.cs.debugger on macOS when WK_USE_RESTRICTED_ENTITLEMENTS is YES"
+          "role": "Signs the mya executable with com.apple.private.cs.debugger on macOS when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "description": "Signs the mya executable with com.apple.private.cs.debugger on macOS when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L76"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 206,
-          "description": "Signs the mya executable with com.apple.private.cs.debugger on iOS family platforms when WK_USE_RESTRICTED_ENTITLEMENTS is YES"
+          "role": "Signs the mya executable with com.apple.private.cs.debugger on iOS family platforms when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "description": "Signs the mya executable with com.apple.private.cs.debugger on iOS family platforms when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L206"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 157,
+          "role": "Signing script grant in maccatalyst_process_mya_entitlements() for mya (JSC)",
+          "description": "Signing script grant in maccatalyst_process_mya_entitlements() for mya (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L157"
         }
       ],
       "key_commits": [
         {
-          "hash": "96b672949791",
+          "hash": "96b67294979146c46c763f8c41a15883f5384f79",
+          "short_hash": "96b672949791",
           "date": "2026-08-28",
-          "subject": "[Re-landing] Introducing Mya, a MemorY Analyzer, and libJavaScriptCoreTools."
+          "subject": "[Re-landing] Introducing Mya, a MemorY Analyzer, and libJavaScriptCoreTools.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/96b67294979146c46c763f8c41a15883f5384f79"
         }
       ],
       "plist_declarations": [],
@@ -8253,7 +9394,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L76"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -8265,7 +9407,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L157"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -8278,7 +9421,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L206"
         }
       ],
       "code_checks": [],
@@ -8317,29 +9461,70 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 189,
-          "description": "Constructs the `com.apple.private.darwin-notification.introspect` array and populates it from notification definition files in `notify_entitlements()`"
+          "role": "Constructs the `com.apple.private.darwin-notification.introspect` array and populates it from notification definition files in `notify_entitlements()`",
+          "description": "Constructs the `com.apple.private.darwin-notification.introspect` array and populates it from notification definition files in `notify_entitlements()`",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L189"
         },
         {
           "file": "Source/WebKit/Resources/cocoa/NotificationAllowList/ForwardedNotifications.def",
           "line": 1,
-          "description": "Defines Darwin notifications that UIProcess forwards to WebContent, which are extracted into the entitlement array"
+          "role": "Defines Darwin notifications that UIProcess forwards to WebContent, which are extracted into the entitlement array",
+          "description": "Defines Darwin notifications that UIProcess forwards to WebContent, which are extracted into the entitlement array",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/cocoa/NotificationAllowList/ForwardedNotifications.def#L1"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 194,
+          "role": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L194"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 201,
+          "role": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L201"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 206,
+          "role": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L206"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 212,
+          "role": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in notify_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L212"
         }
       ],
       "key_commits": [
         {
           "hash": "693ae98c2146edd20bf2bb087eda06c9dc1ce48f",
+          "short_hash": "693ae98c2146",
           "date": "2024-05-16",
-          "subject": "Add entitlement related to notifyd blocking to WebContent Development"
+          "subject": "Add entitlement related to notifyd blocking to WebContent Development",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/693ae98c2146edd20bf2bb087eda06c9dc1ce48f"
         },
         {
           "hash": "2a0d601bd768e29f46a571c905d7132ae3f2a41e",
+          "short_hash": "2a0d601bd768",
           "date": "2024-05-08",
-          "subject": "Forward notifications to the WebContent processes"
+          "subject": "Forward notifications to the WebContent processes",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2a0d601bd768e29f46a571c905d7132ae3f2a41e"
         },
         {
           "hash": "957ddb2b94a123946d5ef1e6420bcbcceca2f53c",
+          "short_hash": "957ddb2b94a1",
           "date": "2024-05-30",
-          "subject": "Whitelist more notifyd notifications for WebContent"
+          "subject": "Whitelist more notifyd notifications for WebContent",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/957ddb2b94a123946d5ef1e6420bcbcceca2f53c"
         }
       ],
       "plist_declarations": [],
@@ -8356,7 +9541,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L189"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8370,7 +9556,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L194"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8384,7 +9571,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L201"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8398,7 +9586,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L206"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8412,7 +9601,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L212"
         }
       ],
       "code_checks": [],
@@ -8449,14 +9639,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 123,
-          "description": "mac_process_network_entitlements adds com.apple.private.device-configuration.effective-configuration-ids.read with value com.apple.WebContentRestrictions on macOS"
+          "role": "mac_process_network_entitlements adds com.apple.private.device-configuration.effective-configuration-ids.read with value com.apple.WebContentRestrictions on macOS",
+          "description": "mac_process_network_entitlements adds com.apple.private.device-configuration.effective-configuration-ids.read with value com.apple.WebContentRestrictions on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L123"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 124,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L124"
         }
       ],
       "key_commits": [
         {
           "hash": "d166417eff11fe412ffb1f0d1818cec7225a4c9d",
+          "short_hash": "d166417eff11",
           "date": "2026-05-28",
-          "subject": "Add additional entitlements for WebKit's web content restrictions usage https://bugs.webkit.org/show_bug.cgi?id=315576 rdar://174963227"
+          "subject": "Add additional entitlements for WebKit's web content restrictions usage https://bugs.webkit.org/show_bug.cgi?id=315576 rdar://174963227",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d166417eff11fe412ffb1f0d1818cec7225a4c9d"
         }
       ],
       "plist_declarations": [],
@@ -8471,7 +9673,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L123"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8483,7 +9686,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L124"
         }
       ],
       "code_checks": [],
@@ -8580,34 +9784,49 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 438,
-          "description": "Adds com.apple.private.disable-log-mach-ports to WebContent processes on iOS and visionOS"
+          "role": "Adds com.apple.private.disable-log-mach-ports to WebContent processes on iOS and visionOS",
+          "description": "Adds com.apple.private.disable-log-mach-ports to WebContent processes on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L438"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 335,
-          "description": "Adds com.apple.private.disable-log-mach-ports to WebContent processes on macCatalyst"
+          "role": "Adds com.apple.private.disable-log-mach-ports to WebContent processes on macCatalyst",
+          "description": "Adds com.apple.private.disable-log-mach-ports to WebContent processes on macCatalyst",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L335"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/common.sb",
           "line": 83,
-          "description": "Defines the (logd-blocking) Seatbelt sandbox predicate requiring com.apple.private.disable-log-mach-ports"
+          "role": "Defines the (logd-blocking) Seatbelt sandbox predicate requiring com.apple.private.disable-log-mach-ports",
+          "description": "Defines the (logd-blocking) Seatbelt sandbox predicate requiring com.apple.private.disable-log-mach-ports",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/common.sb#L83"
         }
       ],
       "key_commits": [
         {
-          "hash": "7a08ca5a5b61",
+          "hash": "7a08ca5a5b61205bf6ee77551b21ec5bc8ca4945",
+          "short_hash": "7a08ca5a5b61",
           "date": "2025-05-24",
-          "subject": "Unify sandbox rules for logging"
+          "subject": "Unify sandbox rules for logging",
+          "significance": "Unify sandbox rules for logging \u2014 We should unify sandbox rules for logging between macOS and iOS by conditionalizing on the same entitlement",
+          "github_url": "https://github.com/WebKit/WebKit/commit/7a08ca5a5b61205bf6ee77551b21ec5bc8ca4945"
         },
         {
-          "hash": "18ed829ce6c8",
+          "hash": "18ed829ce6c85c885ee9744fc5370207424d0260",
+          "short_hash": "18ed829ce6c8",
           "date": "2025-06-03",
-          "subject": "[Catalyst][WebContent] Add entitlement to disable opening of Mach port"
+          "subject": "[Catalyst][WebContent] Add entitlement to disable opening of Mach port",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/18ed829ce6c85c885ee9744fc5370207424d0260"
         },
         {
-          "hash": "a443055848fd",
+          "hash": "a443055848fd199a509bfb778e40094d32822c53",
+          "short_hash": "a443055848fd",
           "date": "2024-12-11",
-          "subject": "Add logging definition file for OS log entries that should be forwarded from the WebContent process to the UI process"
+          "subject": "Add logging definition file for OS log entries that should be forwarded from the WebContent process to the UI process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a443055848fd199a509bfb778e40094d32822c53"
         }
       ],
       "plist_declarations": [],
@@ -8622,7 +9841,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L335"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -8635,7 +9855,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L438"
         }
       ],
       "code_checks": [],
@@ -8645,7 +9866,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 83,
           "process": "All Processes",
           "platform": "iOS",
-          "snippet": "(define (logd-blocking) (require-entitlement \"com.apple.private.disable-log-mach-ports\"))"
+          "snippet": "(define (logd-blocking) (require-entitlement \"com.apple.private.disable-log-mach-ports\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/common.sb#L83"
         }
       ],
       "related_spis_count": 0,
@@ -8680,24 +9902,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 76,
-          "description": "Adds com.apple.private.disable.screencapturekit.alert to the macOS GPU process entitlements"
+          "role": "Adds com.apple.private.disable.screencapturekit.alert to the macOS GPU process entitlements",
+          "description": "Adds com.apple.private.disable.screencapturekit.alert to the macOS GPU process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L76"
         },
         {
           "file": "Source/WebCore/platform/mediastream/cocoa/ScreenCaptureKitSharingSessionManager.mm",
           "line": 35,
-          "description": "Implements ScreenCaptureKit content sharing picker management for getDisplayMedia screen capture in WebKit"
+          "role": "Implements ScreenCaptureKit content sharing picker management for getDisplayMedia screen capture in WebKit",
+          "description": "Implements ScreenCaptureKit content sharing picker management for getDisplayMedia screen capture in WebKit",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/mediastream/cocoa/ScreenCaptureKitSharingSessionManager.mm#L35"
         }
       ],
       "key_commits": [
         {
-          "hash": "930d40c09c32",
+          "hash": "930d40c09c3256106ca8de0c9e29e160e716b1d4",
+          "short_hash": "930d40c09c32",
           "date": "2023-01-10",
-          "subject": "[Cocoa] Add new screen capture entitlement"
+          "subject": "[Cocoa] Add new screen capture entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/930d40c09c3256106ca8de0c9e29e160e716b1d4"
         },
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -8712,7 +9944,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L76"
         }
       ],
       "code_checks": [],
@@ -8750,19 +9983,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 638,
-          "description": "Adds com.apple.private.dmd.policy to the NetworkProcess entitlements on iOS and visionOS"
+          "role": "Adds com.apple.private.dmd.policy to the NetworkProcess entitlements on iOS and visionOS",
+          "description": "Adds com.apple.private.dmd.policy to the NetworkProcess entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L638"
         },
         {
           "file": "Source/WebKit/Platform/spi/Cocoa/DeviceManagementSPI.h",
           "line": 38,
-          "description": "Declares DMFWebsitePolicyMonitor SPI for querying and monitoring website restriction policies"
+          "role": "Declares DMFWebsitePolicyMonitor SPI for querying and monitoring website restriction policies",
+          "description": "Declares DMFWebsitePolicyMonitor SPI for querying and monitoring website restriction policies",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/spi/Cocoa/DeviceManagementSPI.h#L38"
         }
       ],
       "key_commits": [
         {
-          "hash": "f38acd8fe12e",
+          "hash": "f38acd8fe12e6c4d4012939c3533809bd0abb421",
+          "short_hash": "f38acd8fe12e",
           "date": "2019-08-02",
-          "subject": "macCatalyst build fails the first attempt, requires a second build https://bugs.webkit.org/show_bug.cgi?id=200242 <rdar://problem/53678481>"
+          "subject": "macCatalyst build fails the first attempt, requires a second build https://bugs.webkit.org/show_bug.cgi?id=200242 <rdar://problem/53678481>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f38acd8fe12e6c4d4012939c3533809bd0abb421"
         }
       ],
       "plist_declarations": [],
@@ -8778,7 +10018,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L638"
         }
       ],
       "code_checks": [],
@@ -8832,24 +10073,33 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 13,
-          "description": "Declares host requirement exemption for the WebContent ExtensionKit extension"
+          "role": "Declares host requirement exemption for the WebContent ExtensionKit extension",
+          "description": "Declares host requirement exemption for the WebContent ExtensionKit extension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L13"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements",
           "line": 7,
-          "description": "Declares host requirement exemption for the Networking ExtensionKit extension"
+          "role": "Declares host requirement exemption for the Networking ExtensionKit extension",
+          "description": "Declares host requirement exemption for the Networking ExtensionKit extension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 9,
-          "description": "Declares host requirement exemption for the GPU Process ExtensionKit extension"
+          "role": "Declares host requirement exemption for the GPU Process ExtensionKit extension",
+          "description": "Declares host requirement exemption for the GPU Process ExtensionKit extension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L9"
         }
       ],
       "key_commits": [
         {
-          "hash": "638c7e3dc408",
+          "hash": "638c7e3dc4085c70eb9e26984f8dd84d101f949c",
+          "short_hash": "638c7e3dc408",
           "date": "2024-02-20",
-          "subject": "Fix layout tests in simulator after https://commits.webkit.org/274822@main"
+          "subject": "Fix layout tests in simulator after https://commits.webkit.org/274822@main",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/638c7e3dc4085c70eb9e26984f8dd84d101f949c"
         }
       ],
       "plist_declarations": [
@@ -8857,19 +10107,22 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 9,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L9"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements",
           "line": 7,
           "value": true,
-          "process": "Networking"
+          "process": "Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 13,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L13"
         }
       ],
       "script_declarations": [],
@@ -8914,14 +10167,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 145,
-          "description": "Adds com.apple.private.get-system-corpse to macOS NetworkProcess entitlements for automatic memgraph crash investigations"
+          "role": "Adds com.apple.private.get-system-corpse to macOS NetworkProcess entitlements for automatic memgraph crash investigations",
+          "description": "Adds com.apple.private.get-system-corpse to macOS NetworkProcess entitlements for automatic memgraph crash investigations",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L145"
         }
       ],
       "key_commits": [
         {
           "hash": "b5c5c88fa7c9e32ea7736627f3f2795e3c302b4d",
+          "short_hash": "b5c5c88fa7c9",
           "date": "2025-09-30",
-          "subject": "Entitlements for NetworkProcess to enable automatic memgraph diagnostics"
+          "subject": "Entitlements for NetworkProcess to enable automatic memgraph diagnostics",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b5c5c88fa7c9e32ea7736627f3f2795e3c302b4d"
         }
       ],
       "plist_declarations": [],
@@ -8936,7 +10194,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L145"
         }
       ],
       "code_checks": [],
@@ -8977,39 +10236,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 69,
-          "description": "Adds com.apple.private.gpu-restricted to the macOS GPU process"
+          "role": "Adds com.apple.private.gpu-restricted to the macOS GPU process",
+          "description": "Adds com.apple.private.gpu-restricted to the macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L69"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 256,
-          "description": "Adds com.apple.private.gpu-restricted to shared macOS WebContent processes"
+          "role": "Adds com.apple.private.gpu-restricted to shared macOS WebContent processes",
+          "description": "Adds com.apple.private.gpu-restricted to shared macOS WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L256"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 453,
-          "description": "Adds com.apple.private.gpu-restricted to iOS/visionOS WebContent processes (excluding ExtensionKit variants)"
+          "role": "Adds com.apple.private.gpu-restricted to iOS/visionOS WebContent processes (excluding ExtensionKit variants)",
+          "description": "Adds com.apple.private.gpu-restricted to iOS/visionOS WebContent processes (excluding ExtensionKit variants)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L453"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 551,
-          "description": "Adds com.apple.private.gpu-restricted to the iOS/visionOS GPU process (excluding GPUExtension)"
+          "role": "Adds com.apple.private.gpu-restricted to the iOS/visionOS GPU process (excluding GPUExtension)",
+          "description": "Adds com.apple.private.gpu-restricted to the iOS/visionOS GPU process (excluding GPUExtension)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L551"
         }
       ],
       "key_commits": [
         {
-          "hash": "a8b0ae298477",
+          "hash": "a8b0ae29847724d9674769bdc3b04c425e35273c",
+          "short_hash": "a8b0ae298477",
           "date": "2021-11-16",
-          "subject": "[iOS] Limit graphics related IOKit method filtering"
+          "subject": "[iOS] Limit graphics related IOKit method filtering",
+          "significance": "Limit graphics related IOKit method filtering (WebContent sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a8b0ae29847724d9674769bdc3b04c425e35273c"
         },
         {
-          "hash": "574d366ba7f8",
+          "hash": "574d366ba7f8b144763ed95f85b4dfed9c33d35d",
+          "short_hash": "574d366ba7f8",
           "date": "2023-11-08",
-          "subject": "WebKit process extensions do not have the same entitlement requirements"
+          "subject": "WebKit process extensions do not have the same entitlement requirements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/574d366ba7f8b144763ed95f85b4dfed9c33d35d"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         }
       ],
       "plist_declarations": [],
@@ -9024,7 +10300,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L69"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -9036,7 +10313,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L256"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -9049,7 +10327,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L453"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -9062,7 +10341,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L551"
         }
       ],
       "code_checks": [],
@@ -9100,14 +10380,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 61,
-          "description": "Applies com.apple.private.hid.client.event-dispatch.internal to TestWebKitAPI when WK_USE_RESTRICTED_ENTITLEMENTS is YES on macOS/macCatalyst."
+          "role": "Applies com.apple.private.hid.client.event-dispatch.internal to TestWebKitAPI when WK_USE_RESTRICTED_ENTITLEMENTS is YES on macOS/macCatalyst.",
+          "description": "Applies com.apple.private.hid.client.event-dispatch.internal to TestWebKitAPI when WK_USE_RESTRICTED_ENTITLEMENTS is YES on macOS/macCatalyst.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L61"
         }
       ],
       "key_commits": [
         {
-          "hash": "fdf97620232c",
+          "hash": "fdf97620232c4b1891d677678421c5e296c03793",
+          "short_hash": "fdf97620232c",
           "date": "2026-04-29",
-          "subject": "[AppKit Gestures] Add a test for clicking to change selection https://bugs.webkit.org/show_bug.cgi?id=313585 rdar://175798813"
+          "subject": "[AppKit Gestures] Add a test for clicking to change selection https://bugs.webkit.org/show_bug.cgi?id=313585 rdar://175798813",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/fdf97620232c4b1891d677678421c5e296c03793"
         }
       ],
       "plist_declarations": [],
@@ -9123,7 +10408,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L61"
         }
       ],
       "code_checks": [],
@@ -9161,14 +10447,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 60,
-          "description": "Applies com.apple.private.hid.client.event-filter to macOS and macCatalyst TestWebKitAPI entitlements when WK_USE_RESTRICTED_ENTITLEMENTS is YES"
+          "role": "Applies com.apple.private.hid.client.event-filter to macOS and macCatalyst TestWebKitAPI entitlements when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "description": "Applies com.apple.private.hid.client.event-filter to macOS and macCatalyst TestWebKitAPI entitlements when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L60"
         }
       ],
       "key_commits": [
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [],
@@ -9184,7 +10475,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L60"
         }
       ],
       "code_checks": [],
@@ -9224,29 +10516,62 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
           "line": 128,
-          "description": "Restricts system-sched operations to callers holding the override-cpumon entitlement in WebContent sandbox"
+          "role": "Restricts system-sched operations to callers holding the override-cpumon entitlement in WebContent sandbox",
+          "description": "Restricts system-sched operations to callers holding the override-cpumon entitlement in WebContent sandbox",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in#L128"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 173,
-          "description": "Restricts system-sched operations to callers holding the override-cpumon entitlement in Networking sandbox"
+          "role": "Restricts system-sched operations to callers holding the override-cpumon entitlement in Networking sandbox",
+          "description": "Restricts system-sched operations to callers holding the override-cpumon entitlement in Networking sandbox",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L173"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
           "line": 116,
-          "description": "Restricts system-sched operations to callers holding the override-cpumon entitlement in GPU process sandbox"
+          "role": "Restricts system-sched operations to callers holding the override-cpumon entitlement in GPU process sandbox",
+          "description": "Restricts system-sched operations to callers holding the override-cpumon entitlement in GPU process sandbox",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in#L116"
+        },
+        {
+          "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.Development.sb.in",
+          "line": 92,
+          "role": "Seatbelt sandbox profile check in GPU (iOS): (require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "description": "Seatbelt sandbox profile check in GPU (iOS): (require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.Development.sb.in#L92"
+        },
+        {
+          "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
+          "line": 88,
+          "role": "Seatbelt sandbox profile check in Networking (iOS): (require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "description": "Seatbelt sandbox profile check in Networking (iOS): (require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in#L88"
+        },
+        {
+          "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in",
+          "line": 68,
+          "role": "Seatbelt sandbox profile check in WebContent (iOS): (require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "description": "Seatbelt sandbox profile check in WebContent (iOS): (require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in#L68"
         }
       ],
       "key_commits": [
         {
           "hash": "007213f8be5abb366cd4b94b753b4787f74bfb4d",
+          "short_hash": "007213f8be5a",
           "date": "2019-10-24",
-          "subject": "[iOS] Stop including 'common.sb'"
+          "subject": "[iOS] Stop including 'common.sb'",
+          "significance": "Stop including 'common.sb' \u2014 Replace the 'import' of common.sb with the equivalent statements",
+          "github_url": "https://github.com/WebKit/WebKit/commit/007213f8be5abb366cd4b94b753b4787f74bfb4d"
         },
         {
           "hash": "e0c788b57e1db6001fe923da9370d0c4d2095e02",
+          "short_hash": "e0c788b57e1d",
           "date": "2025-09-08",
-          "subject": "Reduce size of Development sandboxes"
+          "subject": "Reduce size of Development sandboxes",
+          "significance": "Reduce size of Development sandboxes (3 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0c788b57e1db6001fe923da9370d0c4d2095e02"
         }
       ],
       "plist_declarations": [],
@@ -9258,42 +10583,48 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 92,
           "process": "GPU",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))"
+          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.Development.sb.in#L92"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in",
           "line": 116,
           "process": "GPU",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))"
+          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.GPU.sb.in#L116"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
           "line": 88,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))"
+          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in#L88"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 173,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))"
+          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L173"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in",
           "line": 68,
           "process": "WebContent",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))"
+          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.Development.sb.in#L68"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in",
           "line": 128,
           "process": "WebContent",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))"
+          "snippet": "(require-entitlement \"com.apple.private.kernel.override-cpumon\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.WebContent.sb.in#L128"
         }
       ],
       "related_spis_count": 0,
@@ -9329,19 +10660,40 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 129,
-          "description": "Grants com.apple.private.launchservices.allowedtochangethesekeysinotherapplications with LSActivePageUserVisibleOriginsKey and LSDisplayName to the macOS Network process"
+          "role": "Grants com.apple.private.launchservices.allowedtochangethesekeysinotherapplications with LSActivePageUserVisibleOriginsKey and LSDisplayName to the macOS Network process",
+          "description": "Grants com.apple.private.launchservices.allowedtochangethesekeysinotherapplications with LSActivePageUserVisibleOriginsKey and LSDisplayName to the macOS Network process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L129"
         },
         {
           "file": "Source/WebKit/NetworkProcess/mac/NetworkConnectionToWebProcessMac.mm",
           "line": 45,
-          "description": "NetworkConnectionToWebProcess::updateActivePages calls _LSSetApplicationInformationItem to set LSActivePageUserVisibleOriginsKey and _kLSDisplayNameKey for WebContent processes"
+          "role": "NetworkConnectionToWebProcess::updateActivePages calls _LSSetApplicationInformationItem to set LSActivePageUserVisibleOriginsKey and _kLSDisplayNameKey for WebContent processes",
+          "description": "NetworkConnectionToWebProcess::updateActivePages calls _LSSetApplicationInformationItem to set LSActivePageUserVisibleOriginsKey and _kLSDisplayNameKey for WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/mac/NetworkConnectionToWebProcessMac.mm#L45"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 130,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L130"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 131,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L131"
         }
       ],
       "key_commits": [
         {
           "hash": "6bc94444fd61f240b055a22ca839cc3e74904ff3",
+          "short_hash": "6bc94444fd61",
           "date": "2020-11-28",
-          "subject": "[macOS] Set application information in the Networking process on behalf of the WebContent process"
+          "subject": "[macOS] Set application information in the Networking process on behalf of the WebContent process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/6bc94444fd61f240b055a22ca839cc3e74904ff3"
         }
       ],
       "plist_declarations": [],
@@ -9356,7 +10708,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L129"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -9368,7 +10721,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L130"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -9380,7 +10734,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L131"
         }
       ],
       "code_checks": [],
@@ -9490,19 +10845,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 132,
-          "description": "Adds com.apple.private.launchservices.allowedtolaunchasproxy to mac_process_network_entitlements"
+          "role": "Adds com.apple.private.launchservices.allowedtolaunchasproxy to mac_process_network_entitlements",
+          "description": "Adds com.apple.private.launchservices.allowedtolaunchasproxy to mac_process_network_entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L132"
         },
         {
           "file": "Source/WebKit/NetworkProcess/mac/NetworkConnectionToWebProcessMac.mm",
           "line": 147,
-          "description": "NetworkConnectionToWebProcess::checkInWebProcess invokes _LSApplicationCheckInProxy to check in WebContent processes with Launch Services"
+          "role": "NetworkConnectionToWebProcess::checkInWebProcess invokes _LSApplicationCheckInProxy to check in WebContent processes with Launch Services",
+          "description": "NetworkConnectionToWebProcess::checkInWebProcess invokes _LSApplicationCheckInProxy to check in WebContent processes with Launch Services",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/mac/NetworkConnectionToWebProcessMac.mm#L147"
         }
       ],
       "key_commits": [
         {
-          "hash": "a5286f75826f",
+          "hash": "a5286f75826f7bee315d1c89aee8cf20669d582d",
+          "short_hash": "a5286f75826f",
           "date": "2025-02-27",
-          "subject": "[macOS] Check in WebContent process with Launch Services from the Networking process rdar://145370973 https://bugs.webkit.org/show_bug.cgi?id=288290"
+          "subject": "[macOS] Check in WebContent process with Launch Services from the Networking process rdar://145370973 https://bugs.webkit.org/show_bug.cgi?id=288290",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a5286f75826f7bee315d1c89aee8cf20669d582d"
         }
       ],
       "plist_declarations": [],
@@ -9517,7 +10879,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L132"
         }
       ],
       "code_checks": [],
@@ -9628,24 +10991,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 612,
-          "description": "Grants com.apple.private.launchservices.allowopenwithanyhandler to webpushd on iOS family platforms."
+          "role": "Grants com.apple.private.launchservices.allowopenwithanyhandler to webpushd on iOS family platforms.",
+          "description": "Grants com.apple.private.launchservices.allowopenwithanyhandler to webpushd on iOS family platforms.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L612"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemon.mm",
           "line": 638,
-          "description": "Invokes LSApplicationWorkspace openURL:configuration:completionHandler: to launch target web apps upon receiving push notifications."
+          "role": "Invokes LSApplicationWorkspace openURL:configuration:completionHandler: to launch target web apps upon receiving push notifications.",
+          "description": "Invokes LSApplicationWorkspace openURL:configuration:completionHandler: to launch target web apps upon receiving push notifications.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L638"
         }
       ],
       "key_commits": [
         {
-          "hash": "fa39417e4a4f",
+          "hash": "fa39417e4a4fd9933d148f1f269ac1870b04bec7",
+          "short_hash": "fa39417e4a4f",
           "date": "2022-03-05",
-          "subject": "Change app launch scheme"
+          "subject": "Change app launch scheme",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/fa39417e4a4fd9933d148f1f269ac1870b04bec7"
         },
         {
-          "hash": "e7505e3ca7ed",
+          "hash": "e7505e3ca7ed2d80961e7fe5c94ec9a735023e98",
+          "short_hash": "e7505e3ca7ed",
           "date": "2022-03-04",
-          "subject": "Allow webpushd to launch browser in background"
+          "subject": "Allow webpushd to launch browser in background",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e7505e3ca7ed2d80961e7fe5c94ec9a735023e98"
         }
       ],
       "plist_declarations": [],
@@ -9661,7 +11034,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L612"
         }
       ],
       "code_checks": [],
@@ -9772,19 +11146,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 614,
-          "description": "Adds com.apple.private.launchservices.canspecifysourceapplication to webpushd entitlements on iOS family platforms."
+          "role": "Adds com.apple.private.launchservices.canspecifysourceapplication to webpushd entitlements on iOS family platforms.",
+          "description": "Adds com.apple.private.launchservices.canspecifysourceapplication to webpushd entitlements on iOS family platforms.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L614"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemon.mm",
           "line": 629,
-          "description": "Sets UIApplicationLaunchOptionsSourceApplicationKey to 'com.apple.WebKit.webpushd' in FrontBoard options passed to _LSOpenConfiguration and LSApplicationWorkspace."
+          "role": "Sets UIApplicationLaunchOptionsSourceApplicationKey to 'com.apple.WebKit.webpushd' in FrontBoard options passed to _LSOpenConfiguration and LSApplicationWorkspace.",
+          "description": "Sets UIApplicationLaunchOptionsSourceApplicationKey to 'com.apple.WebKit.webpushd' in FrontBoard options passed to _LSOpenConfiguration and LSApplicationWorkspace.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L629"
         }
       ],
       "key_commits": [
         {
           "hash": "0e9914e91f10c1d21552e0249a0837eda3420f6b",
+          "short_hash": "0e9914e91f10",
           "date": "2022-12-14",
-          "subject": "Compile-time enable Notifications for additional platform (runtime off by default)"
+          "subject": "Compile-time enable Notifications for additional platform (runtime off by default)",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/0e9914e91f10c1d21552e0249a0837eda3420f6b"
         }
       ],
       "plist_declarations": [],
@@ -9800,7 +11181,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L614"
         }
       ],
       "code_checks": [],
@@ -9910,19 +11292,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 276,
-          "description": "Adds com.apple.private.launchservices.entitledtoaccessothersessions to webpushd on macOS."
+          "role": "Adds com.apple.private.launchservices.entitledtoaccessothersessions to webpushd on macOS.",
+          "description": "Adds com.apple.private.launchservices.entitledtoaccessothersessions to webpushd on macOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L276"
         },
         {
           "file": "Source/WebKit/webpushd/PushClientConnection.mm",
           "line": 94,
-          "description": "Queries LaunchServices across audit sessions using audit_token_to_asid to determine the host app bundle identifier from its audit token."
+          "role": "Queries LaunchServices across audit sessions using audit_token_to_asid to determine the host app bundle identifier from its audit token.",
+          "description": "Queries LaunchServices across audit sessions using audit_token_to_asid to determine the host app bundle identifier from its audit token.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L94"
         }
       ],
       "key_commits": [
         {
-          "hash": "0646de88e5b9",
+          "hash": "0646de88e5b9e9e657741c81b75e51e353ff35ae",
+          "short_hash": "0646de88e5b9",
           "date": "2023-04-12",
-          "subject": "Query LaunchServices to determine the host app bundle identifier https://bugs.webkit.org/show_bug.cgi?id=255361 rdar://107931346"
+          "subject": "Query LaunchServices to determine the host app bundle identifier https://bugs.webkit.org/show_bug.cgi?id=255361 rdar://107931346",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/0646de88e5b9e9e657741c81b75e51e353ff35ae"
         }
       ],
       "plist_declarations": [],
@@ -9937,7 +11326,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L276"
         }
       ],
       "code_checks": [],
@@ -9975,24 +11365,33 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 526,
-          "description": "Signs the GPU process on iOS and visionOS with com.apple.private.mediaexperience.processassertionaudittokens.allow"
+          "role": "Signs the GPU process on iOS and visionOS with com.apple.private.mediaexperience.processassertionaudittokens.allow",
+          "description": "Signs the GPU process on iOS and visionOS with com.apple.private.mediaexperience.processassertionaudittokens.allow",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L526"
         },
         {
           "file": "Source/WebCore/platform/audio/ios/AudioSessionIOS.mm",
           "line": 171,
-          "description": "AudioSessionIOS::setPresentingProcesses passes audit tokens to -[AVAudioSession setAuditTokensForProcessAssertion:error:]"
+          "role": "AudioSessionIOS::setPresentingProcesses passes audit tokens to -[AVAudioSession setAuditTokensForProcessAssertion:error:]",
+          "description": "AudioSessionIOS::setPresentingProcesses passes audit tokens to -[AVAudioSession setAuditTokensForProcessAssertion:error:]",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/audio/ios/AudioSessionIOS.mm#L171"
         },
         {
           "file": "Source/WebKit/GPUProcess/media/RemoteAudioSessionProxyManager.cpp",
           "line": 133,
-          "description": "RemoteAudioSessionProxyManager aggregates active presenting process audit tokens and updates AudioSession"
+          "role": "RemoteAudioSessionProxyManager aggregates active presenting process audit tokens and updates AudioSession",
+          "description": "RemoteAudioSessionProxyManager aggregates active presenting process audit tokens and updates AudioSession",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/GPUProcess/media/RemoteAudioSessionProxyManager.cpp#L133"
         }
       ],
       "key_commits": [
         {
-          "hash": "fe4410ca4cb9",
+          "hash": "fe4410ca4cb9146888db2a6c41fd36f904b7e958",
+          "short_hash": "fe4410ca4cb9",
           "date": "2021-11-10",
-          "subject": "[iOS] Adopt -[AVAudioSession setAuditTokensForProcessAssertion:]"
+          "subject": "[iOS] Adopt -[AVAudioSession setAuditTokensForProcessAssertion:]",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/fe4410ca4cb9146888db2a6c41fd36f904b7e958"
         }
       ],
       "plist_declarations": [],
@@ -10008,7 +11407,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L526"
         }
       ],
       "code_checks": [],
@@ -10046,19 +11446,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 527,
-          "description": "Adds com.apple.private.mediaexperience.recordingWebsite.allow to the GPU process entitlements on iOS and visionOS"
+          "role": "Adds com.apple.private.mediaexperience.recordingWebsite.allow to the GPU process entitlements on iOS and visionOS",
+          "description": "Adds com.apple.private.mediaexperience.recordingWebsite.allow to the GPU process entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L527"
         }
       ],
       "key_commits": [
         {
           "hash": "3c0664a53923cd59554cfe9ee10c131ed5c448ef",
+          "short_hash": "3c0664a53923",
           "date": "2023-02-28",
-          "subject": "[iOS] Add \"recording website\" entitlement https://bugs.webkit.org/show_bug.cgi?id=253111 rdar://104938740"
+          "subject": "[iOS] Add \"recording website\" entitlement https://bugs.webkit.org/show_bug.cgi?id=253111 rdar://104938740",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3c0664a53923cd59554cfe9ee10c131ed5c448ef"
         },
         {
           "hash": "9614c09f9688754dd82757480739bb2112608ff9",
+          "short_hash": "9614c09f9688",
           "date": "2023-02-02",
-          "subject": "[Cocoa] Add \"recording website\" entitlement https://bugs.webkit.org/show_bug.cgi?id=251585 rdar://104938740"
+          "subject": "[Cocoa] Add \"recording website\" entitlement https://bugs.webkit.org/show_bug.cgi?id=251585 rdar://104938740",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9614c09f9688754dd82757480739bb2112608ff9"
         }
       ],
       "plist_declarations": [],
@@ -10074,7 +11482,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L527"
         }
       ],
       "code_checks": [],
@@ -10112,14 +11521,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 525,
-          "description": "Adds com.apple.private.mediaexperience.startrecordinginthebackground.allow to GPU process entitlements on iOS family platforms"
+          "role": "Adds com.apple.private.mediaexperience.startrecordinginthebackground.allow to GPU process entitlements on iOS family platforms",
+          "description": "Adds com.apple.private.mediaexperience.startrecordinginthebackground.allow to GPU process entitlements on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L525"
         }
       ],
       "key_commits": [
         {
-          "hash": "2f0e3161c641",
+          "hash": "2f0e3161c641b4bb89d085380881adff2ace4021",
+          "short_hash": "2f0e3161c641",
           "date": "2020-02-25",
-          "subject": "Allow GPU Process to capture microphone in the background https://bugs.webkit.org/show_bug.cgi?id=208193"
+          "subject": "Allow GPU Process to capture microphone in the background https://bugs.webkit.org/show_bug.cgi?id=208193",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2f0e3161c641b4bb89d085380881adff2ace4021"
         }
       ],
       "plist_declarations": [],
@@ -10135,7 +11549,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L525"
         }
       ],
       "code_checks": [],
@@ -10175,19 +11590,40 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 530,
-          "description": "Signs com.apple.private.memory.ownership_transfer into the GPU process entitlements on iOS and visionOS (also on macOS at line 79 and macCatalyst at line 371)"
+          "role": "Signs com.apple.private.memory.ownership_transfer into the GPU process entitlements on iOS and visionOS (also on macOS at line 79 and macCatalyst at line 371)",
+          "description": "Signs com.apple.private.memory.ownership_transfer into the GPU process entitlements on iOS and visionOS (also on macOS at line 79 and macCatalyst at line 371)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L530"
         },
         {
           "file": "Source/WebKit/GPUProcess/GPUConnectionToWebProcess.cpp",
           "line": 1,
-          "description": "GPU process connection endpoint that manages WebProcess connections, receives task identity tokens, and handles graphics resource allocation attribution"
+          "role": "GPU process connection endpoint that manages WebProcess connections, receives task identity tokens, and handles graphics resource allocation attribution",
+          "description": "GPU process connection endpoint that manages WebProcess connections, receives task identity tokens, and handles graphics resource allocation attribution",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/GPUProcess/GPUConnectionToWebProcess.cpp#L1"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 79,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L79"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 371,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L371"
         }
       ],
       "key_commits": [
         {
           "hash": "8c4494f5a64198ac5ae1939d145fafcf64c43cce",
+          "short_hash": "8c4494f5a641",
           "date": "2021-02-23",
-          "subject": "Prepare for memory ownership transfer in the GPUProcess https://bugs.webkit.org/show_bug.cgi?id=222122"
+          "subject": "Prepare for memory ownership transfer in the GPUProcess https://bugs.webkit.org/show_bug.cgi?id=222122",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8c4494f5a64198ac5ae1939d145fafcf64c43cce"
         }
       ],
       "plist_declarations": [],
@@ -10202,7 +11638,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L79"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10214,7 +11651,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L371"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10227,7 +11665,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L530"
         }
       ],
       "code_checks": [],
@@ -10271,34 +11710,48 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 439,
-          "description": "Adds com.apple.private.memorystatus to WebContent shared process entitlements on iOS family platforms"
+          "role": "Adds com.apple.private.memorystatus to WebContent shared process entitlements on iOS family platforms",
+          "description": "Adds com.apple.private.memorystatus to WebContent shared process entitlements on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L439"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 529,
-          "description": "Adds com.apple.private.memorystatus to GPU process entitlements on iOS family platforms"
+          "role": "Adds com.apple.private.memorystatus to GPU process entitlements on iOS family platforms",
+          "description": "Adds com.apple.private.memorystatus to GPU process entitlements on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L529"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 586,
-          "description": "Adds com.apple.private.memorystatus to Model process entitlements on iOS and visionOS"
+          "role": "Adds com.apple.private.memorystatus to Model process entitlements on iOS and visionOS",
+          "description": "Adds com.apple.private.memorystatus to Model process entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L586"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 639,
-          "description": "Adds com.apple.private.memorystatus to Network process entitlements on iOS family platforms"
+          "role": "Adds com.apple.private.memorystatus to Network process entitlements on iOS family platforms",
+          "description": "Adds com.apple.private.memorystatus to Network process entitlements on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L639"
         }
       ],
       "key_commits": [
         {
-          "hash": "13771f185bf4",
+          "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
-          "hash": "11061972c748",
+          "hash": "11061972c7486a8ddd132affabbc3396aa2ca961",
+          "short_hash": "11061972c748",
           "date": "2024-02-28",
-          "subject": "Model Process CA layer hosting rdar://123273873"
+          "subject": "Model Process CA layer hosting rdar://123273873",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/11061972c7486a8ddd132affabbc3396aa2ca961"
         }
       ],
       "plist_declarations": [],
@@ -10314,7 +11767,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L439"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10327,7 +11781,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L529"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10340,7 +11795,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L586"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10353,7 +11809,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L639"
         }
       ],
       "code_checks": [],
@@ -10393,24 +11850,33 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 40,
-          "description": "Adds com.apple.private.messages.enhanced-link-security to TestWebKitAPI when restricted entitlements are enabled"
+          "role": "Adds com.apple.private.messages.enhanced-link-security to TestWebKitAPI when restricted entitlements are enabled",
+          "description": "Adds com.apple.private.messages.enhanced-link-security to TestWebKitAPI when restricted entitlements are enabled",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L40"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 324,
-          "description": "Allows the iOS network process sandbox to perform mach-lookup to com.apple.imagent.EnhancedLinkSecurityStore when HAVE(ENHANCED_SECURITY_LINKS) is enabled"
+          "role": "Allows the iOS network process sandbox to perform mach-lookup to com.apple.imagent.EnhancedLinkSecurityStore when HAVE(ENHANCED_SECURITY_LINKS) is enabled",
+          "description": "Allows the iOS network process sandbox to perform mach-lookup to com.apple.imagent.EnhancedLinkSecurityStore when HAVE(ENHANCED_SECURITY_LINKS) is enabled",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L324"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/EnhancedSecurityLinkUtilities.mm",
           "line": 48,
-          "description": "Uses soft-linked LinkSecurity.framework and LSLinkSecurityManager to check whether navigation URLs require enhanced security"
+          "role": "Uses soft-linked LinkSecurity.framework and LSLinkSecurityManager to check whether navigation URLs require enhanced security",
+          "description": "Uses soft-linked LinkSecurity.framework and LSLinkSecurityManager to check whether navigation URLs require enhanced security",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/EnhancedSecurityLinkUtilities.mm#L48"
         }
       ],
       "key_commits": [
         {
           "hash": "aae6a13f406fe29df1873f31f6f3e801dbf32e26",
+          "short_hash": "aae6a13f406f",
           "date": "2026-02-12",
-          "subject": "Support enabling Enhanced Security for specific URLs"
+          "subject": "Support enabling Enhanced Security for specific URLs",
+          "significance": "Support enabling Enhanced Security for specific URLs (Networking sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/aae6a13f406fe29df1873f31f6f3e801dbf32e26"
         }
       ],
       "plist_declarations": [],
@@ -10428,7 +11894,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L40"
         }
       ],
       "code_checks": [],
@@ -10466,14 +11933,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 13,
-          "description": "WebKitTestRunner entitlement enabling interaction with neagent for test-time DNS resolution overrides"
+          "role": "WebKitTestRunner entitlement enabling interaction with neagent for test-time DNS resolution overrides",
+          "description": "WebKitTestRunner entitlement enabling interaction with neagent for test-time DNS resolution overrides",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L13"
         }
       ],
       "key_commits": [
         {
-          "hash": "ae5d4ebf2175",
+          "hash": "ae5d4ebf2175309275a974221a1b85ddf55facac",
+          "short_hash": "ae5d4ebf2175",
           "date": "2025-09-16",
-          "subject": "[Cocoa] Add support for overriding DNS resolution for WPT"
+          "subject": "[Cocoa] Add support for overriding DNS resolution for WPT",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ae5d4ebf2175309275a974221a1b85ddf55facac"
         }
       ],
       "plist_declarations": [
@@ -10481,7 +11953,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 13,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L13"
         }
       ],
       "script_declarations": [],
@@ -10520,14 +11993,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 11,
-          "description": "Enables privileged nehelper access for internal WebKitTestRunner builds to support DNS resolution overrides during test execution"
+          "role": "Enables privileged nehelper access for internal WebKitTestRunner builds to support DNS resolution overrides during test execution",
+          "description": "Enables privileged nehelper access for internal WebKitTestRunner builds to support DNS resolution overrides during test execution",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L11"
         }
       ],
       "key_commits": [
         {
-          "hash": "ae5d4ebf2175",
+          "hash": "ae5d4ebf2175309275a974221a1b85ddf55facac",
+          "short_hash": "ae5d4ebf2175",
           "date": "2025-09-16",
-          "subject": "[Cocoa] Add support for overriding DNS resolution for WPT"
+          "subject": "[Cocoa] Add support for overriding DNS resolution for WPT",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ae5d4ebf2175309275a974221a1b85ddf55facac"
         }
       ],
       "plist_declarations": [
@@ -10535,7 +12013,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 11,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L11"
         }
       ],
       "script_declarations": [],
@@ -10582,34 +12061,91 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 640,
-          "description": "Injects com.apple.private.network.socket-delegate into iOS/visionOS NetworkProcess entitlements"
+          "role": "Injects com.apple.private.network.socket-delegate into iOS/visionOS NetworkProcess entitlements",
+          "description": "Injects com.apple.private.network.socket-delegate into iOS/visionOS NetworkProcess entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L640"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 122,
-          "description": "Allows system-privilege PRIV_NET_PRIVILEGED_SOCKET_DELEGATE conditional on holding com.apple.private.network.socket-delegate"
+          "role": "Allows system-privilege PRIV_NET_PRIVILEGED_SOCKET_DELEGATE conditional on holding com.apple.private.network.socket-delegate",
+          "description": "Allows system-privilege PRIV_NET_PRIVILEGED_SOCKET_DELEGATE conditional on holding com.apple.private.network.socket-delegate",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L122"
         },
         {
           "file": "Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in",
           "line": 30,
-          "description": "Allows system-privilege PRIV_NET_PRIVILEGED_SOCKET_DELEGATE conditional on holding com.apple.private.network.socket-delegate in macOS NetworkProcess"
+          "role": "Allows system-privilege PRIV_NET_PRIVILEGED_SOCKET_DELEGATE conditional on holding com.apple.private.network.socket-delegate in macOS NetworkProcess",
+          "description": "Allows system-privilege PRIV_NET_PRIVILEGED_SOCKET_DELEGATE conditional on holding com.apple.private.network.socket-delegate in macOS NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in#L30"
+        },
+        {
+          "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
+          "line": 68,
+          "role": "Seatbelt sandbox profile check in Networking (iOS): (require-entitlement \"com.apple.private.network.socket-delegate\")))",
+          "description": "Seatbelt sandbox profile check in Networking (iOS): (require-entitlement \"com.apple.private.network.socket-delegate\")))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in#L68"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 107,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L107"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 396,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L396"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 440,
+          "role": "Signing script grant in ios_family_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in ios_family_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L440"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 531,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L531"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 602,
+          "role": "Signing script grant in ios_family_process_adattributiond_entitlements() for adattributiond",
+          "description": "Signing script grant in ios_family_process_adattributiond_entitlements() for adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L602"
         }
       ],
       "key_commits": [
         {
-          "hash": "b9f2cf44ea80",
+          "hash": "b9f2cf44ea80bb0eecde2fa031a10c3912bf3025",
+          "short_hash": "b9f2cf44ea80",
           "date": "2021-09-28",
-          "subject": "Explicitly deny 'system-privilege' in the sandbox profile as a hardening measure"
+          "subject": "Explicitly deny 'system-privilege' in the sandbox profile as a hardening measure",
+          "significance": "Explicitly deny 'system-privilege' in the sandbox profile as a hardening measure (4 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b9f2cf44ea80bb0eecde2fa031a10c3912bf3025"
         },
         {
-          "hash": "13771f185bf4",
+          "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
-          "hash": "f8277ab0a96d",
+          "hash": "f8277ab0a96dc1a24aec6c65284506377a3a64a8",
+          "short_hash": "f8277ab0a96d",
           "date": "2026-06-05",
-          "subject": "[PCM] Support proxying PCM requests on iOS"
+          "subject": "[PCM] Support proxying PCM requests on iOS",
+          "significance": "Support proxying PCM requests on iOS \u2014 This change adds a new \"secondary\" identifier that we use when creating a URLSession in adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f8277ab0a96dc1a24aec6c65284506377a3a64a8"
         }
       ],
       "plist_declarations": [],
@@ -10624,7 +12160,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L107"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10636,7 +12173,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L396"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10649,7 +12187,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L440"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10662,7 +12201,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L531"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10675,7 +12215,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L602"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -10688,7 +12229,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L640"
         }
       ],
       "code_checks": [],
@@ -10698,21 +12240,24 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 30,
           "process": "Networking",
           "platform": "macOS",
-          "snippet": "(require-entitlement \"com.apple.private.network.socket-delegate\")))"
+          "snippet": "(require-entitlement \"com.apple.private.network.socket-delegate\")))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/mac/com.apple.WebKit.NetworkProcess.sb.in#L30"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in",
           "line": 68,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.network.socket-delegate\")))"
+          "snippet": "(require-entitlement \"com.apple.private.network.socket-delegate\")))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.Development.sb.in#L68"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 122,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.private.network.socket-delegate\")))"
+          "snippet": "(require-entitlement \"com.apple.private.network.socket-delegate\")))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L122"
         }
       ],
       "related_spis_count": 242,
@@ -10819,19 +12364,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 92,
-          "description": "Seatbelt sandbox filter gating file-read access to /private/var/preferences/com.apple.networkextension.plist behind com.apple.private.networkextension.configuration"
+          "role": "Seatbelt sandbox filter gating file-read access to /private/var/preferences/com.apple.networkextension.plist behind com.apple.private.networkextension.configuration",
+          "description": "Seatbelt sandbox filter gating file-read access to /private/var/preferences/com.apple.networkextension.plist behind com.apple.private.networkextension.configuration",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L92"
         }
       ],
       "key_commits": [
         {
           "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+          "short_hash": "d4fb8ae72882",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d4fb8ae7288211c8a887ae8785f54511fb1a7ec9"
         },
         {
           "hash": "f3953af233f97e058ead9b189233ac7ad84662cf",
+          "short_hash": "f3953af233f9",
           "date": "2025-09-02",
-          "subject": "Create new files for sandbox defines"
+          "subject": "Create new files for sandbox defines",
+          "significance": "Create new files for sandbox defines \u2014 This will make the main sandboxes smaller and improve readability",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f3953af233f97e058ead9b189233ac7ad84662cf"
         }
       ],
       "plist_declarations": [],
@@ -10843,7 +12396,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 92,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(with-filter (require-entitlement \"com.apple.private.networkextension.configuration\")"
+          "snippet": "(with-filter (require-entitlement \"com.apple.private.networkextension.configuration\")",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L92"
         }
       ],
       "related_spis_count": 12,
@@ -10952,14 +12506,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 604,
-          "description": "Adds com.apple.private.networkserviceproxy to adattributiond entitlements on iOS and visionOS."
+          "role": "Adds com.apple.private.networkserviceproxy to adattributiond entitlements on iOS and visionOS.",
+          "description": "Adds com.apple.private.networkserviceproxy to adattributiond entitlements on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L604"
         }
       ],
       "key_commits": [
         {
-          "hash": "f8277ab0a96d",
+          "hash": "f8277ab0a96dc1a24aec6c65284506377a3a64a8",
+          "short_hash": "f8277ab0a96d",
           "date": "2026-06-05",
-          "subject": "[PCM] Support proxying PCM requests on iOS https://bugs.webkit.org/show_bug.cgi?id=308999 rdar://168773036"
+          "subject": "[PCM] Support proxying PCM requests on iOS https://bugs.webkit.org/show_bug.cgi?id=308999 rdar://168773036",
+          "significance": "Support proxying PCM requests on iOS \u2014 This change adds a new \"secondary\" identifier that we use when creating a URLSession in adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f8277ab0a96dc1a24aec6c65284506377a3a64a8"
         }
       ],
       "plist_declarations": [],
@@ -10975,7 +12534,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L604"
         }
       ],
       "code_checks": [],
@@ -11025,34 +12585,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 463,
-          "description": "Adds com.apple.private.pac.exception to iOS and visionOS WebContent processes when WK_USE_FATAL_EXCEPTIONS is enabled"
+          "role": "Adds com.apple.private.pac.exception to iOS and visionOS WebContent processes when WK_USE_FATAL_EXCEPTIONS is enabled",
+          "description": "Adds com.apple.private.pac.exception to iOS and visionOS WebContent processes when WK_USE_FATAL_EXCEPTIONS is enabled",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L463"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 88,
-          "description": "Adds com.apple.private.pac.exception to macOS GPU process when WK_USE_FATAL_EXCEPTIONS is enabled"
+          "role": "Adds com.apple.private.pac.exception to macOS GPU process when WK_USE_FATAL_EXCEPTIONS is enabled",
+          "description": "Adds com.apple.private.pac.exception to macOS GPU process when WK_USE_FATAL_EXCEPTIONS is enabled",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L88"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 26,
-          "description": "Adds com.apple.private.pac.exception to JavaScriptCore CLI tools when WK_USE_FATAL_EXCEPTIONS is enabled"
+          "role": "Adds com.apple.private.pac.exception to JavaScriptCore CLI tools when WK_USE_FATAL_EXCEPTIONS is enabled",
+          "description": "Adds com.apple.private.pac.exception to JavaScriptCore CLI tools when WK_USE_FATAL_EXCEPTIONS is enabled",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L26"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 154,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L154"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 253,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L253"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 322,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L322"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 381,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L381"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 410,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L410"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 557,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L557"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 594,
+          "role": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "description": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L594"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 662,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L662"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 53,
+          "role": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L53"
         }
       ],
       "key_commits": [
         {
-          "hash": "50141c659194",
+          "hash": "50141c659194c39a3a77f558da7b0768e82f3f9a",
+          "short_hash": "50141c659194",
           "date": "2026-03-10",
-          "subject": "[JSC] Add OVERRIDE_WK_USE_FATAL_EXCEPTIONS"
+          "subject": "[JSC] Add OVERRIDE_WK_USE_FATAL_EXCEPTIONS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/50141c659194c39a3a77f558da7b0768e82f3f9a"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
-          "hash": "96b672949791",
+          "hash": "96b67294979146c46c763f8c41a15883f5384f79",
+          "short_hash": "96b672949791",
           "date": "2026-08-28",
-          "subject": "[Re-landing] Introducing Mya, a MemorY Analyzer, and libJavaScriptCoreTools."
+          "subject": "[Re-landing] Introducing Mya, a MemorY Analyzer, and libJavaScriptCoreTools.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/96b67294979146c46c763f8c41a15883f5384f79"
         }
       ],
       "plist_declarations": [],
@@ -11067,7 +12705,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L88"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11079,7 +12718,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L154"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11091,7 +12731,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L253"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11103,7 +12744,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L322"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11115,7 +12757,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L381"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11127,7 +12770,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L410"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11140,7 +12784,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L463"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11153,7 +12798,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L557"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11166,7 +12812,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L594"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11179,7 +12826,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L662"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11191,7 +12839,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L26"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11203,7 +12852,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L53"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11215,7 +12865,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L80"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11227,7 +12878,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L106"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11239,7 +12891,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L137"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11251,7 +12904,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "mya (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L161"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11264,7 +12918,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L180"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -11277,7 +12932,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L211"
         }
       ],
       "code_checks": [],
@@ -11330,34 +12986,70 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 454,
-          "description": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.WebContent` for standalone WebContent processes on iOS/visionOS."
+          "role": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.WebContent` for standalone WebContent processes on iOS/visionOS.",
+          "description": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.WebContent` for standalone WebContent processes on iOS/visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L454"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 552,
-          "description": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.GPU` for standalone GPU processes on iOS/visionOS."
+          "role": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.GPU` for standalone GPU processes on iOS/visionOS.",
+          "description": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.GPU` for standalone GPU processes on iOS/visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L552"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 658,
-          "description": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.Networking` for standalone Networking processes on iOS/visionOS."
+          "role": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.Networking` for standalone Networking processes on iOS/visionOS.",
+          "description": "Sets `com.apple.private.sandbox.profile` to `com.apple.WebKit.Networking` for standalone Networking processes on iOS/visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L658"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 588,
+          "role": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "description": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L588"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 601,
+          "role": "Signing script grant in ios_family_process_adattributiond_entitlements() for adattributiond",
+          "description": "Signing script grant in ios_family_process_adattributiond_entitlements() for adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L601"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 610,
+          "role": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L610"
         }
       ],
       "key_commits": [
         {
-          "hash": "11061972c748",
+          "hash": "11061972c7486a8ddd132affabbc3396aa2ca961",
+          "short_hash": "11061972c748",
           "date": "2024-02-28",
-          "subject": "Model Process CA layer hosting rdar://123273873 https://bugs.webkit.org/show_bug.cgi?id=269762"
+          "subject": "Model Process CA layer hosting rdar://123273873 https://bugs.webkit.org/show_bug.cgi?id=269762",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/11061972c7486a8ddd132affabbc3396aa2ca961"
         },
         {
-          "hash": "5ab76c736b67",
+          "hash": "5ab76c736b677f30be2693170b9ce4cee662b1dc",
+          "short_hash": "5ab76c736b67",
           "date": "2022-12-16",
-          "subject": "Add webpushd iOS sandbox https://bugs.webkit.org/show_bug.cgi?id=249436 rdar://103410333"
+          "subject": "Add webpushd iOS sandbox https://bugs.webkit.org/show_bug.cgi?id=249436 rdar://103410333",
+          "significance": "Add webpushd iOS sandbox \u2014 This adds a sandbox profile for webpushd on iOS",
+          "github_url": "https://github.com/WebKit/WebKit/commit/5ab76c736b677f30be2693170b9ce4cee662b1dc"
         },
         {
-          "hash": "bf822a014db0",
+          "hash": "bf822a014db0963ac58be565bcfc8f1d509af653",
+          "short_hash": "bf822a014db0",
           "date": "2026-04-06",
-          "subject": "Fix indentation in process-entitlements.sh https://bugs.webkit.org/show_bug.cgi?id=311563 rdar://174160086"
+          "subject": "Fix indentation in process-entitlements.sh https://bugs.webkit.org/show_bug.cgi?id=311563 rdar://174160086",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bf822a014db0963ac58be565bcfc8f1d509af653"
         }
       ],
       "plist_declarations": [],
@@ -11373,7 +13065,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L454"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11386,7 +13079,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L552"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11399,7 +13093,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L588"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11412,7 +13107,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L601"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11425,7 +13121,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L610"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11438,7 +13135,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L658"
         }
       ],
       "code_checks": [],
@@ -11475,24 +13173,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 70,
-          "description": "Adds com.apple.private.screencapturekit.sharingsession to the macOS GPU process entitlements"
+          "role": "Adds com.apple.private.screencapturekit.sharingsession to the macOS GPU process entitlements",
+          "description": "Adds com.apple.private.screencapturekit.sharingsession to the macOS GPU process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L70"
         },
         {
           "file": "Source/WebCore/platform/mediastream/cocoa/ScreenCaptureKitSharingSessionManager.mm",
           "line": 35,
-          "description": "Implements ScreenCaptureKit sharing session and picker observer management for screen capture"
+          "role": "Implements ScreenCaptureKit sharing session and picker observer management for screen capture",
+          "description": "Implements ScreenCaptureKit sharing session and picker observer management for screen capture",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/mediastream/cocoa/ScreenCaptureKitSharingSessionManager.mm#L35"
         }
       ],
       "key_commits": [
         {
-          "hash": "c031315809bf",
+          "hash": "c031315809bfa9f92667166f708b13bbe8e047e7",
+          "short_hash": "c031315809bf",
           "date": "2022-02-18",
-          "subject": "[macOS] Allow screen and window capture to be done in the GPU Process"
+          "subject": "[macOS] Allow screen and window capture to be done in the GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c031315809bfa9f92667166f708b13bbe8e047e7"
         },
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -11507,7 +13215,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L70"
         }
       ],
       "code_checks": [],
@@ -11561,34 +13270,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 170,
-          "description": "webcontent_sandbox_entitlements assigns com.apple.private.security.enable-state-flags with flags such as BlockIOKitInWebContentSandbox, ParentProcessCanEnableQuickLookStateFlag, and BlockUserInstalledFonts"
+          "role": "webcontent_sandbox_entitlements assigns com.apple.private.security.enable-state-flags with flags such as BlockIOKitInWebContentSandbox, ParentProcessCanEnableQuickLookStateFlag, and BlockUserInstalledFonts",
+          "description": "webcontent_sandbox_entitlements assigns com.apple.private.security.enable-state-flags with flags such as BlockIOKitInWebContentSandbox, ParentProcessCanEnableQuickLookStateFlag, and BlockUserInstalledFonts",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L170"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 675,
-          "description": "ios_family_process_network_entitlements assigns com.apple.private.security.enable-state-flags with BlockNetworkAccess for the iOS Networking process"
+          "role": "ios_family_process_network_entitlements assigns com.apple.private.security.enable-state-flags with BlockNetworkAccess for the iOS Networking process",
+          "description": "ios_family_process_network_entitlements assigns com.apple.private.security.enable-state-flags with BlockNetworkAccess for the iOS Networking process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L675"
         },
         {
           "file": "Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm",
           "line": 636,
-          "description": "WebProcess verifies that the parent UIProcess holds EnableQuickLookSandboxResources before calling sandbox_enable_state_flag for ParentProcessCanEnableQuickLookStateFlag"
+          "role": "WebProcess verifies that the parent UIProcess holds EnableQuickLookSandboxResources before calling sandbox_enable_state_flag for ParentProcessCanEnableQuickLookStateFlag",
+          "description": "WebProcess verifies that the parent UIProcess holds EnableQuickLookSandboxResources before calling sandbox_enable_state_flag for ParentProcessCanEnableQuickLookStateFlag",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm#L636"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 149,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L149"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 150,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L150"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 171,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L171"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 172,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L172"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 173,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L173"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 174,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L174"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 175,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L175"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 176,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L176"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 177,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L177"
         }
       ],
       "key_commits": [
         {
-          "hash": "cb7daacd4330",
+          "hash": "cb7daacd43302439e72f19b9577d2b10c629d242",
+          "short_hash": "cb7daacd4330",
           "date": "2026-08-22",
-          "subject": "[macOS] The Networking process sandbox should inherit network access from the UI process"
+          "subject": "[macOS] The Networking process sandbox should inherit network access from the UI process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/cb7daacd43302439e72f19b9577d2b10c629d242"
         },
         {
-          "hash": "e0e27e741c51",
+          "hash": "e0e27e741c5112c4e2f80eaa19dc0c3d49bf60ed",
+          "short_hash": "e0e27e741c51",
           "date": "2025-12-10",
-          "subject": "The Networking process sandbox should inherit network access from the UI process"
+          "subject": "The Networking process sandbox should inherit network access from the UI process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0e27e741c5112c4e2f80eaa19dc0c3d49bf60ed"
         },
         {
-          "hash": "4b92e372b511",
+          "hash": "4b92e372b511b791526a0ce6debc7bc5c96673f2",
+          "short_hash": "4b92e372b511",
           "date": "2026-04-15",
-          "subject": "Remove BlockOpenDirectoryInWebContentSandbox setting"
+          "subject": "Remove BlockOpenDirectoryInWebContentSandbox setting",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4b92e372b511b791526a0ce6debc7bc5c96673f2"
         }
       ],
       "plist_declarations": [
@@ -11598,7 +13385,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "value": [
             "EnableQuickLookSandboxResources"
           ],
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L15"
         }
       ],
       "script_declarations": [
@@ -11612,7 +13400,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L149"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11624,7 +13413,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L150"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11639,7 +13429,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L170"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11654,7 +13445,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L171"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11669,7 +13461,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L172"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11684,7 +13477,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L173"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11699,7 +13493,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L174"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11714,7 +13509,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L175"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11729,7 +13525,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L176"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11744,7 +13541,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L177"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11757,7 +13555,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L675"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11770,7 +13569,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L676"
         }
       ],
       "code_checks": [
@@ -11782,7 +13582,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "visionOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/cocoa/WebProcessCocoa.mm#L636"
         }
       ],
       "sandbox_checks": [],
@@ -11824,44 +13625,63 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 64,
-          "description": "Adds com.apple.private.security.message-filter to the macOS GPU process."
+          "role": "Adds com.apple.private.security.message-filter to the macOS GPU process.",
+          "description": "Adds com.apple.private.security.message-filter to the macOS GPU process.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L64"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 109,
-          "description": "Adds com.apple.private.security.message-filter to the macOS Network process."
+          "role": "Adds com.apple.private.security.message-filter to the macOS Network process.",
+          "description": "Adds com.apple.private.security.message-filter to the macOS Network process.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L109"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 247,
-          "description": "Adds com.apple.private.security.message-filter to the macOS WebContent shared processes."
+          "role": "Adds com.apple.private.security.message-filter to the macOS WebContent shared processes.",
+          "description": "Adds com.apple.private.security.message-filter to the macOS WebContent shared processes.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L247"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 316,
-          "description": "Adds com.apple.private.security.message-filter to the macCatalyst WebContent shared processes."
+          "role": "Adds com.apple.private.security.message-filter to the macCatalyst WebContent shared processes.",
+          "description": "Adds com.apple.private.security.message-filter to the macCatalyst WebContent shared processes.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L316"
         },
         {
           "file": "Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm",
           "line": 702,
-          "description": "Queries processHasEntitlement to set the ENABLE_SANDBOX_MESSAGE_FILTER parameter when initializing the auxiliary process sandbox."
+          "role": "Queries processHasEntitlement to set the ENABLE_SANDBOX_MESSAGE_FILTER parameter when initializing the auxiliary process sandbox.",
+          "description": "Queries processHasEntitlement to set the ENABLE_SANDBOX_MESSAGE_FILTER parameter when initializing the auxiliary process sandbox.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm#L702"
         }
       ],
       "key_commits": [
         {
-          "hash": "4df4e176dbe5",
+          "hash": "4df4e176dbe5c390702eee9f50cb70f4a18119b8",
+          "short_hash": "4df4e176dbe5",
           "date": "2023-11-03",
-          "subject": "Remove message filter entitlement"
+          "subject": "Remove message filter entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4df4e176dbe5c390702eee9f50cb70f4a18119b8"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
-          "hash": "184bfa73c8e9",
+          "hash": "184bfa73c8e9140ad18f6c840377feb9912f67ec",
+          "short_hash": "184bfa73c8e9",
           "date": "2026-04-07",
-          "subject": "Consolidate shared entitlements for the macCatalyst WebContent process variants"
+          "subject": "Consolidate shared entitlements for the macCatalyst WebContent process variants",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/184bfa73c8e9140ad18f6c840377feb9912f67ec"
         }
       ],
       "plist_declarations": [],
@@ -11876,7 +13696,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L64"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11888,7 +13709,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L109"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11900,7 +13722,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L247"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -11912,7 +13735,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L316"
         }
       ],
       "code_checks": [
@@ -11923,7 +13747,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/mac/AuxiliaryProcessMac.mm#L702"
         }
       ],
       "sandbox_checks": [],
@@ -11972,34 +13797,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 147,
-          "description": "Grants mutable BlockNetworkAccess state flag to macOS NetworkProcess"
+          "role": "Grants mutable BlockNetworkAccess state flag to macOS NetworkProcess",
+          "description": "Grants mutable BlockNetworkAccess state flag to macOS NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L147"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 161,
-          "description": "Grants mutable sandbox state flags (BlockIOKitInWebContentSandbox, UnifiedPDFEnabled, etc.) to WebContent processes across platforms"
+          "role": "Grants mutable sandbox state flags (BlockIOKitInWebContentSandbox, UnifiedPDFEnabled, etc.) to WebContent processes across platforms",
+          "description": "Grants mutable sandbox state flags (BlockIOKitInWebContentSandbox, UnifiedPDFEnabled, etc.) to WebContent processes across platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L161"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 673,
-          "description": "Grants mutable BlockNetworkAccess state flag to iOS/visionOS NetworkProcess"
+          "role": "Grants mutable BlockNetworkAccess state flag to iOS/visionOS NetworkProcess",
+          "description": "Grants mutable BlockNetworkAccess state flag to iOS/visionOS NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L673"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 148,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L148"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 162,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L162"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 163,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L163"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 164,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L164"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 165,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L165"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 166,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L166"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 167,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L167"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 168,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L168"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 169,
+          "role": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in webcontent_sandbox_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L169"
         }
       ],
       "key_commits": [
         {
-          "hash": "cb7daacd4330",
+          "hash": "cb7daacd43302439e72f19b9577d2b10c629d242",
+          "short_hash": "cb7daacd4330",
           "date": "2026-08-22",
-          "subject": "[macOS] The Networking process sandbox should inherit network access from the UI process"
+          "subject": "[macOS] The Networking process sandbox should inherit network access from the UI process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/cb7daacd43302439e72f19b9577d2b10c629d242"
         },
         {
-          "hash": "e0e27e741c51",
+          "hash": "e0e27e741c5112c4e2f80eaa19dc0c3d49bf60ed",
+          "short_hash": "e0e27e741c51",
           "date": "2025-12-10",
-          "subject": "The Networking process sandbox should inherit network access from the UI process"
+          "subject": "The Networking process sandbox should inherit network access from the UI process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0e27e741c5112c4e2f80eaa19dc0c3d49bf60ed"
         },
         {
-          "hash": "4b92e372b511",
+          "hash": "4b92e372b511b791526a0ce6debc7bc5c96673f2",
+          "short_hash": "4b92e372b511",
           "date": "2026-04-15",
-          "subject": "Remove BlockOpenDirectoryInWebContentSandbox setting"
+          "subject": "Remove BlockOpenDirectoryInWebContentSandbox setting",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4b92e372b511b791526a0ce6debc7bc5c96673f2"
         }
       ],
       "plist_declarations": [],
@@ -12014,7 +13917,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L147"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12026,7 +13930,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L148"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12041,7 +13946,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L161"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12056,7 +13962,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L162"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12071,7 +13978,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L163"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12086,7 +13994,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L164"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12101,7 +14010,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L165"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12116,7 +14026,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L166"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12131,7 +14042,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L167"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12146,7 +14058,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L168"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12161,7 +14074,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L169"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12174,7 +14088,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L673"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12187,7 +14102,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L674"
         }
       ],
       "code_checks": [],
@@ -12224,14 +14140,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 282,
-          "description": "Adds com.apple.private.security.restricted-application-groups with group.com.apple.webkit.webpushd to webpushd on macOS"
+          "role": "Adds com.apple.private.security.restricted-application-groups with group.com.apple.webkit.webpushd to webpushd on macOS",
+          "description": "Adds com.apple.private.security.restricted-application-groups with group.com.apple.webkit.webpushd to webpushd on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L282"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 283,
+          "role": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L283"
         }
       ],
       "key_commits": [
         {
-          "hash": "8237aaf69a3f",
+          "hash": "8237aaf69a3ffed7d5969214385fa99cfeb71ded",
+          "short_hash": "8237aaf69a3f",
           "date": "2025-03-18",
-          "subject": "Move webpushd state to container https://bugs.webkit.org/show_bug.cgi?id=289557 rdar://110714823"
+          "subject": "Move webpushd state to container https://bugs.webkit.org/show_bug.cgi?id=289557 rdar://110714823",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8237aaf69a3ffed7d5969214385fa99cfeb71ded"
         }
       ],
       "plist_declarations": [],
@@ -12246,7 +14174,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L282"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12258,7 +14187,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L283"
         }
       ],
       "code_checks": [],
@@ -12274,7 +14204,7 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
       "functional_domain": "Storage, Assets & System Databases",
       "short_purpose": "Grants read-only access to the protected OS Eligibility system database and storage path (/private/var/db/os_eligibility/).",
       "webkit_usage_summary": "Assigned to the webpushd daemon on iOS and visionOS within `ios_family_process_webpushd_entitlements()` in `process-entitlements.sh`. It is paired with a sandbox file exception for `/private/var/db/os_eligibility/eligibility.plist`, enabling webpushd to inspect OS feature eligibility state directly from the local database.",
-      "browserenginekit_implications": "This is an Apple-private entitlement unavailable to third-party developers or BrowserEngineKit processes. Third-party browser engines cannot access os_eligibility database storage directly; instead, regional eligibility (such as EU DMA browser engine availability) is evaluated and enforced externally by the OS and system daemons.",
+      "browserenginekit_implications": "This is an Apple-private entitlement unavailable to third-party developers or BrowserEngineKit processes. Third-party browser engines cannot access os_eligibility database storage directly; instead, regional feature eligibility (such as alternative browser engine availability) is evaluated and enforced externally by the OS and system daemons.",
       "canonical_processes": [
         "webpushd"
       ],
@@ -12296,14 +14226,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 619,
-          "description": "Adds com.apple.private.security.storage.os_eligibility.readonly to webpushd on iOS family platforms"
+          "role": "Adds com.apple.private.security.storage.os_eligibility.readonly to webpushd on iOS family platforms",
+          "description": "Adds com.apple.private.security.storage.os_eligibility.readonly to webpushd on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L619"
         }
       ],
       "key_commits": [
         {
-          "hash": "60973b36d99f",
+          "hash": "60973b36d99f78bb173e73b0c2b0dfbd9bd51463",
+          "short_hash": "60973b36d99f",
           "date": "2024-09-11",
-          "subject": "Allow webpushd to read eligbility state https://bugs.webkit.org/show_bug.cgi?id=279545 rdar://135827625"
+          "subject": "Allow webpushd to read eligbility state https://bugs.webkit.org/show_bug.cgi?id=279545 rdar://135827625",
+          "significance": "Allow webpushd to read eligbility state \u2014 We recently adopted some features in webpushd that require reading the eligibility state from disk",
+          "github_url": "https://github.com/WebKit/WebKit/commit/60973b36d99f78bb173e73b0c2b0dfbd9bd51463"
         }
       ],
       "plist_declarations": [],
@@ -12319,7 +14254,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L619"
         }
       ],
       "code_checks": [],
@@ -12356,14 +14292,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 71,
-          "description": "Adds com.apple.private.tcc.allow array with kTCCServiceScreenCapture to the macOS GPU process"
+          "role": "Adds com.apple.private.tcc.allow array with kTCCServiceScreenCapture to the macOS GPU process",
+          "description": "Adds com.apple.private.tcc.allow array with kTCCServiceScreenCapture to the macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L71"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 72,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L72"
         }
       ],
       "key_commits": [
         {
-          "hash": "1e054343a3ef",
+          "hash": "1e054343a3ef797a1385fffb04a177969a072245",
+          "short_hash": "1e054343a3ef",
           "date": "2026-04-08",
-          "subject": "Remove obsolete OS version checks in process-entitlements.sh"
+          "subject": "Remove obsolete OS version checks in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1e054343a3ef797a1385fffb04a177969a072245"
         }
       ],
       "plist_declarations": [],
@@ -12378,7 +14326,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L71"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12390,7 +14339,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L72"
         }
       ],
       "code_checks": [],
@@ -12468,34 +14418,105 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 644,
-          "description": "Appends array containing kTCCServiceWebKitIntelligentTrackingPrevention and kTCCServiceUserTracking to com.apple.private.tcc.manager.check-by-audit-token for iOS/visionOS NetworkProcess"
+          "role": "Appends array containing kTCCServiceWebKitIntelligentTrackingPrevention and kTCCServiceUserTracking to com.apple.private.tcc.manager.check-by-audit-token for iOS/visionOS NetworkProcess",
+          "description": "Appends array containing kTCCServiceWebKitIntelligentTrackingPrevention and kTCCServiceUserTracking to com.apple.private.tcc.manager.check-by-audit-token for iOS/visionOS NetworkProcess",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L644"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm",
           "line": 195,
-          "description": "Invokes TCCAccessPreflightWithAuditToken on the parent process audit token to check ITP permission status"
+          "role": "Invokes TCCAccessPreflightWithAuditToken on the parent process audit token to check ITP permission status",
+          "description": "Invokes TCCAccessPreflightWithAuditToken on the parent process audit token to check ITP permission status",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/DefaultWebBrowserChecks.mm#L195"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/TCCSoftLink.h",
           "line": 44,
-          "description": "Soft-links private TCC SPI TCCAccessPreflightWithAuditToken used for out-of-process token-based permission checks"
+          "role": "Soft-links private TCC SPI TCCAccessPreflightWithAuditToken used for out-of-process token-based permission checks",
+          "description": "Soft-links private TCC SPI TCCAccessPreflightWithAuditToken used for out-of-process token-based permission checks",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/TCCSoftLink.h#L44"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 110,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L110"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 111,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L111"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 112,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L112"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 402,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L402"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 403,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L403"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 404,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L404"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 645,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L645"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 646,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L646"
         }
       ],
       "key_commits": [
         {
-          "hash": "88e75e671992",
+          "hash": "88e75e6719920eb7ab21c91ec410047cdae48862",
+          "short_hash": "88e75e671992",
           "date": "2023-04-05",
-          "subject": "Tracker traffic is blocked even if user grants tracking permission"
+          "subject": "Tracker traffic is blocked even if user grants tracking permission",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/88e75e6719920eb7ab21c91ec410047cdae48862"
         },
         {
-          "hash": "d2b1197b133b",
+          "hash": "d2b1197b133b40990cc1f2ecffe14c08100d9c3d",
+          "short_hash": "d2b1197b133b",
           "date": "2023-04-11",
-          "subject": "Tracker traffic is blocked even if user grants tracking permission"
+          "subject": "Tracker traffic is blocked even if user grants tracking permission",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d2b1197b133b40990cc1f2ecffe14c08100d9c3d"
         },
         {
-          "hash": "936d469758ef",
+          "hash": "936d469758efd20d47912afb079041287469a777",
+          "short_hash": "936d469758ef",
           "date": "2020-03-03",
-          "subject": "Add flag to indicate that ITP state was explicitly set"
+          "subject": "Add flag to indicate that ITP state was explicitly set",
+          "significance": "Add flag to indicate that ITP state was explicitly set (Networking sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/936d469758efd20d47912afb079041287469a777"
         }
       ],
       "plist_declarations": [],
@@ -12510,7 +14531,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L110"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12522,7 +14544,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L111"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12534,7 +14557,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L112"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12546,7 +14570,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L402"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12558,7 +14583,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L403"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12570,7 +14596,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L404"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12583,7 +14610,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L644"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12596,7 +14624,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L645"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12609,7 +14638,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L646"
         }
       ],
       "code_checks": [],
@@ -12684,24 +14714,33 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 617,
-          "description": "Sets com.apple.private.usernotifications.app-management-domain.proxy to 'com.apple.WebKit.PushBundles' for webpushd on iOS family platforms"
+          "role": "Sets com.apple.private.usernotifications.app-management-domain.proxy to 'com.apple.WebKit.PushBundles' for webpushd on iOS family platforms",
+          "description": "Sets com.apple.private.usernotifications.app-management-domain.proxy to 'com.apple.WebKit.PushBundles' for webpushd on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L617"
         },
         {
           "file": "Source/WebKit/Platform/spi/Cocoa/UserNotificationsSPI.h",
           "line": 60,
-          "description": "Declares private SPIs for UserNotifications used by webpushd such as defaultActionBundleIdentifier and notificationWithRequest:date:"
+          "role": "Declares private SPIs for UserNotifications used by webpushd such as defaultActionBundleIdentifier and notificationWithRequest:date:",
+          "description": "Declares private SPIs for UserNotifications used by webpushd such as defaultActionBundleIdentifier and notificationWithRequest:date:",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/spi/Cocoa/UserNotificationsSPI.h#L60"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemon.mm",
           "line": 39,
-          "description": "Imports UserNotificationsSPI.h and implements daemon-level notification scheduling and retrieval"
+          "role": "Imports UserNotificationsSPI.h and implements daemon-level notification scheduling and retrieval",
+          "description": "Imports UserNotificationsSPI.h and implements daemon-level notification scheduling and retrieval",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L39"
         }
       ],
       "key_commits": [
         {
-          "hash": "9d08f2e924fa",
+          "hash": "9d08f2e924fa8aacf079af47286772d3498f61c0",
+          "short_hash": "9d08f2e924fa",
           "date": "2024-07-22",
-          "subject": "Implement webpushd built-in showNotification and getNotifications rdar://131362923 https://bugs.webkit.org/show_bug.cgi?id=276823"
+          "subject": "Implement webpushd built-in showNotification and getNotifications rdar://131362923 https://bugs.webkit.org/show_bug.cgi?id=276823",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9d08f2e924fa8aacf079af47286772d3498f61c0"
         }
       ],
       "plist_declarations": [],
@@ -12717,7 +14756,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L617"
         }
       ],
       "code_checks": [],
@@ -12772,34 +14812,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 473,
-          "description": "Adds com.apple.private.verified-jit to WebContent process entitlements on iOS and visionOS"
+          "role": "Adds com.apple.private.verified-jit to WebContent process entitlements on iOS and visionOS",
+          "description": "Adds com.apple.private.verified-jit to WebContent process entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L473"
         },
         {
           "file": "Source/JavaScriptCore/runtime/Options.cpp",
           "line": 1552,
-          "description": "Checks entitlement in canUseJITCage() to gate activation of JIT Cage hardening"
+          "role": "Checks entitlement in canUseJITCage() to gate activation of JIT Cage hardening",
+          "description": "Checks entitlement in canUseJITCage() to gate activation of JIT Cage hardening",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/runtime/Options.cpp#L1552"
         },
         {
           "file": "Source/JavaScriptCore/jit/ExecutableAllocator.cpp",
           "line": 163,
-          "description": "Asserts the entitlement when initializing JIT allocator and memory configurations"
+          "role": "Asserts the entitlement when initializing JIT allocator and memory configurations",
+          "description": "Asserts the entitlement when initializing JIT allocator and memory configurations",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L163"
+        },
+        {
+          "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
+          "line": 1439,
+          "role": "Runtime entitlement check in UIProcess (inspecting WebContent) (iOS, macOS, macCatalyst)",
+          "description": "Runtime entitlement check in UIProcess (inspecting WebContent) (iOS, macOS, macCatalyst)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1439"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 20,
+          "role": "Signing script grant in mac_process_webcontent_entitlements() for WebContent",
+          "description": "Signing script grant in mac_process_webcontent_entitlements() for WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L20"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 344,
+          "role": "Signing script grant in maccatalyst_process_webcontent_entitlements() for WebContent",
+          "description": "Signing script grant in maccatalyst_process_webcontent_entitlements() for WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L344"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 34,
+          "role": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L34"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 64,
+          "role": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L64"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 117,
+          "role": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L117"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 148,
+          "role": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L148"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 186,
+          "role": "Signing script grant in ios_family_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in ios_family_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L186"
+        },
+        {
+          "file": "Source/JavaScriptCore/entitlements.plist",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for jsc / JSC Tools",
+          "description": "Static .entitlements plist declaration for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/entitlements.plist#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "299f0aa7d776",
+          "hash": "299f0aa7d7767ec82bdd3f6a1e041ae2420a3028",
+          "short_hash": "299f0aa7d776",
           "date": "2024-05-31",
-          "subject": "Disable JITCage by default when ASAN is enabled"
+          "subject": "Disable JITCage by default when ASAN is enabled",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/299f0aa7d7767ec82bdd3f6a1e041ae2420a3028"
         },
         {
-          "hash": "9cc524ed511e",
+          "hash": "9cc524ed511e7ec4127c7dda5cef25610542f8ac",
+          "short_hash": "9cc524ed511e",
           "date": "2025-10-09",
-          "subject": "Add entitlement assertions for JIT disabling on macOS"
+          "subject": "Add entitlement assertions for JIT disabling on macOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9cc524ed511e7ec4127c7dda5cef25610542f8ac"
         },
         {
-          "hash": "ce585987e8f9",
+          "hash": "ce585987e8f9925db07f95dd06cc7ffa78e7dbfa",
+          "short_hash": "ce585987e8f9",
           "date": "2024-04-05",
-          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS."
+          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ce585987e8f9925db07f95dd06cc7ffa78e7dbfa"
         }
       ],
       "plist_declarations": [
@@ -12807,7 +14925,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/JavaScriptCore/entitlements.plist",
           "line": 5,
           "value": true,
-          "process": "jsc / JSC Tools"
+          "process": "jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/entitlements.plist#L5"
         }
       ],
       "script_declarations": [
@@ -12821,7 +14940,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L20"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12833,7 +14953,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L344"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -12846,7 +14967,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L473"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -12858,7 +14980,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L34"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -12870,7 +14993,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L64"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -12882,7 +15006,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L117"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -12894,7 +15019,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L148"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -12907,7 +15033,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L186"
         }
       ],
       "code_checks": [
@@ -12920,7 +15047,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L163"
         },
         {
           "file": "Source/JavaScriptCore/runtime/Options.cpp",
@@ -12931,7 +15059,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/runtime/Options.cpp#L1552"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
@@ -12941,7 +15070,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1439"
         }
       ],
       "sandbox_checks": [],
@@ -13053,24 +15183,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 441,
-          "description": "Adds com.apple.private.webinspector.allow-remote-inspection to the WebContent (Shared) service entitlement list on iOS and visionOS"
+          "role": "Adds com.apple.private.webinspector.allow-remote-inspection to the WebContent (Shared) service entitlement list on iOS and visionOS",
+          "description": "Adds com.apple.private.webinspector.allow-remote-inspection to the WebContent (Shared) service entitlement list on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L441"
         },
         {
           "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
           "line": 107,
-          "description": "Checks if the process or parent process audit token holds the deprecated entitlement to enable remote inspection by default"
+          "role": "Checks if the process or parent process audit token holds the deprecated entitlement to enable remote inspection by default",
+          "description": "Checks if the process or parent process audit token holds the deprecated entitlement to enable remote inspection by default",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L107"
+        },
+        {
+          "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
+          "line": 1061,
+          "role": "Runtime entitlement check in UIProcess / WebContent (iOS, visionOS)",
+          "description": "Runtime entitlement check in UIProcess / WebContent (iOS, visionOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1061"
         }
       ],
       "key_commits": [
         {
-          "hash": "3d99c5a13754",
+          "hash": "3d99c5a137548afb19025ccd16979e9357a8cde7",
+          "short_hash": "3d99c5a13754",
           "date": "2022-10-14",
-          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API"
+          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3d99c5a137548afb19025ccd16979e9357a8cde7"
         },
         {
-          "hash": "586ce1b3e48b",
+          "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         }
       ],
       "plist_declarations": [],
@@ -13086,7 +15233,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L441"
         }
       ],
       "code_checks": [
@@ -13097,7 +15245,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1061"
         }
       ],
       "sandbox_checks": [],
@@ -13134,14 +15283,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 442,
-          "description": "Adds com.apple.private.webinspector.proxy-application to shared WebContent entitlements for iOS and visionOS."
+          "role": "Adds com.apple.private.webinspector.proxy-application to shared WebContent entitlements for iOS and visionOS.",
+          "description": "Adds com.apple.private.webinspector.proxy-application to shared WebContent entitlements for iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L442"
         }
       ],
       "key_commits": [
         {
-          "hash": "586ce1b3e48b",
+          "hash": "586ce1b3e48bed4740672a2a00b745a8e7080c06",
+          "short_hash": "586ce1b3e48b",
           "date": "2021-11-29",
-          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases"
+          "subject": "Create a new XPC service with specific entitlements to support Captive Portal use cases",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/586ce1b3e48bed4740672a2a00b745a8e7080c06"
         }
       ],
       "plist_declarations": [],
@@ -13157,7 +15311,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L442"
         }
       ],
       "code_checks": [],
@@ -13196,19 +15351,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/inspector/remote/cocoa/RemoteInspectorXPCConnection.mm",
           "line": 146,
-          "description": "Verifies that the peer audit token holds com.apple.private.webinspector.webinspectord on macOS before processing RemoteInspector messages"
+          "role": "Verifies that the peer audit token holds com.apple.private.webinspector.webinspectord on macOS before processing RemoteInspector messages",
+          "description": "Verifies that the peer audit token holds com.apple.private.webinspector.webinspectord on macOS before processing RemoteInspector messages",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/inspector/remote/cocoa/RemoteInspectorXPCConnection.mm#L146"
         }
       ],
       "key_commits": [
         {
-          "hash": "a77812341c29",
+          "hash": "a77812341c29c890bcc0e85510b7679cbc5e42ae",
+          "short_hash": "a77812341c29",
           "date": "2017-02-11",
-          "subject": "WebInspector: refactor RemoteInspector to move cocoa specific code to their own files"
+          "subject": "WebInspector: refactor RemoteInspector to move cocoa specific code to their own files",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a77812341c29c890bcc0e85510b7679cbc5e42ae"
         },
         {
-          "hash": "dd956d5e7424",
+          "hash": "dd956d5e74249681ddf904e0bbe401f308b65e0f",
+          "short_hash": "dd956d5e7424",
           "date": "2022-06-05",
-          "subject": "Drop operator==() overload for comparing a String to a const char*"
+          "subject": "Drop operator==() overload for comparing a String to a const char*",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/dd956d5e74249681ddf904e0bbe401f308b65e0f"
         }
       ],
       "plist_declarations": [],
@@ -13222,7 +15385,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/inspector/remote/cocoa/RemoteInspectorXPCConnection.mm#L146"
         }
       ],
       "sandbox_checks": [],
@@ -13262,29 +15426,49 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 632,
-          "description": "Grants com.apple.private.webkit.adattributiond to the Network Process on iOS and visionOS (and macOS at line 136)"
+          "role": "Grants com.apple.private.webkit.adattributiond to the Network Process on iOS and visionOS (and macOS at line 136)",
+          "description": "Grants com.apple.private.webkit.adattributiond to the Network Process on iOS and visionOS (and macOS at line 136)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L632"
         },
         {
           "file": "Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm",
           "line": 150,
-          "description": "Validates that connecting Mach service clients possess com.apple.private.webkit.adattributiond before establishing an IPC connection to the PCM daemon"
+          "role": "Validates that connecting Mach service clients possess com.apple.private.webkit.adattributiond before establishing an IPC connection to the PCM daemon",
+          "description": "Validates that connecting Mach service clients possess com.apple.private.webkit.adattributiond before establishing an IPC connection to the PCM daemon",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm#L150"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 136,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L136"
         }
       ],
       "key_commits": [
         {
-          "hash": "bb4992df17f5",
+          "hash": "bb4992df17f569dfd94e267bf0fdb833e4196894",
+          "short_hash": "bb4992df17f5",
           "date": "2021-10-05",
-          "subject": "Add an entitlement check to only allow AdAttributionDaemon to be connected to by the network process"
+          "subject": "Add an entitlement check to only allow AdAttributionDaemon to be connected to by the network process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bb4992df17f569dfd94e267bf0fdb833e4196894"
         },
         {
-          "hash": "9b2718aee828",
+          "hash": "9b2718aee8281557fa2532e6950464c0e8a47d40",
+          "short_hash": "9b2718aee828",
           "date": "2021-10-12",
-          "subject": "Rename AdAttributionDaemon to adattributiond"
+          "subject": "Rename AdAttributionDaemon to adattributiond",
+          "significance": "Rename AdAttributionDaemon to adattributiond \u2014 Source/WebKit: adattributiond is its approved name in and we already used it in some places",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9b2718aee8281557fa2532e6950464c0e8a47d40"
         },
         {
-          "hash": "27b78b5a8991",
+          "hash": "27b78b5a8991c5781c914d0dde63d2ba02f86939",
+          "short_hash": "27b78b5a8991",
           "date": "2021-10-14",
-          "subject": "Share IPC communication code between webpushd and adattributiond"
+          "subject": "Share IPC communication code between webpushd and adattributiond",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/27b78b5a8991c5781c914d0dde63d2ba02f86939"
         }
       ],
       "plist_declarations": [],
@@ -13299,7 +15483,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L136"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13312,7 +15497,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L632"
         }
       ],
       "code_checks": [
@@ -13323,7 +15509,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/EntryPointUtilities/Cocoa/Daemon/PCMDaemonEntryPoint.mm#L150"
         }
       ],
       "sandbox_checks": [],
@@ -13369,29 +15556,55 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/NetworkProcess/NetworkProcess.cpp",
           "line": 3173,
-          "description": "NetworkProcess::allowsPrivateClickMeasurementTestFunctionality checks the source application's audit token for the entitlement"
+          "role": "NetworkProcess::allowsPrivateClickMeasurementTestFunctionality checks the source application's audit token for the entitlement",
+          "description": "NetworkProcess::allowsPrivateClickMeasurementTestFunctionality checks the source application's audit token for the entitlement",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkProcess.cpp#L3173"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 9,
-          "description": "Entitlement declared for WebKitTestRunner internal test harness"
+          "role": "Entitlement declared for WebKitTestRunner internal test harness",
+          "description": "Entitlement declared for WebKitTestRunner internal test harness",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L9"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 37,
-          "description": "Adds the entitlement when signing TestWebKitAPI test bundles"
+          "role": "Adds the entitlement when signing TestWebKitAPI test bundles",
+          "description": "Adds the entitlement when signing TestWebKitAPI test bundles",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L37"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
+          "line": 13,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L13"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
+          "line": 13,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L13"
         }
       ],
       "key_commits": [
         {
           "hash": "9d75cf56a21ccf9c963428bcf7e1f43789ee3a25",
+          "short_hash": "9d75cf56a21c",
           "date": "2021-12-20",
-          "subject": "Prevent test functionality in AdAttributionDaemon when not running tests"
+          "subject": "Prevent test functionality in AdAttributionDaemon when not running tests",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9d75cf56a21ccf9c963428bcf7e1f43789ee3a25"
         },
         {
           "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [
@@ -13399,19 +15612,22 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 9,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L9"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
           "line": 13,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L13"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 13,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L13"
         }
       ],
       "script_declarations": [
@@ -13428,7 +15644,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L37"
         }
       ],
       "code_checks": [
@@ -13439,7 +15656,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/NetworkProcess.cpp#L3173"
         }
       ],
       "sandbox_checks": [],
@@ -13479,29 +15697,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 506,
-          "description": "Signs WebContent.EnhancedSecurity on iOS-family platforms with com.apple.private.webkit.enhanced-security."
+          "role": "Signs WebContent.EnhancedSecurity on iOS-family platforms with com.apple.private.webkit.enhanced-security.",
+          "description": "Signs WebContent.EnhancedSecurity on iOS-family platforms with com.apple.private.webkit.enhanced-security.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L506"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
           "line": 1443,
-          "description": "Inspects the WebContent XPC connection for com.apple.private.webkit.enhanced-security to classify the process variant."
+          "role": "Inspects the WebContent XPC connection for com.apple.private.webkit.enhanced-security to classify the process variant.",
+          "description": "Inspects the WebContent XPC connection for com.apple.private.webkit.enhanced-security to classify the process variant.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1443"
         }
       ],
       "key_commits": [
         {
-          "hash": "bb4d3ee9eae2",
+          "hash": "bb4d3ee9eae28a671ea11c1eae167f89412a3043",
+          "short_hash": "bb4d3ee9eae2",
           "date": "2025-10-02",
-          "subject": "New WebContent process variant for Enhanced Security"
+          "subject": "New WebContent process variant for Enhanced Security",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bb4d3ee9eae28a671ea11c1eae167f89412a3043"
         },
         {
-          "hash": "3fd7f86c3308",
+          "hash": "3fd7f86c3308116fdce268db0c3920a932df3378",
+          "short_hash": "3fd7f86c3308",
           "date": "2025-11-05",
-          "subject": "Add additional API tests for EnhancedSecurity"
+          "subject": "Add additional API tests for EnhancedSecurity",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3fd7f86c3308116fdce268db0c3920a932df3378"
         },
         {
-          "hash": "65d2aea68566",
+          "hash": "65d2aea6856618f6a8f872964b376b16838347e0",
+          "short_hash": "65d2aea68566",
           "date": "2026-01-14",
-          "subject": "use signing-identifier to distinguish webcontent variant"
+          "subject": "use signing-identifier to distinguish webcontent variant",
+          "significance": "Use signing-identifier to distinguish webcontent variant",
+          "github_url": "https://github.com/WebKit/WebKit/commit/65d2aea6856618f6a8f872964b376b16838347e0"
         }
       ],
       "plist_declarations": [],
@@ -13517,7 +15748,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L506"
         }
       ],
       "code_checks": [
@@ -13529,7 +15761,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1443"
         }
       ],
       "sandbox_checks": [],
@@ -13568,24 +15801,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 491,
-          "description": "Signs `com.apple.private.webkit.lockdown-mode` into the CaptivePortal WebContent process variant on iOS-family platforms"
+          "role": "Signs `com.apple.private.webkit.lockdown-mode` into the CaptivePortal WebContent process variant on iOS-family platforms",
+          "description": "Signs `com.apple.private.webkit.lockdown-mode` into the CaptivePortal WebContent process variant on iOS-family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L491"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
           "line": 1450,
-          "description": "Checks `hasEntitlement` on the WebContent XPC connection to identify whether the process is running in Lockdown Mode"
+          "role": "Checks `hasEntitlement` on the WebContent XPC connection to identify whether the process is running in Lockdown Mode",
+          "description": "Checks `hasEntitlement` on the WebContent XPC connection to identify whether the process is running in Lockdown Mode",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1450"
         }
       ],
       "key_commits": [
         {
-          "hash": "a646dbce6fc3",
+          "hash": "a646dbce6fc3ef56a50c37406ca50ee19a28920d",
+          "short_hash": "a646dbce6fc3",
           "date": "2023-06-02",
-          "subject": "Add Lockdown Mode entitlement"
+          "subject": "Add Lockdown Mode entitlement",
+          "significance": "Add Lockdown Mode entitlement (WebContent sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a646dbce6fc3ef56a50c37406ca50ee19a28920d"
         },
         {
-          "hash": "65d2aea68566",
+          "hash": "65d2aea6856618f6a8f872964b376b16838347e0",
+          "short_hash": "65d2aea68566",
           "date": "2026-01-14",
-          "subject": "use signing-identifier to distinguish webcontent variant"
+          "subject": "use signing-identifier to distinguish webcontent variant",
+          "significance": "Use signing-identifier to distinguish webcontent variant",
+          "github_url": "https://github.com/WebKit/WebKit/commit/65d2aea6856618f6a8f872964b376b16838347e0"
         }
       ],
       "plist_declarations": [],
@@ -13601,7 +15844,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L491"
         }
       ],
       "code_checks": [
@@ -13612,7 +15856,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1450"
         }
       ],
       "sandbox_checks": [],
@@ -13666,29 +15911,104 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Cocoa/XPCEndpoint.mm",
           "line": 56,
-          "description": "Verifies that connecting clients to an anonymous XPC endpoint have the com.apple.private.webkit.use-xpc-endpoint entitlement."
+          "role": "Verifies that connecting clients to an anonymous XPC endpoint have the com.apple.private.webkit.use-xpc-endpoint entitlement.",
+          "description": "Verifies that connecting clients to an anonymous XPC endpoint have the com.apple.private.webkit.use-xpc-endpoint entitlement.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/XPCEndpoint.mm#L56"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/XPCEndpointClient.mm",
           "line": 65,
-          "description": "Validates that the remote sender connection for incoming endpoint messages possesses the entitlement."
+          "role": "Validates that the remote sender connection for incoming endpoint messages possesses the entitlement.",
+          "description": "Validates that the remote sender connection for incoming endpoint messages possesses the entitlement.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/XPCEndpointClient.mm#L65"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 443,
-          "description": "Signs WebContent, GPU, and Network processes on iOS and macOS with com.apple.private.webkit.use-xpc-endpoint."
+          "role": "Signs WebContent, GPU, and Network processes on iOS and macOS with com.apple.private.webkit.use-xpc-endpoint.",
+          "description": "Signs WebContent, GPU, and Network processes on iOS and macOS with com.apple.private.webkit.use-xpc-endpoint.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L443"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 80,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L80"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 133,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L133"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 240,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L240"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 305,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L305"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 372,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L372"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 399,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L399"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 532,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L532"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 641,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L641"
+        },
+        {
+          "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
+          "line": 7,
+          "role": "Static .entitlements plist declaration for GPU",
+          "description": "Static .entitlements plist declaration for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L7"
         }
       ],
       "key_commits": [
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
-          "hash": "bef97a66bbfd",
+          "hash": "bef97a66bbfd776404fb60f009f81bdaa5cc752d",
+          "short_hash": "bef97a66bbfd",
           "date": "2024-09-04",
-          "subject": "Allow layout tests to load model content on visionOS with model process"
+          "subject": "Allow layout tests to load model content on visionOS with model process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bef97a66bbfd776404fb60f009f81bdaa5cc752d"
         }
       ],
       "plist_declarations": [
@@ -13696,37 +16016,43 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
           "line": 7,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements",
           "line": 7,
           "value": true,
-          "process": "Model"
+          "process": "Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements",
           "line": 7,
           "value": true,
-          "process": "All iOS XPC Services / webpushd (Simulator)"
+          "process": "All iOS XPC Services / webpushd (Simulator)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements#L7"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 11,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L11"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements",
           "line": 9,
           "value": true,
-          "process": "Networking"
+          "process": "Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements#L9"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 15,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L15"
         }
       ],
       "script_declarations": [
@@ -13740,7 +16066,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L80"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13752,7 +16079,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L133"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13764,7 +16092,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L240"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13776,7 +16105,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L305"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13788,7 +16118,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L372"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13800,7 +16131,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L399"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13813,7 +16145,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L443"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13826,7 +16159,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L532"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -13839,7 +16173,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L641"
         }
       ],
       "code_checks": [
@@ -13852,7 +16187,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/XPCEndpoint.mm#L56"
         },
         {
           "file": "Source/WebKit/Shared/Cocoa/XPCEndpointClient.mm",
@@ -13863,7 +16199,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Cocoa/XPCEndpointClient.mm#L65"
         }
       ],
       "sandbox_checks": [],
@@ -13987,39 +16324,98 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 633,
-          "description": "Adds com.apple.private.webkit.webpush to the Network process on iOS and visionOS"
+          "role": "Adds com.apple.private.webkit.webpush to the Network process on iOS and visionOS",
+          "description": "Adds com.apple.private.webkit.webpush to the Network process on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L633"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 137,
-          "description": "Adds com.apple.private.webkit.webpush to the Network process on macOS"
+          "role": "Adds com.apple.private.webkit.webpush to the Network process on macOS",
+          "description": "Adds com.apple.private.webkit.webpush to the Network process on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L137"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemonMain.mm",
           "line": 213,
-          "description": "Enforces com.apple.private.webkit.webpush as peerEntitlementName when listening for Mach service connections"
+          "role": "Enforces com.apple.private.webkit.webpush as peerEntitlementName when listening for Mach service connections",
+          "description": "Enforces com.apple.private.webkit.webpush as peerEntitlementName when listening for Mach service connections",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemonMain.mm#L213"
         },
         {
           "file": "Source/WebKit/webpushd/PushClientConnection.mm",
           "line": 187,
-          "description": "Validates that the host application possesses com.apple.private.webkit.webpush during PushClientConnection initialization"
+          "role": "Validates that the host application possesses com.apple.private.webkit.webpush during PushClientConnection initialization",
+          "description": "Validates that the host application possesses com.apple.private.webkit.webpush during PushClientConnection initialization",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L187"
+        },
+        {
+          "file": "Source/WebKit/webpushd/PushClientConnection.mm",
+          "line": 73,
+          "role": "Runtime entitlement check in webpushd (checking Client/Host App) (iOS, macOS, visionOS)",
+          "description": "Runtime entitlement check in webpushd (checking Client/Host App) (iOS, macOS, visionOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L73"
+        },
+        {
+          "file": "Source/WebKit/webpushd/WebPushDaemonMain.mm",
+          "line": 64,
+          "role": "Runtime entitlement check in webpushd (checking Peer) (iOS, macOS, visionOS)",
+          "description": "Runtime entitlement check in webpushd (checking Peer) (iOS, macOS, visionOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemonMain.mm#L64"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 38,
+          "role": "Signing script grant in process_restricted_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_restricted_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L38"
+        },
+        {
+          "file": "Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements",
+          "line": 9,
+          "role": "Static .entitlements plist declaration for All iOS XPC Services / webpushd (Simulator)",
+          "description": "Static .entitlements plist declaration for All iOS XPC Services / webpushd (Simulator)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements#L9"
+        },
+        {
+          "file": "Source/WebKit/Resources/webpushtool.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for webpushtool",
+          "description": "Static .entitlements plist declaration for webpushtool",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/webpushtool.entitlements#L5"
+        },
+        {
+          "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
+          "line": 11,
+          "role": "Static .entitlements plist declaration for MobileMiniBrowser (Host App)",
+          "description": "Static .entitlements plist declaration for MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L11"
         }
       ],
       "key_commits": [
         {
-          "hash": "14e2516cb5f3",
+          "hash": "14e2516cb5f3c008b82b01fc38ae1468ff8a41a2",
+          "short_hash": "14e2516cb5f3",
           "date": "2022-02-08",
-          "subject": "Add PushService"
+          "subject": "Add PushService",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/14e2516cb5f3c008b82b01fc38ae1468ff8a41a2"
         },
         {
-          "hash": "c9c593aab62e",
+          "hash": "c9c593aab62e8afdbbc714677a087029754184ed",
+          "short_hash": "c9c593aab62e",
           "date": "2024-08-08",
-          "subject": "Read host app info from extension process directly in webpushd"
+          "subject": "Read host app info from extension process directly in webpushd",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c9c593aab62e8afdbbc714677a087029754184ed"
         },
         {
-          "hash": "c5b08c20f512",
+          "hash": "c5b08c20f512784e37cc065945098dc26b90c755",
+          "short_hash": "c5b08c20f512",
           "date": "2024-08-20",
-          "subject": "Fix webpushtool on iOS"
+          "subject": "Fix webpushtool on iOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c5b08c20f512784e37cc065945098dc26b90c755"
         }
       ],
       "plist_declarations": [
@@ -14027,19 +16423,22 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements",
           "line": 9,
           "value": true,
-          "process": "All iOS XPC Services / webpushd (Simulator)"
+          "process": "All iOS XPC Services / webpushd (Simulator)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements#L9"
         },
         {
           "file": "Source/WebKit/Resources/webpushtool.entitlements",
           "line": 5,
           "value": true,
-          "process": "webpushtool"
+          "process": "webpushtool",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/webpushtool.entitlements#L5"
         },
         {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 11,
           "value": true,
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L11"
         }
       ],
       "script_declarations": [
@@ -14053,7 +16452,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L137"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14066,7 +16466,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L633"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -14081,7 +16482,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L38"
         }
       ],
       "code_checks": [
@@ -14093,7 +16495,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L73"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemonMain.mm",
@@ -14103,7 +16506,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemonMain.mm#L64"
         }
       ],
       "sandbox_checks": [],
@@ -14147,39 +16551,56 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Resources/webpushtool.entitlements",
           "line": 7,
-          "description": "Declares the entitlement for the webpushtool diagnostic CLI tool"
+          "role": "Declares the entitlement for the webpushtool diagnostic CLI tool",
+          "description": "Declares the entitlement for the webpushtool diagnostic CLI tool",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/webpushtool.entitlements#L7"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 39,
-          "description": "Signs TestWebKitAPI with the entitlement across iOS, macOS, macCatalyst, and visionOS"
+          "role": "Signs TestWebKitAPI with the entitlement across iOS, macOS, macCatalyst, and visionOS",
+          "description": "Signs TestWebKitAPI with the entitlement across iOS, macOS, macCatalyst, and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L39"
         },
         {
           "file": "Source/WebKit/webpushd/PushClientConnection.mm",
           "line": 148,
-          "description": "Checks peer audit token for the entitlement to allow direct tool connections without a host app and authorize bundle identifier overrides"
+          "role": "Checks peer audit token for the entitlement to allow direct tool connections without a host app and authorize bundle identifier overrides",
+          "description": "Checks peer audit token for the entitlement to allow direct tool connections without a host app and authorize bundle identifier overrides",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L148"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemon.mm",
           "line": 447,
-          "description": "Verifies hostAppHasPushInjectEntitlement before allowing injectPushMessageForTesting, injectEncryptedPushMessageForTesting, or getPushTopicsForTesting"
+          "role": "Verifies hostAppHasPushInjectEntitlement before allowing injectPushMessageForTesting, injectEncryptedPushMessageForTesting, or getPushTopicsForTesting",
+          "description": "Verifies hostAppHasPushInjectEntitlement before allowing injectPushMessageForTesting, injectEncryptedPushMessageForTesting, or getPushTopicsForTesting",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L447"
         }
       ],
       "key_commits": [
         {
-          "hash": "123c794438c2",
+          "hash": "123c794438c227960314f273c4b64b07b7f0836a",
+          "short_hash": "123c794438c2",
           "date": "2021-12-09",
-          "subject": "Add ability to inject messages into webpushd"
+          "subject": "Add ability to inject messages into webpushd",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/123c794438c227960314f273c4b64b07b7f0836a"
         },
         {
-          "hash": "c5b08c20f512",
+          "hash": "c5b08c20f512784e37cc065945098dc26b90c755",
+          "short_hash": "c5b08c20f512",
           "date": "2024-08-20",
-          "subject": "Fix webpushtool on iOS"
+          "subject": "Fix webpushtool on iOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c5b08c20f512784e37cc065945098dc26b90c755"
         },
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [
@@ -14187,7 +16608,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/webpushtool.entitlements",
           "line": 7,
           "value": true,
-          "process": "webpushtool"
+          "process": "webpushtool",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/webpushtool.entitlements#L7"
         }
       ],
       "script_declarations": [
@@ -14204,7 +16626,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L39"
         }
       ],
       "code_checks": [
@@ -14216,7 +16639,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/PushClientConnection.mm#L148"
         }
       ],
       "sandbox_checks": [],
@@ -14252,14 +16676,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 231,
-          "description": "Conditionally injects com.apple.private.xpc.domain-extension into macOS WebContent process entitlements when restricted entitlements and WK_WEBCONTENT_SERVICE_NEEDS_XPC_DOMAIN_EXTENSION_ENTITLEMENT are enabled."
+          "role": "Conditionally injects com.apple.private.xpc.domain-extension into macOS WebContent process entitlements when restricted entitlements and WK_WEBCONTENT_SERVICE_NEEDS_XPC_DOMAIN_EXTENSION_ENTITLEMENT are enabled.",
+          "description": "Conditionally injects com.apple.private.xpc.domain-extension into macOS WebContent process entitlements when restricted entitlements and WK_WEBCONTENT_SERVICE_NEEDS_XPC_DOMAIN_EXTENSION_ENTITLEMENT are enabled.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L231"
         }
       ],
       "key_commits": [
         {
-          "hash": "a06b30c383bc",
+          "hash": "a06b30c383bce7d8a19a9bcce9ae13ce5e82600a",
+          "short_hash": "a06b30c383bc",
           "date": "2019-02-07",
-          "subject": "Fix XCBuild issue related to codesigning WebContent process"
+          "subject": "Fix XCBuild issue related to codesigning WebContent process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a06b30c383bce7d8a19a9bcce9ae13ce5e82600a"
         }
       ],
       "plist_declarations": [],
@@ -14274,7 +16703,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L231"
         }
       ],
       "code_checks": [],
@@ -14317,24 +16747,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Resources/webpushtool.entitlements",
           "line": 9,
-          "description": "Entitlement entry assigning job manager domain 'webpushtool' to allow hosting the push daemon"
+          "role": "Entitlement entry assigning job manager domain 'webpushtool' to allow hosting the push daemon",
+          "description": "Entitlement entry assigning job manager domain 'webpushtool' to allow hosting the push daemon",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/webpushtool.entitlements#L9"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 76,
-          "description": "Adds com.apple.private.xpc.launchd.job-manager string TestWebKitAPI for iOS family test targets"
+          "role": "Adds com.apple.private.xpc.launchd.job-manager string TestWebKitAPI for iOS family test targets",
+          "description": "Adds com.apple.private.xpc.launchd.job-manager string TestWebKitAPI for iOS family test targets",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L76"
         }
       ],
       "key_commits": [
         {
           "hash": "c089982630afbf30945f9fd2873e88c67e046f04",
+          "short_hash": "c089982630af",
           "date": "2021-12-14",
-          "subject": "Teach webpushtool to register and \"host\" the daemon."
+          "subject": "Teach webpushtool to register and \"host\" the daemon.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c089982630afbf30945f9fd2873e88c67e046f04"
         },
         {
           "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [
@@ -14342,7 +16782,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/webpushtool.entitlements",
           "line": 9,
           "value": "webpushtool",
-          "process": "webpushtool"
+          "process": "webpushtool",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/webpushtool.entitlements#L9"
         }
       ],
       "script_declarations": [
@@ -14357,7 +16798,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L76"
         }
       ],
       "code_checks": [],
@@ -14395,24 +16837,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 57,
-          "description": "Adds com.apple.rootless.storage.JavaScriptCore to the macOS testapi binary entitlements when WK_USE_RESTRICTED_ENTITLEMENTS is YES."
+          "role": "Adds com.apple.rootless.storage.JavaScriptCore to the macOS testapi binary entitlements when WK_USE_RESTRICTED_ENTITLEMENTS is YES.",
+          "description": "Adds com.apple.rootless.storage.JavaScriptCore to the macOS testapi binary entitlements when WK_USE_RESTRICTED_ENTITLEMENTS is YES.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L57"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 124,
-          "description": "Adds com.apple.rootless.storage.JavaScriptCore to the macCatalyst testapi binary entitlements."
+          "role": "Adds com.apple.rootless.storage.JavaScriptCore to the macCatalyst testapi binary entitlements.",
+          "description": "Adds com.apple.rootless.storage.JavaScriptCore to the macCatalyst testapi binary entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L124"
         }
       ],
       "key_commits": [
         {
-          "hash": "85c10165689c",
+          "hash": "85c10165689cfe818c10dd6d0c6874ab9c5e7324",
+          "short_hash": "85c10165689c",
           "date": "2021-02-16",
-          "subject": "[JSC] Dynamically generate entitlements"
+          "subject": "[JSC] Dynamically generate entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/85c10165689cfe818c10dd6d0c6874ab9c5e7324"
         },
         {
-          "hash": "2626d3d39c5b",
+          "hash": "2626d3d39c5bda27bd3e92363d1d42ffa1ee249e",
+          "short_hash": "2626d3d39c5b",
           "date": "2021-02-16",
-          "subject": "[JSC] Enable JITCage on macOS"
+          "subject": "[JSC] Enable JITCage on macOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2626d3d39c5bda27bd3e92363d1d42ffa1ee249e"
         }
       ],
       "plist_declarations": [],
@@ -14427,7 +16879,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L57"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -14439,7 +16892,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L124"
         }
       ],
       "code_checks": [],
@@ -14476,14 +16930,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 81,
-          "description": "Adds com.apple.rootless.storage.WebKitGPUSandbox to the macOS GPU process entitlements when restricted entitlements are enabled."
+          "role": "Adds com.apple.rootless.storage.WebKitGPUSandbox to the macOS GPU process entitlements when restricted entitlements are enabled.",
+          "description": "Adds com.apple.rootless.storage.WebKitGPUSandbox to the macOS GPU process entitlements when restricted entitlements are enabled.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L81"
         }
       ],
       "key_commits": [
         {
           "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         }
       ],
       "plist_declarations": [],
@@ -14498,7 +16957,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L81"
         }
       ],
       "code_checks": [],
@@ -14537,24 +16997,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 134,
-          "description": "Adds com.apple.rootless.storage.WebKitNetworkingSandbox to the macOS NetworkProcess entitlements."
+          "role": "Adds com.apple.rootless.storage.WebKitNetworkingSandbox to the macOS NetworkProcess entitlements.",
+          "description": "Adds com.apple.rootless.storage.WebKitNetworkingSandbox to the macOS NetworkProcess entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L134"
         },
         {
           "file": "Tools/TestWebKitAPI/Tests/WebKit/WKWebView/NetworkProcess.mm",
           "line": 67,
-          "description": "Verifies that the NetworkProcess has the com.apple.rootless.storage.WebKitNetworkingSandbox entitlement on macOS with Apple internal SDK."
+          "role": "Verifies that the NetworkProcess has the com.apple.rootless.storage.WebKitNetworkingSandbox entitlement on macOS with Apple internal SDK.",
+          "description": "Verifies that the NetworkProcess has the com.apple.rootless.storage.WebKitNetworkingSandbox entitlement on macOS with Apple internal SDK.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Tests/WebKit/WKWebView/NetworkProcess.mm#L67"
         }
       ],
       "key_commits": [
         {
-          "hash": "a06b30c383bc",
+          "hash": "a06b30c383bce7d8a19a9bcce9ae13ce5e82600a",
+          "short_hash": "a06b30c383bc",
           "date": "2019-02-07",
-          "subject": "Fix XCBuild issue related to codesigning WebContent process https://bugs.webkit.org/show_bug.cgi?id=193799 <rdar://problem/47533890>"
+          "subject": "Fix XCBuild issue related to codesigning WebContent process https://bugs.webkit.org/show_bug.cgi?id=193799 <rdar://problem/47533890>",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a06b30c383bce7d8a19a9bcce9ae13ce5e82600a"
         },
         {
-          "hash": "f3786b5bebf8",
+          "hash": "f3786b5bebf8d0b4afe1e7f8acab7da8f5e89b17",
+          "short_hash": "f3786b5bebf8",
           "date": "2026-04-06",
-          "subject": "Reorganize TestWebKitAPI project directory structure https://bugs.webkit.org/show_bug.cgi?id=311494 rdar://174088227"
+          "subject": "Reorganize TestWebKitAPI project directory structure https://bugs.webkit.org/show_bug.cgi?id=311494 rdar://174088227",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f3786b5bebf8d0b4afe1e7f8acab7da8f5e89b17"
         }
       ],
       "plist_declarations": [],
@@ -14569,7 +17039,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L134"
         }
       ],
       "code_checks": [
@@ -14579,7 +17050,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "TestWebKitAPI (testing NetworkProcess)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Tests/WebKit/WKWebView/NetworkProcess.mm#L67"
         }
       ],
       "sandbox_checks": [],
@@ -14615,19 +17087,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 241,
-          "description": "Applies com.apple.rootless.storage.WebKitWebContentSandbox to shared macOS WebContent process entitlements"
+          "role": "Applies com.apple.rootless.storage.WebKitWebContentSandbox to shared macOS WebContent process entitlements",
+          "description": "Applies com.apple.rootless.storage.WebKitWebContentSandbox to shared macOS WebContent process entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L241"
         }
       ],
       "key_commits": [
         {
           "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
           "hash": "a06b30c383bce7d8a19a9bcce9ae13ce5e82600a",
+          "short_hash": "a06b30c383bc",
           "date": "2019-02-07",
-          "subject": "Fix XCBuild issue related to codesigning WebContent process"
+          "subject": "Fix XCBuild issue related to codesigning WebContent process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a06b30c383bce7d8a19a9bcce9ae13ce5e82600a"
         }
       ],
       "plist_declarations": [],
@@ -14642,7 +17122,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L241"
         }
       ],
       "code_checks": [],
@@ -14698,34 +17179,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/WebProcessPool.cpp",
           "line": 2726,
-          "description": "Verifies whether the host UIProcess has the entitlement before taking a self-targeted MediaPlayback RunningBoard assertion during audible playback"
+          "role": "Verifies whether the host UIProcess has the entitlement before taking a self-targeted MediaPlayback RunningBoard assertion during audible playback",
+          "description": "Verifies whether the host UIProcess has the entitlement before taking a self-targeted MediaPlayback RunningBoard assertion during audible playback",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebProcessPool.cpp#L2726"
         },
         {
           "file": "Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm",
           "line": 379,
-          "description": "Maps WebKit ProcessAssertionType values (Foreground, Background, MediaPlayback, Suspended, etc.) to the 'com.apple.webkit' RunningBoard domain"
+          "role": "Maps WebKit ProcessAssertionType values (Foreground, Background, MediaPlayback, Suspended, etc.) to the 'com.apple.webkit' RunningBoard domain",
+          "description": "Maps WebKit ProcessAssertionType values (Foreground, Background, MediaPlayback, Suspended, etc.) to the 'com.apple.webkit' RunningBoard domain",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/Cocoa/ProcessAssertionCocoa.mm#L379"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 444,
-          "description": "Injects the entitlement into WebContent, GPU, Networking, and Model processes during build signing"
+          "role": "Injects the entitlement into WebContent, GPU, Networking, and Model processes during build signing",
+          "description": "Injects the entitlement into WebContent, GPU, Networking, and Model processes during build signing",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L444"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 73,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L73"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 116,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L116"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 227,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L227"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 306,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L306"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 369,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L369"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 398,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L398"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 533,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L533"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 587,
+          "role": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "description": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L587"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 642,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L642"
         }
       ],
       "key_commits": [
         {
-          "hash": "184bfa73c8e9",
+          "hash": "184bfa73c8e9140ad18f6c840377feb9912f67ec",
+          "short_hash": "184bfa73c8e9",
           "date": "2026-04-07",
-          "subject": "Consolidate shared entitlements for the macCatalyst WebContent process variants"
+          "subject": "Consolidate shared entitlements for the macCatalyst WebContent process variants",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/184bfa73c8e9140ad18f6c840377feb9912f67ec"
         },
         {
-          "hash": "bb4d3ee9eae2",
+          "hash": "bb4d3ee9eae28a671ea11c1eae167f89412a3043",
+          "short_hash": "bb4d3ee9eae2",
           "date": "2025-10-02",
-          "subject": "New WebContent process variant for Enhanced Security"
+          "subject": "New WebContent process variant for Enhanced Security",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bb4d3ee9eae28a671ea11c1eae167f89412a3043"
         },
         {
-          "hash": "8746ea87f06c",
+          "hash": "8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e",
+          "short_hash": "8746ea87f06c",
           "date": "2025-01-28",
-          "subject": "[visionOS] Move shared simulation connection from the Model process to the GPU process"
+          "subject": "[visionOS] Move shared simulation connection from the Model process to the GPU process",
+          "significance": "Move shared simulation connection from the Model process to the GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e"
         }
       ],
       "plist_declarations": [
@@ -14733,43 +17292,50 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
           "line": 5,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements",
           "line": 5,
           "value": true,
-          "process": "Model"
+          "process": "Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/ModelService-embedded-simulator.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements",
           "line": 5,
           "value": true,
-          "process": "All iOS XPC Services / webpushd (Simulator)"
+          "process": "All iOS XPC Services / webpushd (Simulator)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/XPCService-embedded-simulator.entitlements#L5"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements",
           "line": 13,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/GPUProcessExtension.entitlements#L13"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements",
           "line": 11,
           "value": true,
-          "process": "Networking"
+          "process": "Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/NetworkingProcessExtension.entitlements#L11"
         },
         {
           "file": "Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements",
           "line": 17,
           "value": true,
-          "process": "WebContent"
+          "process": "WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/AuxiliaryProcessExtensions/WebContentProcessExtension.entitlements#L17"
         },
         {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 9,
           "value": true,
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L9"
         }
       ],
       "script_declarations": [
@@ -14783,7 +17349,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L73"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14795,7 +17362,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L116"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14807,7 +17375,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L227"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14819,7 +17388,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L306"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14831,7 +17401,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L369"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14843,7 +17414,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L398"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14856,7 +17428,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L444"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14869,7 +17442,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L533"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14882,7 +17456,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L587"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -14895,7 +17470,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L642"
         }
       ],
       "code_checks": [
@@ -14907,7 +17483,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/WebProcessPool.cpp#L2726"
         }
       ],
       "sandbox_checks": [],
@@ -15017,14 +17594,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 15,
-          "description": "Entitlement declaration enabling the WebKitTestRunner iOS host app to launch extension processes via RunningBoard during tests."
+          "role": "Entitlement declaration enabling the WebKitTestRunner iOS host app to launch extension processes via RunningBoard during tests.",
+          "description": "Entitlement declaration enabling the WebKitTestRunner iOS host app to launch extension processes via RunningBoard during tests.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L15"
         }
       ],
       "key_commits": [
         {
-          "hash": "47d87cd99fd2",
+          "hash": "47d87cd99fd28559352bec7d539b9a2d0a984121",
+          "short_hash": "47d87cd99fd2",
           "date": "2024-01-23",
-          "subject": "Fix layout tests in simulator rdar://121324669 https://bugs.webkit.org/show_bug.cgi?id=267822"
+          "subject": "Fix layout tests in simulator rdar://121324669 https://bugs.webkit.org/show_bug.cgi?id=267822",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/47d87cd99fd28559352bec7d539b9a2d0a984121"
         }
       ],
       "plist_declarations": [
@@ -15032,7 +17614,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 15,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L15"
         }
       ],
       "script_declarations": [],
@@ -15070,24 +17653,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 5,
-          "description": "Enables the macOS App Sandbox for MiniBrowser test host application"
+          "role": "Enables the macOS App Sandbox for MiniBrowser test host application",
+          "description": "Enables the macOS App Sandbox for MiniBrowser test host application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L5"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 5,
-          "description": "Enables the macOS App Sandbox for SwiftBrowser sample browser application"
+          "role": "Enables the macOS App Sandbox for SwiftBrowser sample browser application",
+          "description": "Enables the macOS App Sandbox for SwiftBrowser sample browser application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         },
         {
-          "hash": "c624799348d5",
+          "hash": "c624799348d5982ac881f10f6d6ddc4258d7faaf",
+          "short_hash": "c624799348d5",
           "date": "2018-01-31",
-          "subject": "[macOS] MiniBrowser isn\u2019t app-sandboxed"
+          "subject": "[macOS] MiniBrowser isn\u2019t app-sandboxed",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c624799348d5982ac881f10f6d6ddc4258d7faaf"
         }
       ],
       "plist_declarations": [
@@ -15095,13 +17688,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 5,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L5"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 5,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L5"
         }
       ],
       "script_declarations": [],
@@ -15139,14 +17734,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 280,
-          "description": "Adds the `com.apple.security.application-groups` array containing `group.com.apple.webkit.webpushd` to macOS `webpushd`."
+          "role": "Adds the `com.apple.security.application-groups` array containing `group.com.apple.webkit.webpushd` to macOS `webpushd`.",
+          "description": "Adds the `com.apple.security.application-groups` array containing `group.com.apple.webkit.webpushd` to macOS `webpushd`.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L280"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 281,
+          "role": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L281"
         }
       ],
       "key_commits": [
         {
-          "hash": "8237aaf69a3f",
+          "hash": "8237aaf69a3ffed7d5969214385fa99cfeb71ded",
+          "short_hash": "8237aaf69a3f",
           "date": "2025-03-18",
-          "subject": "Move webpushd state to container"
+          "subject": "Move webpushd state to container",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8237aaf69a3ffed7d5969214385fa99cfeb71ded"
         }
       ],
       "plist_declarations": [],
@@ -15161,7 +17768,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L280"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15173,7 +17781,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L281"
         }
       ],
       "code_checks": [],
@@ -15220,29 +17829,83 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/jit/ExecutableAllocator.cpp",
           "line": 139,
-          "description": "Verifies that the process has com.apple.security.cs.allow-jit under MAC_JIT_RESTRICTIONS before enabling JIT execution"
+          "role": "Verifies that the process has com.apple.security.cs.allow-jit under MAC_JIT_RESTRICTIONS before enabling JIT execution",
+          "description": "Verifies that the process has com.apple.security.cs.allow-jit under MAC_JIT_RESTRICTIONS before enabling JIT execution",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L139"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 16,
-          "description": "Adds com.apple.security.cs.allow-jit to the macOS WebContent process entitlement plist"
+          "role": "Adds com.apple.security.cs.allow-jit to the macOS WebContent process entitlement plist",
+          "description": "Adds com.apple.security.cs.allow-jit to the macOS WebContent process entitlement plist",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L16"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
           "line": 1438,
-          "description": "Checks whether the connecting WebContent process possesses JIT entitlements during testing"
+          "role": "Checks whether the connecting WebContent process possesses JIT entitlements during testing",
+          "description": "Checks whether the connecting WebContent process possesses JIT entitlements during testing",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1438"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 342,
+          "role": "Signing script grant in maccatalyst_process_webcontent_entitlements() for WebContent",
+          "description": "Signing script grant in maccatalyst_process_webcontent_entitlements() for WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L342"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 15,
+          "role": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L15"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 56,
+          "role": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L56"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 95,
+          "role": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L95"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 125,
+          "role": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L125"
+        },
+        {
+          "file": "Tools/DumpRenderTree/mac/Configurations/DumpRenderTree.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/DumpRenderTree/mac/Configurations/DumpRenderTree.entitlements#L5"
         }
       ],
       "key_commits": [
         {
           "hash": "d7ce599636c5ae2b631791ba0422f9672f95d1f4",
+          "short_hash": "d7ce599636c5",
           "date": "2023-04-19",
-          "subject": "For Apple internal Mac builds, only ask for JIT memory if the appropriate entitlement is available."
+          "subject": "For Apple internal Mac builds, only ask for JIT memory if the appropriate entitlement is available.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d7ce599636c5ae2b631791ba0422f9672f95d1f4"
         },
         {
           "hash": "ee19c59a58e727d26bc3d36b0d8e63b06a1371a8",
+          "short_hash": "ee19c59a58e7",
           "date": "2023-06-22",
-          "subject": "Re-landing: Skip JIT memory allocation in ExecutableAllocator::disableJIT() when running on an open source XNU."
+          "subject": "Re-landing: Skip JIT memory allocation in ExecutableAllocator::disableJIT() when running on an open source XNU.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ee19c59a58e727d26bc3d36b0d8e63b06a1371a8"
         }
       ],
       "plist_declarations": [
@@ -15250,7 +17913,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/DumpRenderTree/mac/Configurations/DumpRenderTree.entitlements",
           "line": 5,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/DumpRenderTree/mac/Configurations/DumpRenderTree.entitlements#L5"
         }
       ],
       "script_declarations": [
@@ -15264,7 +17928,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L16"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15276,7 +17941,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L342"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15288,7 +17954,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L15"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15300,7 +17967,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L56"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15312,7 +17980,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L95"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15324,7 +17993,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L125"
         }
       ],
       "code_checks": [
@@ -15335,7 +18005,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L139"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
@@ -15344,7 +18015,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1438"
         }
       ],
       "sandbox_checks": [],
@@ -15453,24 +18125,35 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 261,
-          "description": "Adds com.apple.security.cs.disable-library-validation to the shared macOS WebContent process entitlements when WK_XPC_SERVICE_VARIANT is Development"
+          "role": "Adds com.apple.security.cs.disable-library-validation to the shared macOS WebContent process entitlements when WK_XPC_SERVICE_VARIANT is Development",
+          "description": "Adds com.apple.security.cs.disable-library-validation to the shared macOS WebContent process entitlements when WK_XPC_SERVICE_VARIANT is Development",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L261"
         }
       ],
       "key_commits": [
         {
-          "hash": "b38c80e4b75a",
+          "hash": "b38c80e4b75a839e8c35d06e7e15c43f6df6fca3",
+          "short_hash": "b38c80e4b75a",
           "date": "2022-03-08",
-          "subject": "Remove remnants of WebKit.Plugin.64.xpc service"
+          "subject": "Remove remnants of WebKit.Plugin.64.xpc service",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b38c80e4b75a839e8c35d06e7e15c43f6df6fca3"
         },
         {
-          "hash": "f38acd8fe12e",
+          "hash": "f38acd8fe12e6c4d4012939c3533809bd0abb421",
+          "short_hash": "f38acd8fe12e",
           "date": "2019-08-02",
-          "subject": "macCatalyst build fails the first attempt, requires a second build"
+          "subject": "macCatalyst build fails the first attempt, requires a second build",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f38acd8fe12e6c4d4012939c3533809bd0abb421"
         },
         {
-          "hash": "a06b30c383bc",
+          "hash": "a06b30c383bce7d8a19a9bcce9ae13ce5e82600a",
+          "short_hash": "a06b30c383bc",
           "date": "2019-02-07",
-          "subject": "Fix XCBuild issue related to codesigning WebContent process"
+          "subject": "Fix XCBuild issue related to codesigning WebContent process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a06b30c383bce7d8a19a9bcce9ae13ce5e82600a"
         }
       ],
       "plist_declarations": [],
@@ -15485,7 +18168,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L261"
         }
       ],
       "code_checks": [],
@@ -15530,34 +18214,90 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 222,
-          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS WebContent processes when WK_USE_RESTRICTED_ENTITLEMENTS is YES"
+          "role": "Adds com.apple.security.cs.jit-write-allowlist to macOS WebContent processes when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS WebContent processes when WK_USE_RESTRICTED_ENTITLEMENTS is YES",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L222"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 65,
-          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS GPU process"
+          "role": "Adds com.apple.security.cs.jit-write-allowlist to macOS GPU process",
+          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L65"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 114,
-          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS Network process"
+          "role": "Adds com.apple.security.cs.jit-write-allowlist to macOS Network process",
+          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS Network process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L114"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 29,
-          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS jsc tool binary"
+          "role": "Adds com.apple.security.cs.jit-write-allowlist to macOS jsc tool binary",
+          "description": "Adds com.apple.security.cs.jit-write-allowlist to macOS jsc tool binary",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L29"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 327,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L327"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 386,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L386"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 415,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L415"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 59,
+          "role": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L59"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 109,
+          "role": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L109"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 143,
+          "role": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L143"
         }
       ],
       "key_commits": [
         {
-          "hash": "3a899215c988",
+          "hash": "3a899215c988785a99bd00a0467e9e8ee27b08e4",
+          "short_hash": "3a899215c988",
           "date": "2026-04-07",
-          "subject": "Remove JIT related entitlements from Captive Portal variant of the macCatalyst WebContent binary"
+          "subject": "Remove JIT related entitlements from Captive Portal variant of the macCatalyst WebContent binary",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3a899215c988785a99bd00a0467e9e8ee27b08e4"
         },
         {
-          "hash": "bb4d3ee9eae2",
+          "hash": "bb4d3ee9eae28a671ea11c1eae167f89412a3043",
+          "short_hash": "bb4d3ee9eae2",
           "date": "2025-10-02",
-          "subject": "New WebContent process variant for Enhanced Security"
+          "subject": "New WebContent process variant for Enhanced Security",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bb4d3ee9eae28a671ea11c1eae167f89412a3043"
         }
       ],
       "plist_declarations": [],
@@ -15572,7 +18312,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L65"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15584,7 +18325,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L114"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15596,7 +18338,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L222"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15608,7 +18351,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L327"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15620,7 +18364,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L386"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15632,7 +18377,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L415"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15644,7 +18390,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L29"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15656,7 +18403,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L59"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15668,7 +18416,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L109"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15680,7 +18429,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L143"
         }
       ],
       "code_checks": [],
@@ -15727,34 +18477,91 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 21,
-          "description": "Applies com.apple.security.cs.single-jit to macOS WebContent processes"
+          "role": "Applies com.apple.security.cs.single-jit to macOS WebContent processes",
+          "description": "Applies com.apple.security.cs.single-jit to macOS WebContent processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L21"
         },
         {
           "file": "Source/JavaScriptCore/jit/ExecutableAllocator.cpp",
           "line": 164,
-          "description": "Asserts processHasEntitlement(\"com.apple.security.cs.single-jit\") before exhausting JIT memory allocations during disableJIT()"
+          "role": "Asserts processHasEntitlement(\"com.apple.security.cs.single-jit\") before exhausting JIT memory allocations during disableJIT()",
+          "description": "Asserts processHasEntitlement(\"com.apple.security.cs.single-jit\") before exhausting JIT memory allocations during disableJIT()",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L164"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
           "line": 1440,
-          "description": "Checks the WebContent connection's single-jit entitlement in SPI testing helpers for Enhanced Security"
+          "role": "Checks the WebContent connection's single-jit entitlement in SPI testing helpers for Enhanced Security",
+          "description": "Checks the WebContent connection's single-jit entitlement in SPI testing helpers for Enhanced Security",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1440"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 345,
+          "role": "Signing script grant in maccatalyst_process_webcontent_entitlements() for WebContent",
+          "description": "Signing script grant in maccatalyst_process_webcontent_entitlements() for WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L345"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 35,
+          "role": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in mac_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L35"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 65,
+          "role": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in mac_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L65"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 118,
+          "role": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in maccatalyst_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L118"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 149,
+          "role": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "description": "Signing script grant in maccatalyst_process_testapi_entitlements() for testapi (JSC)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L149"
+        },
+        {
+          "file": "Source/JavaScriptCore/entitlements.plist",
+          "line": 7,
+          "role": "Static .entitlements plist declaration for jsc / JSC Tools",
+          "description": "Static .entitlements plist declaration for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/entitlements.plist#L7"
         }
       ],
       "key_commits": [
         {
-          "hash": "9cc524ed511e",
+          "hash": "9cc524ed511e7ec4127c7dda5cef25610542f8ac",
+          "short_hash": "9cc524ed511e",
           "date": "2025-10-09",
-          "subject": "Add entitlement assertions for JIT disabling on macOS"
+          "subject": "Add entitlement assertions for JIT disabling on macOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9cc524ed511e7ec4127c7dda5cef25610542f8ac"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
-          "hash": "3fd7f86c3308",
+          "hash": "3fd7f86c3308116fdce268db0c3920a932df3378",
+          "short_hash": "3fd7f86c3308",
           "date": "2025-11-05",
-          "subject": "Add additional API tests for EnhancedSecurity"
+          "subject": "Add additional API tests for EnhancedSecurity",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3fd7f86c3308116fdce268db0c3920a932df3378"
         }
       ],
       "plist_declarations": [
@@ -15762,7 +18569,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/JavaScriptCore/entitlements.plist",
           "line": 7,
           "value": true,
-          "process": "jsc / JSC Tools"
+          "process": "jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/entitlements.plist#L7"
         }
       ],
       "script_declarations": [
@@ -15776,7 +18584,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L21"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -15788,7 +18597,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L345"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15800,7 +18610,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L35"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15812,7 +18623,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L65"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15824,7 +18636,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L118"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -15836,7 +18649,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L149"
         }
       ],
       "code_checks": [
@@ -15848,7 +18662,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L164"
         },
         {
           "file": "Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm",
@@ -15857,7 +18672,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/Cocoa/WKWebViewTesting.mm#L1440"
         }
       ],
       "sandbox_checks": [],
@@ -15966,24 +18782,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 7,
-          "description": "Declares com.apple.security.device.camera to grant MiniBrowser camera hardware access in macOS App Sandbox"
+          "role": "Declares com.apple.security.device.camera to grant MiniBrowser camera hardware access in macOS App Sandbox",
+          "description": "Declares com.apple.security.device.camera to grant MiniBrowser camera hardware access in macOS App Sandbox",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L7"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 7,
-          "description": "Declares com.apple.security.device.camera to grant SwiftBrowser camera hardware access in macOS App Sandbox"
+          "role": "Declares com.apple.security.device.camera to grant SwiftBrowser camera hardware access in macOS App Sandbox",
+          "description": "Declares com.apple.security.device.camera to grant SwiftBrowser camera hardware access in macOS App Sandbox",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L7"
         }
       ],
       "key_commits": [
         {
-          "hash": "59c414c14bab",
+          "hash": "59c414c14bab0b954f31f9221a63ab075bcd9ccf",
+          "short_hash": "59c414c14bab",
           "date": "2020-09-22",
-          "subject": "Implement a default prompt for getUserMedia"
+          "subject": "Implement a default prompt for getUserMedia",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/59c414c14bab0b954f31f9221a63ab075bcd9ccf"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         }
       ],
       "plist_declarations": [
@@ -15991,13 +18817,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 7,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L7"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 7,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L7"
         }
       ],
       "script_declarations": [],
@@ -16035,24 +18863,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 9,
-          "description": "Enables microphone hardware access for the sandboxed macOS MiniBrowser test application."
+          "role": "Enables microphone hardware access for the sandboxed macOS MiniBrowser test application.",
+          "description": "Enables microphone hardware access for the sandboxed macOS MiniBrowser test application.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L9"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 9,
-          "description": "Enables microphone hardware access for the sandboxed macOS SwiftBrowser test application."
+          "role": "Enables microphone hardware access for the sandboxed macOS SwiftBrowser test application.",
+          "description": "Enables microphone hardware access for the sandboxed macOS SwiftBrowser test application.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L9"
         }
       ],
       "key_commits": [
         {
-          "hash": "59c414c14bab",
+          "hash": "59c414c14bab0b954f31f9221a63ab075bcd9ccf",
+          "short_hash": "59c414c14bab",
           "date": "2020-09-22",
-          "subject": "Implement a default prompt for getUserMedia"
+          "subject": "Implement a default prompt for getUserMedia",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/59c414c14bab0b954f31f9221a63ab075bcd9ccf"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         }
       ],
       "plist_declarations": [
@@ -16060,13 +18898,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 9,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L9"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 9,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L9"
         }
       ],
       "script_declarations": [],
@@ -16104,24 +18944,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 11,
-          "description": "Enables USB hardware access in the sandboxed MiniBrowser macOS test host application"
+          "role": "Enables USB hardware access in the sandboxed MiniBrowser macOS test host application",
+          "description": "Enables USB hardware access in the sandboxed MiniBrowser macOS test host application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L11"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 11,
-          "description": "Enables USB hardware access in the sandboxed SwiftBrowser macOS test host application"
+          "role": "Enables USB hardware access in the sandboxed SwiftBrowser macOS test host application",
+          "description": "Enables USB hardware access in the sandboxed SwiftBrowser macOS test host application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L11"
         }
       ],
       "key_commits": [
         {
-          "hash": "b84fc28b1d05",
+          "hash": "b84fc28b1d05600eb3e8a374c9cd0f0929b74fad",
+          "short_hash": "b84fc28b1d05",
           "date": "2018-11-14",
-          "subject": "[WebAuthN] Support CTAP HID authenticators on macOS"
+          "subject": "[WebAuthN] Support CTAP HID authenticators on macOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b84fc28b1d05600eb3e8a374c9cd0f0929b74fad"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         }
       ],
       "plist_declarations": [
@@ -16129,13 +18979,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 11,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L11"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 11,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L11"
         }
       ],
       "script_declarations": [],
@@ -16174,19 +19026,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 620,
-          "description": "Appends com.apple.security.exception.files.absolute-path.read-only containing '/private/var/db/os_eligibility/eligibility.plist' for webpushd on iOS family platforms"
+          "role": "Appends com.apple.security.exception.files.absolute-path.read-only containing '/private/var/db/os_eligibility/eligibility.plist' for webpushd on iOS family platforms",
+          "description": "Appends com.apple.security.exception.files.absolute-path.read-only containing '/private/var/db/os_eligibility/eligibility.plist' for webpushd on iOS family platforms",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L620"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 621,
+          "role": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L621"
         }
       ],
       "key_commits": [
         {
-          "hash": "60973b36d99f",
+          "hash": "60973b36d99f78bb173e73b0c2b0dfbd9bd51463",
+          "short_hash": "60973b36d99f",
           "date": "2024-09-11",
-          "subject": "Allow webpushd to read eligbility state"
+          "subject": "Allow webpushd to read eligbility state",
+          "significance": "Allow webpushd to read eligbility state \u2014 We recently adopted some features in webpushd that require reading the eligibility state from disk",
+          "github_url": "https://github.com/WebKit/WebKit/commit/60973b36d99f78bb173e73b0c2b0dfbd9bd51463"
         },
         {
-          "hash": "03438bff22ab",
+          "hash": "03438bff22ab43d92292ead00d9595b61d11912b",
+          "short_hash": "03438bff22ab",
           "date": "2021-09-29",
-          "subject": "Remove unused \"com.apple.security.exception.file*\" rules from WebKit sandboxes"
+          "subject": "Remove unused \"com.apple.security.exception.file*\" rules from WebKit sandboxes",
+          "significance": "Remove unused \"com.apple.security.exception.file*\" rules from WebKit sandboxes (4 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/03438bff22ab43d92292ead00d9595b61d11912b"
         }
       ],
       "plist_declarations": [],
@@ -16202,7 +19069,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L620"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16215,7 +19083,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L621"
         }
       ],
       "code_checks": [],
@@ -16253,24 +19122,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 565,
-          "description": "Permits file-issue-extension for com.apple.nsurlstorage.extension-cache when holding a com.apple.security.exception.files.home-relative-path.read-write sandbox extension"
+          "role": "Permits file-issue-extension for com.apple.nsurlstorage.extension-cache when holding a com.apple.security.exception.files.home-relative-path.read-write sandbox extension",
+          "description": "Permits file-issue-extension for com.apple.nsurlstorage.extension-cache when holding a com.apple.security.exception.files.home-relative-path.read-write sandbox extension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L565"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb",
           "line": 658,
-          "description": "Permits file-issue-extension for com.apple.nsurlstorage.extension-cache when holding a com.apple.security.exception.files.home-relative-path.read-write sandbox extension"
+          "role": "Permits file-issue-extension for com.apple.nsurlstorage.extension-cache when holding a com.apple.security.exception.files.home-relative-path.read-write sandbox extension",
+          "description": "Permits file-issue-extension for com.apple.nsurlstorage.extension-cache when holding a com.apple.security.exception.files.home-relative-path.read-write sandbox extension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L658"
         }
       ],
       "key_commits": [
         {
           "hash": "03438bff22ab43d92292ead00d9595b61d11912b",
+          "short_hash": "03438bff22ab",
           "date": "2021-09-29",
-          "subject": "Remove unused \"com.apple.security.exception.file*\" rules from WebKit sandboxes"
+          "subject": "Remove unused \"com.apple.security.exception.file*\" rules from WebKit sandboxes",
+          "significance": "Remove unused \"com.apple.security.exception.file*\" rules from WebKit sandboxes (4 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/03438bff22ab43d92292ead00d9595b61d11912b"
         },
         {
           "hash": "e0c788b57e1db6001fe923da9370d0c4d2095e02",
+          "short_hash": "e0c788b57e1d",
           "date": "2025-09-08",
-          "subject": "Reduce size of Development sandboxes"
+          "subject": "Reduce size of Development sandboxes",
+          "significance": "Reduce size of Development sandboxes (3 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0c788b57e1db6001fe923da9370d0c4d2095e02"
         }
       ],
       "plist_declarations": [],
@@ -16282,14 +19161,16 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 658,
           "process": "GPU",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.files.home-relative-path.read-write\")"
+          "snippet": "(extension \"com.apple.security.exception.files.home-relative-path.read-write\")",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L658"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 565,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.files.home-relative-path.read-write\")"
+          "snippet": "(extension \"com.apple.security.exception.files.home-relative-path.read-write\")",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L565"
         }
       ],
       "related_spis_count": 0,
@@ -16330,29 +19211,48 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 562,
-          "description": "Adds mach-lookup global-name exception array containing com.apple.systemstatus.activityattribution for the GPU process on iOS and visionOS."
+          "role": "Adds mach-lookup global-name exception array containing com.apple.systemstatus.activityattribution for the GPU process on iOS and visionOS.",
+          "description": "Adds mach-lookup global-name exception array containing com.apple.systemstatus.activityattribution for the GPU process on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L562"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 605,
-          "description": "Adds mach-lookup global-name exception for com.apple.networkserviceproxy in the adattributiond daemon on iOS and visionOS."
+          "role": "Adds mach-lookup global-name exception for com.apple.networkserviceproxy in the adattributiond daemon on iOS and visionOS.",
+          "description": "Adds mach-lookup global-name exception for com.apple.networkserviceproxy in the adattributiond daemon on iOS and visionOS.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L605"
         },
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 136,
-          "description": "Denies mach-lookup extensions matching com.apple.security.exception.mach-lookup.global-name with elevated precedence."
+          "role": "Denies mach-lookup extensions matching com.apple.security.exception.mach-lookup.global-name with elevated precedence.",
+          "description": "Denies mach-lookup extensions matching com.apple.security.exception.mach-lookup.global-name with elevated precedence.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L136"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 563,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L563"
         }
       ],
       "key_commits": [
         {
-          "hash": "f8277ab0a96d",
+          "hash": "f8277ab0a96dc1a24aec6c65284506377a3a64a8",
+          "short_hash": "f8277ab0a96d",
           "date": "2026-06-05",
-          "subject": "[PCM] Support proxying PCM requests on iOS"
+          "subject": "[PCM] Support proxying PCM requests on iOS",
+          "significance": "Support proxying PCM requests on iOS \u2014 This change adds a new \"secondary\" identifier that we use when creating a URLSession in adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f8277ab0a96dc1a24aec6c65284506377a3a64a8"
         },
         {
-          "hash": "cb18053524fe",
+          "hash": "cb18053524fe55b69558477bf7d8f6344aeedf69",
+          "short_hash": "cb18053524fe",
           "date": "2021-07-14",
-          "subject": "[iOS] Dynamically set capture attribution"
+          "subject": "[iOS] Dynamically set capture attribution",
+          "significance": "Dynamically set capture attribution \u2014 Source/WebCore: No new tests, tested manually",
+          "github_url": "https://github.com/WebKit/WebKit/commit/cb18053524fe55b69558477bf7d8f6344aeedf69"
         }
       ],
       "plist_declarations": [],
@@ -16368,7 +19268,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L562"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16381,7 +19282,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L563"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16394,7 +19296,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L605"
         }
       ],
       "code_checks": [],
@@ -16404,7 +19307,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 136,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.mach-lookup.global-name\")))"
+          "snippet": "(extension \"com.apple.security.exception.mach-lookup.global-name\")))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L136"
         }
       ],
       "related_spis_count": 0,
@@ -16438,19 +19342,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in",
           "line": 139,
-          "description": "Elevated-precedence deny rule blocking mach-lookup for sandbox extensions of class 'com.apple.security.exception.mach-lookup.local-name'"
+          "role": "Elevated-precedence deny rule blocking mach-lookup for sandbox extensions of class 'com.apple.security.exception.mach-lookup.local-name'",
+          "description": "Elevated-precedence deny rule blocking mach-lookup for sandbox extensions of class 'com.apple.security.exception.mach-lookup.local-name'",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L139"
         }
       ],
       "key_commits": [
         {
           "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+          "short_hash": "d4fb8ae72882",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d4fb8ae7288211c8a887ae8785f54511fb1a7ec9"
         },
         {
           "hash": "fc55b4b5008ca22247637021794fbe055313e85d",
+          "short_hash": "fc55b4b5008c",
           "date": "2025-09-04",
-          "subject": "Remove redundant sandbox rules in the Networking process on iOS"
+          "subject": "Remove redundant sandbox rules in the Networking process on iOS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/fc55b4b5008ca22247637021794fbe055313e85d"
         }
       ],
       "plist_declarations": [],
@@ -16462,7 +19374,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 139,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.mach-lookup.local-name\"))))"
+          "snippet": "(extension \"com.apple.security.exception.mach-lookup.local-name\"))))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/SandboxProfiles/ios/com.apple.WebKit.Networking.sb.in#L139"
         }
       ],
       "related_spis_count": 0,
@@ -16500,29 +19413,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb",
           "line": 769,
-          "description": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in WebContent process"
+          "role": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in WebContent process",
+          "description": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in WebContent process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb#L769"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 554,
-          "description": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in Networking process"
+          "role": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in Networking process",
+          "description": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in Networking process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L554"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb",
           "line": 651,
-          "description": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in GPU process"
+          "role": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in GPU process",
+          "description": "Permits managed-preference-read via com.apple.security.exception.managed-preference.read-only extension in GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L651"
         }
       ],
       "key_commits": [
         {
           "hash": "007213f8be5abb366cd4b94b753b4787f74bfb4d",
+          "short_hash": "007213f8be5a",
           "date": "2019-10-24",
-          "subject": "[iOS] Stop including 'common.sb' https://bugs.webkit.org/show_bug.cgi?id=203318"
+          "subject": "[iOS] Stop including 'common.sb' https://bugs.webkit.org/show_bug.cgi?id=203318",
+          "significance": "Stop including 'common.sb' \u2014 Replace the 'import' of common.sb with the equivalent statements",
+          "github_url": "https://github.com/WebKit/WebKit/commit/007213f8be5abb366cd4b94b753b4787f74bfb4d"
         },
         {
           "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+          "short_hash": "d4fb8ae72882",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb' https://bugs.webkit.org/show_bug.cgi?id=205521"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb' https://bugs.webkit.org/show_bug.cgi?id=205521",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d4fb8ae7288211c8a887ae8785f54511fb1a7ec9"
         }
       ],
       "plist_declarations": [],
@@ -16534,21 +19459,24 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 651,
           "process": "GPU",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.managed-preference.read-only\"))"
+          "snippet": "(extension \"com.apple.security.exception.managed-preference.read-only\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L651"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 554,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.managed-preference.read-only\"))"
+          "snippet": "(extension \"com.apple.security.exception.managed-preference.read-only\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L554"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb",
           "line": 769,
           "process": "WebContent",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.managed-preference.read-only\"))"
+          "snippet": "(extension \"com.apple.security.exception.managed-preference.read-only\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb#L769"
         }
       ],
       "related_spis_count": 0,
@@ -16582,19 +19510,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 570,
-          "description": "Seatbelt filter requiring com.apple.security.exception.process-info to allow process-info inspection primitives and kern.proc sysctl reads"
+          "role": "Seatbelt filter requiring com.apple.security.exception.process-info to allow process-info inspection primitives and kern.proc sysctl reads",
+          "description": "Seatbelt filter requiring com.apple.security.exception.process-info to allow process-info inspection primitives and kern.proc sysctl reads",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L570"
         }
       ],
       "key_commits": [
         {
-          "hash": "d4fb8ae72882",
+          "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+          "short_hash": "d4fb8ae72882",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d4fb8ae7288211c8a887ae8785f54511fb1a7ec9"
         },
         {
-          "hash": "e0c788b57e1d",
+          "hash": "e0c788b57e1db6001fe923da9370d0c4d2095e02",
+          "short_hash": "e0c788b57e1d",
           "date": "2025-09-08",
-          "subject": "Reduce size of Development sandboxes"
+          "subject": "Reduce size of Development sandboxes",
+          "significance": "Reduce size of Development sandboxes (3 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0c788b57e1db6001fe923da9370d0c4d2095e02"
         }
       ],
       "plist_declarations": [],
@@ -16606,7 +19542,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 570,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(with-filter (require-entitlement \"com.apple.security.exception.process-info\")"
+          "snippet": "(with-filter (require-entitlement \"com.apple.security.exception.process-info\")",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L570"
         }
       ],
       "related_spis_count": 0,
@@ -16647,34 +19584,48 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb",
           "line": 771,
-          "description": "Permits user-preference-read in WebContent processes via the shared-preference.read-only extension class"
+          "role": "Permits user-preference-read in WebContent processes via the shared-preference.read-only extension class",
+          "description": "Permits user-preference-read in WebContent processes via the shared-preference.read-only extension class",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb#L771"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 556,
-          "description": "Permits user-preference-read in Networking processes via the shared-preference.read-only extension class"
+          "role": "Permits user-preference-read in Networking processes via the shared-preference.read-only extension class",
+          "description": "Permits user-preference-read in Networking processes via the shared-preference.read-only extension class",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L556"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb",
           "line": 653,
-          "description": "Permits user-preference-read in GPU processes via the shared-preference.read-only extension class"
+          "role": "Permits user-preference-read in GPU processes via the shared-preference.read-only extension class",
+          "description": "Permits user-preference-read in GPU processes via the shared-preference.read-only extension class",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L653"
         },
         {
           "file": "Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements",
           "line": 19,
-          "description": "Entitles MobileMiniBrowser to read the com.apple.messages.EnhancedLinkSecurity shared preference domain"
+          "role": "Entitles MobileMiniBrowser to read the com.apple.messages.EnhancedLinkSecurity shared preference domain",
+          "description": "Entitles MobileMiniBrowser to read the com.apple.messages.EnhancedLinkSecurity shared preference domain",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L19"
         }
       ],
       "key_commits": [
         {
-          "hash": "3873896ae741",
+          "hash": "3873896ae741a6b1c892ea76a575c4f856992149",
+          "short_hash": "3873896ae741",
           "date": "2026-04-30",
-          "subject": "Move hasURLsRequiringEnhancedSecurityCheck to the UI process"
+          "subject": "Move hasURLsRequiringEnhancedSecurityCheck to the UI process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3873896ae741a6b1c892ea76a575c4f856992149"
         },
         {
-          "hash": "9217c5816986",
+          "hash": "9217c581698643696abc5be7d4f170b04fc5bcfc",
+          "short_hash": "9217c5816986",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9217c581698643696abc5be7d4f170b04fc5bcfc"
         }
       ],
       "plist_declarations": [
@@ -16684,7 +19635,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "value": [
             "com.apple.messages.EnhancedLinkSecurity"
           ],
-          "process": "MobileMiniBrowser (Host App)"
+          "process": "MobileMiniBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MobileMiniBrowser/MobileMiniBrowser/MobileMiniBrowser.entitlements#L19"
         }
       ],
       "script_declarations": [],
@@ -16695,21 +19647,24 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 653,
           "process": "GPU",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.shared-preference.read-only\"))"
+          "snippet": "(extension \"com.apple.security.exception.shared-preference.read-only\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/gpu-defines.sb#L653"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 556,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.shared-preference.read-only\"))"
+          "snippet": "(extension \"com.apple.security.exception.shared-preference.read-only\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L556"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb",
           "line": 771,
           "process": "WebContent",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.shared-preference.read-only\"))))"
+          "snippet": "(extension \"com.apple.security.exception.shared-preference.read-only\"))))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/webcontent-defines.sb#L771"
         }
       ],
       "related_spis_count": 0,
@@ -16743,19 +19698,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 558,
-          "description": "Allows sysctl-read when presented with a com.apple.security.exception.sysctl.read-only sandbox extension in rules-with-elevated-precedence"
+          "role": "Allows sysctl-read when presented with a com.apple.security.exception.sysctl.read-only sandbox extension in rules-with-elevated-precedence",
+          "description": "Allows sysctl-read when presented with a com.apple.security.exception.sysctl.read-only sandbox extension in rules-with-elevated-precedence",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L558"
         }
       ],
       "key_commits": [
         {
-          "hash": "d4fb8ae72882",
+          "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+          "short_hash": "d4fb8ae72882",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d4fb8ae7288211c8a887ae8785f54511fb1a7ec9"
         },
         {
-          "hash": "e0c788b57e1d",
+          "hash": "e0c788b57e1db6001fe923da9370d0c4d2095e02",
+          "short_hash": "e0c788b57e1d",
           "date": "2025-09-08",
-          "subject": "Reduce size of Development sandboxes"
+          "subject": "Reduce size of Development sandboxes",
+          "significance": "Reduce size of Development sandboxes (3 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0c788b57e1db6001fe923da9370d0c4d2095e02"
         }
       ],
       "plist_declarations": [],
@@ -16767,7 +19730,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 558,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.sysctl.read-only\"))"
+          "snippet": "(extension \"com.apple.security.exception.sysctl.read-only\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L558"
         }
       ],
       "related_spis_count": 0,
@@ -16801,19 +19765,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 560,
-          "description": "Allows sysctl-read and sysctl-write operations for processes holding a com.apple.security.exception.sysctl.read-write sandbox extension"
+          "role": "Allows sysctl-read and sysctl-write operations for processes holding a com.apple.security.exception.sysctl.read-write sandbox extension",
+          "description": "Allows sysctl-read and sysctl-write operations for processes holding a com.apple.security.exception.sysctl.read-write sandbox extension",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L560"
         }
       ],
       "key_commits": [
         {
           "hash": "d4fb8ae7288211c8a887ae8785f54511fb1a7ec9",
+          "short_hash": "d4fb8ae72882",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb' https://bugs.webkit.org/show_bug.cgi?id=205521 <rdar://problem/58095870>"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb' https://bugs.webkit.org/show_bug.cgi?id=205521 <rdar://problem/58095870>",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d4fb8ae7288211c8a887ae8785f54511fb1a7ec9"
         },
         {
           "hash": "e0c788b57e1db6001fe923da9370d0c4d2095e02",
+          "short_hash": "e0c788b57e1d",
           "date": "2025-09-08",
-          "subject": "Reduce size of Development sandboxes https://bugs.webkit.org/show_bug.cgi?id=298469 rdar://158907488"
+          "subject": "Reduce size of Development sandboxes https://bugs.webkit.org/show_bug.cgi?id=298469 rdar://158907488",
+          "significance": "Reduce size of Development sandboxes (3 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e0c788b57e1db6001fe923da9370d0c4d2095e02"
         }
       ],
       "plist_declarations": [],
@@ -16825,7 +19797,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 560,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(extension \"com.apple.security.exception.sysctl.read-write\"))"
+          "snippet": "(extension \"com.apple.security.exception.sysctl.read-write\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L560"
         }
       ],
       "related_spis_count": 0,
@@ -16870,44 +19843,120 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 448,
-          "description": "Appends com.apple.security.fatal-exceptions array with 'jit' to iOS/visionOS WebContent processes when WK_USE_FATAL_EXCEPTIONS is YES"
+          "role": "Appends com.apple.security.fatal-exceptions array with 'jit' to iOS/visionOS WebContent processes when WK_USE_FATAL_EXCEPTIONS is YES",
+          "description": "Appends com.apple.security.fatal-exceptions array with 'jit' to iOS/visionOS WebContent processes when WK_USE_FATAL_EXCEPTIONS is YES",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L448"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 50,
-          "description": "Appends com.apple.security.fatal-exceptions array with 'jit' to macOS GPU process"
+          "role": "Appends com.apple.security.fatal-exceptions array with 'jit' to macOS GPU process",
+          "description": "Appends com.apple.security.fatal-exceptions array with 'jit' to macOS GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L50"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 18,
-          "description": "Appends com.apple.security.fatal-exceptions array with 'jit' to jsc command-line tool"
+          "role": "Appends com.apple.security.fatal-exceptions array with 'jit' to jsc command-line tool",
+          "description": "Appends com.apple.security.fatal-exceptions array with 'jit' to jsc command-line tool",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L18"
         },
         {
           "file": "Source/WebKit/Configurations/Base.xcconfig",
           "line": 149,
-          "description": "Defines WK_USE_FATAL_EXCEPTIONS defaulting to YES with OVERRIDE_WK_USE_FATAL_EXCEPTIONS override switch"
+          "role": "Defines WK_USE_FATAL_EXCEPTIONS defaulting to YES with OVERRIDE_WK_USE_FATAL_EXCEPTIONS override switch",
+          "description": "Defines WK_USE_FATAL_EXCEPTIONS defaulting to YES with OVERRIDE_WK_USE_FATAL_EXCEPTIONS override switch",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Configurations/Base.xcconfig#L149"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 51,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L51"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 101,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L101"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 102,
+          "role": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "description": "Signing script grant in mac_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L102"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 268,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L268"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 269,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L269"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 310,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L310"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 311,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L311"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 379,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L379"
         }
       ],
       "key_commits": [
         {
-          "hash": "569a5bc33cff",
+          "hash": "569a5bc33cff09cbe15de7a91c47466ee5efbe70",
+          "short_hash": "569a5bc33cff",
           "date": "2024-03-26",
-          "subject": "Adopt Fatal Exceptions Entitlement (2)"
+          "subject": "Adopt Fatal Exceptions Entitlement (2)",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/569a5bc33cff09cbe15de7a91c47466ee5efbe70"
         },
         {
-          "hash": "50141c659194",
+          "hash": "50141c659194c39a3a77f558da7b0768e82f3f9a",
+          "short_hash": "50141c659194",
           "date": "2026-03-10",
-          "subject": "[JSC] Add OVERRIDE_WK_USE_FATAL_EXCEPTIONS"
+          "subject": "[JSC] Add OVERRIDE_WK_USE_FATAL_EXCEPTIONS",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/50141c659194c39a3a77f558da7b0768e82f3f9a"
         },
         {
-          "hash": "eb466700acaf",
+          "hash": "eb466700acafb0a4e0823b232fb9d7e8b54c4771",
+          "short_hash": "eb466700acaf",
           "date": "2026-04-07",
-          "subject": "Move common WebContent entitlements to shared function"
+          "subject": "Move common WebContent entitlements to shared function",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb466700acafb0a4e0823b232fb9d7e8b54c4771"
         },
         {
-          "hash": "28e1e825b7af",
+          "hash": "28e1e825b7afcabf416710850df55686420ab3f1",
+          "short_hash": "28e1e825b7af",
           "date": "2024-03-23",
-          "subject": "Adopt Fatal Exceptions Entitlement"
+          "subject": "Adopt Fatal Exceptions Entitlement",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/28e1e825b7afcabf416710850df55686420ab3f1"
         }
       ],
       "plist_declarations": [],
@@ -16922,7 +19971,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L50"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16934,7 +19984,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L51"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16946,7 +19997,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L101"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16958,7 +20010,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L102"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16970,7 +20023,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L268"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16982,7 +20036,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L269"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -16994,7 +20049,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L310"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17006,7 +20062,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L311"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17018,7 +20075,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L379"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17030,7 +20088,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L380"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17042,7 +20101,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L408"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17054,7 +20114,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L409"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17067,7 +20128,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L448"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17080,7 +20142,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L449"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17093,7 +20156,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L546"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17106,7 +20170,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L547"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17119,7 +20184,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L653"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17132,7 +20198,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L654"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17144,7 +20211,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L18"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17156,7 +20224,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L19"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17168,7 +20237,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L46"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17180,7 +20250,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L47"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17192,7 +20263,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L98"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17204,7 +20276,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "jsc / JSC Tools",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L99"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17216,7 +20289,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L129"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17228,7 +20302,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "testapi (JSC)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L130"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17241,7 +20316,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L178"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17254,7 +20330,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L179"
         }
       ],
       "code_checks": [],
@@ -17291,24 +20368,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 13,
-          "description": "Enables Downloads directory read-write access for the macOS MiniBrowser test application"
+          "role": "Enables Downloads directory read-write access for the macOS MiniBrowser test application",
+          "description": "Enables Downloads directory read-write access for the macOS MiniBrowser test application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L13"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 13,
-          "description": "Enables Downloads directory read-write access for the macOS SwiftBrowser SwiftUI test application"
+          "role": "Enables Downloads directory read-write access for the macOS SwiftBrowser SwiftUI test application",
+          "description": "Enables Downloads directory read-write access for the macOS SwiftBrowser SwiftUI test application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L13"
         }
       ],
       "key_commits": [
         {
-          "hash": "619a552127eb",
+          "hash": "619a552127eb2f2f6e9383823edd3dccb81f008a",
+          "short_hash": "619a552127eb",
           "date": "2026-08-16",
-          "subject": "MiniBrowser should support downloads for testing purposes https://bugs.webkit.org/show_bug.cgi?id=138673 rdar://185001852"
+          "subject": "MiniBrowser should support downloads for testing purposes https://bugs.webkit.org/show_bug.cgi?id=138673 rdar://185001852",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/619a552127eb2f2f6e9383823edd3dccb81f008a"
         },
         {
-          "hash": "b577152034d7",
+          "hash": "b577152034d7c8f68bf50523cc8d6f4481a80f66",
+          "short_hash": "b577152034d7",
           "date": "2025-01-02",
-          "subject": "[SwiftUI] Support download functionality https://bugs.webkit.org/show_bug.cgi?id=285225 rdar://141109043"
+          "subject": "[SwiftUI] Support download functionality https://bugs.webkit.org/show_bug.cgi?id=285225 rdar://141109043",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b577152034d7c8f68bf50523cc8d6f4481a80f66"
         }
       ],
       "plist_declarations": [
@@ -17316,13 +20403,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 13,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L13"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 13,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L13"
         }
       ],
       "script_declarations": [],
@@ -17360,29 +20449,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 15,
-          "description": "Declares user-selected file read-write entitlement for macOS MiniBrowser host application."
+          "role": "Declares user-selected file read-write entitlement for macOS MiniBrowser host application.",
+          "description": "Declares user-selected file read-write entitlement for macOS MiniBrowser host application.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L15"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 15,
-          "description": "Declares user-selected file read-write entitlement for macOS SwiftBrowser host application to support downloads and opening local files."
+          "role": "Declares user-selected file read-write entitlement for macOS SwiftBrowser host application to support downloads and opening local files.",
+          "description": "Declares user-selected file read-write entitlement for macOS SwiftBrowser host application to support downloads and opening local files.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L15"
         }
       ],
       "key_commits": [
         {
-          "hash": "b577152034d7",
+          "hash": "b577152034d7c8f68bf50523cc8d6f4481a80f66",
+          "short_hash": "b577152034d7",
           "date": "2025-01-02",
-          "subject": "[SwiftUI] Support download functionality"
+          "subject": "[SwiftUI] Support download functionality",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b577152034d7c8f68bf50523cc8d6f4481a80f66"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         },
         {
-          "hash": "2b99db70b33d",
+          "hash": "2b99db70b33d4d8bfe936db10a53e41574e2af3c",
+          "short_hash": "2b99db70b33d",
           "date": "2019-09-10",
-          "subject": "Add SPI to save a PDF from the contents of a WKWebView."
+          "subject": "Add SPI to save a PDF from the contents of a WKWebView.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2b99db70b33d4d8bfe936db10a53e41574e2af3c"
         }
       ],
       "plist_declarations": [
@@ -17390,13 +20492,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 15,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L15"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 15,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L15"
         }
       ],
       "script_declarations": [],
@@ -17444,29 +20548,90 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 706,
-          "description": "Injects get-task-allow into com.apple.WebKit.WebContent.Development during non-XBS builds to allow Xcode debugging"
+          "role": "Injects get-task-allow into com.apple.WebKit.WebContent.Development during non-XBS builds to allow Xcode debugging",
+          "description": "Injects get-task-allow into com.apple.WebKit.WebContent.Development during non-XBS builds to allow Xcode debugging",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L706"
         },
         {
           "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
           "line": 94,
-          "description": "Checks com.apple.security.get-task-allow on macOS to determine whether remote inspection should default to enabled on legacy SDKs"
+          "role": "Checks com.apple.security.get-task-allow on macOS to determine whether remote inspection should default to enabled on legacy SDKs",
+          "description": "Checks com.apple.security.get-task-allow on macOS to determine whether remote inspection should default to enabled on legacy SDKs",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L94"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 28,
-          "description": "Adds get-task-allow to the base entitlements for TestWebKitAPI test binaries across iOS, macOS, macCatalyst, and visionOS"
+          "role": "Adds get-task-allow to the base entitlements for TestWebKitAPI test binaries across iOS, macOS, macCatalyst, and visionOS",
+          "description": "Adds get-task-allow to the base entitlements for TestWebKitAPI test binaries across iOS, macOS, macCatalyst, and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L28"
+        },
+        {
+          "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
+          "line": 1048,
+          "role": "Runtime entitlement check in UIProcess / JSC Host (macOS)",
+          "description": "Runtime entitlement check in UIProcess / JSC Host (macOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1048"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 693,
+          "role": "Signing script grant in top-level() for Top-Level / Conditional",
+          "description": "Signing script grant in top-level() for Top-Level / Conditional",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L693"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 223,
+          "role": "Signing script grant in top-level() for Top-Level / Conditional",
+          "description": "Signing script grant in top-level() for Top-Level / Conditional",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L223"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 226,
+          "role": "Signing script grant in top-level() for Top-Level / Conditional",
+          "description": "Signing script grant in top-level() for Top-Level / Conditional",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L226"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 245,
+          "role": "Signing script grant in top-level() for Top-Level / Conditional",
+          "description": "Signing script grant in top-level() for Top-Level / Conditional",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L245"
+        },
+        {
+          "file": "Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS-simulator.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS-simulator.entitlements#L5"
+        },
+        {
+          "file": "Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS.entitlements#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "c663098fb4c1",
+          "hash": "c663098fb4c10a2d32d9879df7fdec7606ed3edd",
+          "short_hash": "c663098fb4c1",
           "date": "2024-05-28",
-          "subject": "Xcode is not able to attach to WebContent Development variant"
+          "subject": "Xcode is not able to attach to WebContent Development variant",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c663098fb4c10a2d32d9879df7fdec7606ed3edd"
         },
         {
-          "hash": "3d99c5a13754",
+          "hash": "3d99c5a137548afb19025ccd16979e9357a8cde7",
+          "short_hash": "3d99c5a13754",
           "date": "2022-10-14",
-          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API"
+          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3d99c5a137548afb19025ccd16979e9357a8cde7"
         }
       ],
       "plist_declarations": [
@@ -17474,13 +20639,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS-simulator.entitlements",
           "line": 5,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS-simulator.entitlements#L5"
         },
         {
           "file": "Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS.entitlements",
           "line": 5,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/ThirdParty/ANGLE/Configurations/ANGLEEnd2EndTestsApp-iOS.entitlements#L5"
         }
       ],
       "script_declarations": [
@@ -17495,7 +20662,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L693"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17508,7 +20676,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L706"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17521,7 +20690,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L223"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17534,7 +20704,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L226"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -17547,7 +20718,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L245"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -17562,7 +20734,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L28"
         }
       ],
       "code_checks": [
@@ -17572,7 +20745,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "UIProcess / JSC Host",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1048"
         }
       ],
       "sandbox_checks": [],
@@ -17619,34 +20793,112 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 459,
-          "description": "Adds the checked-allocations.no-tagged-receive entitlement to iOS and visionOS WebContent processes alongside com.apple.developer.hardened-process"
+          "role": "Adds the checked-allocations.no-tagged-receive entitlement to iOS and visionOS WebContent processes alongside com.apple.developer.hardened-process",
+          "description": "Adds the checked-allocations.no-tagged-receive entitlement to iOS and visionOS WebContent processes alongside com.apple.developer.hardened-process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L459"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 92,
-          "description": "Applies the entitlement to macOS GPU processes"
+          "role": "Applies the entitlement to macOS GPU processes",
+          "description": "Applies the entitlement to macOS GPU processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L92"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 141,
-          "description": "Applies the entitlement to macOS Network processes"
+          "role": "Applies the entitlement to macOS Network processes",
+          "description": "Applies the entitlement to macOS Network processes",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L141"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 237,
+          "role": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in mac_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L237"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 291,
+          "role": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in mac_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L291"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 331,
+          "role": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "description": "Signing script grant in maccatalyst_process_webcontent_shared_entitlements() for WebContent (Shared)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L331"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 389,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L389"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 418,
+          "role": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "description": "Signing script grant in maccatalyst_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L418"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 576,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L576"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 596,
+          "role": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "description": "Signing script grant in ios_family_process_model_entitlements() for Model",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L596"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 623,
+          "role": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "description": "Signing script grant in ios_family_process_webpushd_entitlements() for webpushd",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L623"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 671,
+          "role": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "description": "Signing script grant in ios_family_process_network_entitlements() for Networking",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L671"
         }
       ],
       "key_commits": [
         {
-          "hash": "57709f26206d",
+          "hash": "57709f26206dfaf1d9aedfba06a3250a615e826e",
+          "short_hash": "57709f26206d",
           "date": "2026-09-09",
-          "subject": "Enable MTE in soft mode for WebPushd"
+          "subject": "Enable MTE in soft mode for WebPushd",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/57709f26206dfaf1d9aedfba06a3250a615e826e"
         },
         {
-          "hash": "ed598b08761c",
+          "hash": "ed598b08761c4715373997ff339d0864a649db6d",
+          "short_hash": "ed598b08761c",
           "date": "2026-03-28",
-          "subject": "[iOS] Add entitlement related to checked allocations"
+          "subject": "[iOS] Add entitlement related to checked allocations",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ed598b08761c4715373997ff339d0864a649db6d"
         },
         {
-          "hash": "1b4dd17f517a",
+          "hash": "1b4dd17f517a1ecb3db037ca6bc588f946b28c56",
+          "short_hash": "1b4dd17f517a",
           "date": "2026-02-04",
-          "subject": "Adopt the soft-mode/no-tagged-receive entitlements for the EnhancedSecurity WebContent variant"
+          "subject": "Adopt the soft-mode/no-tagged-receive entitlements for the EnhancedSecurity WebContent variant",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/1b4dd17f517a1ecb3db037ca6bc588f946b28c56"
         }
       ],
       "plist_declarations": [],
@@ -17661,7 +20913,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L92"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17673,7 +20926,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L141"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17685,7 +20939,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L237"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17697,7 +20952,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L291"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17709,7 +20965,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "WebContent (Shared)",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L331"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17721,7 +20978,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L389"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17733,7 +20991,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L418"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17746,7 +21005,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L459"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17759,7 +21019,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L576"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17772,7 +21033,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "visionOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L596"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17785,7 +21047,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L623"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17798,7 +21061,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L671"
         }
       ],
       "code_checks": [],
@@ -17837,29 +21101,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 293,
-          "description": "Adds checked-allocations.soft-mode to webpushd on macOS under WK_USE_RESTRICTED_ENTITLEMENTS"
+          "role": "Adds checked-allocations.soft-mode to webpushd on macOS under WK_USE_RESTRICTED_ENTITLEMENTS",
+          "description": "Adds checked-allocations.soft-mode to webpushd on macOS under WK_USE_RESTRICTED_ENTITLEMENTS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L293"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 624,
-          "description": "Adds checked-allocations.soft-mode to webpushd on iOS and visionOS"
+          "role": "Adds checked-allocations.soft-mode to webpushd on iOS and visionOS",
+          "description": "Adds checked-allocations.soft-mode to webpushd on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L624"
         }
       ],
       "key_commits": [
         {
-          "hash": "57709f26206d",
+          "hash": "57709f26206dfaf1d9aedfba06a3250a615e826e",
+          "short_hash": "57709f26206d",
           "date": "2026-09-09",
-          "subject": "Enable MTE in soft mode for WebPushd"
+          "subject": "Enable MTE in soft mode for WebPushd",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/57709f26206dfaf1d9aedfba06a3250a615e826e"
         },
         {
-          "hash": "8d85f545cea5",
+          "hash": "8d85f545cea5c8741fd893cbfb172a92e647c5a7",
+          "short_hash": "8d85f545cea5",
           "date": "2026-06-30",
-          "subject": "Re-enable MTE hard-mode"
+          "subject": "Re-enable MTE hard-mode",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8d85f545cea5c8741fd893cbfb172a92e647c5a7"
         },
         {
-          "hash": "bdbe48f72fba",
+          "hash": "bdbe48f72fba30a02520dcafe9364bb591f56710",
+          "short_hash": "bdbe48f72fba",
           "date": "2026-03-16",
-          "subject": "[libpas] Enable soft-mode and retag-on-scavenge"
+          "subject": "[libpas] Enable soft-mode and retag-on-scavenge",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bdbe48f72fba30a02520dcafe9364bb591f56710"
         }
       ],
       "plist_declarations": [],
@@ -17874,7 +21151,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L293"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -17887,7 +21165,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L624"
         }
       ],
       "code_checks": [],
@@ -17941,34 +21220,84 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.mm",
           "line": 57,
-          "description": "Verifies that sandboxed client processes possess the network client entitlement before initializing XPC services on macOS and macCatalyst"
+          "role": "Verifies that sandboxed client processes possess the network client entitlement before initializing XPC services on macOS and macCatalyst",
+          "description": "Verifies that sandboxed client processes possess the network client entitlement before initializing XPC services on macOS and macCatalyst",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.mm#L57"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 397,
-          "description": "Applies com.apple.security.network.client to the macCatalyst network process (and lines 368/603 for macCatalyst GPU and iOS adattributiond)"
+          "role": "Applies com.apple.security.network.client to the macCatalyst network process (and lines 368/603 for macCatalyst GPU and iOS adattributiond)",
+          "description": "Applies com.apple.security.network.client to the macCatalyst network process (and lines 368/603 for macCatalyst GPU and iOS adattributiond)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L397"
         },
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 68,
-          "description": "Requires com.apple.security.network.client on watchOS to permit outbound communication with mDNSResponder and DNS service lookups"
+          "role": "Requires com.apple.security.network.client on watchOS to permit outbound communication with mDNSResponder and DNS service lookups",
+          "description": "Requires com.apple.security.network.client on watchOS to permit outbound communication with mDNSResponder and DNS service lookups",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L68"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 368,
+          "role": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in maccatalyst_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L368"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 603,
+          "role": "Signing script grant in ios_family_process_adattributiond_entitlements() for adattributiond",
+          "description": "Signing script grant in ios_family_process_adattributiond_entitlements() for adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L603"
+        },
+        {
+          "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
+          "line": 17,
+          "role": "Static .entitlements plist declaration for MiniBrowser / SwiftBrowser (Host App)",
+          "description": "Static .entitlements plist declaration for MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L17"
+        },
+        {
+          "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
+          "line": 17,
+          "role": "Static .entitlements plist declaration for MiniBrowser / SwiftBrowser (Host App)",
+          "description": "Static .entitlements plist declaration for MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L17"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "3c8bea442395",
+          "hash": "3c8bea442395b6ee1640a3c17cd47c5a71f93b82",
+          "short_hash": "3c8bea442395",
           "date": "2020-05-06",
-          "subject": "[MacCatalyst] Processes should check for network entitlement as we do for macOS apps"
+          "subject": "[MacCatalyst] Processes should check for network entitlement as we do for macOS apps",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3c8bea442395b6ee1640a3c17cd47c5a71f93b82"
         },
         {
-          "hash": "f8277ab0a96d",
+          "hash": "f8277ab0a96dc1a24aec6c65284506377a3a64a8",
+          "short_hash": "f8277ab0a96d",
           "date": "2026-06-05",
-          "subject": "[PCM] Support proxying PCM requests on iOS"
+          "subject": "[PCM] Support proxying PCM requests on iOS",
+          "significance": "Support proxying PCM requests on iOS \u2014 This change adds a new \"secondary\" identifier that we use when creating a URLSession in adattributiond",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f8277ab0a96dc1a24aec6c65284506377a3a64a8"
         },
         {
-          "hash": "719026f5bf12",
+          "hash": "719026f5bf1249e043f9d2685c79377f01284c6d",
+          "short_hash": "719026f5bf12",
           "date": "2021-01-26",
-          "subject": "REGRESSION(r261238): WKWebView crashes on launch inside a quicklook preview"
+          "subject": "REGRESSION(r261238): WKWebView crashes on launch inside a quicklook preview",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/719026f5bf1249e043f9d2685c79377f01284c6d"
         }
       ],
       "plist_declarations": [
@@ -17976,19 +21305,22 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 17,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L17"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 17,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L17"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements",
           "line": 5,
           "value": true,
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-watchOS.entitlements#L5"
         }
       ],
       "script_declarations": [
@@ -18002,7 +21334,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L368"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -18014,7 +21347,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L397"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -18027,7 +21361,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L603"
         }
       ],
       "code_checks": [
@@ -18039,7 +21374,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "iOS",
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/EntryPointUtilities/Cocoa/XPCService/XPCServiceEntryPoint.mm#L57"
         }
       ],
       "sandbox_checks": [
@@ -18048,7 +21384,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 68,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.security.network.client\")"
+          "snippet": "(require-entitlement \"com.apple.security.network.client\")",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L68"
         }
       ],
       "related_spis_count": 0,
@@ -18082,24 +21419,35 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb",
           "line": 69,
-          "description": "Sandbox rule filtering mDNSResponder socket and dnssd service access behind network client or network server entitlement on watchOS"
+          "role": "Sandbox rule filtering mDNSResponder socket and dnssd service access behind network client or network server entitlement on watchOS",
+          "description": "Sandbox rule filtering mDNSResponder socket and dnssd service access behind network client or network server entitlement on watchOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L69"
         }
       ],
       "key_commits": [
         {
-          "hash": "f3953af233f9",
+          "hash": "f3953af233f97e058ead9b189233ac7ad84662cf",
+          "short_hash": "f3953af233f9",
           "date": "2025-09-02",
-          "subject": "Create new files for sandbox defines"
+          "subject": "Create new files for sandbox defines",
+          "significance": "Create new files for sandbox defines \u2014 This will make the main sandboxes smaller and improve readability",
+          "github_url": "https://github.com/WebKit/WebKit/commit/f3953af233f97e058ead9b189233ac7ad84662cf"
         },
         {
-          "hash": "129d7629be7d",
+          "hash": "129d7629be7ded74ee0c924c96c48c1d0372d61d",
+          "short_hash": "129d7629be7d",
           "date": "2022-12-01",
-          "subject": "Upgrade to sandbox version 3 on iOS and macOS"
+          "subject": "Upgrade to sandbox version 3 on iOS and macOS",
+          "significance": "Upgrade to sandbox version 3 on iOS and macOS (3 iOS sandbox profiles)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/129d7629be7ded74ee0c924c96c48c1d0372d61d"
         },
         {
-          "hash": "9217c5816986",
+          "hash": "9217c581698643696abc5be7d4f170b04fc5bcfc",
+          "short_hash": "9217c5816986",
           "date": "2020-01-08",
-          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'"
+          "subject": "Network process sandboxes should not include 'common.sb' or 'system.sb'",
+          "significance": "Network process sandboxes should not include 'common.sb' or 'system.sb' \u2014 This patch replaces the 'include' with a copy/paste of the contents of the relevant sand...",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9217c581698643696abc5be7d4f170b04fc5bcfc"
         }
       ],
       "plist_declarations": [],
@@ -18111,7 +21459,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "line": 69,
           "process": "Networking",
           "platform": "iOS",
-          "snippet": "(require-entitlement \"com.apple.security.network.server\"))"
+          "snippet": "(require-entitlement \"com.apple.security.network.server\"))",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/Sandbox/iOS/networking-defines.sb#L69"
         }
       ],
       "related_spis_count": 0,
@@ -18146,24 +21495,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 19,
-          "description": "Enables the printing entitlement for the macOS MiniBrowser test harness."
+          "role": "Enables the printing entitlement for the macOS MiniBrowser test harness.",
+          "description": "Enables the printing entitlement for the macOS MiniBrowser test harness.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L19"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 19,
-          "description": "Enables the printing entitlement for the macOS SwiftBrowser application."
+          "role": "Enables the printing entitlement for the macOS SwiftBrowser application.",
+          "description": "Enables the printing entitlement for the macOS SwiftBrowser application.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L19"
         }
       ],
       "key_commits": [
         {
-          "hash": "8dfe17d90373",
+          "hash": "8dfe17d903738a524a2369df7ddf723d7b75db18",
+          "short_hash": "8dfe17d90373",
           "date": "2022-12-03",
-          "subject": "Add printing entitlement to Minibrowser"
+          "subject": "Add printing entitlement to Minibrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8dfe17d903738a524a2369df7ddf723d7b75db18"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         }
       ],
       "plist_declarations": [
@@ -18171,13 +21530,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 19,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L19"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 19,
           "value": true,
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L19"
         }
       ],
       "script_declarations": [],
@@ -18216,14 +21577,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/llint/LLIntData.cpp",
           "line": 98,
-          "description": "Evaluates whether scripting is forbidden via processHasEntitlement to disable VM entry and freeze opcode configuration pages."
+          "role": "Evaluates whether scripting is forbidden via processHasEntitlement to disable VM entry and freeze opcode configuration pages.",
+          "description": "Evaluates whether scripting is forbidden via processHasEntitlement to disable VM entry and freeze opcode configuration pages.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/llint/LLIntData.cpp#L98"
         }
       ],
       "key_commits": [
         {
-          "hash": "d5e7d2a3eeee",
+          "hash": "d5e7d2a3eeeeab55e93553b2fc91fc61327a6ffb",
+          "short_hash": "d5e7d2a3eeee",
           "date": "2025-08-17",
-          "subject": "Harden the interpreter dispatchers more for ARM64E."
+          "subject": "Harden the interpreter dispatchers more for ARM64E.",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d5e7d2a3eeeeab55e93553b2fc91fc61327a6ffb"
         }
       ],
       "plist_declarations": [],
@@ -18236,7 +21602,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "iOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/llint/LLIntData.cpp#L98"
         }
       ],
       "sandbox_checks": [],
@@ -18272,24 +21639,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 21,
-          "description": "Declares temporary exception read-only access to '/' for the macOS MiniBrowser test harness."
+          "role": "Declares temporary exception read-only access to '/' for the macOS MiniBrowser test harness.",
+          "description": "Declares temporary exception read-only access to '/' for the macOS MiniBrowser test harness.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L21"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 21,
-          "description": "Declares temporary exception read-only access to '/' for the macOS SwiftBrowser host app."
+          "role": "Declares temporary exception read-only access to '/' for the macOS SwiftBrowser host app.",
+          "description": "Declares temporary exception read-only access to '/' for the macOS SwiftBrowser host app.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L21"
         }
       ],
       "key_commits": [
         {
-          "hash": "c624799348d5",
+          "hash": "c624799348d5982ac881f10f6d6ddc4258d7faaf",
+          "short_hash": "c624799348d5",
           "date": "2018-01-31",
-          "subject": "[macOS] MiniBrowser isn\u2019t app-sandboxed"
+          "subject": "[macOS] MiniBrowser isn\u2019t app-sandboxed",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c624799348d5982ac881f10f6d6ddc4258d7faaf"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         }
       ],
       "plist_declarations": [
@@ -18297,13 +21674,15 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 21,
           "value": "/",
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L21"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 21,
           "value": "/",
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L21"
         }
       ],
       "script_declarations": [],
@@ -18341,14 +21720,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 23,
-          "description": "Declares temporary read-write access to `/private/tmp/` for the sandboxed MiniBrowser macOS host app"
+          "role": "Declares temporary read-write access to `/private/tmp/` for the sandboxed MiniBrowser macOS host app",
+          "description": "Declares temporary read-write access to `/private/tmp/` for the sandboxed MiniBrowser macOS host app",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L23"
         }
       ],
       "key_commits": [
         {
-          "hash": "d8b714fbd289",
+          "hash": "d8b714fbd289bdf31d3701050dc9263444fb4102",
+          "short_hash": "d8b714fbd289",
           "date": "2026-01-07",
-          "subject": "Add entitlement to MiniBrowser to support dumping to /tmp https://bugs.webkit.org/show_bug.cgi?id=303509"
+          "subject": "Add entitlement to MiniBrowser to support dumping to /tmp https://bugs.webkit.org/show_bug.cgi?id=303509",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d8b714fbd289bdf31d3701050dc9263444fb4102"
         }
       ],
       "plist_declarations": [
@@ -18356,7 +21740,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 23,
           "value": "/private/tmp/",
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L23"
         }
       ],
       "script_declarations": [],
@@ -18394,29 +21779,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 25,
-          "description": "Declares temporary Mach lookup exceptions for com.apple.PIPAgent, com.apple.Safari.SafeBrowsing.Service, com.apple.WebKit.NetworkingDaemon, and com.apple.webinspector"
+          "role": "Declares temporary Mach lookup exceptions for com.apple.PIPAgent, com.apple.Safari.SafeBrowsing.Service, com.apple.WebKit.NetworkingDaemon, and com.apple.webinspector",
+          "description": "Declares temporary Mach lookup exceptions for com.apple.PIPAgent, com.apple.Safari.SafeBrowsing.Service, com.apple.WebKit.NetworkingDaemon, and com.apple.webinspector",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L25"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 23,
-          "description": "Replicates the Mach lookup temporary exceptions for the SwiftUI SwiftBrowser test application"
+          "role": "Replicates the Mach lookup temporary exceptions for the SwiftUI SwiftBrowser test application",
+          "description": "Replicates the Mach lookup temporary exceptions for the SwiftUI SwiftBrowser test application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L23"
         }
       ],
       "key_commits": [
         {
-          "hash": "eb162b9182ac",
+          "hash": "eb162b9182aceb860e7436b59ab27e61e4a0d096",
+          "short_hash": "eb162b9182ac",
           "date": "2018-08-16",
-          "subject": "Add entitlement to MiniBrowser to allow it to communicate with com.apple.Safari.SafeBrowsing.Service"
+          "subject": "Add entitlement to MiniBrowser to allow it to communicate with com.apple.Safari.SafeBrowsing.Service",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/eb162b9182aceb860e7436b59ab27e61e4a0d096"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         },
         {
-          "hash": "b577152034d7",
+          "hash": "b577152034d7c8f68bf50523cc8d6f4481a80f66",
+          "short_hash": "b577152034d7",
           "date": "2025-01-02",
-          "subject": "[SwiftUI] Support download functionality"
+          "subject": "[SwiftUI] Support download functionality",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b577152034d7c8f68bf50523cc8d6f4481a80f66"
         }
       ],
       "plist_declarations": [
@@ -18429,7 +21827,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "com.apple.WebKit.NetworkingDaemon",
             "com.apple.webinspector"
           ],
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L25"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
@@ -18440,7 +21839,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "com.apple.WebKit.NetworkingDaemon",
             "com.apple.webinspector"
           ],
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L23"
         }
       ],
       "script_declarations": [],
@@ -18485,24 +21885,69 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 32,
-          "description": "Specifies inline SBPL rules allowing MiniBrowser to issue mach and iokit sandbox extensions for WebKit extension classes."
+          "role": "Specifies inline SBPL rules allowing MiniBrowser to issue mach and iokit sandbox extensions for WebKit extension classes.",
+          "description": "Specifies inline SBPL rules allowing MiniBrowser to issue mach and iokit sandbox extensions for WebKit extension classes.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L32"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 51,
-          "description": "Dynamically provisions the temporary-exception.sbpl array containing mach-issue-extension and iokit-issue-extension rules for TestWebKitAPI on macOS and macCatalyst."
+          "role": "Dynamically provisions the temporary-exception.sbpl array containing mach-issue-extension and iokit-issue-extension rules for TestWebKitAPI on macOS and macCatalyst.",
+          "description": "Dynamically provisions the temporary-exception.sbpl array containing mach-issue-extension and iokit-issue-extension rules for TestWebKitAPI on macOS and macCatalyst.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L51"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 52,
+          "role": "Signing script grant in process_mac_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_mac_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L52"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 53,
+          "role": "Signing script grant in process_mac_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_mac_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L53"
+        },
+        {
+          "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
+          "line": 30,
+          "role": "Static .entitlements plist declaration for MiniBrowser / SwiftBrowser (Host App)",
+          "description": "Static .entitlements plist declaration for MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L30"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
+          "line": 17,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L17"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner.entitlements#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "afad2cf186e6",
+          "hash": "afad2cf186e6e29e2086c968bf75abb60478c085",
+          "short_hash": "afad2cf186e6",
           "date": "2020-02-17",
-          "subject": "Update WebKit Tools to issue mach extensions as needed"
+          "subject": "Update WebKit Tools to issue mach extensions as needed",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/afad2cf186e6e29e2086c968bf75abb60478c085"
         },
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         }
       ],
       "plist_declarations": [
@@ -18513,7 +21958,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "(allow mach-issue-extension (require-all (extension-class \"com.apple.webkit.extension.mach\")))",
             "(allow iokit-issue-extension (require-all (extension-class \"com.apple.webkit.extension.iokit\")))"
           ],
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L32"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
@@ -18522,7 +21968,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "(allow mach-issue-extension (require-all (extension-class \"com.apple.webkit.extension.mach\")))",
             "(allow iokit-issue-extension (require-all (extension-class \"com.apple.webkit.extension.iokit\")))"
           ],
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L30"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
@@ -18531,7 +21978,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "(allow mach-issue-extension (require-all (extension-class \"com.apple.webkit.extension.mach\")))",
             "(allow iokit-issue-extension (require-all (extension-class \"com.apple.webkit.extension.iokit\")))"
           ],
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L17"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner.entitlements",
@@ -18540,7 +21988,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "(allow mach-issue-extension (require-all (extension-class \"com.apple.webkit.extension.mach\")))",
             "(allow iokit-issue-extension (require-all (extension-class \"com.apple.webkit.extension.iokit\")))"
           ],
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner.entitlements#L5"
         }
       ],
       "script_declarations": [
@@ -18555,7 +22004,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L51"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -18568,7 +22018,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L52"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -18581,7 +22032,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "macOS",
             "macCatalyst"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L53"
         }
       ],
       "code_checks": [],
@@ -18619,29 +22071,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/MiniBrowser/MiniBrowser.entitlements",
           "line": 37,
-          "description": "Entitlement declaration allowing MiniBrowser read-only access to com.apple.Safari.SandboxBroker and com.apple.messages.EnhancedLinkSecurity preferences."
+          "role": "Entitlement declaration allowing MiniBrowser read-only access to com.apple.Safari.SandboxBroker and com.apple.messages.EnhancedLinkSecurity preferences.",
+          "description": "Entitlement declaration allowing MiniBrowser read-only access to com.apple.Safari.SandboxBroker and com.apple.messages.EnhancedLinkSecurity preferences.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L37"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
           "line": 35,
-          "description": "Entitlement declaration granting SwiftBrowser read-only access to com.apple.Safari.SandboxBroker preferences."
+          "role": "Entitlement declaration granting SwiftBrowser read-only access to com.apple.Safari.SandboxBroker preferences.",
+          "description": "Entitlement declaration granting SwiftBrowser read-only access to com.apple.Safari.SandboxBroker preferences.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L35"
         }
       ],
       "key_commits": [
         {
-          "hash": "b577152034d7",
+          "hash": "b577152034d7c8f68bf50523cc8d6f4481a80f66",
+          "short_hash": "b577152034d7",
           "date": "2025-01-02",
-          "subject": "[SwiftUI] Support download functionality"
+          "subject": "[SwiftUI] Support download functionality",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b577152034d7c8f68bf50523cc8d6f4481a80f66"
         },
         {
-          "hash": "4f8ffdf62150",
+          "hash": "4f8ffdf6215072151355419da90a66dbd6384110",
+          "short_hash": "4f8ffdf62150",
           "date": "2024-12-09",
-          "subject": "[SwiftUI] Introduce SwiftBrowser"
+          "subject": "[SwiftUI] Introduce SwiftBrowser",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4f8ffdf6215072151355419da90a66dbd6384110"
         },
         {
-          "hash": "bb5043eb8af9",
+          "hash": "bb5043eb8af9d918fbb89046cb92d7485ac1e387",
+          "short_hash": "bb5043eb8af9",
           "date": "2020-11-19",
-          "subject": "[macOS] Issue sandbox extension to Web Inspector service"
+          "subject": "[macOS] Issue sandbox extension to Web Inspector service",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bb5043eb8af9d918fbb89046cb92d7485ac1e387"
         }
       ],
       "plist_declarations": [
@@ -18652,7 +22117,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "com.apple.Safari.SandboxBroker",
             "com.apple.messages.EnhancedLinkSecurity"
           ],
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/MiniBrowser/MiniBrowser.entitlements#L37"
         },
         {
           "file": "Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements",
@@ -18660,7 +22126,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "value": [
             "com.apple.Safari.SandboxBroker"
           ],
-          "process": "MiniBrowser / SwiftBrowser (Host App)"
+          "process": "MiniBrowser / SwiftBrowser (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/SwiftBrowser/Resources/SwiftBrowser.entitlements#L35"
         }
       ],
       "script_declarations": [],
@@ -18699,14 +22166,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 613,
-          "description": "Adds com.apple.springboard.opensensitiveurl to webpushd entitlements on iOS and visionOS"
+          "role": "Adds com.apple.springboard.opensensitiveurl to webpushd entitlements on iOS and visionOS",
+          "description": "Adds com.apple.springboard.opensensitiveurl to webpushd entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L613"
         }
       ],
       "key_commits": [
         {
-          "hash": "0e9914e91f10",
+          "hash": "0e9914e91f10c1d21552e0249a0837eda3420f6b",
+          "short_hash": "0e9914e91f10",
           "date": "2022-12-14",
-          "subject": "Compile-time enable Notifications for additional platform (runtime off by default)"
+          "subject": "Compile-time enable Notifications for additional platform (runtime off by default)",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/0e9914e91f10c1d21552e0249a0837eda3420f6b"
         }
       ],
       "plist_declarations": [],
@@ -18722,7 +22194,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L613"
         }
       ],
       "code_checks": [],
@@ -18803,19 +22276,26 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 539,
-          "description": "Adds com.apple.springboard.statusbarstyleoverrides to ios_family_process_gpu_entitlements() for the GPU process"
+          "role": "Adds com.apple.springboard.statusbarstyleoverrides to ios_family_process_gpu_entitlements() for the GPU process",
+          "description": "Adds com.apple.springboard.statusbarstyleoverrides to ios_family_process_gpu_entitlements() for the GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L539"
         },
         {
           "file": "Source/WebCore/platform/mediastream/ios/MediaCaptureStatusBarManager.mm",
           "line": 81,
-          "description": "Acquires an SBSStatusBarStyleOverridesAssertion for UIStatusBarStyleOverrideWebRTCAudioCapture and initializes SBSStatusBarStyleOverridesCoordinator"
+          "role": "Acquires an SBSStatusBarStyleOverridesAssertion for UIStatusBarStyleOverrideWebRTCAudioCapture and initializes SBSStatusBarStyleOverridesCoordinator",
+          "description": "Acquires an SBSStatusBarStyleOverridesAssertion for UIStatusBarStyleOverrideWebRTCAudioCapture and initializes SBSStatusBarStyleOverridesCoordinator",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/mediastream/ios/MediaCaptureStatusBarManager.mm#L81"
         }
       ],
       "key_commits": [
         {
-          "hash": "b3e3f3725328",
+          "hash": "b3e3f3725328eb8317a0c01cdd865f582729b15a",
+          "short_hash": "b3e3f3725328",
           "date": "2022-09-01",
-          "subject": "[iOS] Manage Capture Status Bar in GPUProcess"
+          "subject": "[iOS] Manage Capture Status Bar in GPUProcess",
+          "significance": "Manage Capture Status Bar in GPUProcess \u2014 Introduce a preference flag to enable status bar handling in GPUProcess",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b3e3f3725328eb8317a0c01cdd865f582729b15a"
         }
       ],
       "plist_declarations": [],
@@ -18831,7 +22311,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L539"
         }
       ],
       "code_checks": [],
@@ -18913,19 +22394,40 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 540,
-          "description": "Signs the GPU process on iOS/visionOS with com.apple.springboard.statusbarstyleoverrides.coordinator containing UIStatusBarStyleOverrideWebRTCAudioCapture and UIStatusBarStyleOverrideWebRTCCapture"
+          "role": "Signs the GPU process on iOS/visionOS with com.apple.springboard.statusbarstyleoverrides.coordinator containing UIStatusBarStyleOverrideWebRTCAudioCapture and UIStatusBarStyleOverrideWebRTCCapture",
+          "description": "Signs the GPU process on iOS/visionOS with com.apple.springboard.statusbarstyleoverrides.coordinator containing UIStatusBarStyleOverrideWebRTCAudioCapture and UIStatusBarStyleOverrideWebRTCCapture",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L540"
         },
         {
           "file": "Source/WebCore/platform/mediastream/ios/MediaCaptureStatusBarManager.mm",
           "line": 82,
-          "description": "Instantiates SBSStatusBarStyleOverridesCoordinator and calls setRegisteredStyleOverrides:reply: to manage the WebRTC capture status bar indicators"
+          "role": "Instantiates SBSStatusBarStyleOverridesCoordinator and calls setRegisteredStyleOverrides:reply: to manage the WebRTC capture status bar indicators",
+          "description": "Instantiates SBSStatusBarStyleOverridesCoordinator and calls setRegisteredStyleOverrides:reply: to manage the WebRTC capture status bar indicators",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/platform/mediastream/ios/MediaCaptureStatusBarManager.mm#L82"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 541,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L541"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 542,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L542"
         }
       ],
       "key_commits": [
         {
           "hash": "b3e3f3725328eb8317a0c01cdd865f582729b15a",
+          "short_hash": "b3e3f3725328",
           "date": "2022-09-01",
-          "subject": "[iOS] Manage Capture Status Bar in GPUProcess"
+          "subject": "[iOS] Manage Capture Status Bar in GPUProcess",
+          "significance": "Manage Capture Status Bar in GPUProcess \u2014 Introduce a preference flag to enable status bar handling in GPUProcess",
+          "github_url": "https://github.com/WebKit/WebKit/commit/b3e3f3725328eb8317a0c01cdd865f582729b15a"
         }
       ],
       "plist_declarations": [],
@@ -18941,7 +22443,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L540"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -18954,7 +22457,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L541"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -18967,7 +22471,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L542"
         }
       ],
       "code_checks": [],
@@ -19051,24 +22556,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 570,
-          "description": "Adds com.apple.surfboard.application-service-client to the GPU process entitlements when building for xrOS"
+          "role": "Adds com.apple.surfboard.application-service-client to the GPU process entitlements when building for xrOS",
+          "description": "Adds com.apple.surfboard.application-service-client to the GPU process entitlements when building for xrOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L570"
         },
         {
           "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
           "line": 9,
-          "description": "Declares com.apple.surfboard.application-service-client as true for the GPU process in the visionOS simulator"
+          "role": "Declares com.apple.surfboard.application-service-client as true for the GPU process in the visionOS simulator",
+          "description": "Declares com.apple.surfboard.application-service-client as true for the GPU process in the visionOS simulator",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L9"
         }
       ],
       "key_commits": [
         {
-          "hash": "8746ea87f06c",
+          "hash": "8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e",
+          "short_hash": "8746ea87f06c",
           "date": "2025-01-28",
-          "subject": "[visionOS] Move shared simulation connection from the Model process to the GPU process"
+          "subject": "[visionOS] Move shared simulation connection from the Model process to the GPU process",
+          "significance": "Move shared simulation connection from the Model process to the GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e"
         },
         {
-          "hash": "8a4b871eeecd",
+          "hash": "8a4b871eeecd5ca8e2001f76f417c739209a8c4f",
+          "short_hash": "8a4b871eeecd",
           "date": "2024-03-05",
-          "subject": "Render <model> tags in Model process"
+          "subject": "Render <model> tags in Model process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8a4b871eeecd5ca8e2001f76f417c739209a8c4f"
         }
       ],
       "plist_declarations": [
@@ -19076,7 +22591,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
           "line": 9,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L9"
         }
       ],
       "script_declarations": [
@@ -19091,7 +22607,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L570"
         }
       ],
       "code_checks": [],
@@ -19127,19 +22644,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/UIProcess/ios/fullscreen/WKFullScreenWindowControllerIOS.mm",
           "line": 1066,
-          "description": "Gates QuickLook image fullscreen presentation behind WTF::processHasEntitlement(\"com.apple.surfboard.chrome-customization\"_s)"
+          "role": "Gates QuickLook image fullscreen presentation behind WTF::processHasEntitlement(\"com.apple.surfboard.chrome-customization\"_s)",
+          "description": "Gates QuickLook image fullscreen presentation behind WTF::processHasEntitlement(\"com.apple.surfboard.chrome-customization\"_s)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/fullscreen/WKFullScreenWindowControllerIOS.mm#L1066"
         }
       ],
       "key_commits": [
         {
-          "hash": "6ac0f7beb971",
+          "hash": "6ac0f7beb9713b7e18c58f7cef3a35a57a0b2841",
+          "short_hash": "6ac0f7beb971",
           "date": "2024-06-07",
-          "subject": "[visionOS] Only delegate Image Fullscreen to Quick Look if client has proper entitlements"
+          "subject": "[visionOS] Only delegate Image Fullscreen to Quick Look if client has proper entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/6ac0f7beb9713b7e18c58f7cef3a35a57a0b2841"
         },
         {
-          "hash": "70014c526e8e",
+          "hash": "70014c526e8ece8ced6099c575ac1ec32d75f353",
+          "short_hash": "70014c526e8e",
           "date": "2024-07-12",
-          "subject": "[visionOS] Optimize the QuickLook fullscreen transition"
+          "subject": "[visionOS] Optimize the QuickLook fullscreen transition",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/70014c526e8ece8ced6099c575ac1ec32d75f353"
         }
       ],
       "plist_declarations": [],
@@ -19151,7 +22676,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "UIProcess / Host App",
           "platforms": [
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/ios/fullscreen/WKFullScreenWindowControllerIOS.mm#L1066"
         }
       ],
       "sandbox_checks": [],
@@ -19191,24 +22717,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 571,
-          "description": "Adds com.apple.surfboard.shared-simulation-connection-request to GPU process entitlements when target platform is xrOS"
+          "role": "Adds com.apple.surfboard.shared-simulation-connection-request to GPU process entitlements when target platform is xrOS",
+          "description": "Adds com.apple.surfboard.shared-simulation-connection-request to GPU process entitlements when target platform is xrOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L571"
         },
         {
           "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
           "line": 11,
-          "description": "Declares com.apple.surfboard.shared-simulation-connection-request for the GPU process on the visionOS simulator"
+          "role": "Declares com.apple.surfboard.shared-simulation-connection-request for the GPU process on the visionOS simulator",
+          "description": "Declares com.apple.surfboard.shared-simulation-connection-request for the GPU process on the visionOS simulator",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L11"
         }
       ],
       "key_commits": [
         {
           "hash": "8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e",
+          "short_hash": "8746ea87f06c",
           "date": "2025-01-28",
-          "subject": "[visionOS] Move shared simulation connection from the Model process to the GPU process"
+          "subject": "[visionOS] Move shared simulation connection from the Model process to the GPU process",
+          "significance": "Move shared simulation connection from the Model process to the GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8746ea87f06c2e65ea34055e95bcb7cbfa1ea59e"
         },
         {
           "hash": "8a4b871eeecd5ca8e2001f76f417c739209a8c4f",
+          "short_hash": "8a4b871eeecd",
           "date": "2024-03-05",
-          "subject": "Render <model> tags in Model process"
+          "subject": "Render <model> tags in Model process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8a4b871eeecd5ca8e2001f76f417c739209a8c4f"
         }
       ],
       "plist_declarations": [
@@ -19216,7 +22752,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements",
           "line": 11,
           "value": true,
-          "process": "GPU"
+          "process": "GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Resources/ios/GPUService-visionOS-simulator.entitlements#L11"
         }
       ],
       "script_declarations": [
@@ -19231,7 +22768,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L571"
         }
       ],
       "code_checks": [],
@@ -19269,19 +22807,27 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 572,
-          "description": "Adds com.apple.surfboard.shared-simulation-memory-attribution to the GPU process entitlements when targeting visionOS (xros)"
+          "role": "Adds com.apple.surfboard.shared-simulation-memory-attribution to the GPU process entitlements when targeting visionOS (xros)",
+          "description": "Adds com.apple.surfboard.shared-simulation-memory-attribution to the GPU process entitlements when targeting visionOS (xros)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L572"
         }
       ],
       "key_commits": [
         {
-          "hash": "d1807b80b6c2",
+          "hash": "d1807b80b6c27f7300887b4cd0b587931605fa6f",
+          "short_hash": "d1807b80b6c2",
           "date": "2025-04-11",
-          "subject": "Support memory attribution for Model Element"
+          "subject": "Support memory attribution for Model Element",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/d1807b80b6c27f7300887b4cd0b587931605fa6f"
         },
         {
-          "hash": "bf822a014db0",
+          "hash": "bf822a014db0963ac58be565bcfc8f1d509af653",
+          "short_hash": "bf822a014db0",
           "date": "2026-04-06",
-          "subject": "Fix indentation in process-entitlements.sh"
+          "subject": "Fix indentation in process-entitlements.sh",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/bf822a014db0963ac58be565bcfc8f1d509af653"
         }
       ],
       "plist_declarations": [],
@@ -19297,7 +22843,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L572"
         }
       ],
       "code_checks": [],
@@ -19336,24 +22883,33 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 135,
-          "description": "Adds com.apple.symptom_analytics.configure to the macOS NetworkProcess entitlement plist"
+          "role": "Adds com.apple.symptom_analytics.configure to the macOS NetworkProcess entitlement plist",
+          "description": "Adds com.apple.symptom_analytics.configure to the macOS NetworkProcess entitlement plist",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L135"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 665,
-          "description": "Adds com.apple.symptom_analytics.configure to the iOS/visionOS NetworkProcess entitlement plist"
+          "role": "Adds com.apple.symptom_analytics.configure to the iOS/visionOS NetworkProcess entitlement plist",
+          "description": "Adds com.apple.symptom_analytics.configure to the iOS/visionOS NetworkProcess entitlement plist",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L665"
         },
         {
           "file": "Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm",
           "line": 2167,
-          "description": "removeNetworkWebsiteData uses SymptomAnalytics UsageFeed to clear network domain tracking history for App Privacy Report"
+          "role": "removeNetworkWebsiteData uses SymptomAnalytics UsageFeed to clear network domain tracking history for App Privacy Report",
+          "description": "removeNetworkWebsiteData uses SymptomAnalytics UsageFeed to clear network domain tracking history for App Privacy Report",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/cocoa/NetworkSessionCocoa.mm#L2167"
         }
       ],
       "key_commits": [
         {
-          "hash": "7496c071f4af",
+          "hash": "7496c071f4af438c57bd212c45d91378fd837dfa",
+          "short_hash": "7496c071f4af",
           "date": "2021-04-02",
-          "subject": "Clear network website data when a user clears history/website data"
+          "subject": "Clear network website data when a user clears history/website data",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/7496c071f4af438c57bd212c45d91378fd837dfa"
         }
       ],
       "plist_declarations": [],
@@ -19368,7 +22924,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "Networking",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L135"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19381,7 +22938,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L665"
         }
       ],
       "code_checks": [],
@@ -19480,29 +23038,42 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 561,
-          "description": "Adds com.apple.systemstatus.activityattribution and matching Mach lookup exceptions to ios_family_process_gpu_entitlements"
+          "role": "Adds com.apple.systemstatus.activityattribution and matching Mach lookup exceptions to ios_family_process_gpu_entitlements",
+          "description": "Adds com.apple.systemstatus.activityattribution and matching Mach lookup exceptions to ios_family_process_gpu_entitlements",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L561"
         },
         {
           "file": "Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp",
           "line": 131,
-          "description": "Coordinates audio capture start and presenting application PID attribution in the GPU process"
+          "role": "Coordinates audio capture start and presenting application PID attribution in the GPU process",
+          "description": "Coordinates audio capture start and presenting application PID attribution in the GPU process",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp#L131"
         }
       ],
       "key_commits": [
         {
-          "hash": "cb18053524fe",
+          "hash": "cb18053524fe55b69558477bf7d8f6344aeedf69",
+          "short_hash": "cb18053524fe",
           "date": "2021-07-14",
-          "subject": "[iOS] Dynamically set capture attribution"
+          "subject": "[iOS] Dynamically set capture attribution",
+          "significance": "Dynamically set capture attribution \u2014 Source/WebCore: No new tests, tested manually",
+          "github_url": "https://github.com/WebKit/WebKit/commit/cb18053524fe55b69558477bf7d8f6344aeedf69"
         },
         {
-          "hash": "c7d2ab747c75",
+          "hash": "c7d2ab747c75c5ae1cf0b877133608a8f1fa8a0b",
+          "short_hash": "c7d2ab747c75",
           "date": "2020-04-24",
-          "subject": "Call STDynamicActivityAttributionPublisher in the WebProcess"
+          "subject": "Call STDynamicActivityAttributionPublisher in the WebProcess",
+          "significance": "Call STDynamicActivityAttributionPublisher in the WebProcess (WebContent sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c7d2ab747c75c5ae1cf0b877133608a8f1fa8a0b"
         },
         {
-          "hash": "10521e725cec",
+          "hash": "10521e725cec28f85fab81e8bc969cc55c58b605",
+          "short_hash": "10521e725cec",
           "date": "2022-07-08",
-          "subject": "[iOS][GPU] Remove more sandbox telemetry"
+          "subject": "[iOS][GPU] Remove more sandbox telemetry",
+          "significance": "Remove more sandbox telemetry \u2014 Remove sandbox telemetry in GPUP on iOS for rules that are known to be hit",
+          "github_url": "https://github.com/WebKit/WebKit/commit/10521e725cec28f85fab81e8bc969cc55c58b605"
         }
       ],
       "plist_declarations": [],
@@ -19518,7 +23089,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L561"
         }
       ],
       "code_checks": [],
@@ -19558,29 +23130,69 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 56,
-          "description": "Adds com.apple.tcc.delegated-services array with kTCCServiceCamera and kTCCServiceMicrophone to macOS GPU process entitlements."
+          "role": "Adds com.apple.tcc.delegated-services array with kTCCServiceCamera and kTCCServiceMicrophone to macOS GPU process entitlements.",
+          "description": "Adds com.apple.tcc.delegated-services array with kTCCServiceCamera and kTCCServiceMicrophone to macOS GPU process entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L56"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 535,
-          "description": "Adds com.apple.tcc.delegated-services array with kTCCServiceCamera and kTCCServiceMicrophone to iOS-family GPU process entitlements."
+          "role": "Adds com.apple.tcc.delegated-services array with kTCCServiceCamera and kTCCServiceMicrophone to iOS-family GPU process entitlements.",
+          "description": "Adds com.apple.tcc.delegated-services array with kTCCServiceCamera and kTCCServiceMicrophone to iOS-family GPU process entitlements.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L535"
         },
         {
           "file": "Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp",
           "line": 1,
-          "description": "GPU process media capture manager proxy responsible for handling camera and microphone capture sessions delegated from WebContent."
+          "role": "GPU process media capture manager proxy responsible for handling camera and microphone capture sessions delegated from WebContent.",
+          "description": "GPU process media capture manager proxy responsible for handling camera and microphone capture sessions delegated from WebContent.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/GPUProcess/webrtc/UserMediaCaptureManagerProxy.cpp#L1"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 57,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L57"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 58,
+          "role": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in mac_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L58"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 536,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L536"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 537,
+          "role": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "description": "Signing script grant in ios_family_process_gpu_entitlements() for GPU",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L537"
         }
       ],
       "key_commits": [
         {
-          "hash": "13771f185bf4",
+          "hash": "13771f185bf4ee131478ea0c5e728024c8e294d1",
+          "short_hash": "13771f185bf4",
           "date": "2020-02-07",
-          "subject": "Build entitlements into GPU Process"
+          "subject": "Build entitlements into GPU Process",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/13771f185bf4ee131478ea0c5e728024c8e294d1"
         },
         {
-          "hash": "ac5c0d67aaf4",
+          "hash": "ac5c0d67aaf4040d236090f77d11a04bcdff7865",
+          "short_hash": "ac5c0d67aaf4",
           "date": "2023-09-28",
-          "subject": "[iOS] Only allow access to the TCC daemon when the GPU process is not enabled"
+          "subject": "[iOS] Only allow access to the TCC daemon when the GPU process is not enabled",
+          "significance": "Only allow access to the TCC daemon when the GPU process is not enabled (WebContent sandbox)",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ac5c0d67aaf4040d236090f77d11a04bcdff7865"
         }
       ],
       "plist_declarations": [],
@@ -19595,7 +23207,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L56"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19607,7 +23220,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L57"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19619,7 +23233,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "GPU",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L58"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19632,7 +23247,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L535"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19645,7 +23261,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L536"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19658,7 +23275,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L537"
         }
       ],
       "code_checks": [],
@@ -19769,14 +23387,19 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 616,
-          "description": "Adds com.apple.uikitservices.app.value-access to webpushd on iOS and visionOS platforms."
+          "role": "Adds com.apple.uikitservices.app.value-access to webpushd on iOS and visionOS platforms.",
+          "description": "Adds com.apple.uikitservices.app.value-access to webpushd on iOS and visionOS platforms.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L616"
         }
       ],
       "key_commits": [
         {
-          "hash": "9d08f2e924fa",
+          "hash": "9d08f2e924fa8aacf079af47286772d3498f61c0",
+          "short_hash": "9d08f2e924fa",
           "date": "2024-07-22",
-          "subject": "Implement webpushd built-in showNotification and getNotifications"
+          "subject": "Implement webpushd built-in showNotification and getNotifications",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9d08f2e924fa8aacf079af47286772d3498f61c0"
         }
       ],
       "plist_declarations": [],
@@ -19792,7 +23415,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L616"
         }
       ],
       "code_checks": [],
@@ -19904,29 +23528,41 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 615,
-          "description": "Adds com.apple.usernotification.notificationschedulerproxy to webpushd entitlements on iOS and visionOS"
+          "role": "Adds com.apple.usernotification.notificationschedulerproxy to webpushd entitlements on iOS and visionOS",
+          "description": "Adds com.apple.usernotification.notificationschedulerproxy to webpushd entitlements on iOS and visionOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L615"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 277,
-          "description": "Adds com.apple.usernotification.notificationschedulerproxy to webpushd entitlements on macOS"
+          "role": "Adds com.apple.usernotification.notificationschedulerproxy to webpushd entitlements on macOS",
+          "description": "Adds com.apple.usernotification.notificationschedulerproxy to webpushd entitlements on macOS",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L277"
         },
         {
           "file": "Source/WebKit/webpushd/WebPushDaemon.mm",
           "line": 1049,
-          "description": "Initializes UNUserNotificationCenter with target bundle identifiers to post proxy web push notifications via addNotificationRequest"
+          "role": "Initializes UNUserNotificationCenter with target bundle identifiers to post proxy web push notifications via addNotificationRequest",
+          "description": "Initializes UNUserNotificationCenter with target bundle identifiers to post proxy web push notifications via addNotificationRequest",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm#L1049"
         }
       ],
       "key_commits": [
         {
-          "hash": "9d08f2e924fa",
+          "hash": "9d08f2e924fa8aacf079af47286772d3498f61c0",
+          "short_hash": "9d08f2e924fa",
           "date": "2024-07-22",
-          "subject": "Implement webpushd built-in showNotification and getNotifications"
+          "subject": "Implement webpushd built-in showNotification and getNotifications",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/9d08f2e924fa8aacf079af47286772d3498f61c0"
         },
         {
-          "hash": "4433278ba6e8",
+          "hash": "4433278ba6e8807bab110a7ebf65b27e74351bc5",
+          "short_hash": "4433278ba6e8",
           "date": "2024-08-02",
-          "subject": "Handle setAppBadge in webpushd"
+          "subject": "Handle setAppBadge in webpushd",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/4433278ba6e8807bab110a7ebf65b27e74351bc5"
         }
       ],
       "plist_declarations": [],
@@ -19941,7 +23577,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "webpushd",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L277"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -19954,7 +23591,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L615"
         }
       ],
       "code_checks": [],
@@ -19998,19 +23636,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
           "line": 105,
-          "description": "Checks `com.apple.webinspector.allow` on macOS to enable remote inspection by default for legacy processes."
+          "role": "Checks `com.apple.webinspector.allow` on macOS to enable remote inspection by default for legacy processes.",
+          "description": "Checks `com.apple.webinspector.allow` on macOS to enable remote inspection by default for legacy processes.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L105"
+        },
+        {
+          "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
+          "line": 1059,
+          "role": "Runtime entitlement check in UIProcess / JSC Host (macOS)",
+          "description": "Runtime entitlement check in UIProcess / JSC Host (macOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1059"
         }
       ],
       "key_commits": [
         {
-          "hash": "3d99c5a13754",
+          "hash": "3d99c5a137548afb19025ccd16979e9357a8cde7",
+          "short_hash": "3d99c5a13754",
           "date": "2022-10-14",
-          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API"
+          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3d99c5a137548afb19025ccd16979e9357a8cde7"
         },
         {
-          "hash": "a0a26311c18d",
+          "hash": "a0a26311c18df6a6b7aa596ee06ee0b4257f765a",
+          "short_hash": "a0a26311c18d",
           "date": "2022-10-10",
-          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API"
+          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/a0a26311c18df6a6b7aa596ee06ee0b4257f765a"
         }
       ],
       "plist_declarations": [],
@@ -20022,7 +23675,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "process": "UIProcess / JSC Host",
           "platforms": [
             "macOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1059"
         }
       ],
       "sandbox_checks": [],
@@ -20064,29 +23718,62 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
           "line": 478,
-          "description": "Conditionally injects dynamic-codesigning into WebContent entitlements on visionOS and iOS SDK versions prior to 17.4."
+          "role": "Conditionally injects dynamic-codesigning into WebContent entitlements on visionOS and iOS SDK versions prior to 17.4.",
+          "description": "Conditionally injects dynamic-codesigning into WebContent entitlements on visionOS and iOS SDK versions prior to 17.4.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L478"
         },
         {
           "file": "Source/JavaScriptCore/jit/ExecutableAllocator.cpp",
           "line": 137,
-          "description": "Checks via processHasEntitlement for dynamic-codesigning or com.apple.developer.cs.allow-jit to determine if JIT should be enabled."
+          "role": "Checks via processHasEntitlement for dynamic-codesigning or com.apple.developer.cs.allow-jit to determine if JIT should be enabled.",
+          "description": "Checks via processHasEntitlement for dynamic-codesigning or com.apple.developer.cs.allow-jit to determine if JIT should be enabled.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L137"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
           "line": 192,
-          "description": "Adds dynamic-codesigning to JavaScriptCore tool binaries (jsc) on iOS/visionOS when built with older SDKs."
+          "role": "Adds dynamic-codesigning to JavaScriptCore tool binaries (jsc) on iOS/visionOS when built with older SDKs.",
+          "description": "Adds dynamic-codesigning to JavaScriptCore tool binaries (jsc) on iOS/visionOS when built with older SDKs.",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L192"
+        },
+        {
+          "file": "Source/WebKit/Scripts/process-entitlements.sh",
+          "line": 481,
+          "role": "Signing script grant in ios_family_process_webcontent_entitlements() for WebContent",
+          "description": "Signing script grant in ios_family_process_webcontent_entitlements() for WebContent",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L481"
+        },
+        {
+          "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
+          "line": 195,
+          "role": "Signing script grant in ios_family_process_jsc_entitlements() for jsc / JSC Tools",
+          "description": "Signing script grant in ios_family_process_jsc_entitlements() for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L195"
+        },
+        {
+          "file": "Source/JavaScriptCore/entitlements.plist",
+          "line": 9,
+          "role": "Static .entitlements plist declaration for jsc / JSC Tools",
+          "description": "Static .entitlements plist declaration for jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/entitlements.plist#L9"
         }
       ],
       "key_commits": [
         {
-          "hash": "ce585987e8f9",
+          "hash": "ce585987e8f9925db07f95dd06cc7ffa78e7dbfa",
+          "short_hash": "ce585987e8f9",
           "date": "2024-04-05",
-          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS. https://bugs.webkit.org/show_bug.cgi?id=270723 rdar://122841355"
+          "subject": "(3) Adopt com.apple.developer.cs.allow-jit entitlement for iOS. https://bugs.webkit.org/show_bug.cgi?id=270723 rdar://122841355",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ce585987e8f9925db07f95dd06cc7ffa78e7dbfa"
         },
         {
-          "hash": "ee19c59a58e7",
+          "hash": "ee19c59a58e727d26bc3d36b0d8e63b06a1371a8",
+          "short_hash": "ee19c59a58e7",
           "date": "2023-06-22",
-          "subject": "Re-landing: Skip JIT memory allocation in ExecutableAllocator::disableJIT() when running on an open source XNU. https://bugs.webkit.org/show_bug.cgi?id=258409 rdar://111170164"
+          "subject": "Re-landing: Skip JIT memory allocation in ExecutableAllocator::disableJIT() when running on an open source XNU. https://bugs.webkit.org/show_bug.cgi?id=258409 rdar://111170164",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/ee19c59a58e727d26bc3d36b0d8e63b06a1371a8"
         }
       ],
       "plist_declarations": [
@@ -20094,7 +23781,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "file": "Source/JavaScriptCore/entitlements.plist",
           "line": 9,
           "value": true,
-          "process": "jsc / JSC Tools"
+          "process": "jsc / JSC Tools",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/entitlements.plist#L9"
         }
       ],
       "script_declarations": [
@@ -20109,7 +23797,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L478"
         },
         {
           "file": "Source/WebKit/Scripts/process-entitlements.sh",
@@ -20122,7 +23811,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L481"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -20135,7 +23825,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L192"
         },
         {
           "file": "Source/JavaScriptCore/Scripts/process-entitlements.sh",
@@ -20148,7 +23839,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/Scripts/process-entitlements.sh#L195"
         }
       ],
       "code_checks": [
@@ -20159,7 +23851,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/jit/ExecutableAllocator.cpp#L137"
         }
       ],
       "sandbox_checks": [],
@@ -20196,19 +23889,34 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
           "line": 96,
-          "description": "Checks get-task-allow on the parent/main process audit token on iOS/visionOS to enable remote inspection by default for legacy SDK apps"
+          "role": "Checks get-task-allow on the parent/main process audit token on iOS/visionOS to enable remote inspection by default for legacy SDK apps",
+          "description": "Checks get-task-allow on the parent/main process audit token on iOS/visionOS to enable remote inspection by default for legacy SDK apps",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L96"
+        },
+        {
+          "file": "Source/JavaScriptCore/API/JSRemoteInspector.cpp",
+          "line": 1050,
+          "role": "Runtime entitlement check in UIProcess / JSC Host (iOS, visionOS)",
+          "description": "Runtime entitlement check in UIProcess / JSC Host (iOS, visionOS)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1050"
         }
       ],
       "key_commits": [
         {
-          "hash": "3d99c5a13754",
+          "hash": "3d99c5a137548afb19025ccd16979e9357a8cde7",
+          "short_hash": "3d99c5a13754",
           "date": "2022-10-14",
-          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API"
+          "subject": "Remote Web Inspector: [Cocoa] `inspectable` API",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/3d99c5a137548afb19025ccd16979e9357a8cde7"
         },
         {
-          "hash": "c663098fb4c1",
+          "hash": "c663098fb4c10a2d32d9879df7fdec7606ed3edd",
+          "short_hash": "c663098fb4c1",
           "date": "2024-05-28",
-          "subject": "Xcode is not able to attach to WebContent Development variant"
+          "subject": "Xcode is not able to attach to WebContent Development variant",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/c663098fb4c10a2d32d9879df7fdec7606ed3edd"
         }
       ],
       "plist_declarations": [],
@@ -20221,7 +23929,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "platforms": [
             "iOS",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Source/JavaScriptCore/API/JSRemoteInspector.cpp#L1050"
         }
       ],
       "sandbox_checks": [],
@@ -20267,34 +23976,70 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
           "line": 34,
-          "description": "Injects keychain-access-groups with 'com.apple.TestWebKitAPIAlternate' and 'com.apple.TestWebKitAPI' into TestWebKitAPI test bundles"
+          "role": "Injects keychain-access-groups with 'com.apple.TestWebKitAPIAlternate' and 'com.apple.TestWebKitAPI' into TestWebKitAPI test bundles",
+          "description": "Injects keychain-access-groups with 'com.apple.TestWebKitAPIAlternate' and 'com.apple.TestWebKitAPI' into TestWebKitAPI test bundles",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L34"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
           "line": 5,
-          "description": "Declares keychain-access-groups with 'com.apple.WebKitTestRunnerApp' for the iOS test runner host application"
+          "role": "Declares keychain-access-groups with 'com.apple.WebKitTestRunnerApp' for the iOS test runner host application",
+          "description": "Declares keychain-access-groups with 'com.apple.WebKitTestRunnerApp' for the iOS test runner host application",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L5"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements",
           "line": 5,
-          "description": "Declares keychain-access-groups with 'com.apple.WebKitTestRunner' for internal WebKitTestRunner test harness builds"
+          "role": "Declares keychain-access-groups with 'com.apple.WebKitTestRunner' for internal WebKitTestRunner test harness builds",
+          "description": "Declares keychain-access-groups with 'com.apple.WebKitTestRunner' for internal WebKitTestRunner test harness builds",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L5"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 35,
+          "role": "Signing script grant in process_restricted_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_restricted_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L35"
+        },
+        {
+          "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
+          "line": 36,
+          "role": "Signing script grant in process_restricted_testwebkitapi_entitlements() for TestWebKitAPI",
+          "description": "Signing script grant in process_restricted_testwebkitapi_entitlements() for TestWebKitAPI",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L36"
+        },
+        {
+          "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
+          "line": 5,
+          "role": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "description": "Static .entitlements plist declaration for Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L5"
         }
       ],
       "key_commits": [
         {
-          "hash": "2177a497f6ef",
+          "hash": "2177a497f6efeb5d73a550f771900ef35b7d86ea",
+          "short_hash": "2177a497f6ef",
           "date": "2025-04-24",
-          "subject": "Introduce a script to generate TestWebKitAPI entitlements"
+          "subject": "Introduce a script to generate TestWebKitAPI entitlements",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/2177a497f6efeb5d73a550f771900ef35b7d86ea"
         },
         {
-          "hash": "8d65dc712846",
+          "hash": "8d65dc7128464652cb754c957a64c898221d71bf",
+          "short_hash": "8d65dc712846",
           "date": "2024-07-03",
-          "subject": "WKTR installation on iOS devices is not working"
+          "subject": "WKTR installation on iOS devices is not working",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/8d65dc7128464652cb754c957a64c898221d71bf"
         },
         {
-          "hash": "e347e3e762ae",
+          "hash": "e347e3e762ae6078618689646e69c9d4aca2e152",
+          "short_hash": "e347e3e762ae",
           "date": "2022-09-06",
-          "subject": "Allow ad-hoc code signing for TestWebKitAPI and WebKitTestRunner"
+          "subject": "Allow ad-hoc code signing for TestWebKitAPI and WebKitTestRunner",
+          "significance": "",
+          "github_url": "https://github.com/WebKit/WebKit/commit/e347e3e762ae6078618689646e69c9d4aca2e152"
         }
       ],
       "plist_declarations": [
@@ -20304,7 +24049,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "value": [
             "com.apple.WebKitTestRunner"
           ],
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunner-internal.entitlements#L5"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements",
@@ -20312,7 +24058,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "value": [
             "com.apple.WebKitTestRunnerApp"
           ],
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS-simulator.entitlements#L5"
         },
         {
           "file": "Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements",
@@ -20320,7 +24067,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
           "value": [
             "com.apple.WebKitTestRunnerApp"
           ],
-          "process": "Test Runner / Harness (Host App)"
+          "process": "Test Runner / Harness (Host App)",
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/WebKitTestRunner/Configurations/WebKitTestRunnerApp-iOS.entitlements#L5"
         }
       ],
       "script_declarations": [
@@ -20337,7 +24085,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L34"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -20352,7 +24101,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L35"
         },
         {
           "file": "Tools/TestWebKitAPI/Scripts/process-entitlements.sh",
@@ -20367,7 +24117,8 @@ window.__WKANALYZE_ENTITLEMENTS_DATA__ = {
             "macOS",
             "macCatalyst",
             "visionOS"
-          ]
+          ],
+          "github_url": "https://github.com/WebKit/WebKit/blob/main/Tools/TestWebKitAPI/Scripts/process-entitlements.sh#L36"
         }
       ],
       "code_checks": [],

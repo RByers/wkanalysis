@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why third-party browsers on iOS cannot present native on-device Apple Pay sheets for arbitrary websites, how WebKit uses private PassKit SPIs, and the limits of delegated payments.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <title>Payments (Apple Pay on websites) — WebKit source analysis</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/issues.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <a href="../index.html" class="header-back-link" title="Back to main WebKit analysis index">&larr; All Analyses</a>
+            <span class="brand-title">WebKit Source Analysis</span>
+            <span class="brand-badge">Capability Gap Drill-Down</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            BrowserEngineKit vs. Safari capability-gap analysis from WebKit source code
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html#summary-heading" class="btn btn-secondary">&larr; All 13 Capability Gaps</a>
+        <a href="#related" class="btn btn-secondary">Related Analyzers &darr;</a>
+      </div>
+    </div>
+  </header>
+  <main class="issue-page">
+    <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">WebKit source analysis</a><span>›</span><a href="../index.html#summary-heading">Capability gaps</a><span>›</span>Payments (Apple Pay on websites)
+    </nav>
+
+    <header class="issue-header">
+      <p class="issue-kicker">Capability gap</p>
+      <h1 class="issue-title">Payments (Apple Pay on websites)</h1>
+      <div class="issue-meta">
+        <span class="meta-item"><span class="meta-label">Priority</span> <span class="badge-priority">P1</span></span>
+        <span class="meta-item"><span class="meta-label">Confidence</span> <span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Delegated-merchant path unverified for browsers)</span></span>
+        <span class="meta-item"><span class="meta-label">On Android?</span> Yes (Google Pay via Payment Request)</span>
+      </div>
+      <div class="issue-summary">
+        <p><strong>In one sentence:</strong> Safari presents a seamless on-device Apple Pay sheet on behalf of any third-party website using private PassKit interfaces and Apple-exclusive payment entitlements (like <code>com.apple.payment.all-access</code> and <code>com.apple.private.accounts.bundleidspoofing</code>) on its network process; an alternative browser engine cannot access these interfaces or entitlements, leaving it unable to trigger the native payment sheet on iOS.</p>
+        <p><strong>What this page adds:</strong> Source analysis reveals how deeply WebKit's web payment pipeline depends on private system hooks. On iOS, WebKit routes Apple Pay requests directly from the WebContent process to its background Networking process, which invokes <code>PKPaymentAuthorizationController</code> using the private entitlements <code>com.apple.payment.all-access</code> and <code>com.apple.private.accounts.bundleidspoofing</code> alongside a private delegate protocol. We also detail the private APIs used to verify card availability per merchant ID, trigger merchant-customized Wallet setup, obtain Apple's session validation endpoints, and configure installment financing. Finally, we examine the iOS delegated-request property and explain why platform delegation does not solve web browsing for arbitrary merchants.</p>
+      </div>
+    </header>
+
+    <nav class="issue-toc" aria-label="Contents">
+      <h2>Aspects covered</h2>
+      <ol>
+        <li><a href="#aspect-1">The multi-process payment pipeline and remote presentation</a></li>
+        <li><a href="#aspect-2">Per-merchant capability checks (<code>canMakePaymentsWithActiveCard</code>)</a></li>
+        <li><a href="#aspect-3">Site-customized setup prompts (<code>openPaymentSetup</code>)</a></li>
+        <li><a href="#aspect-4">Dynamic merchant session validation (<code>paymentServicesMerchantURL</code>)</a></li>
+        <li><a href="#aspect-5">Installment plans and financing configurations</a></li>
+        <li><a href="#aspect-6">The iOS 26.4 delegated-request option (<code>isDelegatedRequest</code>)</a></li>
+        <li><a href="#aspect-7">Real-world fallback behavior for alternative browsers</a></li>
+        <li><a href="#open-questions">Open questions &amp; confidence</a></li>
+        <li><a href="#android">Android comparison</a></li>
+        <li><a href="#related">Related analysis pages</a></li>
+      </ol>
+    </nav>
+
+    <section class="issue-section" id="aspect-1">
+      <h2><span class="aspect-num">1</span>The multi-process payment pipeline and remote presentation</h2>
+      <p>When a web user taps an "Apple Pay" button or initiates a purchase through the standard W3C Payment Request API, Safari immediately slides up a system payment sheet over the current web page. The user confirms the total, selects a shipping address and card, and authorizes the transaction using Face ID or Touch ID. Crucially, the sheet identifies the website as the merchant, not the browser application.</p>
+      <p>Under the hood on iOS, WebKit isolates this flow across its auxiliary processes. When page script invokes <code>ApplePaySession</code> or <code>PaymentRequest</code>, WebCore handles the state in <code>PaymentCoordinator</code>. Under the build flag <code>ENABLE(APPLE_PAY_REMOTE_UI)</code> (enabled on iOS and visionOS), WebKit does not handle payment presentation inside the main application process (the "UIProcess"). Instead, <code>WebPaymentCoordinator</code> dispatches IPC messages directly across processes to the <strong>Networking process</strong>. Inside the Networking process, <code>NetworkConnectionToWebProcess</code> instantiates a <code>WebPaymentCoordinatorProxy</code> and creates a <code>PaymentAuthorizationController</code>.</p>
+      <p>A background networking extension would ordinarily never be allowed to present system UI or communicate with PassKit daemons. Apple enables this by signing WebKit's Networking process with the private entitlement <code>com.apple.payment.all-access</code>. This entitlement allows the Networking process to connect directly to the system payment daemon (<code>com.apple.passd.payment</code>) and manage <code>PKPaymentAuthorizationController</code>. The controller registers an internal delegate conforming to <code>PKPaymentAuthorizationControllerPrivateDelegate</code>, a private protocol through which PassKit coordinates sheet presentation and merchant callbacks entirely out of process.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>WebProcess routes payment IPC straight to the Networking process via <code>ensureNetworkProcessConnection()</code>.</li>
+            <li>The Networking process holds <code>com.apple.payment.all-access</code> and <code>com.apple.private.accounts.bundleidspoofing</code>, letting it talk to <code>com.apple.passd.payment</code> on behalf of arbitrary host applications without UIProcess mediation.</li>
+            <li><code>PaymentAuthorizationController</code> presents the system sheet using <code>PKPaymentAuthorizationController</code> and implements the private delegate protocol <code>PKPaymentAuthorizationControllerPrivateDelegate</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Cannot obtain <code>com.apple.payment.all-access</code>. Neither host applications nor BrowserEngineKit extension processes have access to this entitlement.</li>
+            <li>Extension processes cannot contact <code>com.apple.passd.payment</code> or trigger remote payment presentation.</li>
+            <li>A third-party browser can only call public PassKit APIs (such as <code>PKPaymentAuthorizationController</code>) from its main application process, where PassKit enforces that all transactions belong to the app developer's registered merchant ID.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ApplePay/WebPaymentCoordinatorProxy.messages.in#L27">WebPaymentCoordinatorProxy.messages.in:27–45</a> — notes that messages are <code>DispatchedTo=Networking</code> when <code>APPLE_PAY_REMOTE_UI</code> is enabled.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/ApplePay/WebPaymentCoordinator.cpp#L180">WebPaymentCoordinator.cpp:180–187</a> — <code>messageSenderConnection()</code> explicitly routes payment IPC to <code>ensureNetworkProcessConnection()</code> on iOS.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/ios/NetworkConnectionToWebProcessIOS.mm#L40">NetworkConnectionToWebProcessIOS.mm:40–45</a> and <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/NetworkProcess/ios/NetworkConnectionToWebProcessIOS.mm#L112">:112–115</a> — manages <code>WebPaymentCoordinatorProxy</code> and instantiates <code>PaymentAuthorizationController</code> within the Networking process.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/ios/PaymentAuthorizationController.mm#L37">PaymentAuthorizationController.mm:37–41</a> — adopts the private SPI protocol <code>PKPaymentAuthorizationControllerPrivateDelegate</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Scripts/process-entitlements.sh#L635">process-entitlements.sh:635</a> — grants <code>com.apple.payment.all-access</code> to WebKit's iOS Networking process.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/8f2025ff8a65516f54d4fd235c04af07365b9061">8f2025ff8a65 (2019-03-11)</a> "Use PKPaymentAuthorizationController to present the Apple Pay UI remotely from the Networking service on iOS".</li>
+          <li><span class="ev-kind">Dataset</span><a href="../entitlements.html?view=explorer&amp;dom=Apple%20Pay%2C%20PassKit%20%26%20Identity">Entitlements explorer › Apple Pay &amp; Merchant Identity card</a> and <a href="../entitlements.html?view=explorer&amp;q=payment.all-access">dossier</a>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-2">
+      <h2><span class="aspect-num">2</span>Per-merchant capability checks (<code>canMakePaymentsWithActiveCard</code>)</h2>
+      <p>Before displaying an Apple Pay button on checkout, modern websites query whether the user can actually pay. In Apple Pay JS, sites call <code>ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier)</code>. This allows a site to check not merely whether the device possesses payment hardware, but whether the user has at least one card in Apple Wallet that is supported by that specific merchant's processing capabilities and merchant account.</p>
+      <p>In Safari, WebKit fulfills this check by invoking the private PassKit C function <code>PKCanMakePaymentsWithMerchantIdentifierDomainAndSourceApplication</code> (and its predecessor <code>PKCanMakePaymentsWithMerchantIdentifierAndDomain</code>). WebKit forwards the website's declared <code>merchantIdentifier</code>, the website's domain name, and the application identifier into PassKit's private daemon. The daemon consults the user's stored passes against the merchant's criteria and returns a tailored boolean result.</p>
+      <p>Public PassKit provides no such method. Third-party developers only have access to <code>PKPaymentAuthorizationController.canMakePayments()</code> (which only checks device-level hardware support) or <code>canMakePaymentsUsingNetworks:capabilities:</code> (which checks whether the device holds cards belonging to generic card networks like Visa or Mastercard). Public APIs cannot accept an arbitrary website's merchant identifier or web domain. Without private SPI, a browser engine cannot accurately evaluate whether a given website's merchant account can accept any of the user's active cards.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li><code>WebPaymentCoordinatorProxy::platformCanMakePaymentsWithActiveCard</code> passes the merchant ID and domain to private SPI <code>PKCanMakePaymentsWithMerchantIdentifierDomainAndSourceApplication</code>.</li>
+            <li>The system checks the user's Wallet specifically against the merchant's supported payment networks and restrictions.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Can only call public <code>canMakePayments()</code> or <code>canMakePayments(usingNetworks:capabilities:)</code>.</li>
+            <li>Cannot supply third-party merchant IDs or web domain names to the system.</li>
+            <li>Must either approximate the check (risking false positives where a button appears but the card is rejected at checkout) or return false, causing sites to hide Apple Pay entirely.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ApplePay/cocoa/WebPaymentCoordinatorProxyCocoa.mm#L81">WebPaymentCoordinatorProxyCocoa.mm:81–96</a> — implementation of <code>platformCanMakePaymentsWithActiveCard</code> calling <code>PKCanMakePaymentsWithMerchantIdentifierDomainAndSourceApplication</code>.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;q=PKCanMakePayments">SPI explorer › PKCanMakePayments search</a> — details the private SPI functions gated by Apple-only privileges.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontroller/canmakepayments(usingnetworks:capabilities:)">canMakePayments(usingNetworks:capabilities:)</a> — public API accepts only card networks and capability bitmasks, without merchant IDs or domains.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-3">
+      <h2><span class="aspect-num">3</span>Site-customized setup prompts (<code>openPaymentSetup</code>)</h2>
+      <p>If a customer visits an online store that accepts Apple Pay but does not yet have a qualifying payment card in their Wallet, Apple Pay JS provides <code>ApplePaySession.openPaymentSetup(merchantIdentifier)</code>. When triggered, the device launches the Apple Wallet card provisioning flow directly from the browser, allowing the customer to add a compatible card and finish their purchase without leaving the merchant flow.</p>
+      <p>WebKit implements this website-directed provisioning using a private method on <code>PKPassLibrary</code>: <code>openPaymentSetupForMerchantIdentifier:domain:completion:</code>. By providing the merchant's ID and web domain, WebKit allows PassKit to tailor the onboarding experience to that specific retailer—for example, by presenting co-branded store card setup or filtering for card networks that the merchant explicitly supports.</p>
+      <p>Public PassKit exposes an <code>openPaymentSetup</code> method on <code>PKPassLibrary</code>, but it takes no parameters. It opens a generic, uncontextualized Wallet setup interface. Third-party browsers cannot provide the merchant-aware setup experience that web developers expect when invoking <code>ApplePaySession.openPaymentSetup</code>.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Allocates a <code>PKPassLibrary</code> instance and calls the private selector <code>openPaymentSetupForMerchantIdentifier:domain:completion:</code>.</li>
+            <li>Wallet setup opens pre-filtered for the merchant's requirements and domain.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Can only call public <code>openPaymentSetupWithCompletionHandler:</code>.</li>
+            <li>Cannot associate the setup request with a website domain or merchant identifier, offering only a generic system wallet prompt.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ApplePay/cocoa/WebPaymentCoordinatorProxyCocoa.mm#L98">WebPaymentCoordinatorProxyCocoa.mm:98–111</a> — calls private <code>openPaymentSetupForMerchantIdentifier:domain:completion:</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/cocoa/PassKitSPI.h#L404">PassKitSPI.h:404</a> — declares the private selector on <code>PKPassLibrary</code>.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/passkit/pkpasslibrary/openpaymentsetup()">openPaymentSetup(completion:)</a> — public PassKit method with no merchant context parameters.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-4">
+      <h2><span class="aspect-num">4</span>Dynamic merchant session validation (<code>paymentServicesMerchantURL</code>)</h2>
+      <p>Security on the web requires cryptographic proof that a website is genuine before Apple Pay will display payment totals or transmit encrypted card tokens. In the Apple Pay on the Web flow, the browser does not authenticate the merchant on its own. Instead, when the payment session starts, WebKit triggers an <code>onvalidatemerchant</code> event containing an Apple-provided <code>validationURL</code>. The merchant's backend server sends an HTTPS request to this URL with its Apple-issued merchant certificate; Apple validates the certificate and returns an opaque, signed merchant session object that the site hands back to the browser via <code>completeMerchantValidation()</code>.</p>
+      <p>The critical link in this chain is where the browser gets the <code>validationURL</code>. In WebKit, the system payment controller provides it directly via a private PassKit class method: <code>+paymentServicesMerchantURLForAPIType:isDelegated:completion:</code> (and the earlier <code>+paymentServicesMerchantURLForAPIType:completion:</code>). When PassKit invokes <code>paymentAuthorizationController:didRequestMerchantSession:</code> on WebKit's private delegate, WebKit fetches this URL and delivers it to page JavaScript.</p>
+      <p>Public PassKit has no API for retrieving Apple's merchant validation endpoints, nor does <code>PKPaymentAuthorizationControllerDelegate</code> contain any merchant session callback. Public PassKit is designed exclusively for native applications, where Apple Pay requests are pre-authorized using the application's embedded code-signing certificates and Apple Developer provisioning profiles. The entire dynamic, two-legged web merchant validation protocol relies on private PassKit SPI.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Receives <code>didRequestMerchantSession:</code> from PassKit via <code>PKPaymentAuthorizationControllerPrivateDelegate</code>.</li>
+            <li>Fetches the official validation endpoint using private class method <code>+paymentServicesMerchantURLForAPIType:isDelegated:completion:</code>.</li>
+            <li>Passes the URL to page JavaScript and completes validation with the resulting <code>PKPaymentMerchantSession</code>.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Public <code>PKPaymentAuthorizationController</code> has no mechanism to request or supply a web merchant validation URL.</li>
+            <li>Third-party browsers cannot implement the standard <code>onvalidatemerchant</code> lifecycle expected by web checkouts.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/ios/PaymentAuthorizationController.mm#L60">PaymentAuthorizationController.mm:60–72</a> — implementation of <code>_getPaymentServicesMerchantURL:</code> calling <code>paymentServicesMerchantURLForAPIType:isDelegated:completion:</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Platform/ios/PaymentAuthorizationController.mm#L122">PaymentAuthorizationController.mm:122–125</a> — implements private delegate method <code>didRequestMerchantSession:</code>.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/PAL/pal/spi/cocoa/PassKitSPI.h#L215">PassKitSPI.h:215–229</a> — SPI declarations for <code>paymentServicesMerchantURLForAPIType:isDelegated:completion:</code> and <code>PKPaymentAuthorizationControllerPrivateDelegate</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/69ab3832ce6b7d0e8ebf7a0a3223a1700df4a662">69ab3832ce6b (2026-06-29)</a> "Support returning 'delegatedSession' endpoint name for Delegated Requests" — introduces delegation-aware merchant URL resolution.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&feat=Apple%20Pay%2C%20PassKit%20%26%20Wallet%20Installments">SPI explorer › Apple Pay, PassKit &amp; Wallet Installments</a>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-5">
+      <h2><span class="aspect-num">5</span>Installment plans and financing configurations</h2>
+      <p>When purchasing high-value items online, merchants frequently offer installment financing, such as monthly installments with Apple Card or retailer financing programs. Apple Pay JS allows merchants to declare structured installment configurations, including the annual percentage rate (APR), payment schedule, financing item details, retail channel, and program terms.</p>
+      <p>In WebKit, this is bridged to PassKit through private SPI classes: <code>PKPaymentInstallmentConfiguration</code> and <code>PKPaymentInstallmentItem</code>. In <code>PaymentInstallmentConfiguration.mm</code>, WebKit parses the dictionary supplied by the web page and configures private properties on these objects, including <code>setBindingTotalAmount:</code>, <code>setOpenToBuyThresholdAmount:</code>, <code>setInstallmentMerchantIdentifier:</code>, <code>setInstallmentItems:</code>, <code>setRetailChannel:</code>, <code>setApr:</code>, <code>setProgramIdentifier:</code>, and <code>setProgramTerms:</code>.</p>
+      <p>Public PassKit contains no public classes or initializers for installment configurations or installment items. The entire installment feature set in PassKit is private SPI gated by internal daemon access. Even if an alternative browser could present a basic payment sheet, it would have no mechanism to pass merchant installment plans to PassKit.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Allocates private <code>PKPaymentInstallmentConfiguration</code> and <code>PKPaymentInstallmentItem</code> instances.</li>
+            <li>Serializes web installment options (APR, threshold amounts, program terms, retail channels) and binds them to the platform payment request.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>No public PassKit equivalents exist for installment configurations or financing items.</li>
+            <li>Third-party browsers cannot support web installment plans through Apple Pay.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/Modules/applepay/PaymentInstallmentConfiguration.mm#L138">PaymentInstallmentConfiguration.mm:138–165</a> — instantiates <code>PKPaymentInstallmentItem</code> and configures APR, program identifier, and terms.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebCore/Modules/applepay/PaymentInstallmentConfiguration.mm#L181">PaymentInstallmentConfiguration.mm:181–205</a> — instantiates <code>PKPaymentInstallmentConfiguration</code> and attaches merchant installment parameters.</li>
+          <li><span class="ev-kind">Dataset</span><a href="../spi.html#tab=data&amp;feat=Apple%20Pay%2C%20PassKit%20%26%20Wallet%20Installments">SPI explorer › Apple Pay, PassKit &amp; Wallet Installments category</a> — lists 61 private symbols including all installment classes and selectors.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-6">
+      <h2><span class="aspect-num">6</span>The iOS delegated-request option (<code>isDelegatedRequest</code>)</h2>
+      <p>In a recent iOS update, Apple introduced a new property on <code>PKPaymentRequest</code>: <code>isDelegatedRequest</code>. This API was designed to permit an application to present an Apple Pay payment sheet on behalf of an external merchant rather than for the app's own merchant account. WebKit added web support for this property across <code>ApplePayRequestBase</code> and updated its internal session resolution to request dedicated <code>delegatedSession</code> validation endpoints.</p>
+      <p>While this sounds promising as a theoretical path for third-party browsers, Apple's documentation and entitlement model impose strict constraints:
+      <ul>
+        <li><strong>Restricted entitlement:</strong> Using <code>isDelegatedRequest</code> requires the application to possess the private entitlement <code>com.apple.developer.in-app-payments-delegate</code>.</li>
+        <li><strong>Pre-registration as an Apple Pay delegate:</strong> The developer must be formally registered and approved by Apple as an Apple Pay delegate entity.</li>
+        <li><strong>Platform architecture:</strong> This mechanism was created for multi-merchant e-commerce platforms and payment service providers (PSPs) who maintain formal onboarding relationships with registered merchants. It was not designed for a web browser navigating to arbitrary third-party websites across the open internet.</li>
+      </ul>
+      Furthermore, enabling <code>isDelegatedRequest</code> does not expose the missing web merchant validation delegates, per-site capability checks, or installment APIs. A general-purpose browser cannot use this path to act as a universal proxy for the entire web.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Supports <code>isDelegatedRequest</code> via internal PassKit hooks and resolves dedicated <code>delegatedSession</code> endpoints through <code>paymentServicesMerchantURLForAPIType:isDelegated:completion:</code>.</li>
+            <li>Retains full access to all private PassKit SPIs and daemon channels regardless of delegation state.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Cannot use <code>isDelegatedRequest</code> without Apple's approval and the <code>com.apple.developer.in-app-payments-delegate</code> entitlement.</li>
+            <li>Even with the entitlement, an app cannot act as a delegate for arbitrary websites that have not established a contractual delegation relationship with the browser vendor.</li>
+            <li>Still lacks the underlying private SPIs needed to drive the complete web payment lifecycle.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/Shared/ApplePay/cocoa/WebPaymentCoordinatorProxyCocoa.mm#L401">WebPaymentCoordinatorProxyCocoa.mm:401–405</a> — passes <code>isDelegatedRequest</code> to <code>PKPaymentRequest</code>.</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/3508d9e5a87243218e4181ec6cef677a29eff039">3508d9e5a872 (2025-12-09)</a> "Add support for isDelegatedRequest to ApplePayRequestBase".</li>
+          <li><span class="ev-kind">Commit</span><a href="https://github.com/WebKit/WebKit/commit/66c073b22627b409d20b0ac96237df6ac89eb6c1">66c073b22627 (2026-06-12)</a> "Delegated Apple Pay: Remove bincompat staging code from WebKit" — confirms the API became public in the iOS 26.4 SDK.</li>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/passkit/pkpaymentrequest/isdelegatedrequest">PKPaymentRequest.isDelegatedRequest</a> — official documentation specifying requirements for registration and the <code>com.apple.developer.in-app-payments-delegate</code> entitlement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="aspect-7">
+      <h2><span class="aspect-num">7</span>Real-world fallback behavior for alternative browsers</h2>
+      <p>Because third-party browsers on iOS cannot drive the native Apple Pay sheet, web developers and payment gateways must handle alternative browsers differently. In practice, this creates a degraded checkout experience for users who choose an alternative browser on iOS.</p>
+      <p>When an alternative browser renders an e-commerce page:
+      <ol>
+        <li><strong>Apple's code-scan fallback flow:</strong> Apple provides a web fallback called "Apple Pay on the Web for other browsers". When a site adopts this library and detects a non-Safari browser, clicking "Apple Pay" displays a modal dialog on the screen containing a large QR code with instructions: <em>"Scan with your iPhone camera to pay with Apple Pay"</em>. If the user is already on an iPhone running Chrome or Firefox, they are asked to scan the screen with a second Apple device or take a screenshot, introducing severe friction.</li>
+        <li><strong>Suppressed Apple Pay buttons:</strong> Most websites check <code>ApplePaySession.canMakePayments()</code> before rendering Apple Pay UI. If the browser returns false or fails the check, the Apple Pay button simply vanishes, and the customer is forced into manual credit card entry or third-party payment forms.</li>
+        <li><strong>Safari hand-off:</strong> Some merchants detect the browser and display an explicit prompt asking the user to copy the URL and reopen the page in Safari to complete the purchase.</li>
+      </ol>
+      This represents a major commercial and usability penalty for alternative browser engines on iOS.</p>
+      <div class="aspect-grid">
+        <div class="aspect-card safari">
+          <h3>How Safari / WebKit does it</h3>
+          <ul>
+            <li>Displays the native Apple Pay sheet directly on the screen with one-touch biometric authorization.</li>
+            <li>Checkout finishes in seconds without leaving the page or requiring secondary devices.</li>
+          </ul>
+        </div>
+        <div class="aspect-card bek">
+          <h3>What a BrowserEngineKit browser can do</h3>
+          <ul>
+            <li>Users must scan an on-screen QR code with another Apple device, switch back to Safari, or abandon Apple Pay in favor of typing credit card numbers manually into web forms.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="evidence-box">
+        <h3>Evidence</h3>
+        <ul>
+          <li><span class="ev-kind">Apple</span><a href="https://developer.apple.com/documentation/applepayontheweb">Apple Pay on the Web Overview</a> — documentation explaining cross-browser code-scan flow support.</li>
+          <li><span class="ev-kind">WebKit</span><a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/ApplePay/WebPaymentCoordinator.cpp#L89">WebPaymentCoordinator.cpp:89–106</a> — cached capability check controlling button display.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="issue-section" id="open-questions">
+      <h2>Open questions &amp; confidence</h2>
+      <ul>
+        <li><strong>Delegated payment testing on device:</strong> While Apple introduced <code>isDelegatedRequest</code> in iOS 26.4 and WebKit adopted it, we have not tested whether Apple would grant <code>com.apple.developer.in-app-payments-delegate</code> to a general-purpose web browser. However, because delegation still requires an explicit business relationship between the delegate and each merchant, it cannot mathematically solve arbitrary web browsing across millions of uncoordinated web merchants.</li>
+        <li><strong>Public Web Payment API support:</strong> Apple has not indicated plans to introduce a public BrowserEngineKit framework for web payments that would allow third-party engines to delegate merchant validation and sheet presentation to the system.</li>
+        <li><strong>Main-page text verification:</strong> The analysis completely confirms the main page's description of PassKit SPIs, entitlement gating, and the structural limitations of <code>isDelegatedRequest</code>. The Priority remains P1 due to the commercial importance of e-commerce checkout.</li>
+        <li><strong>Passkeys / WebAuthn parity:</strong> While web payments remain fully gated by Apple-private identity entitlements, public Web Authentication (passkeys) were largely closed as a capability gap via public AuthenticationServices APIs in 2022 (see <a href="../services.html#service-webauthn">WebAuthn service analysis</a>).</li>
+      </ul>
+    </section>
+
+    <section class="issue-section" id="android">
+      <h2>Android comparison</h2>
+      <p>On Android, browsers can integrate with Google Pay using the standard W3C Payment Request API. When a web page requests payment with Google Pay, any browser engine (Chromium, Gecko, or custom engines) can invoke Google Play services through public client libraries (<code>PaymentsClient</code>). Google Pay presents a system sheet on the user's device, authenticates the user, and returns an encrypted token for the website's merchant processor. No operating-system-exclusive entitlement or system identity spoofing is required, ensuring feature parity across all browsers on the platform.</p>
+    </section>
+
+    <section class="issue-section" id="related">
+      <h2>Related analysis pages</h2>
+      <ul>
+        <li><a href="../entitlements.html?view=explorer&amp;dom=Apple%20Pay%2C%20PassKit%20%26%20Identity">Entitlements explorer › Apple Pay &amp; Merchant Identity</a> — details of the private entitlement preventing third-party engines from acting on behalf of web merchants.</li>
+        <li><a href="../entitlements.html?view=explorer&amp;q=payment.all-access">Entitlements explorer › com.apple.payment.all-access</a> — code pointers, platform availability, and process assignment for WebKit's payment entitlement.</li>
+        <li><a href="../spi.html#tab=data&feat=Apple%20Pay%2C%20PassKit%20%26%20Wallet%20Installments">SPI explorer › Apple Pay merchant authentication</a> — analysis of the private PassKit functions and delegates used during web payment authorization.</li>
+        <li><a href="../spi.html#tab=data&amp;feat=Apple%20Pay%2C%20PassKit%20%26%20Wallet%20Installments">SPI explorer › Apple Pay, PassKit &amp; Wallet Installments</a> — full inventory of the 61 private PassKit and Wallet symbols used across WebKit.</li>
+      </ul>
+    </section>
+
+    <footer class="issue-footer">
+      <a href="../index.html">← Back to the capability-gap summary</a> · Analysis is AI-generated from WebKit source and may contain errors.
+    </footer>
+  </main>
+</body>
+</html>

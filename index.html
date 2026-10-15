@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="WebKit source analysis pages.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
   <title>WebKit source analysis</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,25 +13,44 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <main class="index-page">
-    <div class="index-container">
-      <header class="index-header">
-        <h1 class="index-title">WebKit source analysis</h1>
-        <p class="ai-warning-banner" role="note">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-            <line x1="12" y1="9" x2="12" y2="13"></line>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
           </svg>
-          <span>Analysis is AI-generated and may contain errors</span>
-        </p>
-      </header>
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <h1 class="brand-title">WebKit Source Analysis</h1>
+            <span class="brand-badge">iOS &amp; BrowserEngineKit</span>
+            <span class="ai-warning-pill" role="note" title="This analysis is AI-generated and may contain errors">&#9888; Analysis is AI-generated and may contain errors</span>
+          </div>
+          <p class="brand-subtitle">
+            Source-code analysis of WebKit on iOS: Seatbelt sandboxes, private APIs (SPIs), auxiliary daemons, and entitlements
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="#summary-heading" class="btn btn-secondary">Capability Gaps (13)</a>
+        <a href="#set-aside-heading" class="btn btn-secondary">Set Aside (5)</a>
+        <a href="#deep-dives-heading" class="btn btn-secondary">Technical Reference (4)</a>
+        <a href="https://github.com/WebKit/WebKit" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">WebKit Source &#8599;</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main index-page">
+    <div class="index-container">
 
       <section class="bek-summary-section" aria-labelledby="summary-heading">
         <h2 id="summary-heading" class="section-title">Can a BrowserEngineKit browser match Safari?</h2>
         <div class="framing-paragraph">
           <p><strong>BrowserEngineKit (BEK)</strong> is Apple's iOS 17.4+ framework allowing alternative browser engines to run in sandboxed processes in the EU. While it provides essential multiprocess capabilities, structural platform asymmetries remain. The analysis below examines what capabilities are lost for developers and users, whether those same browsers have the capability on Android, and the strength of the source-code evidence.</p>
-          <p><strong>Short answer:</strong> BEK covers the core of a browser engine (JavaScript JIT, multi-process isolation, basic scrolling and text input), so a third-party engine can render the web on iOS. But a set of Safari-only system privileges — above all Web Push, background downloads and uploads, Apple Pay, and several media and native-UI integrations — mean such a browser cannot fully match Safari, nor match its own Android version, and it runs inside a sandbox it can neither observe nor tune.</p>
+          <p><strong>Short answer:</strong> BEK covers the core of a browser engine (JavaScript JIT, multi-process isolation, basic scrolling and text input, system-managed downloads, passkeys), so a third-party engine can render the web on iOS. But a set of Safari-only system privileges — above all Home Screen web apps with their own notifications and badges, Apple Pay on websites, Web Push to ordinary tabs, uploads that survive leaving the app, school and workplace filtering, web-to-app ad attribution, and DRM inside the engine's own media pipeline — mean such a browser cannot fully match Safari, nor match its own Android version, and it runs inside a sandbox it can neither observe nor tune. Of 23 candidate gaps examined, 13 are tracked below; the rest were found to be closed by public APIs or too small to matter and are <a href="#set-aside-heading">listed separately</a>.</p>
+          <p class="drill-down-note"><strong>How to read this site:</strong> each row below is a short, plain-language summary. Click a capability name for an <em>issue page</em> that breaks the gap into its separate aspects with source evidence for each; those pages link onward into the four interactive <em>technical reference pages</em> (sandbox rules, private APIs, auxiliary daemons, entitlements), which describe each setting, symbol, service and entitlement with its WebKit source locations and history but deliberately contain no capability-gap argument of their own.</p>
         </div>
 
         <div class="bek-provides">
@@ -42,6 +61,9 @@
             <li>Basic scrolling and text interaction integration (<code>BEScrollView</code> / <code>BETextInteraction</code>).</li>
             <li>A BEK or public equivalent exists for <a href="spi.html#insight-availability-tiers" style="color: inherit; text-decoration: underline;">roughly 42% of the private APIs</a> WebKit uses on iOS (847 of 2,014).</li>
             <li>Storage and IndexedDB/Service Workers parity.</li>
+            <li>System-managed background file downloads via <code>BEDownloadMonitor</code> (iOS 18.2+), the same path WebKit itself now uses on iOS (<a href="issues/process-lifecycle.html" style="color: inherit; text-decoration: underline;">details</a>).</li>
+            <li>Passkeys and security keys through the public AuthenticationServices APIs, which replaced WebKit's own WebAuthn process in 2022.</li>
+            <li>Screen Time web-content limits via <code>BEWebContentFilter</code> (iOS 26.2+), and background audio via the <code>mediaPlaybackAndCapture</code> process capability.</li>
           </ul>
         </div>
 
@@ -59,192 +81,228 @@
             </thead>
             <tbody>
               <tr>
-                <td data-label="Capability gap">Web Push &amp; Home Screen web apps</td>
-                <td data-label="What is lost">Safari-only persistent daemon brokers APNs, wakes/launches web apps, and updates badges in the background. BEK browsers cannot get background wake for push notifications.</td>
+                <td data-label="Capability gap"><a href="issues/home-screen-web-apps.html" class="gap-link">Home Screen web apps</a></td>
+                <td data-label="What is lost">In Safari, a website added to the Home Screen behaves like a real app: its own icon, its own notification permission and identity, and its own badge. That depends on a Safari-only system daemon (<code>webpushd</code>) that can find, launch, notify and badge each installed web app through private interfaces and only accepts Safari's web-app host. A third-party browser can add a web app to the Home Screen (<code>BEWebAppManifest</code>) but afterwards has no public way to find, wake, notify or badge it; everything appears under the browser's own name.</td>
                 <td data-label="Priority"><span class="badge-priority">P1</span></td>
                 <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">Yes (via FCM / Play Services)</td>
+                <td data-label="On Android?">Yes (installed PWAs get their own notification identity and badge via FCM / WebAPK)</td>
                 <td data-label="Evidence" class="evidence-links">
+                  <a href="issues/home-screen-web-apps.html" class="evidence-primary">Full analysis →</a>
                   <a href="services.html#service-webpushd">Services › webpushd</a>
-                  <a href="entitlements.html#gap-web-push">Entitlements › Web Push</a>
-                  <a href="spi.html#problem-web-push">SPI › Web Push</a>
+                  <a href="entitlements.html?view=explorer&amp;q=webpush">Entitlements › webpush</a>
+                  <a href="spi.html#tab=data&amp;q=UIWebClip&amp;sexp=UIWebClip">SPI › UIWebClip</a>
+                  <a href="https://github.com/WebKit/WebKit/blob/main/Source/WebKit/webpushd/WebPushDaemon.mm">WebKit › WebPushDaemon.mm</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Media playback &amp; capture integration</td>
-                <td data-label="What is lost">Safari uses private AVKit/MediaRemote hooks for AirPlay routing, Picture-in-Picture transitions and protected (DRM) playback paths, and captures camera/microphone inside its GPU process. Third-party engines get the public media APIs only, so some of these experiences are degraded or implemented differently.</td>
+                <td data-label="Capability gap"><a href="issues/apple-pay.html" class="gap-link">Payments (Apple Pay on websites)</a></td>
+                <td data-label="What is lost">In Safari, a website can show the native Apple Pay sheet and charge that site's own merchant account. WebKit does this with private PassKit calls that take the website's merchant ID and domain, plus a private entitlement on its networking process. Public PassKit is designed for an app paying its own merchant, so a third-party engine can't drive the native sheet for arbitrary websites; sites fall back to Apple's code-scan flow or a non-Apple Pay checkout.</td>
                 <td data-label="Priority"><span class="badge-priority">P1</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Public media APIs exist)</span></td>
-                <td data-label="On Android?">Yes (public MediaDrm / Widevine)</td>
-                <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#problem-media-codecs">SPI › Media Codecs</a>
-                  <a href="entitlements.html#gap-media-capture">Entitlements › Media Capture</a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Capability gap">Payments (Apple Pay)</td>
-                <td data-label="What is lost">Payment Request API with Apple Pay is Safari-exclusive on iOS. Alternative browsers must fall back to inferior user flows.</td>
-                <td data-label="Priority"><span class="badge-priority">P1</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Delegated-merchant path unverified for browsers)</span></td>
                 <td data-label="On Android?">Yes (Google Pay via Payment Request)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#problem-auth-apple-pay">SPI › Apple Pay</a>
-                  <a href="entitlements.html#gap-apple-pay-identity">Entitlements › Apple Pay</a>
+                  <a href="issues/apple-pay.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;feat=Apple%20Pay%2C%20PassKit%20%26%20Wallet%20Installments">SPI › Apple Pay &amp; PassKit</a>
+                  <a href="spi.html#tab=data&amp;q=MerchantIdentifier">SPI › Merchant-ID/domain calls</a>
+                  <a href="entitlements.html?view=explorer&amp;q=payment">Entitlements › payment</a>
+                  <a href="https://developer.apple.com/documentation/passkit/pkpaymentrequest/isdelegatedrequest">Apple › isDelegatedRequest</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Scrolling, text input &amp; native UI parity</td>
-                <td data-label="What is lost">While BEK provides basic scrolling/text capabilities, WebKit still relies on hundreds of private UIKit selectors (SPIs) for full native parity; regressions occur when these are removed.</td>
-                <td data-label="Priority"><span class="badge-priority">P1</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">Yes (engines ship their own input stacks)</td>
-                <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#problem-uikit-scrolling">SPI › UIKit Parity</a>
-                  <a href="spi.html#legacySpotlightSection">SPI › Legacy allowlist additions</a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Capability gap">Background downloads</td>
-                <td data-label="What is lost">In Safari, a large file download keeps going when the user switches to another app or locks the phone: WebKit keeps the browser app itself running for as long as a download is active (an "unbounded networking" system assertion, gated on the private <code>com.apple.multitasking.systemappassertions</code> entitlement). In a BEK browser, the app is suspended about 30 seconds after the user leaves it, which stalls the download. The download only finishes if the user comes back, or if the browser hands it off to iOS's public background download service (background <code>NSURLSession</code>). That service runs outside the engine, so it doesn't use the engine's own network stack, cookies or proxy settings.</td>
+                <td data-label="Capability gap"><a href="issues/web-push.html" class="gap-link">Web Push (browser tabs)</a></td>
+                <td data-label="What is lost">Web Push lets a website notify you after its tab is closed. Safari offers it only to websites installed on the Home Screen, through an Apple-only system daemon (<code>webpushd</code>) that obtains a push endpoint per site from Apple's push service and wakes the site's code when a message arrives. A third-party engine could build Android-style push with public APIs (its own relay plus the browser's push token), but notifications would have to be built from the push payload alone and shown under the browser's name with one app-wide permission.</td>
                 <td data-label="Priority"><span class="badge-priority">P2</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">Yes (DownloadManager / foreground service)</td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Public workaround untested on iOS)</span></td>
+                <td data-label="On Android?">Yes (Chrome delivers Web Push to ordinary tabs via FCM, no install needed)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="entitlements.html#gap-process-lifecycle">Entitlements › Process Lifecycle</a>
-                  <a href="entitlements.html?view=explorer&amp;q=systemappassertions">Entitlements › systemappassertions</a>
+                  <a href="issues/web-push.html" class="evidence-primary">Full analysis →</a>
+                  <a href="services.html#service-webpushd">Services › webpushd</a>
+                  <a href="entitlements.html?view=explorer&amp;q=aps-connection-initiate">Entitlements › aps-connection-initiate</a>
+                  <a href="spi.html#tab=data&amp;q=APSConnection">SPI › APSConnection</a>
+                  <a href="sandbox.html#view=explorer&amp;profile=webpushd">Sandbox › webpushd profile history</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Background uploads from web pages</td>
-                <td data-label="What is lost">When a page is uploading (e.g. a video posted through a web form, <code>fetch()</code> or XHR), Safari keeps the browser app, its networking process and the page's process all running until the upload finishes, even if the user switches apps. In a BEK browser, the upload stalls once the app is suspended (about 30 seconds after the user leaves it), and the page usually sees a network error when the user returns. BEK only lets the browser keep its helper processes in the foreground, background (time-limited) or suspended states, so there's no option for "keep running until this network transfer finishes". iOS's public background upload service only takes whole files handed over by the app, so it can't carry an upload that page JavaScript is streaming.</td>
+                <td data-label="Capability gap"><a href="issues/process-lifecycle.html" class="gap-link">Background execution: uploads, downloads &amp; tab survival</a></td>
+                <td data-label="What is lost">iOS suspends an app about 30 seconds after you switch away. Safari keeps itself and its helper processes running for uploads with a private "unbounded networking" assertion and ranks background tabs for the low-memory killer with private assertions; BEK only lets an engine ask for foreground, background or suspended. Downloads are now covered by the public <code>BEDownloadMonitor</code> (iOS 18.2+), which WebKit itself uses, but a page's upload (<code>fetch()</code>, XHR, form) stalls when the user leaves, and background tabs may reload somewhat more often.</td>
                 <td data-label="Priority"><span class="badge-priority">P2</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">Mostly (apps aren't frozen as soon as they're backgrounded; Doze limits still apply)</td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Uploads: high; tab survival not measured on a device)</span></td>
+                <td data-label="On Android?">Mostly (apps aren't frozen on backgrounding; engines set their own renderer priorities)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="entitlements.html#gap-process-lifecycle">Entitlements › Process Lifecycle</a>
+                  <a href="issues/process-lifecycle.html" class="evidence-primary">Full analysis →</a>
                   <a href="entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements › RunningBoard assertions</a>
+                  <a href="entitlements.html?view=explorer&amp;q=systemappassertions">Entitlements › systemappassertions</a>
+                  <a href="entitlements.html?view=explorer&amp;q=memorystatus">Entitlements › memorystatus</a>
+                  <a href="spi.html#tab=data&amp;feat=Process%20Management%2C%20RunningBoard%2C%20XPC%20%26%20System%20Lifecycle">SPI › Process Management &amp; RunningBoard</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Graphics/compositing &amp; HDR</td>
-                <td data-label="What is lost">BEK lacks full RemoteLayerTree / IOSurface endpoints for advanced compositing. HDR/EDR video and canvas output may not match Safari.</td>
+                <td data-label="Capability gap"><a href="issues/content-filters.html" class="gap-link">School &amp; workplace management: content filters &amp; managed domains</a></td>
+                <td data-label="What is lost">Schools and companies install filter apps that judge each page a device visits, and list "managed" web domains whose data must stay corporate. WebKit hands filters a per-page view (URL, response, content) through a private class and shows the filter's block page, and asks the private ManagedConfiguration framework whether a page is managed. A third-party engine's traffic reaches such filters only as connections by host name, with no block page, and it has no way to ask whether a site is managed. Screen Time's web limits are a separate mechanism that became public for BEK engines in iOS 26.2 (<code>BEWebContentFilter</code>).</td>
                 <td data-label="Priority"><span class="badge-priority">P2</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Architecture-specific impact)</span></td>
-                <td data-label="On Android?">Yes (engines ship their own compositor)</td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Screen Time gap closed on iOS 26.2+; MDM gaps remain)</span></td>
+                <td data-label="On Android?">Partly (managed-device policies and work profiles apply to every app; no OS-level per-page filter hook for arbitrary engines)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#problem-graphics-iosurface">SPI › Graphics Parity</a>
-                  <a href="entitlements.html#gap-graphics-ane">Entitlements › Graphics Parity</a>
+                  <a href="issues/content-filters.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;q=NEFilterSource">SPI › NEFilterSource</a>
+                  <a href="spi.html#tab=data&amp;q=isURLManaged">SPI › isURLManaged:</a>
+                  <a href="entitlements.html?view=explorer&amp;q=WebContentRestrictions">Entitlements › WebContentRestrictions</a>
+                  <a href="https://developer.apple.com/documentation/browserenginekit/bewebcontentfilter">Apple › BEWebContentFilter</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Networking integration</td>
-                <td data-label="What is lost">Lacks OS-level proxy integrations like iCloud Private Relay, Screen Time parental controls, or VPN handoffs that apply automatically to Safari.</td>
+                <td data-label="Capability gap"><a href="issues/web-to-app-attribution.html" class="gap-link">Web-to-app install attribution</a></td>
+                <td data-label="What is lost">When someone taps an App Store ad in Safari and then installs the app, Apple privately tells the ad network that the click led to the install. WebKit hands the click to the App Store daemon through a private interface and entitlement that only its own networking process has. A third-party browser can't register the click at all, so installs driven by its ads are invisible to advertisers; Apple's documentation says this works only in Safari, not even in <code>WKWebView</code>.</td>
                 <td data-label="Priority"><span class="badge-priority">P2</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Engines use their own network stacks)</span></td>
-                <td data-label="On Android?">Mostly N/A (engines bring their own network stacks)</td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Apple docs: Safari-only, excludes even WKWebView)</span></td>
+                <td data-label="On Android?">Yes (Play Install Referrer; Android Attribution Reporting API supports web-to-app from any browser)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#problem-networking">SPI › Networking</a>
-                  <a href="entitlements.html#gap-networking-ohttp">Entitlements › Networking (OHTTP)</a>
+                  <a href="issues/web-to-app-attribution.html" class="evidence-primary">Full analysis →</a>
+                  <a href="entitlements.html?view=explorer&amp;q=appstored">Entitlements › com.apple.private.appstored</a>
+                  <a href="spi.html#tab=data&amp;q=ASDInstallWebAttribution">SPI › ASDInstallWebAttributionService</a>
+                  <a href="services.html#service-adattributiond">Services › adattributiond</a>
+                  <a href="https://developer.apple.com/documentation/skadnetworkforwebads">Apple › SKAdNetwork for Web Ads</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Sandbox fragility &amp; silent breakage</td>
-                <td data-label="What is lost">Safari's sandbox evolves via telemetry lockstep with OS updates. BEK engines inherit a rigid profile they cannot observe, risking silent production crashes when iOS system libraries change, until Apple ships an exemption in a later iOS release.</td>
+                <td data-label="Capability gap"><a href="issues/sandbox-fragility.html" class="gap-link">Sandbox fragility &amp; silent breakage</a></td>
+                <td data-label="What is lost">Third-party engines run inside WebKit's own iOS sandbox profiles, which Apple adjusts roughly a hundred times a year (919 commits since 2014, 70% touching only sandbox rules), often in response to internal telemetry only Apple can see. When an iOS framework changes and needs a new sandbox exception, an engine can't ship the fix itself and can't observe the denial in production; it must wait for an iOS update. Eight commits so far have fixed rules that broke only third-party engines, and some permissions are revoked part-way through a process's life.</td>
                 <td data-label="Priority"><span class="badge-priority">P2</span></td>
                 <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
                 <td data-label="On Android?">N/A (engine controls its own sandbox)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="sandbox.html#insight-4-posix-mismatch">Sandbox › Syscall mismatch</a>
-                  <a href="sandbox.html#challenge-b-telemetry">Sandbox › Silent failures</a>
-                  <a href="sandbox.html#challenge-d-library-drift">Sandbox › Library drift</a>
+                  <a href="issues/sandbox-fragility.html" class="evidence-primary">Full analysis →</a>
+                  <a href="sandbox.html#view=explorer&amp;tag=3p-specific">Sandbox › 3p-specific rule commits</a>
+                  <a href="sandbox.html#view=explorer&amp;trigger=os-framework-3p">Sandbox › OS-framework-driven fixes</a>
+                  <a href="sandbox.html#insight-4-posix-mismatch">Sandbox › Syscall allow-lists</a>
+                  <a href="sandbox.html#insight-5-mid-process-revocation">Sandbox › Mid-process revocation</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Background audio &amp; calls</td>
-                <td data-label="What is lost">Mostly achievable. Safari keeps itself and its GPU process running while a page plays audible media (a private "media playback" assertion), so music, podcasts and video audio keep playing with the screen locked or in another app. A BEK browser can get much the same result with public APIs: the app declares the standard background-audio mode, and BEK grants its media process a <code>mediaPlaybackAndCapture</code> capability. A web voice call that's already running can keep using the microphone the same way. The remaining gap is that Safari's GPU process holds a private entitlement to <em>start</em> microphone recording while in the background, which a BEK engine can't do.</td>
-                <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Public path exists; App Review not analysed)</span></td>
-                <td data-label="On Android?">Yes (media foreground service)</td>
+                <td data-label="Capability gap"><a href="issues/media-playback.html" class="gap-link">Media playback: DRM, AirPlay, decoder capabilities &amp; background capture</a></td>
+                <td data-label="What is lost">Most of Safari's media integration has public equivalents (fullscreen UI, Picture-in-Picture, Now Playing, background audio via BEK's <code>mediaPlaybackAndCapture</code> capability). What remains Safari-only: FairPlay decryption inside an engine's own video pipeline (a private entitlement is withheld from BEK extensions), AirPlay from a custom pipeline, the complete per-device HEVC/Dolby Vision/AV1 decoder table that answers <code>navigator.mediaCapabilities</code>, and starting microphone capture while in the background.</td>
+                <td data-label="Priority"><span class="badge-priority">P2</span></td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Public media APIs cover most aspects)</span></td>
+                <td data-label="On Android?">Yes (public MediaDrm / Widevine; <code>MediaCodecInfo</code> capability tables)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="entitlements.html?view=explorer&amp;q=runningboard.assertions.webkit">Entitlements › RunningBoard assertions</a>
-                  <a href="entitlements.html?view=explorer&amp;q=startrecordinginthebackground">Entitlements › Background recording</a>
+                  <a href="issues/media-playback.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;feat=Media%20Playback%2C%20AirPlay%2C%20AVFoundation%20%26%20Codecs">SPI › Media Playback &amp; Codecs</a>
+                  <a href="spi.html#tab=data&amp;q=DecoderCapabilit">SPI › VT*DecoderCapabilit*</a>
+                  <a href="entitlements.html?view=explorer&amp;dom=Media%2C%20Audio%20%26%20AirPlay">Entitlements › Media, Audio &amp; AirPlay</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Tab survival under memory pressure</td>
-                <td data-label="What is lost">WebKit can raise the priority of the processes behind active tabs so iOS's low-memory killer (jetsam) reclaims them later (a "boosted jetsam" assertion), and its helper processes hold the private <code>com.apple.private.memorystatus</code> entitlement to adjust memory-kill settings. BEK can't express either. Users may see a BEK browser's tabs reload, losing scroll position and unsaved form input, somewhat more often than Safari's when memory is tight.</td>
+                <td data-label="Capability gap"><a href="issues/networking.html" class="gap-link">Private Relay, enterprise SSO &amp; proxy integration</a></td>
+                <td data-label="What is lost">Engines that bring their own network stack don't need WebKit's hundreds of private CFNetwork calls, but they lose services that only apply when the OS handles the connection: iCloud Private Relay doesn't cover their traffic, enterprise single sign-on (Kerberos/AppSSO) and proxy/VPN configuration need custom bridging instead of automatic handoffs, and Apple's privacy relays (used for Oblivious HTTP) are unavailable.</td>
                 <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Not measured on a device)</span></td>
-                <td data-label="On Android?">Yes (engine sets its own renderer process priorities)</td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Engines use their own network stacks)</span></td>
+                <td data-label="On Android?">Mostly N/A (engines bring their own network stacks)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="entitlements.html?view=explorer&amp;q=memorystatus">Entitlements › memorystatus</a>
-                  <a href="entitlements.html#gap-process-lifecycle">Entitlements › Process Lifecycle</a>
+                  <a href="issues/networking.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;feat=Networking%2C%20HTTP%2F3%2C%20WebTransport%20%26%20Cookies">SPI › Networking</a>
+                  <a href="entitlements.html?view=explorer&amp;dom=Networking%20%26%20Privacy%20Proxies">Entitlements › Networking &amp; Privacy Proxies</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">Delayed ad-attribution reports</td>
-                <td data-label="What is lost">For Private Click Measurement, Safari hands attribution reports to a system daemon (<code>adattributiond</code>) that sends them 24–48 hours later even if Safari has been closed. A BEK browser can only send its reports while it's running. Advertisers and sites measuring conversions get reports later, and lose some if the user rarely reopens the browser.</td>
+                <td data-label="Capability gap"><a href="issues/graphics-hdr.html" class="gap-link">Compositor performance &amp; HDR</a></td>
+                <td data-label="What is lost">WebKit composites web content through private cross-process CoreAnimation layer hosting and IOSurface ownership calls, backed by private QuartzCore entitlements. Engines with their own compositor (Chromium, Gecko) draw into a Metal layer and need few of these, and BEK gives them public layer-hosting and memory-ownership equivalents. What remains: no elevated GPU scheduling priority (a private entitlement), extra cross-process overhead, and HDR/EDR tone mapping that must be calibrated by hand rather than inherited from the system.</td>
+                <td data-label="Priority"><span class="badge-priority">P3</span></td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Architecture-specific impact)</span></td>
+                <td data-label="On Android?">Yes (engines ship their own compositor)</td>
+                <td data-label="Evidence" class="evidence-links">
+                  <a href="issues/graphics-hdr.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;feat=Graphics%2C%20CoreAnimation%2C%20Color%2C%20HDR%20%26%20IOSurface">SPI › Graphics, CoreAnimation &amp; IOSurface</a>
+                  <a href="entitlements.html?view=explorer&amp;dom=GPU%2C%20Graphics%20%26%20Display">Entitlements › GPU, Graphics &amp; Display</a>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Capability gap"><a href="issues/scrolling-text-input.html" class="gap-link">Scrolling, text input &amp; native UI parity</a></td>
+                <td data-label="What is lost">Since other browser engines use their own graphics stack rather than mapping web pages onto native UIKit views, they don't need all of the same OS integration primitives as Safari (where WebKit still uses ~280 private UIKit calls and ~50 private Accessibility calls alongside <code>BEScrollView</code> and <code>BETextInput</code>, and a 2026 attempt to drop two legacy scrolling calls had to be reverted). Even so, given how much work has gone into WebKit here and how different the architecture is for other browser engines, it seems likely that there are important gaps in platform integration — with accessibility (cross-process VoiceOver) and IME / complex text input as key areas for further research.</td>
+                <td data-label="Priority"><span class="badge-priority">P3</span></td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(Engines use their own graphics stacks; needs further research)</span></td>
+                <td data-label="On Android?">Yes (engines ship their own input stacks)</td>
+                <td data-label="Evidence" class="evidence-links">
+                  <a href="issues/scrolling-text-input.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;feat=UIKit%20Views%2C%20Scrolling%2C%20Gestures%20%26%20Text%20Input">SPI › UIKit Views, Scrolling &amp; Text Input</a>
+                  <a href="spi.html#tab=data&amp;feat=Accessibility%20%26%20Speech%20Synthesis">SPI › Accessibility &amp; Speech Synthesis</a>
+                  <a href="spi.html#legacySpotlightSection">SPI › Legacy allowlist additions</a>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Capability gap"><a href="issues/delayed-pcm-reports.html" class="gap-link">Delayed web-to-web ad-attribution reports</a></td>
+                <td data-label="What is lost">For Private Click Measurement, Safari hands attribution reports to a system daemon (<code>adattributiond</code>) that sends them 24–48 hours later through Apple's privacy relay, even if Safari is closed. A third-party browser can only send reports while it is running (or opportunistically via background tasks) and can't use Apple's relay, so reports arrive later, some are lost, and the engine needs its own relay to hide the user's IP address.</td>
                 <td data-label="Priority"><span class="badge-priority">P3</span></td>
                 <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
                 <td data-label="On Android?">Unverified</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="services.html#service-adattributiond">Services › ad attribution</a>
+                  <a href="issues/delayed-pcm-reports.html" class="evidence-primary">Full analysis →</a>
+                  <a href="services.html#service-adattributiond">Services › adattributiond</a>
+                  <a href="sandbox.html#view=explorer&amp;profile=adattributiond">Sandbox › adattributiond profile history</a>
+                  <a href="entitlements.html?view=explorer&amp;q=networkserviceproxy">Entitlements › networkserviceproxy</a>
                 </td>
               </tr>
               <tr>
-                <td data-label="Capability gap">System intelligence features</td>
-                <td data-label="What is lost">Safari has private integration for Visual Look Up, Live Text, and system intelligence that third-party browsers cannot replicate via public APIs.</td>
+                <td data-label="Capability gap"><a href="issues/data-detectors.html" class="gap-link">System intelligence: data detectors, Live Text &amp; Visual Look Up</a></td>
+                <td data-label="What is lost">Safari turns phone numbers, addresses, dates, flights and tracking numbers into tappable items with Apple's system menus and live preview cards, and offers Live Text and Visual Look Up on web images, all through private frameworks. A third-party engine can detect most items with the public <code>NSDataDetector</code> and build its own menus, and newer public APIs cover Writing Tools (iOS 18.2) and translation, but it can't show Apple's interactive flight/package cards or trigger Visual Look Up on page images the way <code>WKWebView</code> apps get for free.</td>
                 <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">N/A (typically via in-app Lens)</td>
+                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span><span class="badge-note">(Partial public workaround exists)</span></td>
+                <td data-label="On Android?">Mostly (public TextClassifier / Smart Linkify gives any engine the system's detections and actions; visual look-up is typically via in-app Lens)</td>
                 <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#problem-visual-intelligence">SPI › Visual Intelligence</a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Capability gap">Security hardening parity</td>
-                <td data-label="What is lost">No user-visible feature loss: BEK grants JIT, but WebKit additionally uses Apple-private hardening (verified JIT, pointer-authentication regions, runtime sandbox state flags), so a third-party engine is somewhat less hardened than Safari.</td>
-                <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">N/A</td>
-                <td data-label="Evidence" class="evidence-links">
-                  <a href="entitlements.html#gap-jit-hardening">Entitlements › JIT Hardening</a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Capability gap">Passkeys &amp; security keys</td>
-                <td data-label="What is lost">Third-party browsers can use the public passkey/security-key APIs (ASAuthorizationController); only niche gaps remain (custom authenticator protocols, some attestation).</td>
-                <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-high">High</span></td>
-                <td data-label="On Android?">Yes (Credential Manager)</td>
-                <td data-label="Evidence" class="evidence-links">
-                  <a href="services.html#service-webauthn">Services › webauthn</a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Capability gap">Developer tools (remote debugging)</td>
-                <td data-label="What is lost">Safari's Web Inspector reaches pages through Apple's <code>webinspectord</code> daemon (private <code>com.apple.private.webinspector.*</code> entitlements). That daemon only talks to WebKit/JavaScriptCore, so a Blink or Gecko engine can't use it, and Safari for Mac can't inspect it. Nothing found in WebKit's sandbox or entitlements stops an engine from shipping its own tools instead, e.g. a Chrome DevTools Protocol server in the host app, reached over Wi-Fi or USB port forwarding. What's missing is ADB-style tooling: there is no public, zero-setup way to find and connect to a device over USB, and iOS suspends the browser when it goes to the background, which ends the debugging session.</td>
-                <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(No blocker found; not tested on a device)</span></td>
-                <td data-label="On Android?">Yes (any engine can be debugged over ADB, e.g. chrome://inspect)</td>
-                <td data-label="Evidence" class="evidence-links">
-                  <a href="entitlements.html?view=explorer&amp;q=webinspector">Entitlements › Web Inspector</a>
-                  <a href="entitlements.html?view=explorer&amp;q=get-task-allow">Entitlements › get-task-allow</a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Capability gap">Browser (web) extensions</td>
-                <td data-label="What is lost">Nothing technical stops a third-party engine from running WebExtensions itself, but it has to build the whole system (Chromium only ships extensions on desktop). WKWebView browsers get this for free from <code>WKWebExtension</code>, a public API since iOS 18.4. The real limits: (1) Safari Web Extensions bought on the App Store live inside other developers' apps, and only Safari can find and load them. Other browsers can only load extensions they bundle or download themselves. (2) Native messaging, where an extension talks to its companion app, goes through the private <code>NSExtension</code> API (<code>extensionWithIdentifier:</code>), so a third-party browser can't talk to another developer's native app. (3) Whether App Review allows extensions downloaded from a web store is a policy question not covered here.</td>
-                <td data-label="Priority"><span class="badge-priority">P3</span></td>
-                <td data-label="Confidence"><span class="badge-conf badge-conf-med">Medium</span><span class="badge-note">(App Store policy not analysed)</span></td>
-                <td data-label="On Android?">Partly (engines can implement extensions; there's no OS-level extension store or native-messaging host)</td>
-                <td data-label="Evidence" class="evidence-links">
-                  <a href="spi.html#tab=data&amp;feat=Web%20Extensions%20%26%20Native%20Messaging">SPI › Web Extensions &amp; Native Messaging</a>
+                  <a href="issues/data-detectors.html" class="evidence-primary">Full analysis →</a>
+                  <a href="spi.html#tab=data&amp;feat=Visual%20Intelligence%2C%20Live%20Text%20(VisionKit)%20%26%20Writing%20Tools">SPI › Visual Intelligence &amp; Live Text</a>
+                  <a href="spi.html#tab=data&amp;feat=Data%20Detectors%2C%20Look%20Up%2C%20Translation%20%26%20Link%20Preview">SPI › Data Detectors &amp; Look Up</a>
+                  <a href="spi.html#tab=data&amp;q=DDDetectionController">SPI › DDDetectionController</a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+
+        <section class="set-aside-section" aria-labelledby="set-aside-heading">
+          <h3 id="set-aside-heading" class="section-subtitle">Examined and set aside</h3>
+          <p class="set-aside-intro">These capabilities were investigated in the same way and were found <em>not</em> to be a practical gap for a BrowserEngineKit browser, or to be small enough that they are now covered inside one of the pages above. The underlying private APIs, entitlements and services remain documented in the analysis pages.</p>
+          <table class="problems-table set-aside-table">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Why it is not tracked as a gap</th>
+                <th>Technical detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Capability">Passkeys &amp; security keys</td>
+                <td data-label="Why it is not tracked as a gap">The public AuthenticationServices APIs give any app passkeys and security keys, and WebKit itself retired its dedicated WebAuthn process in favour of them in 2022. Only niche attestation and transport cases differ.</td>
+                <td data-label="Technical detail" class="evidence-links"><a href="services.html#service-webauthn">Services › WebAuthn (retired)</a><a href="spi.html#tab=data&amp;feat=Authentication%2C%20Passkeys%2C%20Enterprise%20SSO%20%26%20Security">SPI › Authentication &amp; Passkeys</a></td>
+              </tr>
+              <tr>
+                <td data-label="Capability">Security hardening parity</td>
+                <td data-label="Why it is not tracked as a gap">BEK grants JIT. Safari's processes carry additional Apple-private hardening (verified JIT regions, pointer-authentication flags, Lockdown Mode switches), which makes a third-party engine somewhat less hardened but costs users no capability.</td>
+                <td data-label="Technical detail" class="evidence-links"><a href="entitlements.html?view=explorer&amp;dom=JIT%20%26%20Memory%20Hardening">Entitlements › JIT &amp; Memory Hardening</a><a href="sandbox.html#view=explorer&amp;cat=security-hardening">Sandbox › hardening commits</a></td>
+              </tr>
+              <tr>
+                <td data-label="Capability">Developer tools (remote debugging)</td>
+                <td data-label="Why it is not tracked as a gap">Safari's <code>webinspectord</code> path is private and speaks only WebKit's protocol, but nothing prevents an engine from shipping its own remote-debugging server, as the same engines do on every other platform.</td>
+                <td data-label="Technical detail" class="evidence-links"><a href="entitlements.html?view=explorer&amp;q=webinspector">Entitlements › webinspector</a><a href="entitlements.html?view=explorer&amp;dom=Developer%20Tools%20%26%20Testing">Entitlements › Developer Tools</a></td>
+              </tr>
+              <tr>
+                <td data-label="Capability">Browser (web) extensions</td>
+                <td data-label="Why it is not tracked as a gap">An engine can implement WebExtensions itself; only Safari-specific distribution (App Store Safari Web Extensions) and a private native-messaging bridge differ, and App Store policy is out of scope here.</td>
+                <td data-label="Technical detail" class="evidence-links"><a href="spi.html#tab=data&amp;feat=Web%20Extensions%20%26%20Native%20Messaging">SPI › Web Extensions &amp; Native Messaging</a></td>
+              </tr>
+              <tr>
+                <td data-label="Capability">Per-website location attribution</td>
+                <td data-label="Why it is not tracked as a gap">WebKit tells CoreLocation which website is asking through a private initialiser, but no user-visible consequence of that attribution is documented; a third-party browser's own per-site prompts give the same experience.</td>
+                <td data-label="Technical detail" class="evidence-links"><a href="spi.html#tab=data&amp;q=initWithWebsiteIdentifier">SPI › initWithWebsiteIdentifier:</a></td>
+              </tr>
+              <tr>
+                <td data-label="Capability">Folded into other pages</td>
+                <td data-label="Why it is not tracked as a gap">Background downloads (closed by <code>BEDownloadMonitor</code>) and tab survival under memory pressure are now aspects of <a href="issues/process-lifecycle.html">Background execution</a>; background audio and the video decoder capability table are aspects of <a href="issues/media-playback.html">Media playback</a>; MDM managed domains are an aspect of <a href="issues/content-filters.html">School &amp; workplace management</a>.</td>
+                <td data-label="Technical detail" class="evidence-links"><a href="entitlements.html?view=explorer&amp;q=systemappassertions">Entitlements › systemappassertions</a><a href="spi.html#tab=data&amp;q=MaxPlaybackLevel">SPI › MaxPlaybackLevel</a><a href="spi.html#tab=data&amp;q=isURLManaged">SPI › isURLManaged:</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
         <div class="legend-scope-wrapper">
           <div class="legend-card">
@@ -261,26 +319,44 @@
         </div>
       </section>
 
-      <nav aria-label="Deep-dive analysis pages">
+      <nav id="deep-dives-heading" aria-label="Deep-dive analysis pages">
+        <h2 class="section-title">Technical Reference: Interactive Datasets</h2>
+        <p class="framing-paragraph">Each page below is a self-contained reference for one layer of WebKit on iOS. They describe <em>what</em> each sandbox rule, private API, daemon and entitlement is and where it lives in WebKit source; the capability-gap reasoning lives only in the issue pages above.</p>
         <ul class="index-links-list">
           <li>
             <a href="sandbox.html" class="index-link-card">
-              <div class="index-link-title">WebKit iOS Sandbox Evolution</div>
+              <div class="index-link-card-top">
+                <div class="index-link-title">WebKit iOS Sandbox Evolution &rarr;</div>
+                <span class="badge-pill badge-blue">919 Commits &bull; 9 Profiles</span>
+              </div>
+              <p class="index-link-desc">15 years of iOS Seatbelt profile changes (<code>WebContent</code>, <code>GPU</code>, <code>Network</code>, <code>webpushd</code>, <code>adattributiond</code>, <code>Model</code>), rule-level S-expression polarity, and lockstep OS-coupled tightening.</p>
             </a>
           </li>
           <li>
             <a href="spi.html" class="index-link-card">
-              <div class="index-link-title">WebKit iOS Private API (SPI) &amp; DMA Interoperability Analyzer</div>
+              <div class="index-link-card-top">
+                <div class="index-link-title">WebKit iOS Private API (SPI) &amp; BrowserEngineKit Analyzer &rarr;</div>
+                <span class="badge-pill badge-teal">2,014 SPIs &bull; 159 Commits</span>
+              </div>
+              <p class="index-link-desc">Complete inventory of WebKit&apos;s 2,014 unique iOS SPIs across <code>AllowedSPI.toml</code> and <code>AllowedSPI-legacy.toml</code>, 5-tier 3P availability classification, and 24 post-baseline legacy additions.</p>
             </a>
           </li>
           <li>
             <a href="services.html" class="index-link-card">
-              <div class="index-link-title">WebKit Sandboxed Auxiliary Services &amp; Daemons (WebAuthn, adattributiond, webpushd, Model, Storage)</div>
+              <div class="index-link-card-top">
+                <div class="index-link-title">WebKit Sandboxed Auxiliary Services &amp; Daemons &rarr;</div>
+                <span class="badge-pill badge-emerald">5 Daemons &bull; 209 Capabilities</span>
+              </div>
+              <p class="index-link-desc">4-stage Seatbelt-to-Code analysis of WebKit&apos;s 5 auxiliary sandboxed services beyond the core triad (<code>WebAuthn</code>, <code>adattributiond</code>, <code>webpushd</code>, <code>Model</code>, and <code>Databases/Storage</code>).</p>
             </a>
           </li>
           <li>
             <a href="entitlements.html" class="index-link-card">
-              <div class="index-link-title">WebKit Entitlements &amp; BrowserEngineKit Asymmetry Analyzer (159 Entitlements)</div>
+              <div class="index-link-card-top">
+                <div class="index-link-title">WebKit Entitlements &amp; BrowserEngineKit Asymmetry Analyzer &rarr;</div>
+                <span class="badge-pill badge-purple">159 Entitlements &bull; 21 Binaries</span>
+              </div>
+              <p class="index-link-desc">Comprehensive analysis of all 159 unique Darwin/iOS/macOS entitlements across WebKit plists, signing scripts, runtime checks, Seatbelt rules, and BrowserEngineKit capability gaps.</p>
             </a>
           </li>
         </ul>
